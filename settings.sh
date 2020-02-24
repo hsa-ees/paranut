@@ -36,19 +36,8 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Detect bash or zsh
-if [ -n $BASH ]; then
-  PARANUT_HOME=$(dirname $(readlink -f $0))
-elif [ -n  $ZSH_NAME ]; then
-  PARANUT_HOME=${0:a:h}
-fi
-
-# Get PARANUT_HOME
-if [[ "${PARANUT_HOME:0:1}" != "/" ]]; then
-  PARANUT_HOME=$PWD/$PARANUT_HOME
-fi
-export PARANUT_HOME
-
+# Set PARANUT_HOME
+PARANUT_HOME=`dirname "$(readlink -f "$0")"`
 
 # Add ParaNut python tools to PATH
 PATH=$PATH:${PARANUT_HOME}/tools
