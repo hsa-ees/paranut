@@ -38,10 +38,10 @@
 
 # Set PARANUT_HOME
 PARANUT_HOME=`dirname "$(readlink -f "$0")"`
+export PARANUT_HOME
 
 # Add ParaNut python tools to PATH
 PATH=$PATH:${PARANUT_HOME}/tools
-
 
 # The general UAS EES-Lab environment already includes following setup steps, 
 # thus they are omitted in that case:
