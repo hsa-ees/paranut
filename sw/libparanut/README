@@ -1,0 +1,53 @@
+Copyright
+=========
+
+Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this 
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation and/or
+other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON 
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Welcome!
+========
+
+Welcome the libparanut, a hardware abstraction layer that strives to make programming the ParaNut easy peasy lemon squeezy. Check the documentation on how to use this library in your application. A practical example can also be found in the libparanut_unittest directory.
+> cd ../libparanut_unittest
+
+libparanut - How to get Documentation
+=====================================
+
+The libparanut already has some documentation created and ready for you in the doc directory of your ParaNut repository. The libparanut_manual.pdf contains information relevant to the application developer. libparanut_manual_internal.pdf contains information for developers who want/need to program the libparanut itself.
+
+You changed some documentation and need to update it? Or want to have a cool clickable html version of the documentation? The following part is for you, then.
+
+First you will need to install Doxygen and move into the libparanut directory (which is the directory this README is in).
+
+Create normal documentation:
+> doxygen Documentation/Doxyfile
+
+Create internal documentation:
+> doxygen Documentation/Doxyfile_internal
+
+The created documentation can then be found in the ./Documentation/html and
+./Documentation/latex directories. The html version can be accessed by opening one of the html files in your browser of choice. For creating a pdf out of the latex version, Doxygen automatically generates a Makefile which you can use. Do the following:
+> cd Documentation/latex
+> make clean all
+
+The full pdf is created in the same directory under the name refman.pdf. Don't forget to create both versions, copy them to the doc directory of the ParaNut repository and rename them properly.

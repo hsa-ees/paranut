@@ -1,0 +1,158 @@
+[*]
+[*] GTKWave Analyzer v3.3.37 (w)1999-2012 BSI
+[*] Sun Sep  1 15:43:10 2013
+[*]
+[dumpfile] "/home/gundolf/hsa/paranut/svn.nobackup/paranut/trunk/sysc/paranut_tb.vcd"
+[dumpfile_mtime] "Sun Sep  1 15:40:46 2013"
+[dumpfile_size] 1223641
+[savefile] "/home/gundolf/hsa/paranut/svn.nobackup/paranut/trunk/sysc/paranut_tb.sav"
+[timestart] 0
+[size] 1209 975
+[pos] -1 -1
+*-14.662169 349568 227920 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 209
+[signals_width] 334
+[sst_expanded] 1
+[sst_vpaned_height] 288
+@28
+SystemC.clk
+SystemC.reset
+@200
+-
+@28
+SystemC.wb_cyc
+SystemC.wb_stb
+SystemC.wb_we
+SystemC.wb_ack
+@22
+SystemC.wb_sel[3:0]
+SystemC.wb_adr[31:0]
+SystemC.wb_dat_w[31:0]
+SystemC.wb_dat_r[31:0]
+@200
+-
+@28
+SystemC.\nut.IFU0.rp_rd
+SystemC.\nut.IFU0.rp_ack
+@22
+SystemC.\nut.IFU0.rp_adr[31:0]
+SystemC.\nut.IFU0.rp_data[31:0]
+@200
+-
+@28
+SystemC.\nut.IFU0.next
+SystemC.\nut.IFU0.jump
+@22
+SystemC.\nut.IFU0.jump_adr[31:0]
+@28
+SystemC.\nut.IFU0.ir_valid
+@22
+SystemC.\nut.IFU0.ir[31:0]
+SystemC.\nut.IFU0.ppc[31:0]
+SystemC.\nut.IFU0.pc[31:0]
+SystemC.\nut.IFU0.npc[31:0]
+@200
+-
+@24
+SystemC.\nut.IFU0.adr_top[31:0]
+@22
+SystemC.\nut.IFU0.adr_buf(0)[31:0]
+SystemC.\nut.IFU0.adr_buf(1)[31:0]
+SystemC.\nut.IFU0.adr_buf(2)[31:0]
+SystemC.\nut.IFU0.adr_buf(3)[31:0]
+@200
+-
+@24
+SystemC.\nut.IFU0.insn_top[31:0]
+@22
+SystemC.\nut.IFU0.insn_buf(0)[31:0]
+SystemC.\nut.IFU0.insn_buf(1)[31:0]
+SystemC.\nut.IFU0.insn_buf(2)[31:0]
+SystemC.\nut.IFU0.insn_buf(3)[31:0]
+@200
+-
+@28
+SystemC.\nut.EXU0.lsu_rd
+SystemC.\nut.EXU0.lsu_wr
+SystemC.\nut.EXU0.lsu_ack
+@22
+SystemC.\nut.EXU0.lsu_adr[31:0]
+SystemC.\nut.EXU0.lsu_rdata[31:0]
+SystemC.\nut.EXU0.lsu_wdata[31:0]
+@200
+-
+@28
+SystemC.\nut.EXU0.lsu_cache_invalidate
+SystemC.\nut.EXU0.lsu_cache_writeback
+@200
+-
+@28
+SystemC.\nut.LSU0.rp_rd
+SystemC.\nut.LSU0.rp_ack
+@22
+SystemC.\nut.LSU0.rp_adr[31:0]
+SystemC.\nut.LSU0.rp_bsel[3:0]
+@200
+-
+@28
+SystemC.\nut.LSU0.wp_wr
+SystemC.\nut.LSU0.wp_ack
+@22
+SystemC.\nut.LSU0.wp_bsel[3:0]
+SystemC.\nut.LSU0.wp_adr[31:0]
+SystemC.\nut.LSU0.wp_data[31:0]
+@200
+-
+@28
+SystemC.\nut.LSU0.rd
+SystemC.\nut.LSU0.wr
+SystemC.\nut.LSU0.flush
+SystemC.\nut.LSU0.cache_invalidate
+SystemC.\nut.LSU0.cache_writeback
+@24
+SystemC.\nut.LSU0.width[1:0]
+@28
+SystemC.\nut.LSU0.ack
+SystemC.\nut.LSU0.rlink_wcond
+@22
+SystemC.\nut.LSU0.adr[31:0]
+SystemC.\nut.LSU0.rdata[31:0]
+SystemC.\nut.LSU0.wdata[31:0]
+@200
+-
+@28
+SystemC.\nut.LSU0.wp_wr
+SystemC.\nut.LSU0.wp_writeback
+SystemC.\nut.LSU0.wp_invalidate
+SystemC.\nut.LSU0.wp_rlink_wcond
+SystemC.\nut.LSU0.wp_ack
+SystemC.\nut.LSU0.wp_wcond_ok
+@22
+SystemC.\nut.LSU0.wp_adr[31:0]
+SystemC.\nut.LSU0.wp_bsel[3:0]
+SystemC.\nut.LSU0.wp_data[31:0]
+@200
+-
+@22
+SystemC.\nut.LSU0.wbuf_adr(0)[31:0]
+SystemC.\nut.LSU0.wbuf_adr(1)[31:0]
+SystemC.\nut.LSU0.wbuf_adr(2)[31:0]
+SystemC.\nut.LSU0.wbuf_adr(3)[31:0]
+SystemC.\nut.LSU0.wbuf_data(0)[31:0]
+SystemC.\nut.LSU0.wbuf_data(1)[31:0]
+SystemC.\nut.LSU0.wbuf_data(2)[31:0]
+SystemC.\nut.LSU0.wbuf_data(3)[31:0]
+SystemC.\nut.LSU0.wbuf_valid(0)[3:0]
+SystemC.\nut.LSU0.wbuf_valid(1)[3:0]
+SystemC.\nut.LSU0.wbuf_valid(2)[3:0]
+SystemC.\nut.LSU0.wbuf_valid(3)[3:0]
+@29
+SystemC.\nut.LSU0.wbuf_dirty0
+@28
+SystemC.\nut.LSU0.sig_wbuf_dont_remove
+@200
+-
+-
+-
+[pattern_trace] 1
+[pattern_trace] 0

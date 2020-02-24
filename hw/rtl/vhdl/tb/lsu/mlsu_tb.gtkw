@@ -1,0 +1,104 @@
+[*]
+[*] GTKWave Analyzer v3.3.45 (w)1999-2012 BSI
+[*] Fri Apr 19 13:17:16 2013
+[*]
+[dumpfile] "/home/mikkl/etc/fh/master/ma/paranut/trunk/vhdl/tb/lsu/mlsu_tb.ghw"
+[dumpfile_mtime] "Fri Apr 19 13:17:13 2013"
+[dumpfile_size] 7779
+[savefile] "/home/mikkl/etc/fh/master/ma/paranut/trunk/vhdl/tb/lsu/mlsu_tb.gtkw"
+[timestart] 0
+[size] 1371 979
+[pos] -1 -1
+*-26.256998 121800000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.mlsu_tb.
+[treeopen] top.mlsu_tb.uut.
+[treeopen] top.mlsu_tb.uut.r.wbuf_adr.
+[treeopen] top.mlsu_tb.uut.r.wbuf_data.
+[treeopen] top.mlsu_tb.uut.r.wbuf_valid.
+[sst_width] 220
+[signals_width] 281
+[sst_expanded] 1
+[sst_vpaned_height] 292
+@28
+top.mlsu_tb.uut.clk
+top.mlsu_tb.uut.reset
+@200
+-inputs
+-wpo
+@28
+top.mlsu_tb.uut.wpo.port_wcond_ok
+top.mlsu_tb.uut.wpo.port_ack
+@200
+-rpo
+@28
+top.mlsu_tb.uut.rpo.port_ack
+@22
+#{top.mlsu_tb.uut.rpo.port_data[31:0]} top.mlsu_tb.uut.rpo.port_data[31] top.mlsu_tb.uut.rpo.port_data[30] top.mlsu_tb.uut.rpo.port_data[29] top.mlsu_tb.uut.rpo.port_data[28] top.mlsu_tb.uut.rpo.port_data[27] top.mlsu_tb.uut.rpo.port_data[26] top.mlsu_tb.uut.rpo.port_data[25] top.mlsu_tb.uut.rpo.port_data[24] top.mlsu_tb.uut.rpo.port_data[23] top.mlsu_tb.uut.rpo.port_data[22] top.mlsu_tb.uut.rpo.port_data[21] top.mlsu_tb.uut.rpo.port_data[20] top.mlsu_tb.uut.rpo.port_data[19] top.mlsu_tb.uut.rpo.port_data[18] top.mlsu_tb.uut.rpo.port_data[17] top.mlsu_tb.uut.rpo.port_data[16] top.mlsu_tb.uut.rpo.port_data[15] top.mlsu_tb.uut.rpo.port_data[14] top.mlsu_tb.uut.rpo.port_data[13] top.mlsu_tb.uut.rpo.port_data[12] top.mlsu_tb.uut.rpo.port_data[11] top.mlsu_tb.uut.rpo.port_data[10] top.mlsu_tb.uut.rpo.port_data[9] top.mlsu_tb.uut.rpo.port_data[8] top.mlsu_tb.uut.rpo.port_data[7] top.mlsu_tb.uut.rpo.port_data[6] top.mlsu_tb.uut.rpo.port_data[5] top.mlsu_tb.uut.rpo.port_data[4] top.mlsu_tb.uut.rpo.port_data[3] top.mlsu_tb.uut.rpo.port_data[2] top.mlsu_tb.uut.rpo.port_data[1] top.mlsu_tb.uut.rpo.port_data[0]
+@200
+-lsui
+@28
+top.mlsu_tb.uut.lsui.exts
+top.mlsu_tb.uut.lsui.rlink_wcond
+top.mlsu_tb.uut.lsui.cache_invalidate
+top.mlsu_tb.uut.lsui.cache_writeback
+top.mlsu_tb.uut.lsui.flush
+top.mlsu_tb.uut.lsui.wr
+top.mlsu_tb.uut.lsui.rd
+@22
+#{top.mlsu_tb.uut.lsui.wdata[31:0]} top.mlsu_tb.uut.lsui.wdata[31] top.mlsu_tb.uut.lsui.wdata[30] top.mlsu_tb.uut.lsui.wdata[29] top.mlsu_tb.uut.lsui.wdata[28] top.mlsu_tb.uut.lsui.wdata[27] top.mlsu_tb.uut.lsui.wdata[26] top.mlsu_tb.uut.lsui.wdata[25] top.mlsu_tb.uut.lsui.wdata[24] top.mlsu_tb.uut.lsui.wdata[23] top.mlsu_tb.uut.lsui.wdata[22] top.mlsu_tb.uut.lsui.wdata[21] top.mlsu_tb.uut.lsui.wdata[20] top.mlsu_tb.uut.lsui.wdata[19] top.mlsu_tb.uut.lsui.wdata[18] top.mlsu_tb.uut.lsui.wdata[17] top.mlsu_tb.uut.lsui.wdata[16] top.mlsu_tb.uut.lsui.wdata[15] top.mlsu_tb.uut.lsui.wdata[14] top.mlsu_tb.uut.lsui.wdata[13] top.mlsu_tb.uut.lsui.wdata[12] top.mlsu_tb.uut.lsui.wdata[11] top.mlsu_tb.uut.lsui.wdata[10] top.mlsu_tb.uut.lsui.wdata[9] top.mlsu_tb.uut.lsui.wdata[8] top.mlsu_tb.uut.lsui.wdata[7] top.mlsu_tb.uut.lsui.wdata[6] top.mlsu_tb.uut.lsui.wdata[5] top.mlsu_tb.uut.lsui.wdata[4] top.mlsu_tb.uut.lsui.wdata[3] top.mlsu_tb.uut.lsui.wdata[2] top.mlsu_tb.uut.lsui.wdata[1] top.mlsu_tb.uut.lsui.wdata[0]
+#{top.mlsu_tb.uut.lsui.adr[31:0]} top.mlsu_tb.uut.lsui.adr[31] top.mlsu_tb.uut.lsui.adr[30] top.mlsu_tb.uut.lsui.adr[29] top.mlsu_tb.uut.lsui.adr[28] top.mlsu_tb.uut.lsui.adr[27] top.mlsu_tb.uut.lsui.adr[26] top.mlsu_tb.uut.lsui.adr[25] top.mlsu_tb.uut.lsui.adr[24] top.mlsu_tb.uut.lsui.adr[23] top.mlsu_tb.uut.lsui.adr[22] top.mlsu_tb.uut.lsui.adr[21] top.mlsu_tb.uut.lsui.adr[20] top.mlsu_tb.uut.lsui.adr[19] top.mlsu_tb.uut.lsui.adr[18] top.mlsu_tb.uut.lsui.adr[17] top.mlsu_tb.uut.lsui.adr[16] top.mlsu_tb.uut.lsui.adr[15] top.mlsu_tb.uut.lsui.adr[14] top.mlsu_tb.uut.lsui.adr[13] top.mlsu_tb.uut.lsui.adr[12] top.mlsu_tb.uut.lsui.adr[11] top.mlsu_tb.uut.lsui.adr[10] top.mlsu_tb.uut.lsui.adr[9] top.mlsu_tb.uut.lsui.adr[8] top.mlsu_tb.uut.lsui.adr[7] top.mlsu_tb.uut.lsui.adr[6] top.mlsu_tb.uut.lsui.adr[5] top.mlsu_tb.uut.lsui.adr[4] top.mlsu_tb.uut.lsui.adr[3] top.mlsu_tb.uut.lsui.adr[2] top.mlsu_tb.uut.lsui.adr[1] top.mlsu_tb.uut.lsui.adr[0]
+@24
+#{top.mlsu_tb.uut.lsui.width[1:0]} top.mlsu_tb.uut.lsui.width[1] top.mlsu_tb.uut.lsui.width[0]
+@200
+-registers
+@28
+#{top.mlsu_tb.uut.r.wbuf_valid[3][3:0]} top.mlsu_tb.uut.r.wbuf_valid[3][3] top.mlsu_tb.uut.r.wbuf_valid[3][2] top.mlsu_tb.uut.r.wbuf_valid[3][1] top.mlsu_tb.uut.r.wbuf_valid[3][0]
+#{top.mlsu_tb.uut.r.wbuf_valid[2][3:0]} top.mlsu_tb.uut.r.wbuf_valid[2][3] top.mlsu_tb.uut.r.wbuf_valid[2][2] top.mlsu_tb.uut.r.wbuf_valid[2][1] top.mlsu_tb.uut.r.wbuf_valid[2][0]
+@c00028
+#{top.mlsu_tb.uut.r.wbuf_valid[1][3:0]} top.mlsu_tb.uut.r.wbuf_valid[1][3] top.mlsu_tb.uut.r.wbuf_valid[1][2] top.mlsu_tb.uut.r.wbuf_valid[1][1] top.mlsu_tb.uut.r.wbuf_valid[1][0]
+@28
+top.mlsu_tb.uut.r.wbuf_valid[1][3]
+top.mlsu_tb.uut.r.wbuf_valid[1][2]
+top.mlsu_tb.uut.r.wbuf_valid[1][1]
+top.mlsu_tb.uut.r.wbuf_valid[1][0]
+@1401200
+-group_end
+@28
+#{top.mlsu_tb.uut.r.wbuf_valid[0][3:0]} top.mlsu_tb.uut.r.wbuf_valid[0][3] top.mlsu_tb.uut.r.wbuf_valid[0][2] top.mlsu_tb.uut.r.wbuf_valid[0][1] top.mlsu_tb.uut.r.wbuf_valid[0][0]
+@22
+#{top.mlsu_tb.uut.r.wbuf_data[3][31:0]} top.mlsu_tb.uut.r.wbuf_data[3][31] top.mlsu_tb.uut.r.wbuf_data[3][30] top.mlsu_tb.uut.r.wbuf_data[3][29] top.mlsu_tb.uut.r.wbuf_data[3][28] top.mlsu_tb.uut.r.wbuf_data[3][27] top.mlsu_tb.uut.r.wbuf_data[3][26] top.mlsu_tb.uut.r.wbuf_data[3][25] top.mlsu_tb.uut.r.wbuf_data[3][24] top.mlsu_tb.uut.r.wbuf_data[3][23] top.mlsu_tb.uut.r.wbuf_data[3][22] top.mlsu_tb.uut.r.wbuf_data[3][21] top.mlsu_tb.uut.r.wbuf_data[3][20] top.mlsu_tb.uut.r.wbuf_data[3][19] top.mlsu_tb.uut.r.wbuf_data[3][18] top.mlsu_tb.uut.r.wbuf_data[3][17] top.mlsu_tb.uut.r.wbuf_data[3][16] top.mlsu_tb.uut.r.wbuf_data[3][15] top.mlsu_tb.uut.r.wbuf_data[3][14] top.mlsu_tb.uut.r.wbuf_data[3][13] top.mlsu_tb.uut.r.wbuf_data[3][12] top.mlsu_tb.uut.r.wbuf_data[3][11] top.mlsu_tb.uut.r.wbuf_data[3][10] top.mlsu_tb.uut.r.wbuf_data[3][9] top.mlsu_tb.uut.r.wbuf_data[3][8] top.mlsu_tb.uut.r.wbuf_data[3][7] top.mlsu_tb.uut.r.wbuf_data[3][6] top.mlsu_tb.uut.r.wbuf_data[3][5] top.mlsu_tb.uut.r.wbuf_data[3][4] top.mlsu_tb.uut.r.wbuf_data[3][3] top.mlsu_tb.uut.r.wbuf_data[3][2] top.mlsu_tb.uut.r.wbuf_data[3][1] top.mlsu_tb.uut.r.wbuf_data[3][0]
+#{top.mlsu_tb.uut.r.wbuf_data[2][31:0]} top.mlsu_tb.uut.r.wbuf_data[2][31] top.mlsu_tb.uut.r.wbuf_data[2][30] top.mlsu_tb.uut.r.wbuf_data[2][29] top.mlsu_tb.uut.r.wbuf_data[2][28] top.mlsu_tb.uut.r.wbuf_data[2][27] top.mlsu_tb.uut.r.wbuf_data[2][26] top.mlsu_tb.uut.r.wbuf_data[2][25] top.mlsu_tb.uut.r.wbuf_data[2][24] top.mlsu_tb.uut.r.wbuf_data[2][23] top.mlsu_tb.uut.r.wbuf_data[2][22] top.mlsu_tb.uut.r.wbuf_data[2][21] top.mlsu_tb.uut.r.wbuf_data[2][20] top.mlsu_tb.uut.r.wbuf_data[2][19] top.mlsu_tb.uut.r.wbuf_data[2][18] top.mlsu_tb.uut.r.wbuf_data[2][17] top.mlsu_tb.uut.r.wbuf_data[2][16] top.mlsu_tb.uut.r.wbuf_data[2][15] top.mlsu_tb.uut.r.wbuf_data[2][14] top.mlsu_tb.uut.r.wbuf_data[2][13] top.mlsu_tb.uut.r.wbuf_data[2][12] top.mlsu_tb.uut.r.wbuf_data[2][11] top.mlsu_tb.uut.r.wbuf_data[2][10] top.mlsu_tb.uut.r.wbuf_data[2][9] top.mlsu_tb.uut.r.wbuf_data[2][8] top.mlsu_tb.uut.r.wbuf_data[2][7] top.mlsu_tb.uut.r.wbuf_data[2][6] top.mlsu_tb.uut.r.wbuf_data[2][5] top.mlsu_tb.uut.r.wbuf_data[2][4] top.mlsu_tb.uut.r.wbuf_data[2][3] top.mlsu_tb.uut.r.wbuf_data[2][2] top.mlsu_tb.uut.r.wbuf_data[2][1] top.mlsu_tb.uut.r.wbuf_data[2][0]
+#{top.mlsu_tb.uut.r.wbuf_data[1][31:0]} top.mlsu_tb.uut.r.wbuf_data[1][31] top.mlsu_tb.uut.r.wbuf_data[1][30] top.mlsu_tb.uut.r.wbuf_data[1][29] top.mlsu_tb.uut.r.wbuf_data[1][28] top.mlsu_tb.uut.r.wbuf_data[1][27] top.mlsu_tb.uut.r.wbuf_data[1][26] top.mlsu_tb.uut.r.wbuf_data[1][25] top.mlsu_tb.uut.r.wbuf_data[1][24] top.mlsu_tb.uut.r.wbuf_data[1][23] top.mlsu_tb.uut.r.wbuf_data[1][22] top.mlsu_tb.uut.r.wbuf_data[1][21] top.mlsu_tb.uut.r.wbuf_data[1][20] top.mlsu_tb.uut.r.wbuf_data[1][19] top.mlsu_tb.uut.r.wbuf_data[1][18] top.mlsu_tb.uut.r.wbuf_data[1][17] top.mlsu_tb.uut.r.wbuf_data[1][16] top.mlsu_tb.uut.r.wbuf_data[1][15] top.mlsu_tb.uut.r.wbuf_data[1][14] top.mlsu_tb.uut.r.wbuf_data[1][13] top.mlsu_tb.uut.r.wbuf_data[1][12] top.mlsu_tb.uut.r.wbuf_data[1][11] top.mlsu_tb.uut.r.wbuf_data[1][10] top.mlsu_tb.uut.r.wbuf_data[1][9] top.mlsu_tb.uut.r.wbuf_data[1][8] top.mlsu_tb.uut.r.wbuf_data[1][7] top.mlsu_tb.uut.r.wbuf_data[1][6] top.mlsu_tb.uut.r.wbuf_data[1][5] top.mlsu_tb.uut.r.wbuf_data[1][4] top.mlsu_tb.uut.r.wbuf_data[1][3] top.mlsu_tb.uut.r.wbuf_data[1][2] top.mlsu_tb.uut.r.wbuf_data[1][1] top.mlsu_tb.uut.r.wbuf_data[1][0]
+#{top.mlsu_tb.uut.r.wbuf_data[0][31:0]} top.mlsu_tb.uut.r.wbuf_data[0][31] top.mlsu_tb.uut.r.wbuf_data[0][30] top.mlsu_tb.uut.r.wbuf_data[0][29] top.mlsu_tb.uut.r.wbuf_data[0][28] top.mlsu_tb.uut.r.wbuf_data[0][27] top.mlsu_tb.uut.r.wbuf_data[0][26] top.mlsu_tb.uut.r.wbuf_data[0][25] top.mlsu_tb.uut.r.wbuf_data[0][24] top.mlsu_tb.uut.r.wbuf_data[0][23] top.mlsu_tb.uut.r.wbuf_data[0][22] top.mlsu_tb.uut.r.wbuf_data[0][21] top.mlsu_tb.uut.r.wbuf_data[0][20] top.mlsu_tb.uut.r.wbuf_data[0][19] top.mlsu_tb.uut.r.wbuf_data[0][18] top.mlsu_tb.uut.r.wbuf_data[0][17] top.mlsu_tb.uut.r.wbuf_data[0][16] top.mlsu_tb.uut.r.wbuf_data[0][15] top.mlsu_tb.uut.r.wbuf_data[0][14] top.mlsu_tb.uut.r.wbuf_data[0][13] top.mlsu_tb.uut.r.wbuf_data[0][12] top.mlsu_tb.uut.r.wbuf_data[0][11] top.mlsu_tb.uut.r.wbuf_data[0][10] top.mlsu_tb.uut.r.wbuf_data[0][9] top.mlsu_tb.uut.r.wbuf_data[0][8] top.mlsu_tb.uut.r.wbuf_data[0][7] top.mlsu_tb.uut.r.wbuf_data[0][6] top.mlsu_tb.uut.r.wbuf_data[0][5] top.mlsu_tb.uut.r.wbuf_data[0][4] top.mlsu_tb.uut.r.wbuf_data[0][3] top.mlsu_tb.uut.r.wbuf_data[0][2] top.mlsu_tb.uut.r.wbuf_data[0][1] top.mlsu_tb.uut.r.wbuf_data[0][0]
+#{top.mlsu_tb.uut.r.wbuf_adr[3][31:0]} top.mlsu_tb.uut.r.wbuf_adr[3][31] top.mlsu_tb.uut.r.wbuf_adr[3][30] top.mlsu_tb.uut.r.wbuf_adr[3][29] top.mlsu_tb.uut.r.wbuf_adr[3][28] top.mlsu_tb.uut.r.wbuf_adr[3][27] top.mlsu_tb.uut.r.wbuf_adr[3][26] top.mlsu_tb.uut.r.wbuf_adr[3][25] top.mlsu_tb.uut.r.wbuf_adr[3][24] top.mlsu_tb.uut.r.wbuf_adr[3][23] top.mlsu_tb.uut.r.wbuf_adr[3][22] top.mlsu_tb.uut.r.wbuf_adr[3][21] top.mlsu_tb.uut.r.wbuf_adr[3][20] top.mlsu_tb.uut.r.wbuf_adr[3][19] top.mlsu_tb.uut.r.wbuf_adr[3][18] top.mlsu_tb.uut.r.wbuf_adr[3][17] top.mlsu_tb.uut.r.wbuf_adr[3][16] top.mlsu_tb.uut.r.wbuf_adr[3][15] top.mlsu_tb.uut.r.wbuf_adr[3][14] top.mlsu_tb.uut.r.wbuf_adr[3][13] top.mlsu_tb.uut.r.wbuf_adr[3][12] top.mlsu_tb.uut.r.wbuf_adr[3][11] top.mlsu_tb.uut.r.wbuf_adr[3][10] top.mlsu_tb.uut.r.wbuf_adr[3][9] top.mlsu_tb.uut.r.wbuf_adr[3][8] top.mlsu_tb.uut.r.wbuf_adr[3][7] top.mlsu_tb.uut.r.wbuf_adr[3][6] top.mlsu_tb.uut.r.wbuf_adr[3][5] top.mlsu_tb.uut.r.wbuf_adr[3][4] top.mlsu_tb.uut.r.wbuf_adr[3][3] top.mlsu_tb.uut.r.wbuf_adr[3][2] top.mlsu_tb.uut.r.wbuf_adr[3][1] top.mlsu_tb.uut.r.wbuf_adr[3][0]
+#{top.mlsu_tb.uut.r.wbuf_adr[2][31:0]} top.mlsu_tb.uut.r.wbuf_adr[2][31] top.mlsu_tb.uut.r.wbuf_adr[2][30] top.mlsu_tb.uut.r.wbuf_adr[2][29] top.mlsu_tb.uut.r.wbuf_adr[2][28] top.mlsu_tb.uut.r.wbuf_adr[2][27] top.mlsu_tb.uut.r.wbuf_adr[2][26] top.mlsu_tb.uut.r.wbuf_adr[2][25] top.mlsu_tb.uut.r.wbuf_adr[2][24] top.mlsu_tb.uut.r.wbuf_adr[2][23] top.mlsu_tb.uut.r.wbuf_adr[2][22] top.mlsu_tb.uut.r.wbuf_adr[2][21] top.mlsu_tb.uut.r.wbuf_adr[2][20] top.mlsu_tb.uut.r.wbuf_adr[2][19] top.mlsu_tb.uut.r.wbuf_adr[2][18] top.mlsu_tb.uut.r.wbuf_adr[2][17] top.mlsu_tb.uut.r.wbuf_adr[2][16] top.mlsu_tb.uut.r.wbuf_adr[2][15] top.mlsu_tb.uut.r.wbuf_adr[2][14] top.mlsu_tb.uut.r.wbuf_adr[2][13] top.mlsu_tb.uut.r.wbuf_adr[2][12] top.mlsu_tb.uut.r.wbuf_adr[2][11] top.mlsu_tb.uut.r.wbuf_adr[2][10] top.mlsu_tb.uut.r.wbuf_adr[2][9] top.mlsu_tb.uut.r.wbuf_adr[2][8] top.mlsu_tb.uut.r.wbuf_adr[2][7] top.mlsu_tb.uut.r.wbuf_adr[2][6] top.mlsu_tb.uut.r.wbuf_adr[2][5] top.mlsu_tb.uut.r.wbuf_adr[2][4] top.mlsu_tb.uut.r.wbuf_adr[2][3] top.mlsu_tb.uut.r.wbuf_adr[2][2] top.mlsu_tb.uut.r.wbuf_adr[2][1] top.mlsu_tb.uut.r.wbuf_adr[2][0]
+#{top.mlsu_tb.uut.r.wbuf_adr[1][31:0]} top.mlsu_tb.uut.r.wbuf_adr[1][31] top.mlsu_tb.uut.r.wbuf_adr[1][30] top.mlsu_tb.uut.r.wbuf_adr[1][29] top.mlsu_tb.uut.r.wbuf_adr[1][28] top.mlsu_tb.uut.r.wbuf_adr[1][27] top.mlsu_tb.uut.r.wbuf_adr[1][26] top.mlsu_tb.uut.r.wbuf_adr[1][25] top.mlsu_tb.uut.r.wbuf_adr[1][24] top.mlsu_tb.uut.r.wbuf_adr[1][23] top.mlsu_tb.uut.r.wbuf_adr[1][22] top.mlsu_tb.uut.r.wbuf_adr[1][21] top.mlsu_tb.uut.r.wbuf_adr[1][20] top.mlsu_tb.uut.r.wbuf_adr[1][19] top.mlsu_tb.uut.r.wbuf_adr[1][18] top.mlsu_tb.uut.r.wbuf_adr[1][17] top.mlsu_tb.uut.r.wbuf_adr[1][16] top.mlsu_tb.uut.r.wbuf_adr[1][15] top.mlsu_tb.uut.r.wbuf_adr[1][14] top.mlsu_tb.uut.r.wbuf_adr[1][13] top.mlsu_tb.uut.r.wbuf_adr[1][12] top.mlsu_tb.uut.r.wbuf_adr[1][11] top.mlsu_tb.uut.r.wbuf_adr[1][10] top.mlsu_tb.uut.r.wbuf_adr[1][9] top.mlsu_tb.uut.r.wbuf_adr[1][8] top.mlsu_tb.uut.r.wbuf_adr[1][7] top.mlsu_tb.uut.r.wbuf_adr[1][6] top.mlsu_tb.uut.r.wbuf_adr[1][5] top.mlsu_tb.uut.r.wbuf_adr[1][4] top.mlsu_tb.uut.r.wbuf_adr[1][3] top.mlsu_tb.uut.r.wbuf_adr[1][2] top.mlsu_tb.uut.r.wbuf_adr[1][1] top.mlsu_tb.uut.r.wbuf_adr[1][0]
+@23
+#{top.mlsu_tb.uut.r.wbuf_adr[0][31:0]} top.mlsu_tb.uut.r.wbuf_adr[0][31] top.mlsu_tb.uut.r.wbuf_adr[0][30] top.mlsu_tb.uut.r.wbuf_adr[0][29] top.mlsu_tb.uut.r.wbuf_adr[0][28] top.mlsu_tb.uut.r.wbuf_adr[0][27] top.mlsu_tb.uut.r.wbuf_adr[0][26] top.mlsu_tb.uut.r.wbuf_adr[0][25] top.mlsu_tb.uut.r.wbuf_adr[0][24] top.mlsu_tb.uut.r.wbuf_adr[0][23] top.mlsu_tb.uut.r.wbuf_adr[0][22] top.mlsu_tb.uut.r.wbuf_adr[0][21] top.mlsu_tb.uut.r.wbuf_adr[0][20] top.mlsu_tb.uut.r.wbuf_adr[0][19] top.mlsu_tb.uut.r.wbuf_adr[0][18] top.mlsu_tb.uut.r.wbuf_adr[0][17] top.mlsu_tb.uut.r.wbuf_adr[0][16] top.mlsu_tb.uut.r.wbuf_adr[0][15] top.mlsu_tb.uut.r.wbuf_adr[0][14] top.mlsu_tb.uut.r.wbuf_adr[0][13] top.mlsu_tb.uut.r.wbuf_adr[0][12] top.mlsu_tb.uut.r.wbuf_adr[0][11] top.mlsu_tb.uut.r.wbuf_adr[0][10] top.mlsu_tb.uut.r.wbuf_adr[0][9] top.mlsu_tb.uut.r.wbuf_adr[0][8] top.mlsu_tb.uut.r.wbuf_adr[0][7] top.mlsu_tb.uut.r.wbuf_adr[0][6] top.mlsu_tb.uut.r.wbuf_adr[0][5] top.mlsu_tb.uut.r.wbuf_adr[0][4] top.mlsu_tb.uut.r.wbuf_adr[0][3] top.mlsu_tb.uut.r.wbuf_adr[0][2] top.mlsu_tb.uut.r.wbuf_adr[0][1] top.mlsu_tb.uut.r.wbuf_adr[0][0]
+@200
+-outputs
+-wpi
+@22
+#{top.mlsu_tb.uut.wpi.port_data[31:0]} top.mlsu_tb.uut.wpi.port_data[31] top.mlsu_tb.uut.wpi.port_data[30] top.mlsu_tb.uut.wpi.port_data[29] top.mlsu_tb.uut.wpi.port_data[28] top.mlsu_tb.uut.wpi.port_data[27] top.mlsu_tb.uut.wpi.port_data[26] top.mlsu_tb.uut.wpi.port_data[25] top.mlsu_tb.uut.wpi.port_data[24] top.mlsu_tb.uut.wpi.port_data[23] top.mlsu_tb.uut.wpi.port_data[22] top.mlsu_tb.uut.wpi.port_data[21] top.mlsu_tb.uut.wpi.port_data[20] top.mlsu_tb.uut.wpi.port_data[19] top.mlsu_tb.uut.wpi.port_data[18] top.mlsu_tb.uut.wpi.port_data[17] top.mlsu_tb.uut.wpi.port_data[16] top.mlsu_tb.uut.wpi.port_data[15] top.mlsu_tb.uut.wpi.port_data[14] top.mlsu_tb.uut.wpi.port_data[13] top.mlsu_tb.uut.wpi.port_data[12] top.mlsu_tb.uut.wpi.port_data[11] top.mlsu_tb.uut.wpi.port_data[10] top.mlsu_tb.uut.wpi.port_data[9] top.mlsu_tb.uut.wpi.port_data[8] top.mlsu_tb.uut.wpi.port_data[7] top.mlsu_tb.uut.wpi.port_data[6] top.mlsu_tb.uut.wpi.port_data[5] top.mlsu_tb.uut.wpi.port_data[4] top.mlsu_tb.uut.wpi.port_data[3] top.mlsu_tb.uut.wpi.port_data[2] top.mlsu_tb.uut.wpi.port_data[1] top.mlsu_tb.uut.wpi.port_data[0]
+#{top.mlsu_tb.uut.wpi.port_adr[31:0]} top.mlsu_tb.uut.wpi.port_adr[31] top.mlsu_tb.uut.wpi.port_adr[30] top.mlsu_tb.uut.wpi.port_adr[29] top.mlsu_tb.uut.wpi.port_adr[28] top.mlsu_tb.uut.wpi.port_adr[27] top.mlsu_tb.uut.wpi.port_adr[26] top.mlsu_tb.uut.wpi.port_adr[25] top.mlsu_tb.uut.wpi.port_adr[24] top.mlsu_tb.uut.wpi.port_adr[23] top.mlsu_tb.uut.wpi.port_adr[22] top.mlsu_tb.uut.wpi.port_adr[21] top.mlsu_tb.uut.wpi.port_adr[20] top.mlsu_tb.uut.wpi.port_adr[19] top.mlsu_tb.uut.wpi.port_adr[18] top.mlsu_tb.uut.wpi.port_adr[17] top.mlsu_tb.uut.wpi.port_adr[16] top.mlsu_tb.uut.wpi.port_adr[15] top.mlsu_tb.uut.wpi.port_adr[14] top.mlsu_tb.uut.wpi.port_adr[13] top.mlsu_tb.uut.wpi.port_adr[12] top.mlsu_tb.uut.wpi.port_adr[11] top.mlsu_tb.uut.wpi.port_adr[10] top.mlsu_tb.uut.wpi.port_adr[9] top.mlsu_tb.uut.wpi.port_adr[8] top.mlsu_tb.uut.wpi.port_adr[7] top.mlsu_tb.uut.wpi.port_adr[6] top.mlsu_tb.uut.wpi.port_adr[5] top.mlsu_tb.uut.wpi.port_adr[4] top.mlsu_tb.uut.wpi.port_adr[3] top.mlsu_tb.uut.wpi.port_adr[2] top.mlsu_tb.uut.wpi.port_adr[1] top.mlsu_tb.uut.wpi.port_adr[0]
+@28
+#{top.mlsu_tb.uut.wpi.port_bsel[3:0]} top.mlsu_tb.uut.wpi.port_bsel[3] top.mlsu_tb.uut.wpi.port_bsel[2] top.mlsu_tb.uut.wpi.port_bsel[1] top.mlsu_tb.uut.wpi.port_bsel[0]
+top.mlsu_tb.uut.wpi.port_wr
+@200
+-rpi
+@22
+#{top.mlsu_tb.uut.rpi.port_adr[31:0]} top.mlsu_tb.uut.rpi.port_adr[31] top.mlsu_tb.uut.rpi.port_adr[30] top.mlsu_tb.uut.rpi.port_adr[29] top.mlsu_tb.uut.rpi.port_adr[28] top.mlsu_tb.uut.rpi.port_adr[27] top.mlsu_tb.uut.rpi.port_adr[26] top.mlsu_tb.uut.rpi.port_adr[25] top.mlsu_tb.uut.rpi.port_adr[24] top.mlsu_tb.uut.rpi.port_adr[23] top.mlsu_tb.uut.rpi.port_adr[22] top.mlsu_tb.uut.rpi.port_adr[21] top.mlsu_tb.uut.rpi.port_adr[20] top.mlsu_tb.uut.rpi.port_adr[19] top.mlsu_tb.uut.rpi.port_adr[18] top.mlsu_tb.uut.rpi.port_adr[17] top.mlsu_tb.uut.rpi.port_adr[16] top.mlsu_tb.uut.rpi.port_adr[15] top.mlsu_tb.uut.rpi.port_adr[14] top.mlsu_tb.uut.rpi.port_adr[13] top.mlsu_tb.uut.rpi.port_adr[12] top.mlsu_tb.uut.rpi.port_adr[11] top.mlsu_tb.uut.rpi.port_adr[10] top.mlsu_tb.uut.rpi.port_adr[9] top.mlsu_tb.uut.rpi.port_adr[8] top.mlsu_tb.uut.rpi.port_adr[7] top.mlsu_tb.uut.rpi.port_adr[6] top.mlsu_tb.uut.rpi.port_adr[5] top.mlsu_tb.uut.rpi.port_adr[4] top.mlsu_tb.uut.rpi.port_adr[3] top.mlsu_tb.uut.rpi.port_adr[2] top.mlsu_tb.uut.rpi.port_adr[1] top.mlsu_tb.uut.rpi.port_adr[0]
+@28
+#{top.mlsu_tb.uut.rpi.port_bsel[3:0]} top.mlsu_tb.uut.rpi.port_bsel[3] top.mlsu_tb.uut.rpi.port_bsel[2] top.mlsu_tb.uut.rpi.port_bsel[1] top.mlsu_tb.uut.rpi.port_bsel[0]
+top.mlsu_tb.uut.rpi.port_rd
+top.mlsu_tb.uut.rpi.port_direct
+@200
+-lsuo
+@22
+#{top.mlsu_tb.uut.lsuo.rdata[31:0]} top.mlsu_tb.uut.lsuo.rdata[31] top.mlsu_tb.uut.lsuo.rdata[30] top.mlsu_tb.uut.lsuo.rdata[29] top.mlsu_tb.uut.lsuo.rdata[28] top.mlsu_tb.uut.lsuo.rdata[27] top.mlsu_tb.uut.lsuo.rdata[26] top.mlsu_tb.uut.lsuo.rdata[25] top.mlsu_tb.uut.lsuo.rdata[24] top.mlsu_tb.uut.lsuo.rdata[23] top.mlsu_tb.uut.lsuo.rdata[22] top.mlsu_tb.uut.lsuo.rdata[21] top.mlsu_tb.uut.lsuo.rdata[20] top.mlsu_tb.uut.lsuo.rdata[19] top.mlsu_tb.uut.lsuo.rdata[18] top.mlsu_tb.uut.lsuo.rdata[17] top.mlsu_tb.uut.lsuo.rdata[16] top.mlsu_tb.uut.lsuo.rdata[15] top.mlsu_tb.uut.lsuo.rdata[14] top.mlsu_tb.uut.lsuo.rdata[13] top.mlsu_tb.uut.lsuo.rdata[12] top.mlsu_tb.uut.lsuo.rdata[11] top.mlsu_tb.uut.lsuo.rdata[10] top.mlsu_tb.uut.lsuo.rdata[9] top.mlsu_tb.uut.lsuo.rdata[8] top.mlsu_tb.uut.lsuo.rdata[7] top.mlsu_tb.uut.lsuo.rdata[6] top.mlsu_tb.uut.lsuo.rdata[5] top.mlsu_tb.uut.lsuo.rdata[4] top.mlsu_tb.uut.lsuo.rdata[3] top.mlsu_tb.uut.lsuo.rdata[2] top.mlsu_tb.uut.lsuo.rdata[1] top.mlsu_tb.uut.lsuo.rdata[0]
+@28
+top.mlsu_tb.uut.lsuo.ack
+top.mlsu_tb.uut.lsuo.align_err
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="./isim.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="lfsr" />
+            <top_module name="math_real" />
+            <top_module name="mem_tech" />
+            <top_module name="memu" />
+            <top_module name="memu_lib" />
+            <top_module name="mmemu_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="paranut_config" />
+            <top_module name="paranut_lib" />
+            <top_module name="peripherals" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_textio" />
+            <top_module name="tb_monitor" />
+            <top_module name="text_io" />
+            <top_module name="textio" />
+            <top_module name="txt_util" />
+            <top_module name="types" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="46" />
+   <wave_markers>
+      <marker time="2590000000" label="" />
+   </wave_markers>
+   <wvobject fp_name="/mmemu_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/bifwbi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifwbi</obj_property>
+      <obj_property name="ObjectShortName">bifwbi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/bifwbi.ack_i" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.ack_i</obj_property>
+         <obj_property name="ObjectShortName">bifwbi.ack_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/bifwbi.err_i" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.err_i</obj_property>
+         <obj_property name="ObjectShortName">bifwbi.err_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/bifwbi.rty_i" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.rty_i</obj_property>
+         <obj_property name="ObjectShortName">bifwbi.rty_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/bifwbi.dat_i" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.dat_i</obj_property>
+         <obj_property name="ObjectShortName">bifwbi.dat_i</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/bifwbo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifwbo</obj_property>
+      <obj_property name="ObjectShortName">bifwbo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/bifwbo.cyc_o" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.cyc_o</obj_property>
+         <obj_property name="ObjectShortName">bifwbo.cyc_o</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/bifwbo.stb_o" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.stb_o</obj_property>
+         <obj_property name="ObjectShortName">bifwbo.stb_o</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/bifwbo.we_o" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.we_o</obj_property>
+         <obj_property name="ObjectShortName">bifwbo.we_o</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/bifwbo.sel_o" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.sel_o</obj_property>
+         <obj_property name="ObjectShortName">bifwbo.sel_o</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/bifwbo.adr_o" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.adr_o</obj_property>
+         <obj_property name="ObjectShortName">bifwbo.adr_o</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/bifwbo.dat_o" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.dat_o</obj_property>
+         <obj_property name="ObjectShortName">bifwbo.dat_o</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/rpi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpi[0:3]</obj_property>
+      <obj_property name="ObjectShortName">rpi[0:3]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/rpi[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">rpi[0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mmemu_tb/rpi[0].port_rd" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_rd</obj_property>
+            <obj_property name="ObjectShortName">rpi[0].port_rd</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[0].port_bsel" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_bsel</obj_property>
+            <obj_property name="ObjectShortName">rpi[0].port_bsel</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[0].port_direct" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_direct</obj_property>
+            <obj_property name="ObjectShortName">rpi[0].port_direct</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[0].port_adr" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_adr</obj_property>
+            <obj_property name="ObjectShortName">rpi[0].port_adr</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/rpi[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">rpi[1]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mmemu_tb/rpi[1].port_rd" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_rd</obj_property>
+            <obj_property name="ObjectShortName">rpi[1].port_rd</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[1].port_bsel" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_bsel</obj_property>
+            <obj_property name="ObjectShortName">rpi[1].port_bsel</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[1].port_direct" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_direct</obj_property>
+            <obj_property name="ObjectShortName">rpi[1].port_direct</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[1].port_adr" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_adr</obj_property>
+            <obj_property name="ObjectShortName">rpi[1].port_adr</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/rpi[2]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">rpi[2]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mmemu_tb/rpi[2].port_rd" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_rd</obj_property>
+            <obj_property name="ObjectShortName">rpi[2].port_rd</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[2].port_bsel" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_bsel</obj_property>
+            <obj_property name="ObjectShortName">rpi[2].port_bsel</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[2].port_direct" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_direct</obj_property>
+            <obj_property name="ObjectShortName">rpi[2].port_direct</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[2].port_adr" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_adr</obj_property>
+            <obj_property name="ObjectShortName">rpi[2].port_adr</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/rpi[3]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">rpi[3]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mmemu_tb/rpi[3].port_rd" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_rd</obj_property>
+            <obj_property name="ObjectShortName">rpi[3].port_rd</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[3].port_bsel" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_bsel</obj_property>
+            <obj_property name="ObjectShortName">rpi[3].port_bsel</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[3].port_direct" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_direct</obj_property>
+            <obj_property name="ObjectShortName">rpi[3].port_direct</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpi[3].port_adr" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_adr</obj_property>
+            <obj_property name="ObjectShortName">rpi[3].port_adr</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/rpo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpo[0:3]</obj_property>
+      <obj_property name="ObjectShortName">rpo[0:3]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/rpo[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">rpo[0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mmemu_tb/rpo[0].port_ack" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_ack</obj_property>
+            <obj_property name="ObjectShortName">rpo[0].port_ack</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpo[0].port_data" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_data</obj_property>
+            <obj_property name="ObjectShortName">rpo[0].port_data</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/rpo[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">rpo[1]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mmemu_tb/rpo[1].port_ack" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_ack</obj_property>
+            <obj_property name="ObjectShortName">rpo[1].port_ack</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/rpo[1].port_data" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.port_data</obj_property>
+            <obj_property name="ObjectShortName">rpo[1].port_data</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/rpo[2]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">rpo[2]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/rpo[3]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">rpo[3]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/wpi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpi[0:1]</obj_property>
+      <obj_property name="ObjectShortName">wpi[0:1]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/wpo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpo[0:1]</obj_property>
+      <obj_property name="ObjectShortName">wpo[0:1]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider74" type="divider">
+      <obj_property name="label">wp</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpi</obj_property>
+      <obj_property name="ObjectShortName">wpi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi.port_wr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_wr</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi.port_direct" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_direct</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_direct</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi.port_bsel" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_bsel</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_bsel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi.port_rlink_wcond" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_rlink_wcond</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_rlink_wcond</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi.port_writeback" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_writeback</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_writeback</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi.port_invalidate" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_invalidate</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_invalidate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi.port_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_adr</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpi.port_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_data</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_data</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpo</obj_property>
+      <obj_property name="ObjectShortName">wpo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpci" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpci</obj_property>
+      <obj_property name="ObjectShortName">wpci</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpco" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpco</obj_property>
+      <obj_property name="ObjectShortName">wpco</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpbifi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpbifi</obj_property>
+      <obj_property name="ObjectShortName">wpbifi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpbifo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpbifo</obj_property>
+      <obj_property name="ObjectShortName">wpbifo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpai</obj_property>
+      <obj_property name="ObjectShortName">wpai</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/wpao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpao</obj_property>
+      <obj_property name="ObjectShortName">wpao</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(0)\/WritePort/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider130" type="divider">
+      <obj_property name="label">wp1</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpi</obj_property>
+      <obj_property name="ObjectShortName">wpi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi.port_wr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_wr</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi.port_direct" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_direct</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_direct</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi.port_bsel" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_bsel</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_bsel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi.port_rlink_wcond" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_rlink_wcond</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_rlink_wcond</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi.port_writeback" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_writeback</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_writeback</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi.port_invalidate" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_invalidate</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_invalidate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi.port_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_adr</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpi.port_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_data</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_data</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpo</obj_property>
+      <obj_property name="ObjectShortName">wpo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpci" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpci</obj_property>
+      <obj_property name="ObjectShortName">wpci</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpco" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpco</obj_property>
+      <obj_property name="ObjectShortName">wpco</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpco.tag_rd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_rd</obj_property>
+         <obj_property name="ObjectShortName">wpco.tag_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpco.tag_wr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_wr</obj_property>
+         <obj_property name="ObjectShortName">wpco.tag_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpco.bank_rd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.bank_rd</obj_property>
+         <obj_property name="ObjectShortName">wpco.bank_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpco.bank_wr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.bank_wr</obj_property>
+         <obj_property name="ObjectShortName">wpco.bank_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpco.bank_data_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.bank_data_out</obj_property>
+         <obj_property name="ObjectShortName">wpco.bank_data_out</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpco.tag_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_out</obj_property>
+         <obj_property name="ObjectShortName">wpco.tag_out</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpai</obj_property>
+      <obj_property name="ObjectShortName">wpai</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\writeports(1)\/WritePort/wpao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpao</obj_property>
+      <obj_property name="ObjectShortName">wpao</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider73" type="divider">
+      <obj_property name="label">bif</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bri</obj_property>
+      <obj_property name="ObjectShortName">bri</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri.rd" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.rd</obj_property>
+         <obj_property name="ObjectShortName">bri.rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri.wr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wr</obj_property>
+         <obj_property name="ObjectShortName">bri.wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri.wiadr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wiadr</obj_property>
+         <obj_property name="ObjectShortName">bri.wiadr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri.wiadr[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">bri.wiadr[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri.wiadr[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">bri.wiadr[1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri.wdata" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wdata</obj_property>
+         <obj_property name="ObjectShortName">bri.wdata</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri.wdata[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">bri.wdata[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bri.wdata[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">bri.wdata[1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/\bankrams(0)\/BankRam/bro" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bro</obj_property>
+      <obj_property name="ObjectShortName">bro</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/BusIf/bifwbi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifwbi</obj_property>
+      <obj_property name="ObjectShortName">bifwbi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/BusIf/bifwbo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifwbo</obj_property>
+      <obj_property name="ObjectShortName">bifwbo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/BusIf/bifmi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifmi</obj_property>
+      <obj_property name="ObjectShortName">bifmi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/BusIf/bifmo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifmo</obj_property>
+      <obj_property name="ObjectShortName">bifmo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/BusIf/bifai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifai</obj_property>
+      <obj_property name="ObjectShortName">bifai</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/BusIf/bifao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifao</obj_property>
+      <obj_property name="ObjectShortName">bifao</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/BusIf/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.op" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.op</obj_property>
+         <obj_property name="ObjectShortName">r.op</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.state" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.state</obj_property>
+         <obj_property name="ObjectShortName">r.state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.linelock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.linelock</obj_property>
+         <obj_property name="ObjectShortName">r.linelock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.bsel" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.bsel</obj_property>
+         <obj_property name="ObjectShortName">r.bsel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.adr</obj_property>
+         <obj_property name="ObjectShortName">r.adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.adr_ofs" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.adr_ofs</obj_property>
+         <obj_property name="ObjectShortName">r.adr_ofs</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.idata" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.idata</obj_property>
+         <obj_property name="ObjectShortName">r.idata</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.odata" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.odata</obj_property>
+         <obj_property name="ObjectShortName">r.odata</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.banks_left" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.banks_left</obj_property>
+         <obj_property name="ObjectShortName">r.banks_left</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.banks_left_last" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.banks_left_last</obj_property>
+         <obj_property name="ObjectShortName">r.banks_left_last</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.write_victim" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.write_victim</obj_property>
+         <obj_property name="ObjectShortName">r.write_victim</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.idata_valid" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.idata_valid</obj_property>
+         <obj_property name="ObjectShortName">r.idata_valid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.cnt" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.cnt</obj_property>
+         <obj_property name="ObjectShortName">r.cnt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mmemu_tb/uut/BusIf/r.tag" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag</obj_property>
+         <obj_property name="ObjectShortName">r.tag</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider123" type="divider">
+      <obj_property name="label">arbiter</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/ai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ai</obj_property>
+      <obj_property name="ObjectShortName">ai</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/ao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ao</obj_property>
+      <obj_property name="ObjectShortName">ao</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/bifai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifai</obj_property>
+      <obj_property name="ObjectShortName">bifai</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/bifao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifao</obj_property>
+      <obj_property name="ObjectShortName">bifao</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/rpai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpai[0:3]</obj_property>
+      <obj_property name="ObjectShortName">rpai[0:3]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/rpao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpao[0:3]</obj_property>
+      <obj_property name="ObjectShortName">rpao[0:3]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/wpai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpai[0:1]</obj_property>
+      <obj_property name="ObjectShortName">wpai[0:1]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/wpao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpao[0:1]</obj_property>
+      <obj_property name="ObjectShortName">wpao[0:1]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmemu_tb/uut/Arbiter/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+</wave_config>

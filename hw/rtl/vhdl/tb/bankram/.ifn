@@ -1,0 +1,12 @@
+set -xsthdpdir xst_work
+run
+-ifn .prj
+-ofn 
+-work_lib paranut
+-top 
+-iobuf no
+-p xc5vlx110t-ff1136-1
+-ifmt vhdl
+-opt_mode Speed
+-opt_level 1
+-rtlview yes

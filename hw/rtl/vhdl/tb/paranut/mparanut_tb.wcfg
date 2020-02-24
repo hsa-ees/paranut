@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="./isim.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="exu" />
+            <top_module name="histogram" />
+            <top_module name="ifu" />
+            <top_module name="lfsr" />
+            <top_module name="lsu" />
+            <top_module name="math_real" />
+            <top_module name="mem_tech" />
+            <top_module name="memu" />
+            <top_module name="memu_lib" />
+            <top_module name="mparanut_tb" />
+            <top_module name="mul_tech" />
+            <top_module name="numeric_std" />
+            <top_module name="orbis32" />
+            <top_module name="paranut_config" />
+            <top_module name="paranut_lib" />
+            <top_module name="paranut_pkg" />
+            <top_module name="peripherals" />
+            <top_module name="prog_mem" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_textio" />
+            <top_module name="tb_monitor" />
+            <top_module name="text_io" />
+            <top_module name="textio" />
+            <top_module name="txt_util" />
+            <top_module name="types" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="76" />
+   <wave_markers>
+      <marker time="1562090000000" label="" />
+      <marker time="1527680000000" label="" />
+      <marker time="2443010000000" label="" />
+      <marker time="89440000000" label="" />
+      <marker time="94490000000" label="" />
+      <marker time="28430000000" label="" />
+      <marker time="57180000000" label="" />
+      <marker time="89790000000" label="" />
+      <marker time="1004670000000" label="" />
+   </wave_markers>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider11" type="divider">
+      <obj_property name="label">WB</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/wb_cyc" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wb_cyc</obj_property>
+      <obj_property name="ObjectShortName">wb_cyc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/wb_stb" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wb_stb</obj_property>
+      <obj_property name="ObjectShortName">wb_stb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/wb_we" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wb_we</obj_property>
+      <obj_property name="ObjectShortName">wb_we</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/wb_ack" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wb_ack</obj_property>
+      <obj_property name="ObjectShortName">wb_ack</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/memory/cti_i" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cti_i[2:0]</obj_property>
+      <obj_property name="ObjectShortName">cti_i[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/memory/bte_i" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bte_i[1:0]</obj_property>
+      <obj_property name="ObjectShortName">bte_i[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/wb_sel" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wb_sel[3:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_sel[3:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/wb_adr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wb_adr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_adr[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/wb_dat_w" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wb_dat_w[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_dat_w[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/wb_dat_r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wb_dat_r[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_dat_r[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider195" type="divider">
+      <obj_property name="label">BUSIF</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/BusIf/bifai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifai</obj_property>
+      <obj_property name="ObjectShortName">bifai</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/BusIf/bifao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bifao</obj_property>
+      <obj_property name="ObjectShortName">bifao</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/BusIf/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider12" type="divider">
+      <obj_property name="label">IFU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.insn_buf" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.insn_buf</obj_property>
+         <obj_property name="ObjectShortName">r.insn_buf</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.insn_buf[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">r.insn_buf[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.insn_buf[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">r.insn_buf[1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.insn_buf[2]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[2]</obj_property>
+            <obj_property name="ObjectShortName">r.insn_buf[2]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.insn_buf[3]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[3]</obj_property>
+            <obj_property name="ObjectShortName">r.insn_buf[3]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.adr_buf" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.adr_buf</obj_property>
+         <obj_property name="ObjectShortName">r.adr_buf</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.adr_buf[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">r.adr_buf[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.adr_buf[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">r.adr_buf[1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.adr_buf[2]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[2]</obj_property>
+            <obj_property name="ObjectShortName">r.adr_buf[2]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.adr_buf[3]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[3]</obj_property>
+            <obj_property name="ObjectShortName">r.adr_buf[3]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.insn_top" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.insn_top</obj_property>
+         <obj_property name="ObjectShortName">r.insn_top</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.adr_top" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.adr_top</obj_property>
+         <obj_property name="ObjectShortName">r.adr_top</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.last_rp_ack" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.last_rp_ack</obj_property>
+         <obj_property name="ObjectShortName">r.last_rp_ack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.rp_rd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.rp_rd</obj_property>
+         <obj_property name="ObjectShortName">r.rp_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.rp_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.rp_adr</obj_property>
+         <obj_property name="ObjectShortName">r.rp_adr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/r.buf_fill_hist" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.buf_fill_hist</obj_property>
+         <obj_property name="ObjectShortName">r.buf_fill_hist</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/ifui" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ifui</obj_property>
+      <obj_property name="ObjectShortName">ifui</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\ifus(0)\/IFU/ifuo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ifuo</obj_property>
+      <obj_property name="ObjectShortName">ifuo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider202" type="divider">
+      <obj_property name="label">LSU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/lsui" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">lsui</obj_property>
+      <obj_property name="ObjectShortName">lsui</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/lsuo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">lsuo</obj_property>
+      <obj_property name="ObjectShortName">lsuo</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.wbuf_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wbuf_adr</obj_property>
+         <obj_property name="ObjectShortName">r.wbuf_adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.wbuf_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wbuf_data</obj_property>
+         <obj_property name="ObjectShortName">r.wbuf_data</obj_property>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.wbuf_data[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">r.wbuf_data[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.wbuf_data[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">r.wbuf_data[1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.wbuf_data[2]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[2]</obj_property>
+            <obj_property name="ObjectShortName">r.wbuf_data[2]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.wbuf_data[3]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[3]</obj_property>
+            <obj_property name="ObjectShortName">r.wbuf_data[3]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.wbuf_valid" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wbuf_valid</obj_property>
+         <obj_property name="ObjectShortName">r.wbuf_valid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.wbuf_dirty0" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.wbuf_dirty0</obj_property>
+         <obj_property name="ObjectShortName">r.wbuf_dirty0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.buf_fill_hist" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.buf_fill_hist</obj_property>
+         <obj_property name="ObjectShortName">r.buf_fill_hist</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.buf_fill_hist[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">r.buf_fill_hist[0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.buf_fill_hist[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">r.buf_fill_hist[1]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.buf_fill_hist[2]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[2]</obj_property>
+            <obj_property name="ObjectShortName">r.buf_fill_hist[2]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.buf_fill_hist[3]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[3]</obj_property>
+            <obj_property name="ObjectShortName">r.buf_fill_hist[3]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.buf_fill_hist[4]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[4]</obj_property>
+            <obj_property name="ObjectShortName">r.buf_fill_hist[4]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/r.buf_fill_hist[5]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[5]</obj_property>
+            <obj_property name="ObjectShortName">r.buf_fill_hist[5]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/rpi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpi</obj_property>
+      <obj_property name="ObjectShortName">rpi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\lsus(0)\/lsus_complex/LSU/rpo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpo</obj_property>
+      <obj_property name="ObjectShortName">rpo</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider209" type="divider">
+      <obj_property name="label">load hist</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/load_hist/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/load_hist/r.state" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.state</obj_property>
+         <obj_property name="ObjectShortName">r.state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/load_hist/r.cnt" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.cnt</obj_property>
+         <obj_property name="ObjectShortName">r.cnt</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/load_hist/r.min" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.min</obj_property>
+         <obj_property name="ObjectShortName">r.min</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/load_hist/r.max" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.max</obj_property>
+         <obj_property name="ObjectShortName">r.max</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/load_hist/r.tot_cnt" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tot_cnt</obj_property>
+         <obj_property name="ObjectShortName">r.tot_cnt</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/load_hist/r.tot_clks" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tot_clks</obj_property>
+         <obj_property name="ObjectShortName">r.tot_clks</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/load_hist/hi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">hi</obj_property>
+      <obj_property name="ObjectShortName">hi</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider250" type="divider">
+      <obj_property name="label">wp hist miss</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/cwml_hist/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/cwml_hist/r.state" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.state</obj_property>
+         <obj_property name="ObjectShortName">r.state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/cwml_hist/r.cnt" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.cnt</obj_property>
+         <obj_property name="ObjectShortName">r.cnt</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/cwml_hist/r.min" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.min</obj_property>
+         <obj_property name="ObjectShortName">r.min</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/cwml_hist/r.max" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.max</obj_property>
+         <obj_property name="ObjectShortName">r.max</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/cwml_hist/r.tot_cnt" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tot_cnt</obj_property>
+         <obj_property name="ObjectShortName">r.tot_cnt</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/cwml_hist/r.tot_clks" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tot_clks</obj_property>
+         <obj_property name="ObjectShortName">r.tot_clks</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/cwml_hist/hi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">hi</obj_property>
+      <obj_property name="ObjectShortName">hi</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider284" type="divider">
+      <obj_property name="label">ifu hist</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/ifu_hist/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/ifu_hist/r.state" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.state</obj_property>
+         <obj_property name="ObjectShortName">r.state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/ifu_hist/r.cnt" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.cnt</obj_property>
+         <obj_property name="ObjectShortName">r.cnt</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/ifu_hist/r.min" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.min</obj_property>
+         <obj_property name="ObjectShortName">r.min</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/ifu_hist/r.max" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.max</obj_property>
+         <obj_property name="ObjectShortName">r.max</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/ifu_hist/r.tot_cnt" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tot_cnt</obj_property>
+         <obj_property name="ObjectShortName">r.tot_cnt</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/ifu_hist/r.tot_clks" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tot_clks</obj_property>
+         <obj_property name="ObjectShortName">r.tot_clks</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/hist_gen/ifu_hist/hi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">hi</obj_property>
+      <obj_property name="ObjectShortName">hi</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider193" type="divider">
+      <obj_property name="label">RP(1)IFU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpi</obj_property>
+      <obj_property name="ObjectShortName">rpi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpi.port_rd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_rd</obj_property>
+         <obj_property name="ObjectShortName">rpi.port_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpi.port_bsel" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_bsel</obj_property>
+         <obj_property name="ObjectShortName">rpi.port_bsel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpi.port_direct" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_direct</obj_property>
+         <obj_property name="ObjectShortName">rpi.port_direct</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpi.port_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_adr</obj_property>
+         <obj_property name="ObjectShortName">rpi.port_adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpo</obj_property>
+      <obj_property name="ObjectShortName">rpo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpo.port_ack" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_ack</obj_property>
+         <obj_property name="ObjectShortName">rpo.port_ack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpo.port_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_data</obj_property>
+         <obj_property name="ObjectShortName">rpo.port_data</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpci" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpci</obj_property>
+      <obj_property name="ObjectShortName">rpci</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpco" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpco</obj_property>
+      <obj_property name="ObjectShortName">rpco</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpbifi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpbifi</obj_property>
+      <obj_property name="ObjectShortName">rpbifi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpbifi.busif_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.busif_adr</obj_property>
+         <obj_property name="ObjectShortName">rpbifi.busif_adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpbifi.busif_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.busif_data</obj_property>
+         <obj_property name="ObjectShortName">rpbifi.busif_data</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpbifi.busif_data_valid" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.busif_data_valid</obj_property>
+         <obj_property name="ObjectShortName">rpbifi.busif_data_valid</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpbifi.busif_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.busif_busy</obj_property>
+         <obj_property name="ObjectShortName">rpbifi.busif_busy</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpbifo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpbifo</obj_property>
+      <obj_property name="ObjectShortName">rpbifo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpai</obj_property>
+      <obj_property name="ObjectShortName">rpai</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/rpao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpao</obj_property>
+      <obj_property name="ObjectShortName">rpao</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(1)\/ReadPort/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider76" type="divider">
+      <obj_property name="label">EXU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r.x" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.x</obj_property>
+         <obj_property name="ObjectShortName">r.x</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r.m" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.m</obj_property>
+         <obj_property name="ObjectShortName">r.m</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r.e" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.e</obj_property>
+         <obj_property name="ObjectShortName">r.e</obj_property>
+         <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r.e.state" type="other" db_ref_id="1">
+            <obj_property name="ElementShortName">.state</obj_property>
+            <obj_property name="ObjectShortName">r.e.state</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r.e.wb_result" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.wb_result</obj_property>
+            <obj_property name="ObjectShortName">r.e.wb_result</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r.d" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.d</obj_property>
+         <obj_property name="ObjectShortName">r.d</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r.f" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.f</obj_property>
+         <obj_property name="ObjectShortName">r.f</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/r.mode" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.mode</obj_property>
+         <obj_property name="ObjectShortName">r.mode</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mem[0:31]</obj_property>
+      <obj_property name="ObjectShortName">mem[0:31]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">mem[0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">mem[1]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[2]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">mem[2]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[3]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">mem[3]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[4]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">mem[4]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[5]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">mem[5]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[6]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">mem[6]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[7]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">mem[7]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[8]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">mem[8]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[9]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">mem[9]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[10]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">mem[10]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[11]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">mem[11]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[12]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">mem[12]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[13]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">mem[13]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[14]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">mem[14]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[15]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">mem[15]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[16]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[16]</obj_property>
+         <obj_property name="ObjectShortName">mem[16]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[17]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">mem[17]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[18]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[18]</obj_property>
+         <obj_property name="ObjectShortName">mem[18]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[19]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[19]</obj_property>
+         <obj_property name="ObjectShortName">mem[19]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[20]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[20]</obj_property>
+         <obj_property name="ObjectShortName">mem[20]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[21]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[21]</obj_property>
+         <obj_property name="ObjectShortName">mem[21]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[22]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[22]</obj_property>
+         <obj_property name="ObjectShortName">mem[22]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[23]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[23]</obj_property>
+         <obj_property name="ObjectShortName">mem[23]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[24]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[24]</obj_property>
+         <obj_property name="ObjectShortName">mem[24]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[25]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[25]</obj_property>
+         <obj_property name="ObjectShortName">mem[25]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[26]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[26]</obj_property>
+         <obj_property name="ObjectShortName">mem[26]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[27]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[27]</obj_property>
+         <obj_property name="ObjectShortName">mem[27]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[28]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[28]</obj_property>
+         <obj_property name="ObjectShortName">mem[28]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[29]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[29]</obj_property>
+         <obj_property name="ObjectShortName">mem[29]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[30]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[30]</obj_property>
+         <obj_property name="ObjectShortName">mem[30]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/\exus(0)\/exucepus/EXUCePU/regfile_0/regfile_mem/mem[31]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[31]</obj_property>
+         <obj_property name="ObjectShortName">mem[31]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider114" type="divider">
+      <obj_property name="label">LSU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider123" type="divider">
+      <obj_property name="label">RP(0)LSU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpci" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpci</obj_property>
+      <obj_property name="ObjectShortName">rpci</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpci.bank_data_in" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.bank_data_in</obj_property>
+         <obj_property name="ObjectShortName">rpci.bank_data_in</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpci.tag_in" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_in</obj_property>
+         <obj_property name="ObjectShortName">rpci.tag_in</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpci.tag_in.valid" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.valid</obj_property>
+            <obj_property name="ObjectShortName">rpci.tag_in.valid</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpci.tag_in.dirty" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.dirty</obj_property>
+            <obj_property name="ObjectShortName">rpci.tag_in.dirty</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpci.tag_in.taddr" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.taddr</obj_property>
+            <obj_property name="ObjectShortName">rpci.tag_in.taddr</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpci.tag_in.way" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.way</obj_property>
+            <obj_property name="ObjectShortName">rpci.tag_in.way</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpco" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpco</obj_property>
+      <obj_property name="ObjectShortName">rpco</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpbifi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpbifi</obj_property>
+      <obj_property name="ObjectShortName">rpbifi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpbifi.busif_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.busif_adr</obj_property>
+         <obj_property name="ObjectShortName">rpbifi.busif_adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpbifi.busif_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.busif_data</obj_property>
+         <obj_property name="ObjectShortName">rpbifi.busif_data</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpbifi.busif_data_valid" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.busif_data_valid</obj_property>
+         <obj_property name="ObjectShortName">rpbifi.busif_data_valid</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpbifi.busif_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.busif_busy</obj_property>
+         <obj_property name="ObjectShortName">rpbifi.busif_busy</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpbifo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpbifo</obj_property>
+      <obj_property name="ObjectShortName">rpbifo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpai</obj_property>
+      <obj_property name="ObjectShortName">rpai</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/rpao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpao</obj_property>
+      <obj_property name="ObjectShortName">rpao</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\readports(0)\/ReadPort/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider206" type="divider">
+      <obj_property name="label">WP</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpi</obj_property>
+      <obj_property name="ObjectShortName">wpi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi.port_wr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_wr</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi.port_direct" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_direct</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_direct</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi.port_bsel" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_bsel</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_bsel</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi.port_rlink_wcond" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_rlink_wcond</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_rlink_wcond</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi.port_writeback" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_writeback</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_writeback</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi.port_invalidate" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_invalidate</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_invalidate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi.port_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_adr</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpi.port_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.port_data</obj_property>
+         <obj_property name="ObjectShortName">wpi.port_data</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpo</obj_property>
+      <obj_property name="ObjectShortName">wpo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpci" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpci</obj_property>
+      <obj_property name="ObjectShortName">wpci</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpco" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpco</obj_property>
+      <obj_property name="ObjectShortName">wpco</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpco.tag_rd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_rd</obj_property>
+         <obj_property name="ObjectShortName">wpco.tag_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpco.tag_wr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_wr</obj_property>
+         <obj_property name="ObjectShortName">wpco.tag_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpco.bank_rd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.bank_rd</obj_property>
+         <obj_property name="ObjectShortName">wpco.bank_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpco.bank_wr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.bank_wr</obj_property>
+         <obj_property name="ObjectShortName">wpco.bank_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpco.bank_data_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.bank_data_out</obj_property>
+         <obj_property name="ObjectShortName">wpco.bank_data_out</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpco.tag_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_out</obj_property>
+         <obj_property name="ObjectShortName">wpco.tag_out</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpbifi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpbifi</obj_property>
+      <obj_property name="ObjectShortName">wpbifi</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpbifo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpbifo</obj_property>
+      <obj_property name="ObjectShortName">wpbifo</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpai</obj_property>
+      <obj_property name="ObjectShortName">wpai</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/wpao" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wpao</obj_property>
+      <obj_property name="ObjectShortName">wpao</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\writeports(0)\/WritePort/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider262" type="divider">
+      <obj_property name="label">ARBITER</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/Arbiter/r" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider184" type="divider">
+      <obj_property name="label">TR</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tri" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tri</obj_property>
+      <obj_property name="ObjectShortName">tri</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tri.rd" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.rd</obj_property>
+         <obj_property name="ObjectShortName">tri.rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tri.wr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wr</obj_property>
+         <obj_property name="ObjectShortName">tri.wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tri.addr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.addr</obj_property>
+         <obj_property name="ObjectShortName">tri.addr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tri.tag_in" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_in</obj_property>
+         <obj_property name="ObjectShortName">tri.tag_in</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tro" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tro</obj_property>
+      <obj_property name="ObjectShortName">tro</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tro.ready" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.ready</obj_property>
+         <obj_property name="ObjectShortName">tro.ready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tro.tag_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tag_out</obj_property>
+         <obj_property name="ObjectShortName">tro.tag_out</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tro.tag_out[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">tro.tag_out[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+            <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tro.tag_out[0].valid" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">.valid</obj_property>
+               <obj_property name="ObjectShortName">tro.tag_out[0].valid</obj_property>
+            </wvobject>
+            <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tro.tag_out[0].dirty" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">.dirty</obj_property>
+               <obj_property name="ObjectShortName">tro.tag_out[0].dirty</obj_property>
+            </wvobject>
+            <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tro.tag_out[0].taddr" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">.taddr</obj_property>
+               <obj_property name="ObjectShortName">tro.tag_out[0].taddr</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/mparanut_tb/nut/MemU/TagRam/tro.tag_out[0].way" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">.way</obj_property>
+               <obj_property name="ObjectShortName">tro.tag_out[0].way</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider120" type="divider">
+      <obj_property name="label">BR(3)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bri" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bri</obj_property>
+      <obj_property name="ObjectShortName">bri</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bri.rd" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.rd</obj_property>
+         <obj_property name="ObjectShortName">bri.rd</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bri.wr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wr</obj_property>
+         <obj_property name="ObjectShortName">bri.wr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bri.wiadr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wiadr</obj_property>
+         <obj_property name="ObjectShortName">bri.wiadr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bri.wdata" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.wdata</obj_property>
+         <obj_property name="ObjectShortName">bri.wdata</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bri.wdata[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">bri.wdata[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bri.wdata[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">bri.wdata[1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bro" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bro</obj_property>
+      <obj_property name="ObjectShortName">bro</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/mparanut_tb/nut/MemU/\bankrams(3)\/BankRam/bro.rdata" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.rdata</obj_property>
+         <obj_property name="ObjectShortName">bro.rdata</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

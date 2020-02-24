@@ -1,0 +1,182 @@
+[*]
+[*] GTKWave Analyzer v3.3.47 (w)1999-2013 BSI
+[*] Sun Sep 22 18:31:21 2013
+[*]
+[dumpfile] "/home/mikkl/etc/fh/master/ma/project/rtl/vhdl/tb/tagram/mtagram_tb.ghw"
+[dumpfile_mtime] "Sun Sep 22 18:30:42 2013"
+[dumpfile_size] 6947
+[savefile] "/home/mikkl/etc/fh/master/ma/project/rtl/vhdl/tb/tagram/mtagram_tb.gtkw"
+[timestart] 0
+[size] 1920 1113
+[pos] -1 -1
+*-25.191145 205000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.mtagram_tb.
+[treeopen] top.mtagram_tb.tri.tag_in.[0].
+[treeopen] top.mtagram_tb.tro.tag_out.
+[treeopen] top.mtagram_tb.tro.tag_out.[0].
+[treeopen] top.mtagram_tb.uut.
+[treeopen] top.mtagram_tb.uut.r.iaddr.
+[treeopen] top.mtagram_tb.uut.r.lru_entry.[0].
+[treeopen] top.mtagram_tb.uut.r.lru_entry.[0].taddr.
+[treeopen] top.mtagram_tb.uut.r.taddr.
+[treeopen] top.mtagram_tb.uut.tri.
+[treeopen] top.mtagram_tb.uut.tri.addr.
+[treeopen] top.mtagram_tb.uut.tri.tag_in.
+[treeopen] top.mtagram_tb.uut.tri.tag_in.[0].
+[treeopen] top.mtagram_tb.uut.tro.tag_out.
+[treeopen] top.mtagram_tb.uut.tro.tag_out.[0].
+[sst_width] 220
+[signals_width] 400
+[sst_expanded] 1
+[sst_vpaned_height] 329
+@28
+top.mtagram_tb.uut.tagrams[0].tagram.clk
+top.mtagram_tb.tri.wr[0]
+top.mtagram_tb.tri.rd[0]
+@23
+#{top.mtagram_tb.uut.tri.addr[0][31:0]} top.mtagram_tb.uut.tri.addr[0][31] top.mtagram_tb.uut.tri.addr[0][30] top.mtagram_tb.uut.tri.addr[0][29] top.mtagram_tb.uut.tri.addr[0][28] top.mtagram_tb.uut.tri.addr[0][27] top.mtagram_tb.uut.tri.addr[0][26] top.mtagram_tb.uut.tri.addr[0][25] top.mtagram_tb.uut.tri.addr[0][24] top.mtagram_tb.uut.tri.addr[0][23] top.mtagram_tb.uut.tri.addr[0][22] top.mtagram_tb.uut.tri.addr[0][21] top.mtagram_tb.uut.tri.addr[0][20] top.mtagram_tb.uut.tri.addr[0][19] top.mtagram_tb.uut.tri.addr[0][18] top.mtagram_tb.uut.tri.addr[0][17] top.mtagram_tb.uut.tri.addr[0][16] top.mtagram_tb.uut.tri.addr[0][15] top.mtagram_tb.uut.tri.addr[0][14] top.mtagram_tb.uut.tri.addr[0][13] top.mtagram_tb.uut.tri.addr[0][12] top.mtagram_tb.uut.tri.addr[0][11] top.mtagram_tb.uut.tri.addr[0][10] top.mtagram_tb.uut.tri.addr[0][9] top.mtagram_tb.uut.tri.addr[0][8] top.mtagram_tb.uut.tri.addr[0][7] top.mtagram_tb.uut.tri.addr[0][6] top.mtagram_tb.uut.tri.addr[0][5] top.mtagram_tb.uut.tri.addr[0][4] top.mtagram_tb.uut.tri.addr[0][3] top.mtagram_tb.uut.tri.addr[0][2] top.mtagram_tb.uut.tri.addr[0][1] top.mtagram_tb.uut.tri.addr[0][0]
+@28
+top.mtagram_tb.uut.tri.tag_in[0].dirty
+top.mtagram_tb.uut.tri.tag_in[0].valid
+@200
+-tag_out
+@28
+top.mtagram_tb.tro.ready
+top.mtagram_tb.tro.tag_out[0].dirty
+top.mtagram_tb.tro.tag_out[0].valid
+#{top.mtagram_tb.uut.tro.tag_out[0].way[1:0]} top.mtagram_tb.uut.tro.tag_out[0].way[1] top.mtagram_tb.uut.tro.tag_out[0].way[0]
+@22
+#{top.mtagram_tb.uut.tro.tag_out[0].taddr[18:0]} top.mtagram_tb.uut.tro.tag_out[0].taddr[18] top.mtagram_tb.uut.tro.tag_out[0].taddr[17] top.mtagram_tb.uut.tro.tag_out[0].taddr[16] top.mtagram_tb.uut.tro.tag_out[0].taddr[15] top.mtagram_tb.uut.tro.tag_out[0].taddr[14] top.mtagram_tb.uut.tro.tag_out[0].taddr[13] top.mtagram_tb.uut.tro.tag_out[0].taddr[12] top.mtagram_tb.uut.tro.tag_out[0].taddr[11] top.mtagram_tb.uut.tro.tag_out[0].taddr[10] top.mtagram_tb.uut.tro.tag_out[0].taddr[9] top.mtagram_tb.uut.tro.tag_out[0].taddr[8] top.mtagram_tb.uut.tro.tag_out[0].taddr[7] top.mtagram_tb.uut.tro.tag_out[0].taddr[6] top.mtagram_tb.uut.tro.tag_out[0].taddr[5] top.mtagram_tb.uut.tro.tag_out[0].taddr[4] top.mtagram_tb.uut.tro.tag_out[0].taddr[3] top.mtagram_tb.uut.tro.tag_out[0].taddr[2] top.mtagram_tb.uut.tro.tag_out[0].taddr[1] top.mtagram_tb.uut.tro.tag_out[0].taddr[0]
+@200
+-
+@22
+#{top.mtagram_tb.uut.r.lru_use_iadr[0][8:0]} top.mtagram_tb.uut.r.lru_use_iadr[0][3] top.mtagram_tb.uut.r.lru_use_iadr[0][2] top.mtagram_tb.uut.r.lru_use_iadr[0][1] top.mtagram_tb.uut.r.lru_use_iadr[0][0]
+@28
+top.mtagram_tb.uut.r.lru_use_wr[0]
+top.mtagram_tb.uut.r.lru_entry[0].lru_use[0]
+@22
+#{top.mtagram_tb.uut.r.lru_entry[0].taddr[0][18:0]} top.mtagram_tb.uut.r.lru_entry[0].taddr[0][18] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][17] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][16] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][15] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][14] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][13] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][12] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][11] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][10] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][9] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][8] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][7] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][6] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][5] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][4] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][3] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][2] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][1] top.mtagram_tb.uut.r.lru_entry[0].taddr[0][0]
+@28
+top.mtagram_tb.uut.r.lru_entry[0].dirty[0]
+top.mtagram_tb.uut.r.lru_entry[0].valid[0]
+@200
+-
+@28
+#{top.mtagram_tb.uut.tri.tag_in[0].way[1:0]} top.mtagram_tb.uut.tri.tag_in[0].way[1] top.mtagram_tb.uut.tri.tag_in[0].way[0]
+top.mtagram_tb.uut.tagrams[0].tagram.we
+@22
+#{top.mtagram_tb.uut.tagrams[0].tagram.raddr[8:0]} top.mtagram_tb.uut.tagrams[0].tagram.raddr[3] top.mtagram_tb.uut.tagrams[0].tagram.raddr[2] top.mtagram_tb.uut.tagrams[0].tagram.raddr[1] top.mtagram_tb.uut.tagrams[0].tagram.raddr[0]
+#{top.mtagram_tb.uut.r.lru_entry[0].dirty[0:3]} top.mtagram_tb.uut.r.lru_entry[0].dirty[0] top.mtagram_tb.uut.r.lru_entry[0].dirty[1] top.mtagram_tb.uut.r.lru_entry[0].dirty[2] top.mtagram_tb.uut.r.lru_entry[0].dirty[3]
+@200
+-
+@22
+#{top.mtagram_tb.uut.tram_waddr[8:0]} top.mtagram_tb.uut.tram_waddr[3] top.mtagram_tb.uut.tram_waddr[2] top.mtagram_tb.uut.tram_waddr[1] top.mtagram_tb.uut.tram_waddr[0]
+#{top.mtagram_tb.uut.tram_rdata[0][89:0]} top.mtagram_tb.uut.tram_rdata[0][89] top.mtagram_tb.uut.tram_rdata[0][88] top.mtagram_tb.uut.tram_rdata[0][87] top.mtagram_tb.uut.tram_rdata[0][86] top.mtagram_tb.uut.tram_rdata[0][85] top.mtagram_tb.uut.tram_rdata[0][84] top.mtagram_tb.uut.tram_rdata[0][83] top.mtagram_tb.uut.tram_rdata[0][82] top.mtagram_tb.uut.tram_rdata[0][81] top.mtagram_tb.uut.tram_rdata[0][80] top.mtagram_tb.uut.tram_rdata[0][79] top.mtagram_tb.uut.tram_rdata[0][78] top.mtagram_tb.uut.tram_rdata[0][77] top.mtagram_tb.uut.tram_rdata[0][76] top.mtagram_tb.uut.tram_rdata[0][75] top.mtagram_tb.uut.tram_rdata[0][74] top.mtagram_tb.uut.tram_rdata[0][73] top.mtagram_tb.uut.tram_rdata[0][72] top.mtagram_tb.uut.tram_rdata[0][71] top.mtagram_tb.uut.tram_rdata[0][70] top.mtagram_tb.uut.tram_rdata[0][69] top.mtagram_tb.uut.tram_rdata[0][68] top.mtagram_tb.uut.tram_rdata[0][67] top.mtagram_tb.uut.tram_rdata[0][66] top.mtagram_tb.uut.tram_rdata[0][65] top.mtagram_tb.uut.tram_rdata[0][64] top.mtagram_tb.uut.tram_rdata[0][63] top.mtagram_tb.uut.tram_rdata[0][62] top.mtagram_tb.uut.tram_rdata[0][61] top.mtagram_tb.uut.tram_rdata[0][60] top.mtagram_tb.uut.tram_rdata[0][59] top.mtagram_tb.uut.tram_rdata[0][58] top.mtagram_tb.uut.tram_rdata[0][57] top.mtagram_tb.uut.tram_rdata[0][56] top.mtagram_tb.uut.tram_rdata[0][55] top.mtagram_tb.uut.tram_rdata[0][54] top.mtagram_tb.uut.tram_rdata[0][53] top.mtagram_tb.uut.tram_rdata[0][52] top.mtagram_tb.uut.tram_rdata[0][51] top.mtagram_tb.uut.tram_rdata[0][50] top.mtagram_tb.uut.tram_rdata[0][49] top.mtagram_tb.uut.tram_rdata[0][48] top.mtagram_tb.uut.tram_rdata[0][47] top.mtagram_tb.uut.tram_rdata[0][46] top.mtagram_tb.uut.tram_rdata[0][45] top.mtagram_tb.uut.tram_rdata[0][44] top.mtagram_tb.uut.tram_rdata[0][43] top.mtagram_tb.uut.tram_rdata[0][42] top.mtagram_tb.uut.tram_rdata[0][41] top.mtagram_tb.uut.tram_rdata[0][40] top.mtagram_tb.uut.tram_rdata[0][39] top.mtagram_tb.uut.tram_rdata[0][38] top.mtagram_tb.uut.tram_rdata[0][37] top.mtagram_tb.uut.tram_rdata[0][36] top.mtagram_tb.uut.tram_rdata[0][35] top.mtagram_tb.uut.tram_rdata[0][34] top.mtagram_tb.uut.tram_rdata[0][33] top.mtagram_tb.uut.tram_rdata[0][32] top.mtagram_tb.uut.tram_rdata[0][31] top.mtagram_tb.uut.tram_rdata[0][30] top.mtagram_tb.uut.tram_rdata[0][29] top.mtagram_tb.uut.tram_rdata[0][28] top.mtagram_tb.uut.tram_rdata[0][27] top.mtagram_tb.uut.tram_rdata[0][26] top.mtagram_tb.uut.tram_rdata[0][25] top.mtagram_tb.uut.tram_rdata[0][24] top.mtagram_tb.uut.tram_rdata[0][23] top.mtagram_tb.uut.tram_rdata[0][22] top.mtagram_tb.uut.tram_rdata[0][21] top.mtagram_tb.uut.tram_rdata[0][20] top.mtagram_tb.uut.tram_rdata[0][19] top.mtagram_tb.uut.tram_rdata[0][18] top.mtagram_tb.uut.tram_rdata[0][17] top.mtagram_tb.uut.tram_rdata[0][16] top.mtagram_tb.uut.tram_rdata[0][15] top.mtagram_tb.uut.tram_rdata[0][14] top.mtagram_tb.uut.tram_rdata[0][13] top.mtagram_tb.uut.tram_rdata[0][12] top.mtagram_tb.uut.tram_rdata[0][11] top.mtagram_tb.uut.tram_rdata[0][10] top.mtagram_tb.uut.tram_rdata[0][9] top.mtagram_tb.uut.tram_rdata[0][8] top.mtagram_tb.uut.tram_rdata[0][7] top.mtagram_tb.uut.tram_rdata[0][6] top.mtagram_tb.uut.tram_rdata[0][5] top.mtagram_tb.uut.tram_rdata[0][4] top.mtagram_tb.uut.tram_rdata[0][3] top.mtagram_tb.uut.tram_rdata[0][2] top.mtagram_tb.uut.tram_rdata[0][1] top.mtagram_tb.uut.tram_rdata[0][0]
+@c00022
+#{top.mtagram_tb.uut.tram_wdata[89:0]} top.mtagram_tb.uut.tram_wdata[89] top.mtagram_tb.uut.tram_wdata[88] top.mtagram_tb.uut.tram_wdata[87] top.mtagram_tb.uut.tram_wdata[86] top.mtagram_tb.uut.tram_wdata[85] top.mtagram_tb.uut.tram_wdata[84] top.mtagram_tb.uut.tram_wdata[83] top.mtagram_tb.uut.tram_wdata[82] top.mtagram_tb.uut.tram_wdata[81] top.mtagram_tb.uut.tram_wdata[80] top.mtagram_tb.uut.tram_wdata[79] top.mtagram_tb.uut.tram_wdata[78] top.mtagram_tb.uut.tram_wdata[77] top.mtagram_tb.uut.tram_wdata[76] top.mtagram_tb.uut.tram_wdata[75] top.mtagram_tb.uut.tram_wdata[74] top.mtagram_tb.uut.tram_wdata[73] top.mtagram_tb.uut.tram_wdata[72] top.mtagram_tb.uut.tram_wdata[71] top.mtagram_tb.uut.tram_wdata[70] top.mtagram_tb.uut.tram_wdata[69] top.mtagram_tb.uut.tram_wdata[68] top.mtagram_tb.uut.tram_wdata[67] top.mtagram_tb.uut.tram_wdata[66] top.mtagram_tb.uut.tram_wdata[65] top.mtagram_tb.uut.tram_wdata[64] top.mtagram_tb.uut.tram_wdata[63] top.mtagram_tb.uut.tram_wdata[62] top.mtagram_tb.uut.tram_wdata[61] top.mtagram_tb.uut.tram_wdata[60] top.mtagram_tb.uut.tram_wdata[59] top.mtagram_tb.uut.tram_wdata[58] top.mtagram_tb.uut.tram_wdata[57] top.mtagram_tb.uut.tram_wdata[56] top.mtagram_tb.uut.tram_wdata[55] top.mtagram_tb.uut.tram_wdata[54] top.mtagram_tb.uut.tram_wdata[53] top.mtagram_tb.uut.tram_wdata[52] top.mtagram_tb.uut.tram_wdata[51] top.mtagram_tb.uut.tram_wdata[50] top.mtagram_tb.uut.tram_wdata[49] top.mtagram_tb.uut.tram_wdata[48] top.mtagram_tb.uut.tram_wdata[47] top.mtagram_tb.uut.tram_wdata[46] top.mtagram_tb.uut.tram_wdata[45] top.mtagram_tb.uut.tram_wdata[44] top.mtagram_tb.uut.tram_wdata[43] top.mtagram_tb.uut.tram_wdata[42] top.mtagram_tb.uut.tram_wdata[41] top.mtagram_tb.uut.tram_wdata[40] top.mtagram_tb.uut.tram_wdata[39] top.mtagram_tb.uut.tram_wdata[38] top.mtagram_tb.uut.tram_wdata[37] top.mtagram_tb.uut.tram_wdata[36] top.mtagram_tb.uut.tram_wdata[35] top.mtagram_tb.uut.tram_wdata[34] top.mtagram_tb.uut.tram_wdata[33] top.mtagram_tb.uut.tram_wdata[32] top.mtagram_tb.uut.tram_wdata[31] top.mtagram_tb.uut.tram_wdata[30] top.mtagram_tb.uut.tram_wdata[29] top.mtagram_tb.uut.tram_wdata[28] top.mtagram_tb.uut.tram_wdata[27] top.mtagram_tb.uut.tram_wdata[26] top.mtagram_tb.uut.tram_wdata[25] top.mtagram_tb.uut.tram_wdata[24] top.mtagram_tb.uut.tram_wdata[23] top.mtagram_tb.uut.tram_wdata[22] top.mtagram_tb.uut.tram_wdata[21] top.mtagram_tb.uut.tram_wdata[20] top.mtagram_tb.uut.tram_wdata[19] top.mtagram_tb.uut.tram_wdata[18] top.mtagram_tb.uut.tram_wdata[17] top.mtagram_tb.uut.tram_wdata[16] top.mtagram_tb.uut.tram_wdata[15] top.mtagram_tb.uut.tram_wdata[14] top.mtagram_tb.uut.tram_wdata[13] top.mtagram_tb.uut.tram_wdata[12] top.mtagram_tb.uut.tram_wdata[11] top.mtagram_tb.uut.tram_wdata[10] top.mtagram_tb.uut.tram_wdata[9] top.mtagram_tb.uut.tram_wdata[8] top.mtagram_tb.uut.tram_wdata[7] top.mtagram_tb.uut.tram_wdata[6] top.mtagram_tb.uut.tram_wdata[5] top.mtagram_tb.uut.tram_wdata[4] top.mtagram_tb.uut.tram_wdata[3] top.mtagram_tb.uut.tram_wdata[2] top.mtagram_tb.uut.tram_wdata[1] top.mtagram_tb.uut.tram_wdata[0]
+@28
+top.mtagram_tb.uut.tram_wdata[89]
+top.mtagram_tb.uut.tram_wdata[88]
+top.mtagram_tb.uut.tram_wdata[87]
+top.mtagram_tb.uut.tram_wdata[86]
+top.mtagram_tb.uut.tram_wdata[85]
+top.mtagram_tb.uut.tram_wdata[84]
+top.mtagram_tb.uut.tram_wdata[83]
+top.mtagram_tb.uut.tram_wdata[82]
+top.mtagram_tb.uut.tram_wdata[81]
+top.mtagram_tb.uut.tram_wdata[80]
+top.mtagram_tb.uut.tram_wdata[79]
+top.mtagram_tb.uut.tram_wdata[78]
+top.mtagram_tb.uut.tram_wdata[77]
+top.mtagram_tb.uut.tram_wdata[76]
+top.mtagram_tb.uut.tram_wdata[75]
+top.mtagram_tb.uut.tram_wdata[74]
+top.mtagram_tb.uut.tram_wdata[73]
+top.mtagram_tb.uut.tram_wdata[72]
+top.mtagram_tb.uut.tram_wdata[71]
+top.mtagram_tb.uut.tram_wdata[70]
+top.mtagram_tb.uut.tram_wdata[69]
+top.mtagram_tb.uut.tram_wdata[68]
+top.mtagram_tb.uut.tram_wdata[67]
+top.mtagram_tb.uut.tram_wdata[66]
+top.mtagram_tb.uut.tram_wdata[65]
+top.mtagram_tb.uut.tram_wdata[64]
+top.mtagram_tb.uut.tram_wdata[63]
+top.mtagram_tb.uut.tram_wdata[62]
+top.mtagram_tb.uut.tram_wdata[61]
+top.mtagram_tb.uut.tram_wdata[60]
+top.mtagram_tb.uut.tram_wdata[59]
+top.mtagram_tb.uut.tram_wdata[58]
+top.mtagram_tb.uut.tram_wdata[57]
+top.mtagram_tb.uut.tram_wdata[56]
+top.mtagram_tb.uut.tram_wdata[55]
+top.mtagram_tb.uut.tram_wdata[54]
+top.mtagram_tb.uut.tram_wdata[53]
+top.mtagram_tb.uut.tram_wdata[52]
+top.mtagram_tb.uut.tram_wdata[51]
+top.mtagram_tb.uut.tram_wdata[50]
+top.mtagram_tb.uut.tram_wdata[49]
+top.mtagram_tb.uut.tram_wdata[48]
+top.mtagram_tb.uut.tram_wdata[47]
+top.mtagram_tb.uut.tram_wdata[46]
+top.mtagram_tb.uut.tram_wdata[45]
+top.mtagram_tb.uut.tram_wdata[44]
+top.mtagram_tb.uut.tram_wdata[43]
+top.mtagram_tb.uut.tram_wdata[42]
+top.mtagram_tb.uut.tram_wdata[41]
+top.mtagram_tb.uut.tram_wdata[40]
+top.mtagram_tb.uut.tram_wdata[39]
+top.mtagram_tb.uut.tram_wdata[38]
+top.mtagram_tb.uut.tram_wdata[37]
+top.mtagram_tb.uut.tram_wdata[36]
+top.mtagram_tb.uut.tram_wdata[35]
+top.mtagram_tb.uut.tram_wdata[34]
+top.mtagram_tb.uut.tram_wdata[33]
+top.mtagram_tb.uut.tram_wdata[32]
+top.mtagram_tb.uut.tram_wdata[31]
+top.mtagram_tb.uut.tram_wdata[30]
+top.mtagram_tb.uut.tram_wdata[29]
+top.mtagram_tb.uut.tram_wdata[28]
+top.mtagram_tb.uut.tram_wdata[27]
+top.mtagram_tb.uut.tram_wdata[26]
+top.mtagram_tb.uut.tram_wdata[25]
+top.mtagram_tb.uut.tram_wdata[24]
+top.mtagram_tb.uut.tram_wdata[23]
+top.mtagram_tb.uut.tram_wdata[22]
+top.mtagram_tb.uut.tram_wdata[21]
+top.mtagram_tb.uut.tram_wdata[20]
+top.mtagram_tb.uut.tram_wdata[19]
+top.mtagram_tb.uut.tram_wdata[18]
+top.mtagram_tb.uut.tram_wdata[17]
+top.mtagram_tb.uut.tram_wdata[16]
+top.mtagram_tb.uut.tram_wdata[15]
+top.mtagram_tb.uut.tram_wdata[14]
+top.mtagram_tb.uut.tram_wdata[13]
+top.mtagram_tb.uut.tram_wdata[12]
+top.mtagram_tb.uut.tram_wdata[11]
+top.mtagram_tb.uut.tram_wdata[10]
+top.mtagram_tb.uut.tram_wdata[9]
+top.mtagram_tb.uut.tram_wdata[8]
+top.mtagram_tb.uut.tram_wdata[7]
+top.mtagram_tb.uut.tram_wdata[6]
+top.mtagram_tb.uut.tram_wdata[5]
+top.mtagram_tb.uut.tram_wdata[4]
+top.mtagram_tb.uut.tram_wdata[3]
+top.mtagram_tb.uut.tram_wdata[2]
+top.mtagram_tb.uut.tram_wdata[1]
+top.mtagram_tb.uut.tram_wdata[0]
+@1401200
+-group_end
+@28
+#{top.mtagram_tb.uut.r.wtag.way[1:0]} top.mtagram_tb.uut.r.wtag.way[1] top.mtagram_tb.uut.r.wtag.way[0]
+@22
+#{top.mtagram_tb.uut.r.wtag.taddr[18:0]} top.mtagram_tb.uut.r.wtag.taddr[18] top.mtagram_tb.uut.r.wtag.taddr[17] top.mtagram_tb.uut.r.wtag.taddr[16] top.mtagram_tb.uut.r.wtag.taddr[15] top.mtagram_tb.uut.r.wtag.taddr[14] top.mtagram_tb.uut.r.wtag.taddr[13] top.mtagram_tb.uut.r.wtag.taddr[12] top.mtagram_tb.uut.r.wtag.taddr[11] top.mtagram_tb.uut.r.wtag.taddr[10] top.mtagram_tb.uut.r.wtag.taddr[9] top.mtagram_tb.uut.r.wtag.taddr[8] top.mtagram_tb.uut.r.wtag.taddr[7] top.mtagram_tb.uut.r.wtag.taddr[6] top.mtagram_tb.uut.r.wtag.taddr[5] top.mtagram_tb.uut.r.wtag.taddr[4] top.mtagram_tb.uut.r.wtag.taddr[3] top.mtagram_tb.uut.r.wtag.taddr[2] top.mtagram_tb.uut.r.wtag.taddr[1] top.mtagram_tb.uut.r.wtag.taddr[0]
+@28
+top.mtagram_tb.uut.r.wtag.valid
+top.mtagram_tb.uut.r.wtag.dirty
+@22
+#{top.mtagram_tb.uut.r.iaddr[0][8:0]} top.mtagram_tb.uut.r.iaddr[0][3] top.mtagram_tb.uut.r.iaddr[0][2] top.mtagram_tb.uut.r.iaddr[0][1] top.mtagram_tb.uut.r.iaddr[0][0]
+#{top.mtagram_tb.uut.r.taddr[0][18:0]} top.mtagram_tb.uut.r.taddr[0][18] top.mtagram_tb.uut.r.taddr[0][17] top.mtagram_tb.uut.r.taddr[0][16] top.mtagram_tb.uut.r.taddr[0][15] top.mtagram_tb.uut.r.taddr[0][14] top.mtagram_tb.uut.r.taddr[0][13] top.mtagram_tb.uut.r.taddr[0][12] top.mtagram_tb.uut.r.taddr[0][11] top.mtagram_tb.uut.r.taddr[0][10] top.mtagram_tb.uut.r.taddr[0][9] top.mtagram_tb.uut.r.taddr[0][8] top.mtagram_tb.uut.r.taddr[0][7] top.mtagram_tb.uut.r.taddr[0][6] top.mtagram_tb.uut.r.taddr[0][5] top.mtagram_tb.uut.r.taddr[0][4] top.mtagram_tb.uut.r.taddr[0][3] top.mtagram_tb.uut.r.taddr[0][2] top.mtagram_tb.uut.r.taddr[0][1] top.mtagram_tb.uut.r.taddr[0][0]
+[pattern_trace] 1
+[pattern_trace] 0

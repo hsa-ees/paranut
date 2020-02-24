@@ -1,0 +1,8 @@
+
+vhdl paranut ../../mbankram.vhd
+vhdl paranut ../../mem_tech.vhd
+vhdl paranut ../../mem_inferred.vhd
+vhdl paranut ../../paranut_lib.vhd
+vhdl paranut ../../types.vhd
+vhdl paranut ../../memu_lib.vhd
+vhdl paranut ../../config.vhd

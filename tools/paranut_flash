@@ -1,0 +1,459 @@
+#!/usr/bin/python3
+
+###########################################################################
+##
+##  This file is part of the ParaNut project.
+##
+##  Copyright (C) 2007-2020 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+##				            Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>
+##                          Michael Schäferling <michael.schaeferling@hs-augsburg.de>
+##      Efficient Embedded Systems Group
+##      Hochschule Augsburg, University of Applied Sciences
+##
+##  Description:
+##   	A command line tool to program a ParaNut system running on a 
+##      ZYNQ 7000 platform. First the firmware will be programmed to the
+##      ARM processor. The RISC-V software binary will be transfered 
+##      after that. If specified the FPGA bitfile is also programmed and 
+##      the UART output of the ParaNut is displayed.
+##
+##  Redistribution and use in source and binary forms, with or without modification, 
+##  are permitted provided that the following conditions are met:
+## 
+##  1. Redistributions of source code must retain the above copyright notice, this 
+##     list of conditions and the following disclaimer.
+## 
+##  2. Redistributions in binary form must reproduce the above copyright notice,
+##     this list of conditions and the following disclaimer in the documentation and/or
+##     other materials provided with the distribution.
+## 
+##  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+##  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+##  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+##  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+##  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+##  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+##  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON 
+##  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+##  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+##  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+##    
+##
+###########################################################################
+
+
+from string import *
+import array
+import sys
+import os
+import select
+import serial
+import subprocess
+import getopt
+import cmd
+import time
+import itertools
+
+
+versionMajor = 2
+versionMinor = 0
+versionRevision = 0
+
+
+################### Configuration #########################
+
+
+optSerialDevices = [ "/dev/ttyUSB1", "/dev/ttyUSB2", "/dev/ttyUSB0", "/dev/ttyZYBO"]
+
+# Internal options...
+optDebug = False    # set to 'True' to enable additional debug output
+optConsole = False
+optLoadFirmwareCommand = \
+  "{0:s}/tools/ees/ees-program -r {1:s} {2:s}" \
+  "&& rm -fr .Xil ees-program.tcl" \
+
+optLoadBitfileCommand = \
+  "{0:s}/tools/ees/ees-program -b {1:s}" \
+  "&& rm -fr .Xil ees-program.tcl" \
+
+optBitfile = ""
+optBinary = ""
+optArgs = []
+optAddress = []
+
+
+############################## Helpers #########################################
+
+
+
+######################### Board communication ##################################
+
+
+class ParaNutException (Exception):
+  """Exceptions raised inside this tool."""
+  pass
+
+
+class Board:
+  serialDev = None
+  fastIO = False
+
+
+  ##### (Un-)connecting and low-level access ... #####
+  
+
+  def assertPresence ():
+    """Check if a board is connected and raise an exception if not."""
+    if not Board.serialDev: raise ParaNutException ("No ParaNut on board connected")
+
+
+  def init ():
+    """Initialize the board connection."""
+
+    Board.serialDev = None
+            
+    # Open serial device...
+    for devName in optSerialDevices:
+      if not Board.serialDev:
+        try:
+          Board.serialDev = serial.Serial (devName, 115200, timeout = 1)
+          print("Connected to " + devName)
+        except:
+          Board.serialDev = None
+    if not Board.serialDev:
+      raise ParaNutException ("Failed to open serial device (board connected?)")
+    Board.serialDev.reset_input_buffer ()   # [2018-03-02] This does not work!!
+    
+    # Download firmware...
+    print ("Downloading firmware... ", end="", flush=True)
+    if optDebug: print("### Download FW command: " + optLoadFirmwareCommand.format (os.getenv ("PARANUT_HOME"), optArgs[0], optArgs[1]))
+    ret = subprocess.run (optLoadFirmwareCommand.format (os.getenv ("PARANUT_HOME"), optArgs[0], optArgs[1]), 
+						  shell=True, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, 
+						  stderr=subprocess.STDOUT, universal_newlines=True, check=False, timeout=120);
+    if ret.returncode != 0:
+      print ("FAILED!", flush=True)
+      print ("\n-------------------- DETAILED ERROR LOG FOLLOWS --------------------\n")
+      print (ret.stdout)
+      print ("\n-------------------- END OF DETAILED ERROR LOG ---------------------\n")
+      raise ParaNutException ("Failed to download the ParaNut firmware")
+    
+    print ("OK")
+
+    # Exchange "hello" messages...
+    Board.writeCommand ("\x16 ?h {0:x} {1:x} {2:x}".format (versionMajor, versionMinor, versionRevision))
+    try:
+      ans = Board.readAnswer ()
+      if ans["prefix"] != '?h': raise KeyError ()
+    except KeyError:
+      Board.serialDev = None    
+      raise ParaNutException ("Unable to communicate with the ParaNut firmware")
+      
+
+
+  def programBitfile (bitfile):
+    print ("Downloading bitfile... ", end="", flush=True)
+    if optDebug: print("### Download Bitfile command: " + optLoadBitfileCommand.format (os.getenv ("PARANUT_HOME"), bitfile))
+    ret = subprocess.run (optLoadBitfileCommand.format (os.getenv ("PARANUT_HOME"), bitfile), 
+						  shell=True, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, 
+						  stderr=subprocess.STDOUT, universal_newlines=True, check=False, timeout=120);
+    if ret.returncode != 0:
+      print ("FAILED!", flush=True)
+      print ("\n-------------------- DETAILED ERROR LOG FOLLOWS --------------------\n")
+      print (ret.stdout)
+      print ("\n-------------------- END OF DETAILED ERROR LOG ---------------------\n")
+      raise ParaNutException ("Failed to download the ParaNut bitfile")
+    
+    print ("OK")
+
+
+  def done ():
+    """Close the board connection."""
+    if Board.serialDev:
+      Board.serialDev = None
+
+
+  def recover ():
+    """Recover, for example, after a break due to Ctrl-C."""
+    #~ print "Recovering..."
+    Board.done ()
+    Board.init ()
+
+  
+  def writeLine (line):
+    """Write a line to the board (low-level)."""
+    Board.assertPresence ()
+    Board.serialDev.write ((line + "\n").encode('utf-8'))
+    if optDebug: print ("### FW <- '%s'" % line)
+
+
+  def readLine ():
+    """Read a single line from the board (low-level)."""
+    Board.assertPresence ()
+    line = Board.serialDev.readline ().decode('utf-8')
+    if optDebug: print ("### FW -> '%s'" % line)
+    return line
+
+
+
+  ### Mid-level (no console output)...
+
+
+  def writeCommand (cmd):
+    """Write a command to the board.
+
+    The argument must be pre-formatted command string as specified by the
+    board firmware.
+    """
+    Board.writeLine (cmd)
+
+
+  def readAnswer ():
+    """Retrieve and interpret the answer to a previously submitted command.
+
+    The return value is a dictionary 'ret', where:
+    - ret["prefix"] is the first character of the response (e.g. "?r" or "?w")
+    - ret["args"] is a list of integers containing all arguments in a raw format
+    - the remaining fields depend on the response and are pre-intepreted results.
+
+    Comments, empty lines or error answers ("?e...") are never returned.
+    In case an error answer is received, an exception with a meaningful
+    message is thrown.
+    """
+    prefix = None
+    args = None
+    argDict = None
+    while not prefix:
+      line = Board.readLine ()
+      if len(line) == 0:
+        continue
+        #~ raise ParaNutException ("Firmware did not respond")
+      if line[0] != '\x06': 
+        sys.stdout.write(line[:])
+        sys.stdout.flush()
+        continue # UART output from ParaNut: ignore
+      if line[2] == '?': # Ack for some CMD
+          if line[3] == 'e':           # error: bail out
+            raise ParaNutException ("Firmware error: " + line.split (maxsplit=2) [2])
+
+          # General output: Generate 'prefix' and 'args'...
+          args = line.split ()
+          prefix = args[1] # args[0] == '\x06'
+          args = args[2:]
+          argDict = {}
+          for i, arg in enumerate (args): args[i] = int (arg, 16) 
+
+          # Dictionary for "r" and "w" answers...
+          if prefix == '?r' or prefix == '?w':
+            argDict = { "adr": args[0], "data": args[1] }
+
+          # Dictionary for "b" answers...
+          if prefix == '?b':
+            argDict = { "adr": args[0], "size": args[1], "chunk_size": args[2] }
+  
+          # Dictionary for "!" answers...
+          if prefix == '?!':
+            argDict = { "tohost": args[0], "fromhost": args[1] }
+                   
+          # Done...
+          argDict["prefix"] = prefix
+          argDict["args"] = args
+          return argDict
+      else:  # TBD: Syscalls, exception for now
+        raise ParaNutException ("Unexpected answer" + line)
+
+
+
+  def memWrite (adr, val):
+    """Write to ParaNut system memory."""
+    triesLeft = 3   # try to recover this many times (long uploads may have occasional transfer errors)
+    while True:
+      try:
+        #~ print("SYN ?w {0:08x} {1:08x}".format (adr, val))
+        Board.writeCommand ("\x16 ?w {0:08x} {1:08x}".format (adr, val))
+        ans = Board.readAnswer ()
+        if ans["prefix"] != "?w" or ans["adr"] != adr or ans["data"] != val:
+          raise ParaNutException ()
+        break # Success!
+      except:
+        triesLeft -= 1
+        if triesLeft <= 0: raise ParaNutException ("Memory write command failed")
+        
+        
+  def blockWrite (offset, block):
+    """Write to ParaNut system memory."""
+    i = 0
+    j = 0
+    size = len(block)-1
+    chunk_size = 500
+    Board.writeCommand ("\x16 ?b {0:08x} {1:08x} {2:08x}".format (offset, size, chunk_size))
+    ans = Board.readAnswer ()
+    #~ print("Return: {0:08x} {1:08x}, schould be {2:08x} {3:08x}".format (ans["adr"], ans["size"], offset+j, size-j))
+    if ans["prefix"] != "?b" or ans["adr"] != offset+j or ans["size"] != size-j or ans["chunk_size"] != chunk_size:
+      raise ParaNutException ()
+        
+    # Send in chunks so we can give feedback to the user
+    for i, j in zip(range(0, size, chunk_size), itertools.chain(range(chunk_size, size, chunk_size), [size])):
+        Board.serialDev.write (block[i:j]) 
+        Board.serialDev.flush()
+        # Output of remaining data
+        print("Sent: {0:d} Bytes of {1:d}".format(j, size), end='\r')
+    
+    # Read confirmation
+    ans = Board.readAnswer ()
+    if ans["prefix"] != "?b" or ans["adr"] != offset+j or ans["size"] != size or ans["chunk_size"] != chunk_size:
+      #~ print("Return: {0:08x} {1:08x}, schould be {2:08x} {3:08x}".format (ans["adr"], ans["size"], offset+j, size,))
+      raise ParaNutException ("Did not receive transimission confirmation!")
+      
+    print("\nTransfer completed!\n")
+
+    
+
+  def memRead (adr):
+    """Read from ParaNut system memory."""
+    Board.writeCommand ("\x16 ?r {0:08x}".format (adr))
+    ans = Board.readAnswer ()
+    try:
+      val = ans["data"]
+      if ans["prefix"] != "?r" or ans["adr"] != adr:
+        raise ParaNutException ()
+    except:
+      raise ParaNutException ("Memory read command failed")
+    return val
+
+
+
+
+
+################### (Object) file I/O #####################
+    
+def readObjAndSrcFile (objFileName):
+  """returns (memory, comments), both as dictionaries by adress"""
+  
+  # Read the object file...
+  f = open (objFileName, "rb")
+  #objData = array.array('I')
+  #try: objData.fromfile (f, 999999)
+  try: objData = f.read()
+  except EOFError: pass
+  print ("Read object file '{0:s}'.".format (objFileName))
+
+  # No source lines
+  srcLines = []
+  
+  # Init 'outMemory' and 'outComments'...
+  outMemory = objData
+  outComments = {}
+  	
+  return (outMemory, outComments)
+
+
+ 
+############################## Main ############################################
+
+
+def usage ():
+  print ("Usage: paranut [options] Hardware-Definition.hdf ARM-Firmware.elf  \n\n"
+         "Options:\n"
+         "  -h              : this help\n"
+         "  -d <device>     : set serial device [default: auto detect];\n"
+         "                    use 'offline' for offline mode without ParaNut hardware\n"
+         "  -b <bitfile>    : Program RISC-V bitfile\n"
+         "  -p <binary>     : Flash RISC-V binary program\n"
+         "  -o <adr1:adr2>  : Set fromhost and tohost address\n"
+         "  -c              : Keep running after flash and show stdout/stderr of ParaNut\n"
+         "  -v              : verbose output\n")
+  exit ()
+
+
+# Banner...
+print ("ParaNut debug software %i.%i.%i   (C) 2019 Alexander Bahle, University of Applied Sciences Augsburg\n"
+       % (versionMajor, versionMinor, versionRevision))
+
+# Read options...
+try:
+  opts, optArgs = getopt.getopt (sys.argv[1:], "hcvd:b:p:o:")
+  for opt, value in opts:
+    if opt == "-d":
+      optSerialDevices = [ value ];
+    elif opt == "-v":
+      optDebug = True
+    elif opt == "-c":
+      optConsole = True
+    elif opt == "-b":
+      optBitfile = value
+    elif opt == "-p":
+      optBinary = value
+    elif opt == "-o":
+      optAddress = value.split(':')
+    else: usage ()
+except getopt.GetoptError:
+  usage ()
+
+# Check arguments
+if len(optArgs) != 2:
+  print("Not enough Arguments!")
+  print(optArgs)
+  usage ()
+  
+# Try to init board...
+try:
+  Board.init ()
+except Exception as e:
+  print ("ERROR during Board.init(): " + str(e))
+  exit (3)
+  
+print ()
+
+if len(optAddress) == 2: 
+    Board.writeCommand("\x16 ?! {0:08x} {1:08x}".format(int(optAddress[0], 16), int(optAddress[1], 16)))
+    ans = Board.readAnswer ()
+    if ans["prefix"] != "?!" or ans["tohost"] != int(optAddress[0], 16) or ans["fromhost"] != int(optAddress[1], 16):
+        print ("ERROR: Could not set the tohost/fromhost address to {0:08x}/{1:08x}: {2:08x}/{3:08x}".format(int(optAddress[0], 16), int(optAddress[1], 16), ans["tohost"], ans["fromhost"]))
+        exit(5)
+
+if optBinary != "":
+  (memory, comments) = readObjAndSrcFile (optBinary)
+  Board.blockWrite(0x10000000, memory)
+  # Check for transmission errors (first 10 words):
+  for i in range (0, 10):
+    data = Board.memRead (0x10000000 + (i*4))
+    memw = (memory[(i*4)+3] << 24) + (memory[(i*4)+2] << 16) + (memory[(i*4)+1] << 8) + memory[i*4]
+    #print ("0x{0:08x}: 0x{1:08x}".format (memw, data))
+    if data != memw:
+      print ("Binary 0x{0:08x} != Memory 0x{1:08x}".format (memw, data))
+      print("ERROR during transmission, try again or reset the hardware")
+      exit (4)
+  # Check for transmission errors (last 10 words):
+  words = int(len(memory) / 4)
+  for i in range (words-10, words):
+    data = Board.memRead (0x10000000 + (i*4))
+    memw = (memory[(i*4)+3] << 24) + (memory[(i*4)+2] << 16) + (memory[(i*4)+1] << 8) + memory[i*4]
+    #print ("0x{0:08x}: 0x{1:08x}".format (memw, data))
+    if data != memw:
+      print ("Binary 0x{0:08x} != Memory 0x{1:08x}".format (memw, data))
+      print("ERROR during transmission, try again or reset the hardware")
+      exit (4)
+    
+if optBitfile != "":
+  Board.programBitfile(optBitfile)
+
+if optConsole == True:
+  print("\nStarting console:\n")
+  while True:
+    time.sleep(0.3)
+    try:
+       if Board.serialDev.inWaiting() > 0:
+        ans = Board.readAnswer()
+    except KeyboardInterrupt:
+        # Received ctrl+c
+        break
+    except IOError as e:
+        print ("ERROR: Connection lost: " +  e.__str__()) 
+        break
+    except Exception as e:
+        print ("ERROR in PRINT-THREAD: " +  e.__str__())
+        pass
+ 
+ 
+# Shutdown...
+Board.done ()

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="./isim.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="config" />
+            <top_module name="ifu" />
+            <top_module name="math_real" />
+            <top_module name="memu_lib" />
+            <top_module name="mifu_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="orbis32" />
+            <top_module name="paranut_lib" />
+            <top_module name="std_logic_1164" />
+            <top_module name="types" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="7" />
+   <wvobject fp_name="/mifu_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+      <obj_property name="label">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mifu_tb/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mifu_tb/ifui" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ifui</obj_property>
+      <obj_property name="ObjectShortName">ifui</obj_property>
+      <wvobject fp_name="/mifu_tb/ifui.nexti" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.nexti</obj_property>
+         <obj_property name="ObjectShortName">ifui.nexti</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mifu_tb/ifui.jump" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.jump</obj_property>
+         <obj_property name="ObjectShortName">ifui.jump</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mifu_tb/ifui.jump_adr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.jump_adr</obj_property>
+         <obj_property name="ObjectShortName">ifui.jump_adr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mifu_tb/ifuo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ifuo</obj_property>
+      <obj_property name="ObjectShortName">ifuo</obj_property>
+      <wvobject fp_name="/mifu_tb/ifuo.ir" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.ir</obj_property>
+         <obj_property name="ObjectShortName">ifuo.ir</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mifu_tb/ifuo.ppc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.ppc</obj_property>
+         <obj_property name="ObjectShortName">ifuo.ppc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mifu_tb/ifuo.pc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.pc</obj_property>
+         <obj_property name="ObjectShortName">ifuo.pc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mifu_tb/ifuo.npc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.npc</obj_property>
+         <obj_property name="ObjectShortName">ifuo.npc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mifu_tb/ifuo.ir_valid" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.ir_valid</obj_property>
+         <obj_property name="ObjectShortName">ifuo.ir_valid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mifu_tb/ifuo.npc_valid" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.npc_valid</obj_property>
+         <obj_property name="ObjectShortName">ifuo.npc_valid</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mifu_tb/rpi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpi</obj_property>
+      <obj_property name="ObjectShortName">rpi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mifu_tb/rpo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rpo</obj_property>
+      <obj_property name="ObjectShortName">rpo</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mifu_tb/halt" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">halt</obj_property>
+      <obj_property name="ObjectShortName">halt</obj_property>
+   </wvobject>
+</wave_config>

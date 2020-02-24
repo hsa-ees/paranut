@@ -1,0 +1,316 @@
+#!/bin/bash
+
+#  (C) 2017-2019 Gundolf Kiefer, University of Applied Sciences Augsburg
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+VERSION=0.9
+
+TMP=/tmp
+TOOL="${0##*/}"
+CMDLINE="${0##*/} $@"
+
+if [[ "$EES_VIVADO_SETTINGS" != "" ]]; then
+  test -f $EES_VIVADO_SETTINGS && . $EES_VIVADO_SETTINGS
+fi
+
+
+# Default options...
+OPT_PROCESSOR="ps7_cortexa9_0"
+OPT_OS="standalone"
+OPT_APP_TEMPLATE="hello_world"
+OPT_FORCE="0"
+
+
+
+
+
+############################## Usage and error helpers #########################
+
+
+usage () {
+  echo "Usage: $TOOL [<options>] <operation>"
+  echo
+  echo "Generate and update BSPs and applications for Xilinx SoC/FPGA projects,"
+  echo "primarily for the EES lab at the University of Applied Sciences Augsburg."
+  echo
+  echo "Options:"
+  echo
+  echo "  -p | --processor <processor ID>"
+  echo "      Select the processor by its ID [default = $OPT_PROCESSOR]."
+  echo "  -o | --os <OS selection>"
+  echo "      Select an OS option [default = $OPT_OS]."
+  echo "  -f | --force"
+  echo "      Override the target directory if it already exists."
+  echo
+  echo "Operations:"
+  echo
+  echo "  -i | --info [<hdf file>]"
+  echo "      Display info on available processors and"
+  echo "      sample applications".
+  echo
+  echo "  -a | --app <hdf file> <name> [<template>]"
+  echo "      Generate an application in directory <name> together with a BSP."
+  echo "      The BSP is stored in directory '<name>/<template>_bsp'."
+  echo "      [Default template = $OPT_APP_TEMPLATE]"
+  echo
+  echo "  -b | --bsp <hdf file> <name> [<local ip repo path>]"
+  echo "      Generate or update a BSP located in directory '<name>'."
+  echo
+  echo "Examples:"
+  echo
+  echo "  1. Create a sample application to start software development:"
+  echo "         $TOOL -a my_hardware.hwdef my_software"
+  echo "         cd my_software; make   # build all"
+  echo
+  echo "  2. Update its BSP after the hardware has changed:"
+  echo "         $TOOL -b my_hardware.hwdef my_software/my_software_bsp"
+  echo
+}
+
+
+arg_error () {
+  echo
+  echo "ERROR: $1"
+  echo
+  usage
+  exit 3
+}
+
+
+error () {
+  echo
+  echo "ERROR: $1"
+  echo
+  exit 3
+}
+
+
+
+
+############################## Helpers #########################################
+
+
+print_tcl_head () {
+  echo
+  echo
+  echo
+  echo "puts \"\n\n\""
+  echo "puts \"###########################################################################\""
+  echo "puts \"#\""
+  echo "puts \"#          $1\""
+  echo "puts \"#\""
+  echo "puts \"###########################################################################\""
+  echo "puts \"\""
+  echo
+}
+
+
+print_script_header () {
+    echo "# Synthesis script created by: $CMDLINE." > $SCRIPT
+    echo "#" >> $SCRIPT
+    echo "# '$TOOL' is written by Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>, UaS Augsburg." >> $SCRIPT
+}
+
+
+
+
+
+############################## Information #####################################
+
+
+print_info () {
+  # $1 = HDF file (optional)
+
+  HDF="$1"
+
+  if [[ "$HDF" == "" ]]; then
+    ON=""
+  else
+    ON="on '$HDF' "
+  fi
+  print_tcl_head "Print HSI infos $ON..."
+
+  echo "puts \"\n##### Software cores of type 'OS':\n\""
+  echo "puts [get_sw_cores -filter {TYPE == \"OS\"}]"
+  echo
+  echo "puts \"\n\n##### Available application templates:\n\""
+  echo "puts [generate_app -lapp]"
+  echo
+  if [[ "$1" != "" ]]; then
+    echo "puts \"\n\n##### Hardware design top-level:\n\""
+    echo "puts [open_hw_design $HDF]"
+    echo
+    echo "puts \"\""
+    echo "report_property [hsi::current_hw_design]"
+    echo "puts \"\n\n##### Processors in the design:\n\""
+    echo "puts [get_cells -filter {IP_TYPE==PROCESSOR}]"
+  fi
+}
+
+
+
+
+
+############################## Application #####################################
+
+
+print_app () {
+  # $1 = HDF file
+  # $2 = destination directory
+  # $3 = template name (optional)
+
+  # Args...
+  HDF="$1"
+  DIR="$2"
+  TEMPLATE="$3"
+  if [[ "$TEMPLATE" == "" ]]; then
+    TEMPLATE=$OPT_APP_TEMPLATE
+  fi
+
+  # Go ahead...
+  print_tcl_head "Generate application based on '$TEMPLATE'..."
+  echo "open_hw_design $HDF"
+  echo "generate_app -dir $DIR -proc $OPT_PROCESSOR -os $OPT_OS -app $TEMPLATE"
+}
+
+
+
+
+
+############################## BSP #####################################
+
+
+print_bsp () {
+  # $1 = HDF file
+  # $2 = directory
+  # $3 = repository path (optional)
+
+  # Args...
+  HDF="$1"
+  DIR="$2"
+  REPO="$3"
+
+  print_tcl_head "Generate / update BSP ..."
+  if [ -n "$REPO" ]; then
+    echo "set_repo_path $REPO"
+  fi
+  echo "open_hw_design $HDF"
+  echo "generate_bsp -dir $DIR -proc $OPT_PROCESSOR -os $OPT_OS"
+}
+
+
+
+
+
+############################## run_script ######################################
+
+
+run_script () {
+  # $1 = target directory (or '-', if no overwrite-target checks have to be made)
+  # $2... = script to be run
+
+  # Sanity...
+  DIR=`realpath "$1"`
+  if [[ "$DIR" != "-" ]]; then
+    if [[ "$OPT_FORCE" == "1" ]]; then
+      rm -fr $DIR
+    else
+      test -e "$DIR" && error "Directory '$DIR' already exists - not overwriting."
+    fi
+  fi
+  shift
+
+  # Create and run the script...
+  SCRIPT="$TOOL.tcl"
+  print_script_header > $SCRIPT
+  $@ >> $SCRIPT
+  hsi -nolog -nojournal -mode tcl < $SCRIPT | grep -v "^INFO:"
+
+  # Cleanup...
+  # WORKAROUND [2018-02-26]: When opening an HDF file, 'xsi' presently creates a
+  #     couple of 'ps7_init*' files in the directory where the HDF is located.
+  #     Also, the original bitfile is copied here.
+  #     We do not need them here!!
+  HDF_FILE=$(grep open_hw_design $SCRIPT | cut -c16-)
+  HDF_RELPATH=$(dirname "${HDF_FILE}")
+  cd ${HDF_RELPATH}
+  rm -fr $SCRIPT .Xil ps7_init.[hc] ps7_init_gpl.[hc] ps7_init.tcl ps7_init.html design_1_wrapper.bit
+}
+
+
+
+
+
+############################## Main ############################################
+
+
+# Parse known options...
+PARSE_OPTS="1"
+while [[ $PARSE_OPTS == "1" ]]; do
+  case "$1" in
+
+    # Options...
+    -p|--processor)
+      OPT_PROCESSOR="$2"
+      shift 2
+      ;;
+    -o|--os)
+      OPT_OS="$2"
+      shift 2
+      ;;
+    -f|--force)
+      OPT_FORCE="1"
+      shift
+      ;;
+
+    # Operations...
+    -h|--help)
+      usage
+      exit 0
+      ;;
+
+    -i|--info)
+      run_script - print_info $2
+      exit 0
+      ;;
+
+    -a|--app)
+      if [[ "$3" == "" ]]; then
+        arg_error "Missing argument(s)"
+      fi
+      run_script $3 print_app $2 $3 $4
+      exit 0
+      ;;
+
+    -b|--bsp)
+      if [[ "$3" == "" ]]; then
+        arg_error "Missing argument(s)"
+      fi
+      run_script $3 print_bsp $2 $3 $4
+      exit 0
+      ;;
+
+    # Fall-through...
+    -*)
+      arg_error "Unknown option '$1'"
+      ;;
+    *)
+      PARSE_OPTS="0"
+      ;;
+  esac
+done
+
+usage

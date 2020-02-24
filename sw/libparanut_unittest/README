@@ -1,0 +1,50 @@
+Copyright
+=========
+
+Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this 
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation and/or
+other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON 
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Welcome!
+========
+
+Welcome the libparanut Unittest, which is a Unittest for the libparanut. Information on the test subject can be found in the directory of the libparanut itself, which should be here:
+> cd ../libparanut
+
+libparanut Unittest - How to get Documentation
+==============================================
+
+The file libparanut_unittest_documentation.pdf contains the documentation for the libparanut Unittest. It also contains information for how to run this program.
+
+You changed some documentation and need to update it? Or want to have a cool clickable html version of the documentation? The following part is for you, then.
+
+First you will need to install Doxygen and move into the libparanut_unittest directory (which is the directory this README is in).
+
+Create Documentation:
+> doxygen Documentation/Doxyfile
+
+The created documentation can then be found in the ./Documentation/html and
+./Documentation/latex directories. The html version can be accessed by opening one of the html files in your browser of choice. For creating a pdf out of the latex version, Doxygen automatically generates a Makefile which you can use. Do the following:
+> cd Documentation/latex
+> make clean all
+
+The full pdf is created in the same directory under the name refman.pdf. Don't forget to copy it to the libparanut_unittest directory and rename it properly.

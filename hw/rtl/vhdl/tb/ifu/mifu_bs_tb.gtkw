@@ -1,0 +1,106 @@
+[*]
+[*] GTKWave Analyzer v3.3.45 (w)1999-2012 BSI
+[*] Thu Apr 11 16:05:18 2013
+[*]
+[dumpfile] "/home/mikkl/etc/fh/master/ma/paranut/trunk/vhdl/tb/ifu/mifu_bs_tb.ghw"
+[dumpfile_mtime] "Thu Apr 11 16:05:13 2013"
+[dumpfile_size] 8769
+[savefile] "/home/mikkl/etc/fh/master/ma/paranut/trunk/vhdl/tb/ifu/mifu_bs_tb.gtkw"
+[timestart] 0
+[size] 1468 995
+[pos] -1 -1
+*-26.595516 405000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.mifu_bs_tb.
+[treeopen] top.mifu_bs_tb.uut.
+[treeopen] top.mifu_bs_tb.uut.ifuo.
+[treeopen] top.mifu_bs_tb.uut.r.
+[treeopen] top.mifu_bs_tb.uut.r.buf.
+[treeopen] top.mifu_bs_tb.uut.r.buf.[0].
+[treeopen] top.mifu_bs_tb.uut.r.buf.[1].
+[treeopen] top.mifu_bs_tb.uut.r.buf.[2].
+[treeopen] top.mifu_bs_tb.uut.r.buf.[3].
+[treeopen] top.mifu_bs_tb.uut.rpi.
+[sst_width] 220
+[signals_width] 274
+[sst_expanded] 1
+[sst_vpaned_height] 454
+@28
+top.mifu_bs_tb.uut.clk
+top.mifu_bs_tb.uut.reset
+top.mifu_bs_tb.halt
+@200
+-inputs
+-ifui
+@28
+top.mifu_bs_tb.uut.ifui.nexti
+top.mifu_bs_tb.uut.ifui.jump
+@22
+#{top.mifu_bs_tb.uut.ifui.jump_adr[31:0]} top.mifu_bs_tb.uut.ifui.jump_adr[31] top.mifu_bs_tb.uut.ifui.jump_adr[30] top.mifu_bs_tb.uut.ifui.jump_adr[29] top.mifu_bs_tb.uut.ifui.jump_adr[28] top.mifu_bs_tb.uut.ifui.jump_adr[27] top.mifu_bs_tb.uut.ifui.jump_adr[26] top.mifu_bs_tb.uut.ifui.jump_adr[25] top.mifu_bs_tb.uut.ifui.jump_adr[24] top.mifu_bs_tb.uut.ifui.jump_adr[23] top.mifu_bs_tb.uut.ifui.jump_adr[22] top.mifu_bs_tb.uut.ifui.jump_adr[21] top.mifu_bs_tb.uut.ifui.jump_adr[20] top.mifu_bs_tb.uut.ifui.jump_adr[19] top.mifu_bs_tb.uut.ifui.jump_adr[18] top.mifu_bs_tb.uut.ifui.jump_adr[17] top.mifu_bs_tb.uut.ifui.jump_adr[16] top.mifu_bs_tb.uut.ifui.jump_adr[15] top.mifu_bs_tb.uut.ifui.jump_adr[14] top.mifu_bs_tb.uut.ifui.jump_adr[13] top.mifu_bs_tb.uut.ifui.jump_adr[12] top.mifu_bs_tb.uut.ifui.jump_adr[11] top.mifu_bs_tb.uut.ifui.jump_adr[10] top.mifu_bs_tb.uut.ifui.jump_adr[9] top.mifu_bs_tb.uut.ifui.jump_adr[8] top.mifu_bs_tb.uut.ifui.jump_adr[7] top.mifu_bs_tb.uut.ifui.jump_adr[6] top.mifu_bs_tb.uut.ifui.jump_adr[5] top.mifu_bs_tb.uut.ifui.jump_adr[4] top.mifu_bs_tb.uut.ifui.jump_adr[3] top.mifu_bs_tb.uut.ifui.jump_adr[2] top.mifu_bs_tb.uut.ifui.jump_adr[1] top.mifu_bs_tb.uut.ifui.jump_adr[0]
+@200
+-rpo
+@28
+top.mifu_bs_tb.uut.rpo.port_ack
+@22
+#{top.mifu_bs_tb.uut.rpo.port_data[31:0]} top.mifu_bs_tb.uut.rpo.port_data[31] top.mifu_bs_tb.uut.rpo.port_data[30] top.mifu_bs_tb.uut.rpo.port_data[29] top.mifu_bs_tb.uut.rpo.port_data[28] top.mifu_bs_tb.uut.rpo.port_data[27] top.mifu_bs_tb.uut.rpo.port_data[26] top.mifu_bs_tb.uut.rpo.port_data[25] top.mifu_bs_tb.uut.rpo.port_data[24] top.mifu_bs_tb.uut.rpo.port_data[23] top.mifu_bs_tb.uut.rpo.port_data[22] top.mifu_bs_tb.uut.rpo.port_data[21] top.mifu_bs_tb.uut.rpo.port_data[20] top.mifu_bs_tb.uut.rpo.port_data[19] top.mifu_bs_tb.uut.rpo.port_data[18] top.mifu_bs_tb.uut.rpo.port_data[17] top.mifu_bs_tb.uut.rpo.port_data[16] top.mifu_bs_tb.uut.rpo.port_data[15] top.mifu_bs_tb.uut.rpo.port_data[14] top.mifu_bs_tb.uut.rpo.port_data[13] top.mifu_bs_tb.uut.rpo.port_data[12] top.mifu_bs_tb.uut.rpo.port_data[11] top.mifu_bs_tb.uut.rpo.port_data[10] top.mifu_bs_tb.uut.rpo.port_data[9] top.mifu_bs_tb.uut.rpo.port_data[8] top.mifu_bs_tb.uut.rpo.port_data[7] top.mifu_bs_tb.uut.rpo.port_data[6] top.mifu_bs_tb.uut.rpo.port_data[5] top.mifu_bs_tb.uut.rpo.port_data[4] top.mifu_bs_tb.uut.rpo.port_data[3] top.mifu_bs_tb.uut.rpo.port_data[2] top.mifu_bs_tb.uut.rpo.port_data[1] top.mifu_bs_tb.uut.rpo.port_data[0]
+@200
+-registers
+-r
+@28
+top.mifu_bs_tb.uut.r.last_rp_ack
+top.mifu_bs_tb.uut.r.rp_rd
+top.mifu_bs_tb.uut.r.state_reg
+@200
+-buf3
+@c00029
+#{top.mifu_bs_tb.uut.r.buf[3:0].adr_valid} top.mifu_bs_tb.uut.r.buf[3].adr_valid top.mifu_bs_tb.uut.r.buf[2].adr_valid top.mifu_bs_tb.uut.r.buf[1].adr_valid top.mifu_bs_tb.uut.r.buf[0].adr_valid
+@29
+top.mifu_bs_tb.uut.r.buf[3].adr_valid
+top.mifu_bs_tb.uut.r.buf[2].adr_valid
+top.mifu_bs_tb.uut.r.buf[1].adr_valid
+top.mifu_bs_tb.uut.r.buf[0].adr_valid
+@1401201
+-group_end
+@22
+#{top.mifu_bs_tb.uut.r.buf[3].adr_buf[31:0]} top.mifu_bs_tb.uut.r.buf[3].adr_buf[31] top.mifu_bs_tb.uut.r.buf[3].adr_buf[30] top.mifu_bs_tb.uut.r.buf[3].adr_buf[29] top.mifu_bs_tb.uut.r.buf[3].adr_buf[28] top.mifu_bs_tb.uut.r.buf[3].adr_buf[27] top.mifu_bs_tb.uut.r.buf[3].adr_buf[26] top.mifu_bs_tb.uut.r.buf[3].adr_buf[25] top.mifu_bs_tb.uut.r.buf[3].adr_buf[24] top.mifu_bs_tb.uut.r.buf[3].adr_buf[23] top.mifu_bs_tb.uut.r.buf[3].adr_buf[22] top.mifu_bs_tb.uut.r.buf[3].adr_buf[21] top.mifu_bs_tb.uut.r.buf[3].adr_buf[20] top.mifu_bs_tb.uut.r.buf[3].adr_buf[19] top.mifu_bs_tb.uut.r.buf[3].adr_buf[18] top.mifu_bs_tb.uut.r.buf[3].adr_buf[17] top.mifu_bs_tb.uut.r.buf[3].adr_buf[16] top.mifu_bs_tb.uut.r.buf[3].adr_buf[15] top.mifu_bs_tb.uut.r.buf[3].adr_buf[14] top.mifu_bs_tb.uut.r.buf[3].adr_buf[13] top.mifu_bs_tb.uut.r.buf[3].adr_buf[12] top.mifu_bs_tb.uut.r.buf[3].adr_buf[11] top.mifu_bs_tb.uut.r.buf[3].adr_buf[10] top.mifu_bs_tb.uut.r.buf[3].adr_buf[9] top.mifu_bs_tb.uut.r.buf[3].adr_buf[8] top.mifu_bs_tb.uut.r.buf[3].adr_buf[7] top.mifu_bs_tb.uut.r.buf[3].adr_buf[6] top.mifu_bs_tb.uut.r.buf[3].adr_buf[5] top.mifu_bs_tb.uut.r.buf[3].adr_buf[4] top.mifu_bs_tb.uut.r.buf[3].adr_buf[3] top.mifu_bs_tb.uut.r.buf[3].adr_buf[2] top.mifu_bs_tb.uut.r.buf[3].adr_buf[1] top.mifu_bs_tb.uut.r.buf[3].adr_buf[0]
+#{top.mifu_bs_tb.uut.r.buf[2].adr_buf[31:0]} top.mifu_bs_tb.uut.r.buf[2].adr_buf[31] top.mifu_bs_tb.uut.r.buf[2].adr_buf[30] top.mifu_bs_tb.uut.r.buf[2].adr_buf[29] top.mifu_bs_tb.uut.r.buf[2].adr_buf[28] top.mifu_bs_tb.uut.r.buf[2].adr_buf[27] top.mifu_bs_tb.uut.r.buf[2].adr_buf[26] top.mifu_bs_tb.uut.r.buf[2].adr_buf[25] top.mifu_bs_tb.uut.r.buf[2].adr_buf[24] top.mifu_bs_tb.uut.r.buf[2].adr_buf[23] top.mifu_bs_tb.uut.r.buf[2].adr_buf[22] top.mifu_bs_tb.uut.r.buf[2].adr_buf[21] top.mifu_bs_tb.uut.r.buf[2].adr_buf[20] top.mifu_bs_tb.uut.r.buf[2].adr_buf[19] top.mifu_bs_tb.uut.r.buf[2].adr_buf[18] top.mifu_bs_tb.uut.r.buf[2].adr_buf[17] top.mifu_bs_tb.uut.r.buf[2].adr_buf[16] top.mifu_bs_tb.uut.r.buf[2].adr_buf[15] top.mifu_bs_tb.uut.r.buf[2].adr_buf[14] top.mifu_bs_tb.uut.r.buf[2].adr_buf[13] top.mifu_bs_tb.uut.r.buf[2].adr_buf[12] top.mifu_bs_tb.uut.r.buf[2].adr_buf[11] top.mifu_bs_tb.uut.r.buf[2].adr_buf[10] top.mifu_bs_tb.uut.r.buf[2].adr_buf[9] top.mifu_bs_tb.uut.r.buf[2].adr_buf[8] top.mifu_bs_tb.uut.r.buf[2].adr_buf[7] top.mifu_bs_tb.uut.r.buf[2].adr_buf[6] top.mifu_bs_tb.uut.r.buf[2].adr_buf[5] top.mifu_bs_tb.uut.r.buf[2].adr_buf[4] top.mifu_bs_tb.uut.r.buf[2].adr_buf[3] top.mifu_bs_tb.uut.r.buf[2].adr_buf[2] top.mifu_bs_tb.uut.r.buf[2].adr_buf[1] top.mifu_bs_tb.uut.r.buf[2].adr_buf[0]
+#{top.mifu_bs_tb.uut.r.buf[1].adr_buf[31:0]} top.mifu_bs_tb.uut.r.buf[1].adr_buf[31] top.mifu_bs_tb.uut.r.buf[1].adr_buf[30] top.mifu_bs_tb.uut.r.buf[1].adr_buf[29] top.mifu_bs_tb.uut.r.buf[1].adr_buf[28] top.mifu_bs_tb.uut.r.buf[1].adr_buf[27] top.mifu_bs_tb.uut.r.buf[1].adr_buf[26] top.mifu_bs_tb.uut.r.buf[1].adr_buf[25] top.mifu_bs_tb.uut.r.buf[1].adr_buf[24] top.mifu_bs_tb.uut.r.buf[1].adr_buf[23] top.mifu_bs_tb.uut.r.buf[1].adr_buf[22] top.mifu_bs_tb.uut.r.buf[1].adr_buf[21] top.mifu_bs_tb.uut.r.buf[1].adr_buf[20] top.mifu_bs_tb.uut.r.buf[1].adr_buf[19] top.mifu_bs_tb.uut.r.buf[1].adr_buf[18] top.mifu_bs_tb.uut.r.buf[1].adr_buf[17] top.mifu_bs_tb.uut.r.buf[1].adr_buf[16] top.mifu_bs_tb.uut.r.buf[1].adr_buf[15] top.mifu_bs_tb.uut.r.buf[1].adr_buf[14] top.mifu_bs_tb.uut.r.buf[1].adr_buf[13] top.mifu_bs_tb.uut.r.buf[1].adr_buf[12] top.mifu_bs_tb.uut.r.buf[1].adr_buf[11] top.mifu_bs_tb.uut.r.buf[1].adr_buf[10] top.mifu_bs_tb.uut.r.buf[1].adr_buf[9] top.mifu_bs_tb.uut.r.buf[1].adr_buf[8] top.mifu_bs_tb.uut.r.buf[1].adr_buf[7] top.mifu_bs_tb.uut.r.buf[1].adr_buf[6] top.mifu_bs_tb.uut.r.buf[1].adr_buf[5] top.mifu_bs_tb.uut.r.buf[1].adr_buf[4] top.mifu_bs_tb.uut.r.buf[1].adr_buf[3] top.mifu_bs_tb.uut.r.buf[1].adr_buf[2] top.mifu_bs_tb.uut.r.buf[1].adr_buf[1] top.mifu_bs_tb.uut.r.buf[1].adr_buf[0]
+#{top.mifu_bs_tb.uut.r.buf[0].adr_buf[31:0]} top.mifu_bs_tb.uut.r.buf[0].adr_buf[31] top.mifu_bs_tb.uut.r.buf[0].adr_buf[30] top.mifu_bs_tb.uut.r.buf[0].adr_buf[29] top.mifu_bs_tb.uut.r.buf[0].adr_buf[28] top.mifu_bs_tb.uut.r.buf[0].adr_buf[27] top.mifu_bs_tb.uut.r.buf[0].adr_buf[26] top.mifu_bs_tb.uut.r.buf[0].adr_buf[25] top.mifu_bs_tb.uut.r.buf[0].adr_buf[24] top.mifu_bs_tb.uut.r.buf[0].adr_buf[23] top.mifu_bs_tb.uut.r.buf[0].adr_buf[22] top.mifu_bs_tb.uut.r.buf[0].adr_buf[21] top.mifu_bs_tb.uut.r.buf[0].adr_buf[20] top.mifu_bs_tb.uut.r.buf[0].adr_buf[19] top.mifu_bs_tb.uut.r.buf[0].adr_buf[18] top.mifu_bs_tb.uut.r.buf[0].adr_buf[17] top.mifu_bs_tb.uut.r.buf[0].adr_buf[16] top.mifu_bs_tb.uut.r.buf[0].adr_buf[15] top.mifu_bs_tb.uut.r.buf[0].adr_buf[14] top.mifu_bs_tb.uut.r.buf[0].adr_buf[13] top.mifu_bs_tb.uut.r.buf[0].adr_buf[12] top.mifu_bs_tb.uut.r.buf[0].adr_buf[11] top.mifu_bs_tb.uut.r.buf[0].adr_buf[10] top.mifu_bs_tb.uut.r.buf[0].adr_buf[9] top.mifu_bs_tb.uut.r.buf[0].adr_buf[8] top.mifu_bs_tb.uut.r.buf[0].adr_buf[7] top.mifu_bs_tb.uut.r.buf[0].adr_buf[6] top.mifu_bs_tb.uut.r.buf[0].adr_buf[5] top.mifu_bs_tb.uut.r.buf[0].adr_buf[4] top.mifu_bs_tb.uut.r.buf[0].adr_buf[3] top.mifu_bs_tb.uut.r.buf[0].adr_buf[2] top.mifu_bs_tb.uut.r.buf[0].adr_buf[1] top.mifu_bs_tb.uut.r.buf[0].adr_buf[0]
+@c00028
+#{top.mifu_bs_tb.uut.r.buf[3:0].insn_valid} top.mifu_bs_tb.uut.r.buf[3].insn_valid top.mifu_bs_tb.uut.r.buf[2].insn_valid top.mifu_bs_tb.uut.r.buf[1].insn_valid top.mifu_bs_tb.uut.r.buf[0].insn_valid
+@28
+top.mifu_bs_tb.uut.r.buf[3].insn_valid
+top.mifu_bs_tb.uut.r.buf[2].insn_valid
+top.mifu_bs_tb.uut.r.buf[1].insn_valid
+top.mifu_bs_tb.uut.r.buf[0].insn_valid
+@1401200
+-group_end
+@22
+#{top.mifu_bs_tb.uut.r.buf[3].insn_buf[31:0]} top.mifu_bs_tb.uut.r.buf[3].insn_buf[31] top.mifu_bs_tb.uut.r.buf[3].insn_buf[30] top.mifu_bs_tb.uut.r.buf[3].insn_buf[29] top.mifu_bs_tb.uut.r.buf[3].insn_buf[28] top.mifu_bs_tb.uut.r.buf[3].insn_buf[27] top.mifu_bs_tb.uut.r.buf[3].insn_buf[26] top.mifu_bs_tb.uut.r.buf[3].insn_buf[25] top.mifu_bs_tb.uut.r.buf[3].insn_buf[24] top.mifu_bs_tb.uut.r.buf[3].insn_buf[23] top.mifu_bs_tb.uut.r.buf[3].insn_buf[22] top.mifu_bs_tb.uut.r.buf[3].insn_buf[21] top.mifu_bs_tb.uut.r.buf[3].insn_buf[20] top.mifu_bs_tb.uut.r.buf[3].insn_buf[19] top.mifu_bs_tb.uut.r.buf[3].insn_buf[18] top.mifu_bs_tb.uut.r.buf[3].insn_buf[17] top.mifu_bs_tb.uut.r.buf[3].insn_buf[16] top.mifu_bs_tb.uut.r.buf[3].insn_buf[15] top.mifu_bs_tb.uut.r.buf[3].insn_buf[14] top.mifu_bs_tb.uut.r.buf[3].insn_buf[13] top.mifu_bs_tb.uut.r.buf[3].insn_buf[12] top.mifu_bs_tb.uut.r.buf[3].insn_buf[11] top.mifu_bs_tb.uut.r.buf[3].insn_buf[10] top.mifu_bs_tb.uut.r.buf[3].insn_buf[9] top.mifu_bs_tb.uut.r.buf[3].insn_buf[8] top.mifu_bs_tb.uut.r.buf[3].insn_buf[7] top.mifu_bs_tb.uut.r.buf[3].insn_buf[6] top.mifu_bs_tb.uut.r.buf[3].insn_buf[5] top.mifu_bs_tb.uut.r.buf[3].insn_buf[4] top.mifu_bs_tb.uut.r.buf[3].insn_buf[3] top.mifu_bs_tb.uut.r.buf[3].insn_buf[2] top.mifu_bs_tb.uut.r.buf[3].insn_buf[1] top.mifu_bs_tb.uut.r.buf[3].insn_buf[0]
+#{top.mifu_bs_tb.uut.r.buf[2].insn_buf[31:0]} top.mifu_bs_tb.uut.r.buf[2].insn_buf[31] top.mifu_bs_tb.uut.r.buf[2].insn_buf[30] top.mifu_bs_tb.uut.r.buf[2].insn_buf[29] top.mifu_bs_tb.uut.r.buf[2].insn_buf[28] top.mifu_bs_tb.uut.r.buf[2].insn_buf[27] top.mifu_bs_tb.uut.r.buf[2].insn_buf[26] top.mifu_bs_tb.uut.r.buf[2].insn_buf[25] top.mifu_bs_tb.uut.r.buf[2].insn_buf[24] top.mifu_bs_tb.uut.r.buf[2].insn_buf[23] top.mifu_bs_tb.uut.r.buf[2].insn_buf[22] top.mifu_bs_tb.uut.r.buf[2].insn_buf[21] top.mifu_bs_tb.uut.r.buf[2].insn_buf[20] top.mifu_bs_tb.uut.r.buf[2].insn_buf[19] top.mifu_bs_tb.uut.r.buf[2].insn_buf[18] top.mifu_bs_tb.uut.r.buf[2].insn_buf[17] top.mifu_bs_tb.uut.r.buf[2].insn_buf[16] top.mifu_bs_tb.uut.r.buf[2].insn_buf[15] top.mifu_bs_tb.uut.r.buf[2].insn_buf[14] top.mifu_bs_tb.uut.r.buf[2].insn_buf[13] top.mifu_bs_tb.uut.r.buf[2].insn_buf[12] top.mifu_bs_tb.uut.r.buf[2].insn_buf[11] top.mifu_bs_tb.uut.r.buf[2].insn_buf[10] top.mifu_bs_tb.uut.r.buf[2].insn_buf[9] top.mifu_bs_tb.uut.r.buf[2].insn_buf[8] top.mifu_bs_tb.uut.r.buf[2].insn_buf[7] top.mifu_bs_tb.uut.r.buf[2].insn_buf[6] top.mifu_bs_tb.uut.r.buf[2].insn_buf[5] top.mifu_bs_tb.uut.r.buf[2].insn_buf[4] top.mifu_bs_tb.uut.r.buf[2].insn_buf[3] top.mifu_bs_tb.uut.r.buf[2].insn_buf[2] top.mifu_bs_tb.uut.r.buf[2].insn_buf[1] top.mifu_bs_tb.uut.r.buf[2].insn_buf[0]
+#{top.mifu_bs_tb.uut.r.buf[1].insn_buf[31:0]} top.mifu_bs_tb.uut.r.buf[1].insn_buf[31] top.mifu_bs_tb.uut.r.buf[1].insn_buf[30] top.mifu_bs_tb.uut.r.buf[1].insn_buf[29] top.mifu_bs_tb.uut.r.buf[1].insn_buf[28] top.mifu_bs_tb.uut.r.buf[1].insn_buf[27] top.mifu_bs_tb.uut.r.buf[1].insn_buf[26] top.mifu_bs_tb.uut.r.buf[1].insn_buf[25] top.mifu_bs_tb.uut.r.buf[1].insn_buf[24] top.mifu_bs_tb.uut.r.buf[1].insn_buf[23] top.mifu_bs_tb.uut.r.buf[1].insn_buf[22] top.mifu_bs_tb.uut.r.buf[1].insn_buf[21] top.mifu_bs_tb.uut.r.buf[1].insn_buf[20] top.mifu_bs_tb.uut.r.buf[1].insn_buf[19] top.mifu_bs_tb.uut.r.buf[1].insn_buf[18] top.mifu_bs_tb.uut.r.buf[1].insn_buf[17] top.mifu_bs_tb.uut.r.buf[1].insn_buf[16] top.mifu_bs_tb.uut.r.buf[1].insn_buf[15] top.mifu_bs_tb.uut.r.buf[1].insn_buf[14] top.mifu_bs_tb.uut.r.buf[1].insn_buf[13] top.mifu_bs_tb.uut.r.buf[1].insn_buf[12] top.mifu_bs_tb.uut.r.buf[1].insn_buf[11] top.mifu_bs_tb.uut.r.buf[1].insn_buf[10] top.mifu_bs_tb.uut.r.buf[1].insn_buf[9] top.mifu_bs_tb.uut.r.buf[1].insn_buf[8] top.mifu_bs_tb.uut.r.buf[1].insn_buf[7] top.mifu_bs_tb.uut.r.buf[1].insn_buf[6] top.mifu_bs_tb.uut.r.buf[1].insn_buf[5] top.mifu_bs_tb.uut.r.buf[1].insn_buf[4] top.mifu_bs_tb.uut.r.buf[1].insn_buf[3] top.mifu_bs_tb.uut.r.buf[1].insn_buf[2] top.mifu_bs_tb.uut.r.buf[1].insn_buf[1] top.mifu_bs_tb.uut.r.buf[1].insn_buf[0]
+#{top.mifu_bs_tb.uut.r.buf[0].insn_buf[31:0]} top.mifu_bs_tb.uut.r.buf[0].insn_buf[31] top.mifu_bs_tb.uut.r.buf[0].insn_buf[30] top.mifu_bs_tb.uut.r.buf[0].insn_buf[29] top.mifu_bs_tb.uut.r.buf[0].insn_buf[28] top.mifu_bs_tb.uut.r.buf[0].insn_buf[27] top.mifu_bs_tb.uut.r.buf[0].insn_buf[26] top.mifu_bs_tb.uut.r.buf[0].insn_buf[25] top.mifu_bs_tb.uut.r.buf[0].insn_buf[24] top.mifu_bs_tb.uut.r.buf[0].insn_buf[23] top.mifu_bs_tb.uut.r.buf[0].insn_buf[22] top.mifu_bs_tb.uut.r.buf[0].insn_buf[21] top.mifu_bs_tb.uut.r.buf[0].insn_buf[20] top.mifu_bs_tb.uut.r.buf[0].insn_buf[19] top.mifu_bs_tb.uut.r.buf[0].insn_buf[18] top.mifu_bs_tb.uut.r.buf[0].insn_buf[17] top.mifu_bs_tb.uut.r.buf[0].insn_buf[16] top.mifu_bs_tb.uut.r.buf[0].insn_buf[15] top.mifu_bs_tb.uut.r.buf[0].insn_buf[14] top.mifu_bs_tb.uut.r.buf[0].insn_buf[13] top.mifu_bs_tb.uut.r.buf[0].insn_buf[12] top.mifu_bs_tb.uut.r.buf[0].insn_buf[11] top.mifu_bs_tb.uut.r.buf[0].insn_buf[10] top.mifu_bs_tb.uut.r.buf[0].insn_buf[9] top.mifu_bs_tb.uut.r.buf[0].insn_buf[8] top.mifu_bs_tb.uut.r.buf[0].insn_buf[7] top.mifu_bs_tb.uut.r.buf[0].insn_buf[6] top.mifu_bs_tb.uut.r.buf[0].insn_buf[5] top.mifu_bs_tb.uut.r.buf[0].insn_buf[4] top.mifu_bs_tb.uut.r.buf[0].insn_buf[3] top.mifu_bs_tb.uut.r.buf[0].insn_buf[2] top.mifu_bs_tb.uut.r.buf[0].insn_buf[1] top.mifu_bs_tb.uut.r.buf[0].insn_buf[0]
+@200
+-buf2
+-buf1
+-buf0
+-outputs
+-ifuo
+@28
+top.mifu_bs_tb.uut.ifuo.npc_valid
+top.mifu_bs_tb.uut.ifuo.ir_valid
+@22
+#{top.mifu_bs_tb.uut.ifuo.npc[31:0]} top.mifu_bs_tb.uut.ifuo.npc[31] top.mifu_bs_tb.uut.ifuo.npc[30] top.mifu_bs_tb.uut.ifuo.npc[29] top.mifu_bs_tb.uut.ifuo.npc[28] top.mifu_bs_tb.uut.ifuo.npc[27] top.mifu_bs_tb.uut.ifuo.npc[26] top.mifu_bs_tb.uut.ifuo.npc[25] top.mifu_bs_tb.uut.ifuo.npc[24] top.mifu_bs_tb.uut.ifuo.npc[23] top.mifu_bs_tb.uut.ifuo.npc[22] top.mifu_bs_tb.uut.ifuo.npc[21] top.mifu_bs_tb.uut.ifuo.npc[20] top.mifu_bs_tb.uut.ifuo.npc[19] top.mifu_bs_tb.uut.ifuo.npc[18] top.mifu_bs_tb.uut.ifuo.npc[17] top.mifu_bs_tb.uut.ifuo.npc[16] top.mifu_bs_tb.uut.ifuo.npc[15] top.mifu_bs_tb.uut.ifuo.npc[14] top.mifu_bs_tb.uut.ifuo.npc[13] top.mifu_bs_tb.uut.ifuo.npc[12] top.mifu_bs_tb.uut.ifuo.npc[11] top.mifu_bs_tb.uut.ifuo.npc[10] top.mifu_bs_tb.uut.ifuo.npc[9] top.mifu_bs_tb.uut.ifuo.npc[8] top.mifu_bs_tb.uut.ifuo.npc[7] top.mifu_bs_tb.uut.ifuo.npc[6] top.mifu_bs_tb.uut.ifuo.npc[5] top.mifu_bs_tb.uut.ifuo.npc[4] top.mifu_bs_tb.uut.ifuo.npc[3] top.mifu_bs_tb.uut.ifuo.npc[2] top.mifu_bs_tb.uut.ifuo.npc[1] top.mifu_bs_tb.uut.ifuo.npc[0]
+#{top.mifu_bs_tb.uut.ifuo.pc[31:0]} top.mifu_bs_tb.uut.ifuo.pc[31] top.mifu_bs_tb.uut.ifuo.pc[30] top.mifu_bs_tb.uut.ifuo.pc[29] top.mifu_bs_tb.uut.ifuo.pc[28] top.mifu_bs_tb.uut.ifuo.pc[27] top.mifu_bs_tb.uut.ifuo.pc[26] top.mifu_bs_tb.uut.ifuo.pc[25] top.mifu_bs_tb.uut.ifuo.pc[24] top.mifu_bs_tb.uut.ifuo.pc[23] top.mifu_bs_tb.uut.ifuo.pc[22] top.mifu_bs_tb.uut.ifuo.pc[21] top.mifu_bs_tb.uut.ifuo.pc[20] top.mifu_bs_tb.uut.ifuo.pc[19] top.mifu_bs_tb.uut.ifuo.pc[18] top.mifu_bs_tb.uut.ifuo.pc[17] top.mifu_bs_tb.uut.ifuo.pc[16] top.mifu_bs_tb.uut.ifuo.pc[15] top.mifu_bs_tb.uut.ifuo.pc[14] top.mifu_bs_tb.uut.ifuo.pc[13] top.mifu_bs_tb.uut.ifuo.pc[12] top.mifu_bs_tb.uut.ifuo.pc[11] top.mifu_bs_tb.uut.ifuo.pc[10] top.mifu_bs_tb.uut.ifuo.pc[9] top.mifu_bs_tb.uut.ifuo.pc[8] top.mifu_bs_tb.uut.ifuo.pc[7] top.mifu_bs_tb.uut.ifuo.pc[6] top.mifu_bs_tb.uut.ifuo.pc[5] top.mifu_bs_tb.uut.ifuo.pc[4] top.mifu_bs_tb.uut.ifuo.pc[3] top.mifu_bs_tb.uut.ifuo.pc[2] top.mifu_bs_tb.uut.ifuo.pc[1] top.mifu_bs_tb.uut.ifuo.pc[0]
+#{top.mifu_bs_tb.uut.ifuo.ppc[31:0]} top.mifu_bs_tb.uut.ifuo.ppc[31] top.mifu_bs_tb.uut.ifuo.ppc[30] top.mifu_bs_tb.uut.ifuo.ppc[29] top.mifu_bs_tb.uut.ifuo.ppc[28] top.mifu_bs_tb.uut.ifuo.ppc[27] top.mifu_bs_tb.uut.ifuo.ppc[26] top.mifu_bs_tb.uut.ifuo.ppc[25] top.mifu_bs_tb.uut.ifuo.ppc[24] top.mifu_bs_tb.uut.ifuo.ppc[23] top.mifu_bs_tb.uut.ifuo.ppc[22] top.mifu_bs_tb.uut.ifuo.ppc[21] top.mifu_bs_tb.uut.ifuo.ppc[20] top.mifu_bs_tb.uut.ifuo.ppc[19] top.mifu_bs_tb.uut.ifuo.ppc[18] top.mifu_bs_tb.uut.ifuo.ppc[17] top.mifu_bs_tb.uut.ifuo.ppc[16] top.mifu_bs_tb.uut.ifuo.ppc[15] top.mifu_bs_tb.uut.ifuo.ppc[14] top.mifu_bs_tb.uut.ifuo.ppc[13] top.mifu_bs_tb.uut.ifuo.ppc[12] top.mifu_bs_tb.uut.ifuo.ppc[11] top.mifu_bs_tb.uut.ifuo.ppc[10] top.mifu_bs_tb.uut.ifuo.ppc[9] top.mifu_bs_tb.uut.ifuo.ppc[8] top.mifu_bs_tb.uut.ifuo.ppc[7] top.mifu_bs_tb.uut.ifuo.ppc[6] top.mifu_bs_tb.uut.ifuo.ppc[5] top.mifu_bs_tb.uut.ifuo.ppc[4] top.mifu_bs_tb.uut.ifuo.ppc[3] top.mifu_bs_tb.uut.ifuo.ppc[2] top.mifu_bs_tb.uut.ifuo.ppc[1] top.mifu_bs_tb.uut.ifuo.ppc[0]
+#{top.mifu_bs_tb.uut.ifuo.ir[31:0]} top.mifu_bs_tb.uut.ifuo.ir[31] top.mifu_bs_tb.uut.ifuo.ir[30] top.mifu_bs_tb.uut.ifuo.ir[29] top.mifu_bs_tb.uut.ifuo.ir[28] top.mifu_bs_tb.uut.ifuo.ir[27] top.mifu_bs_tb.uut.ifuo.ir[26] top.mifu_bs_tb.uut.ifuo.ir[25] top.mifu_bs_tb.uut.ifuo.ir[24] top.mifu_bs_tb.uut.ifuo.ir[23] top.mifu_bs_tb.uut.ifuo.ir[22] top.mifu_bs_tb.uut.ifuo.ir[21] top.mifu_bs_tb.uut.ifuo.ir[20] top.mifu_bs_tb.uut.ifuo.ir[19] top.mifu_bs_tb.uut.ifuo.ir[18] top.mifu_bs_tb.uut.ifuo.ir[17] top.mifu_bs_tb.uut.ifuo.ir[16] top.mifu_bs_tb.uut.ifuo.ir[15] top.mifu_bs_tb.uut.ifuo.ir[14] top.mifu_bs_tb.uut.ifuo.ir[13] top.mifu_bs_tb.uut.ifuo.ir[12] top.mifu_bs_tb.uut.ifuo.ir[11] top.mifu_bs_tb.uut.ifuo.ir[10] top.mifu_bs_tb.uut.ifuo.ir[9] top.mifu_bs_tb.uut.ifuo.ir[8] top.mifu_bs_tb.uut.ifuo.ir[7] top.mifu_bs_tb.uut.ifuo.ir[6] top.mifu_bs_tb.uut.ifuo.ir[5] top.mifu_bs_tb.uut.ifuo.ir[4] top.mifu_bs_tb.uut.ifuo.ir[3] top.mifu_bs_tb.uut.ifuo.ir[2] top.mifu_bs_tb.uut.ifuo.ir[1] top.mifu_bs_tb.uut.ifuo.ir[0]
+@200
+-rpi
+@28
+top.mifu_bs_tb.uut.rpi.port_direct
+top.mifu_bs_tb.uut.rpi.port_rd
+@22
+#{top.mifu_bs_tb.uut.rpi.port_adr[31:0]} top.mifu_bs_tb.uut.rpi.port_adr[31] top.mifu_bs_tb.uut.rpi.port_adr[30] top.mifu_bs_tb.uut.rpi.port_adr[29] top.mifu_bs_tb.uut.rpi.port_adr[28] top.mifu_bs_tb.uut.rpi.port_adr[27] top.mifu_bs_tb.uut.rpi.port_adr[26] top.mifu_bs_tb.uut.rpi.port_adr[25] top.mifu_bs_tb.uut.rpi.port_adr[24] top.mifu_bs_tb.uut.rpi.port_adr[23] top.mifu_bs_tb.uut.rpi.port_adr[22] top.mifu_bs_tb.uut.rpi.port_adr[21] top.mifu_bs_tb.uut.rpi.port_adr[20] top.mifu_bs_tb.uut.rpi.port_adr[19] top.mifu_bs_tb.uut.rpi.port_adr[18] top.mifu_bs_tb.uut.rpi.port_adr[17] top.mifu_bs_tb.uut.rpi.port_adr[16] top.mifu_bs_tb.uut.rpi.port_adr[15] top.mifu_bs_tb.uut.rpi.port_adr[14] top.mifu_bs_tb.uut.rpi.port_adr[13] top.mifu_bs_tb.uut.rpi.port_adr[12] top.mifu_bs_tb.uut.rpi.port_adr[11] top.mifu_bs_tb.uut.rpi.port_adr[10] top.mifu_bs_tb.uut.rpi.port_adr[9] top.mifu_bs_tb.uut.rpi.port_adr[8] top.mifu_bs_tb.uut.rpi.port_adr[7] top.mifu_bs_tb.uut.rpi.port_adr[6] top.mifu_bs_tb.uut.rpi.port_adr[5] top.mifu_bs_tb.uut.rpi.port_adr[4] top.mifu_bs_tb.uut.rpi.port_adr[3] top.mifu_bs_tb.uut.rpi.port_adr[2] top.mifu_bs_tb.uut.rpi.port_adr[1] top.mifu_bs_tb.uut.rpi.port_adr[0]
+#{top.mifu_bs_tb.uut.rpi.port_bsel[3:0]} top.mifu_bs_tb.uut.rpi.port_bsel[3] top.mifu_bs_tb.uut.rpi.port_bsel[2] top.mifu_bs_tb.uut.rpi.port_bsel[1] top.mifu_bs_tb.uut.rpi.port_bsel[0]
+[pattern_trace] 1
+[pattern_trace] 0

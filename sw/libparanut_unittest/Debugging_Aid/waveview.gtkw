@@ -1,0 +1,172 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Wed Nov 20 09:48:20 2019
+[*]
+[dumpfile] "/home/ibv/paranut_libparanut/sw/libparanut_unittest/Debugging_Aid/paranut_tb.vcd"
+[dumpfile_mtime] "Wed Nov 20 09:45:36 2019"
+[dumpfile_size] 427905357
+[savefile] "/home/ibv/paranut_libparanut/sw/libparanut_unittest/Debugging_Aid/waveview.gtkw"
+[timestart] 0
+[size] 1920 1052
+[pos] -1 -1
+*-10.000000 271 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] SystemC.
+[treeopen] SystemC.nut.
+[sst_width] 263
+[signals_width] 286
+[sst_expanded] 1
+[sst_vpaned_height] 419
+@200
+-EXU0
+@22
+SystemC.nut.EXU0.pc[31:0]
+@200
+-
+@28
+SystemC.nut.EXU0.csr_pnce(0)[3:0]
+SystemC.nut.EXU0.csr_pnlm(0)[3:0]
+@200
+-
+@22
++{ra} SystemC.nut.EXU0.gp_regs(1)[31:0]
++{sp} SystemC.nut.EXU0.gp_regs(2)[31:0]
++{gp} SystemC.nut.EXU0.gp_regs(3)[31:0]
++{tp} SystemC.nut.EXU0.gp_regs(4)[31:0]
+@200
+-
+@22
++{t0} SystemC.nut.EXU0.gp_regs(5)[31:0]
++{t1} SystemC.nut.EXU0.gp_regs(6)[31:0]
++{t2} SystemC.nut.EXU0.gp_regs(7)[31:0]
+@200
+-
+@22
++{s0} SystemC.nut.EXU0.gp_regs(8)[31:0]
++{s1} SystemC.nut.EXU0.gp_regs(9)[31:0]
+@200
+-
+@22
++{a0} SystemC.nut.EXU0.gp_regs(10)[31:0]
++{a1} SystemC.nut.EXU0.gp_regs(11)[31:0]
++{a2} SystemC.nut.EXU0.gp_regs(12)[31:0]
++{a3} SystemC.nut.EXU0.gp_regs(13)[31:0]
++{a4} SystemC.nut.EXU0.gp_regs(14)[31:0]
++{a5} SystemC.nut.EXU0.gp_regs(15)[31:0]
++{a6} SystemC.nut.EXU0.gp_regs(16)[31:0]
++{a7} SystemC.nut.EXU0.gp_regs(17)[31:0]
+@200
+-
+@23
++{s2} SystemC.nut.EXU0.gp_regs(18)[31:0]
+@22
++{s3} SystemC.nut.EXU0.gp_regs(19)[31:0]
++{s4} SystemC.nut.EXU0.gp_regs(20)[31:0]
++{s5} SystemC.nut.EXU0.gp_regs(21)[31:0]
++{s6} SystemC.nut.EXU0.gp_regs(22)[31:0]
++{s7} SystemC.nut.EXU0.gp_regs(23)[31:0]
+@c00022
++{s8} SystemC.nut.EXU0.gp_regs(24)[31:0]
+@28
+(0)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(1)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(2)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(3)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(4)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(5)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(6)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(7)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(8)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(9)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(10)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(11)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(12)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(13)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(14)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(15)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(16)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(17)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(18)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(19)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(20)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(21)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(22)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(23)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(24)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(25)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(26)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(27)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(28)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(29)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(30)SystemC.nut.EXU0.gp_regs(24)[31:0]
+(31)SystemC.nut.EXU0.gp_regs(24)[31:0]
+@1401200
+-group_end
+@22
++{s9} SystemC.nut.EXU0.gp_regs(25)[31:0]
++{s10} SystemC.nut.EXU0.gp_regs(26)[31:0]
++{s11} SystemC.nut.EXU0.gp_regs(27)[31:0]
+@200
+-
+@22
++{t3} SystemC.nut.EXU0.gp_regs(28)[31:0]
++{t4} SystemC.nut.EXU0.gp_regs(29)[31:0]
++{t5} SystemC.nut.EXU0.gp_regs(30)[31:0]
++{t6} SystemC.nut.EXU0.gp_regs(31)[31:0]
+@200
+-
+-
+-EXU1
+-
+@22
+SystemC.nut.EXU1.pc[31:0]
+@200
+-
+@22
++{ra} SystemC.nut.EXU1.gp_regs(1)[31:0]
++{sp} SystemC.nut.EXU1.gp_regs(2)[31:0]
++{gp} SystemC.nut.EXU1.gp_regs(3)[31:0]
++{tp} SystemC.nut.EXU1.gp_regs(4)[31:0]
+@200
+-
+@22
++{t0} SystemC.nut.EXU1.gp_regs(5)[31:0]
++{t1} SystemC.nut.EXU1.gp_regs(6)[31:0]
++{t2} SystemC.nut.EXU1.gp_regs(7)[31:0]
+@200
+-
+@22
++{s0} SystemC.nut.EXU1.gp_regs(8)[31:0]
++{s1} SystemC.nut.EXU1.gp_regs(9)[31:0]
+@200
+-
+@22
++{a0} SystemC.nut.EXU1.gp_regs(10)[31:0]
++{a1} SystemC.nut.EXU1.gp_regs(11)[31:0]
++{a2} SystemC.nut.EXU1.gp_regs(12)[31:0]
++{a3} SystemC.nut.EXU1.gp_regs(13)[31:0]
++{a4} SystemC.nut.EXU1.gp_regs(14)[31:0]
++{a5} SystemC.nut.EXU1.gp_regs(15)[31:0]
++{a6} SystemC.nut.EXU1.gp_regs(16)[31:0]
++{a7} SystemC.nut.EXU1.gp_regs(17)[31:0]
+@200
+-
+@22
++{s2} SystemC.nut.EXU1.gp_regs(18)[31:0]
++{s3} SystemC.nut.EXU1.gp_regs(19)[31:0]
++{s4} SystemC.nut.EXU1.gp_regs(20)[31:0]
++{s5} SystemC.nut.EXU1.gp_regs(21)[31:0]
++{s6} SystemC.nut.EXU1.gp_regs(22)[31:0]
++{s7} SystemC.nut.EXU1.gp_regs(23)[31:0]
++{s8} SystemC.nut.EXU1.gp_regs(24)[31:0]
++{s9} SystemC.nut.EXU1.gp_regs(25)[31:0]
++{s10} SystemC.nut.EXU1.gp_regs(26)[31:0]
++{s11} SystemC.nut.EXU1.gp_regs(27)[31:0]
+@200
+-
+@22
++{t3} SystemC.nut.EXU1.gp_regs(28)[31:0]
++{t4} SystemC.nut.EXU1.gp_regs(29)[31:0]
++{t5} SystemC.nut.EXU1.gp_regs(30)[31:0]
++{t6} SystemC.nut.EXU1.gp_regs(31)[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

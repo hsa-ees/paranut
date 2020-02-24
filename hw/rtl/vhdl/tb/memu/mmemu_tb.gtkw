@@ -1,0 +1,40 @@
+[*]
+[*] GTKWave Analyzer v3.3.47 (w)1999-2013 BSI
+[*] Wed Sep 18 18:08:06 2013
+[*]
+[dumpfile] "/home/mikkl/etc/fh/master/ma/project/rtl/vhdl/tb/memu/mmemu_tb.ghw"
+[dumpfile_mtime] "Wed Sep 18 18:05:12 2013"
+[dumpfile_size] 892304
+[savefile] "/home/mikkl/etc/fh/master/ma/project/rtl/vhdl/tb/memu/mmemu_tb.gtkw"
+[timestart] 0
+[size] 1920 1113
+[pos] -1 -1
+*-31.748291 300000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.mmemu_tb.
+[treeopen] top.mmemu_tb.memory.
+[sst_width] 284
+[signals_width] 201
+[sst_expanded] 1
+[sst_vpaned_height] 330
+@28
+top.mmemu_tb.clk
+top.mmemu_tb.reset
+@200
+-
+@28
+top.mmemu_tb.memory.cyc_i
+top.mmemu_tb.memory.stb_i
+top.mmemu_tb.memory.we_i
+top.mmemu_tb.memory.ack_o
+@23
+#{top.mmemu_tb.memory.sel_i[3:0]} top.mmemu_tb.memory.sel_i[3] top.mmemu_tb.memory.sel_i[2] top.mmemu_tb.memory.sel_i[1] top.mmemu_tb.memory.sel_i[0]
+@22
+#{top.mmemu_tb.memory.adr_i[31:0]} top.mmemu_tb.memory.adr_i[31] top.mmemu_tb.memory.adr_i[30] top.mmemu_tb.memory.adr_i[29] top.mmemu_tb.memory.adr_i[28] top.mmemu_tb.memory.adr_i[27] top.mmemu_tb.memory.adr_i[26] top.mmemu_tb.memory.adr_i[25] top.mmemu_tb.memory.adr_i[24] top.mmemu_tb.memory.adr_i[23] top.mmemu_tb.memory.adr_i[22] top.mmemu_tb.memory.adr_i[21] top.mmemu_tb.memory.adr_i[20] top.mmemu_tb.memory.adr_i[19] top.mmemu_tb.memory.adr_i[18] top.mmemu_tb.memory.adr_i[17] top.mmemu_tb.memory.adr_i[16] top.mmemu_tb.memory.adr_i[15] top.mmemu_tb.memory.adr_i[14] top.mmemu_tb.memory.adr_i[13] top.mmemu_tb.memory.adr_i[12] top.mmemu_tb.memory.adr_i[11] top.mmemu_tb.memory.adr_i[10] top.mmemu_tb.memory.adr_i[9] top.mmemu_tb.memory.adr_i[8] top.mmemu_tb.memory.adr_i[7] top.mmemu_tb.memory.adr_i[6] top.mmemu_tb.memory.adr_i[5] top.mmemu_tb.memory.adr_i[4] top.mmemu_tb.memory.adr_i[3] top.mmemu_tb.memory.adr_i[2] top.mmemu_tb.memory.adr_i[1] top.mmemu_tb.memory.adr_i[0]
+#{top.mmemu_tb.memory.dat_i[31:0]} top.mmemu_tb.memory.dat_i[31] top.mmemu_tb.memory.dat_i[30] top.mmemu_tb.memory.dat_i[29] top.mmemu_tb.memory.dat_i[28] top.mmemu_tb.memory.dat_i[27] top.mmemu_tb.memory.dat_i[26] top.mmemu_tb.memory.dat_i[25] top.mmemu_tb.memory.dat_i[24] top.mmemu_tb.memory.dat_i[23] top.mmemu_tb.memory.dat_i[22] top.mmemu_tb.memory.dat_i[21] top.mmemu_tb.memory.dat_i[20] top.mmemu_tb.memory.dat_i[19] top.mmemu_tb.memory.dat_i[18] top.mmemu_tb.memory.dat_i[17] top.mmemu_tb.memory.dat_i[16] top.mmemu_tb.memory.dat_i[15] top.mmemu_tb.memory.dat_i[14] top.mmemu_tb.memory.dat_i[13] top.mmemu_tb.memory.dat_i[12] top.mmemu_tb.memory.dat_i[11] top.mmemu_tb.memory.dat_i[10] top.mmemu_tb.memory.dat_i[9] top.mmemu_tb.memory.dat_i[8] top.mmemu_tb.memory.dat_i[7] top.mmemu_tb.memory.dat_i[6] top.mmemu_tb.memory.dat_i[5] top.mmemu_tb.memory.dat_i[4] top.mmemu_tb.memory.dat_i[3] top.mmemu_tb.memory.dat_i[2] top.mmemu_tb.memory.dat_i[1] top.mmemu_tb.memory.dat_i[0]
+#{top.mmemu_tb.memory.dat_o[31:0]} top.mmemu_tb.memory.dat_o[31] top.mmemu_tb.memory.dat_o[30] top.mmemu_tb.memory.dat_o[29] top.mmemu_tb.memory.dat_o[28] top.mmemu_tb.memory.dat_o[27] top.mmemu_tb.memory.dat_o[26] top.mmemu_tb.memory.dat_o[25] top.mmemu_tb.memory.dat_o[24] top.mmemu_tb.memory.dat_o[23] top.mmemu_tb.memory.dat_o[22] top.mmemu_tb.memory.dat_o[21] top.mmemu_tb.memory.dat_o[20] top.mmemu_tb.memory.dat_o[19] top.mmemu_tb.memory.dat_o[18] top.mmemu_tb.memory.dat_o[17] top.mmemu_tb.memory.dat_o[16] top.mmemu_tb.memory.dat_o[15] top.mmemu_tb.memory.dat_o[14] top.mmemu_tb.memory.dat_o[13] top.mmemu_tb.memory.dat_o[12] top.mmemu_tb.memory.dat_o[11] top.mmemu_tb.memory.dat_o[10] top.mmemu_tb.memory.dat_o[9] top.mmemu_tb.memory.dat_o[8] top.mmemu_tb.memory.dat_o[7] top.mmemu_tb.memory.dat_o[6] top.mmemu_tb.memory.dat_o[5] top.mmemu_tb.memory.dat_o[4] top.mmemu_tb.memory.dat_o[3] top.mmemu_tb.memory.dat_o[2] top.mmemu_tb.memory.dat_o[1] top.mmemu_tb.memory.dat_o[0]
+@28
+#{top.mmemu_tb.memory.bte_i[1:0]} top.mmemu_tb.memory.bte_i[1] top.mmemu_tb.memory.bte_i[0]
+#{top.mmemu_tb.memory.cti_i[2:0]} top.mmemu_tb.memory.cti_i[2] top.mmemu_tb.memory.cti_i[1] top.mmemu_tb.memory.cti_i[0]
+[pattern_trace] 1
+[pattern_trace] 0
