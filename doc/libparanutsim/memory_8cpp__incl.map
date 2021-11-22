@@ -1,0 +1,6 @@
+<map id="memory.cpp" name="memory.cpp">
+<area shape="rect" id="node2" href="$memory_8h.html" title="memory.h" alt="" coords="144,80,224,107"/>
+<area shape="rect" id="node5" href="$base_8h.html" title="Helpers, Makros and performance measuring Classes used in most ParaNut files. " alt="" coords="193,229,255,256"/>
+<area shape="rect" id="node3" href="$paranut-peripheral_8h.html" title="The MPeripheral class containing the interface for Wishbone slave peripherals. " alt="" coords="5,155,141,181"/>
+<area shape="rect" id="node6" href="$paranut-config_8h.html" title="Configuration Makros used in most ParaNut files. " alt="" coords="55,229,169,256"/>
+</map>

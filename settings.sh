@@ -1,8 +1,8 @@
-#! /bin/bash
+#!/bin/bash
 #
 # This file is part of the ParaNut project.
 # 
-#  Copyright (C) 2010-2020 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+#  Copyright (C) 2010-2021 Alexander Bahle <alexander.bahle@hs-augsburg.de>
 #                          Philip Manke <philip.manke@hs-augsburg.de>
 #                          Michael Schaeferling <michael.schaeferling@hs-augsburg.de>
 #     Hochschule Augsburg, University of Applied Sciencess
@@ -36,27 +36,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Set PARANUT_HOME
-PARANUT_HOME=`dirname "$(readlink -f "$0")"`
-export PARANUT_HOME
 
-# Add ParaNut python tools to PATH
-PATH=$PATH:${PARANUT_HOME}/tools
+export PARANUT_TOOLS=`realpath \`dirname $BASH_SOURCE\``/tools
 
-# The general UAS EES-Lab environment already includes following setup steps, 
-# thus they are omitted in that case:
-if [ -z $EES_HOME ]; then
-
-  # Add EES tools to PATH
-  PATH=$PATH:${PARANUT_HOME}/tools/ees/
-
-  if [ -z $XILINX_VIVADO ]; then
-    echo "Vivado is not sourced! Assuming it is located in /opt/Xilinx/Vivado/2017.2/ .";
-    echo "If this is not correct, either modify this file (<asterics>/settings.sh)";
-    echo "or source Vivado by setting XILINX_VIVADO.";
-    export EES_VIVADO_SETTINGS=/opt/Xilinx/Vivado/2017.2/settings64.sh
-  else
-    export EES_VIVADO_SETTINGS=$XILINX_VIVADO/settings64.sh
-  fi
-
-fi
+PATH=$PATH:${PARANUT_TOOLS}/bin

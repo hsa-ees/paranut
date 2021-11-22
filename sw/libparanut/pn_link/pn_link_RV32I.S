@@ -1,5 +1,6 @@
 /*
  * Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
+ *                     Alexander Bahle (<alexander.bahle@hs-augsburg.de>)
  *
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
@@ -54,7 +55,7 @@
  
   /**
    * \internal
-   * \fn         PN_CID set_linked_as(PN_CMSK coremask)
+   * \fn         PN_CID set_linked_as(PN_CMSK coremask, void *frame_adr)
    * \brief      Puts the cores marked in the bitmask to linked mode and enables
    *             them.
    * 
@@ -84,6 +85,14 @@
    */
    void write_PNLM_as(PN_CMSK coremask) {}
  
+   /**
+   * \internal
+   * \fn         void* stack_ptr_as(void)
+   * \brief      Returns the stack pointer.
+   * 
+   */
+   void* stack_ptr_as(void) {}
+ 
   /**
    * @}
    */
@@ -105,6 +114,7 @@
 .globl   set_linked_as
 .globl   read_PNLM_as
 .globl   write_PNLM_as
+.globl   stack_ptr_as
 
 /* ParaNut Custom Registers and Instructions */
 #include "custom_RV32I.S"
@@ -117,7 +127,7 @@ set_linked_as:
    * Save away the CePUs state so the CoPUs can recover it later.
    */
    
-   addi  sp,   sp,   -52               /* get space on stack                  */
+   addi  sp,   sp,   -56               /* get space on stack                  */
 
                                        /* zero does not need saving           */
    sw    ra,   0*4(sp)                 /* save return address                 */
@@ -151,10 +161,13 @@ set_linked_as:
    sw    tp,   0(t0)                   /* put in thread pointer               */
    
   /*
-   * Save a0 away since it will get overridden soon.
+   * Save a0 and a1 away since they will get overridden soon.
    */
    
-   mv    s0,   a0                      /* copy a0 to s0                       */
+   mv    s0,   a0                      /* copy a0 to s0 (numcores)            */
+   mv    s1,   a1                      /* copy a1 to s1 (frame_adr)           */
+   sw    a1,  13*4(sp)                 /* save frame_adrr from arguments to
+                                          load it later on all CoPUs          */
  
   /* 
    * Put in a fence to make sure everything is properly stored away.
@@ -225,7 +238,7 @@ set_linked_as:
    .option pop
    
    /* get the thread pointer */
-   csrr  t0,   mhartid                 /* read core ID                        */
+   csrr  t0,   pncoreid                 /* read core ID                        */
    lw    t1,   shared_mem_size         /* load size of shared memory          */
    mul   t2,   t1,   t0                /* calculate individual offset         */
    lw    a2,   tp_loc                  /* load thread pointer of CePU         */
@@ -233,6 +246,7 @@ set_linked_as:
    
    /* getting the stack pointer */
    lw    a1,   sp_loc                  /* get stack pointer of CePU           */
+   lw    s1,   13*4(a1)                /* load saved frame_address            */
    add   sp,   a1,   t2                /* add individual offset               */
    
   /* 
@@ -245,7 +259,10 @@ set_linked_as:
    
    mv    a0,   sp                      /* destination is own stack            */
    add   a2,   a2,   t1                /* tp of CePU + shared memory size     */
-   sub   a2,   a2,   a1                /* substract sp of CePU                */
+
+   beqz  s1,   1f                      /* if s1 is zero copy the whole stack  */
+   mv    a2,   s1                      /* else use frame_adr address          */
+1: sub   a2,   a2,   a1                /* substract sp of CePU                */
    fence                               /* synchronize memory                  */   
    call  memcpy                        /* copy the stack                      */
    fence                               /* synchronize memory                  */    
@@ -268,13 +285,13 @@ set_linked_as:
    lw    s10, 11*4(sp)                 /* load callee saved register 10       */
    lw    s11, 12*4(sp)                 /* load callee saved register 11       */ 
    
-   addi  sp,   sp,   52                /* set back stack pointer              */  
+   addi  sp,   sp,   56                /* set back stack pointer              */  
    
   /*
    * Get the core ID, store in return value, return
    */
    
-   csrr  a0,   mhartid                 /* put mhartid into a0                 */
+   csrr  a0,   pncoreid                 /* put pncoreid into a0                 */
    ret                                 /* return                              */
    
 /*----------------------------------------------------------------------------*/
@@ -289,6 +306,13 @@ read_PNLM_as:
 write_PNLM_as:
 
    csrw  pnlm, a0                      /* put pnlm in return value            */
+   ret                                 /* return                              */
+
+/*----------------------------------------------------------------------------*/
+
+stack_ptr_as:
+
+   mv   a0, sp                         /* put stack pointer in return value   */
    ret                                 /* return                              */
    
 #endif /* !DOXYGEN */

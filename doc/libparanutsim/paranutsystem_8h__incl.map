@@ -1,0 +1,19 @@
+<map id="paranutsystem.h" name="paranutsystem.h">
+<area shape="rect" id="node2" href="$base_8h.html" title="Helpers, Makros and performance measuring Classes used in most ParaNut files. " alt="" coords="575,304,636,331"/>
+<area shape="rect" id="node4" href="$paranut-config_8h.html" title="Configuration Makros used in most ParaNut files. " alt="" coords="253,304,368,331"/>
+<area shape="rect" id="node5" href="$nut_8h.html" title="nut.h" alt="" coords="424,80,475,107"/>
+<area shape="rect" id="node13" href="$jtag__dtm_8h.html" title="jtag_dtm.h" alt="" coords="1164,155,1247,181"/>
+<area shape="rect" id="node17" href="$memory_8h.html" title="memory.h" alt="" coords="1005,155,1085,181"/>
+<area shape="rect" id="node20" href="$interconnect_8h.html" title="interconnect.h" alt="" coords="904,80,1008,107"/>
+<area shape="rect" id="node21" href="$remote__bitbang_8h.html" title="remote_bitbang.h" alt="" coords="1144,80,1267,107"/>
+<area shape="rect" id="node6" href="$dm_8h.html" title="dm.h" alt="" coords="648,229,699,256"/>
+<area shape="rect" id="node7" href="$exu_8h.html" title="exu.h" alt="" coords="541,155,595,181"/>
+<area shape="rect" id="node10" href="$csr_8h.html" title="csr.h" alt="" coords="303,155,353,181"/>
+<area shape="rect" id="node11" href="$ifu_8h.html" title="ifu.h" alt="" coords="102,229,149,256"/>
+<area shape="rect" id="node12" href="$intc_8h.html" title="intc.h" alt="" coords="23,229,78,256"/>
+<area shape="rect" id="node15" href="$lsu_8h.html" title="lsu.h" alt="" coords="379,229,429,256"/>
+<area shape="rect" id="node16" href="$memu_8h.html" title="memu.h" alt="" coords="453,229,523,256"/>
+<area shape="rect" id="node8" href="$mextension_8h.html" title="mextension.h" alt="" coords="723,229,823,256"/>
+<area shape="rect" id="node9" href="$exu__csr_8h.html" title="exu_csr.h" alt="" coords="225,229,303,256"/>
+<area shape="rect" id="node18" href="$paranut-peripheral_8h.html" title="The MPeripheral class containing the interface for Wishbone slave peripherals. " alt="" coords="899,229,1035,256"/>
+</map>

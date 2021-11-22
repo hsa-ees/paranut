@@ -83,9 +83,9 @@ static void default_exc(unsigned int cause,
      /*
       * If breakpoint exception landed in trap handler, we are not being
       * debugged. This should not really happen.
-      * -> Just returning.
+      * -> Just increment epc and return.
       */
-		
+      progress_mepc_as();
       return;
 	}
    

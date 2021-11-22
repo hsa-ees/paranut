@@ -1,0 +1,8 @@
+figs/*.png
+instructions.tex
+paranut-manual.aux
+paranut-manual.idx
+paranut-manual.log
+paranut-manual.out
+paranut-manual.pdf
+paranut-manual.toc

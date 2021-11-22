@@ -8,6 +8,7 @@
 *.vcd
 *.geany
 *.o
+*.d
 *.a
 *.o.s
 *.bin
@@ -15,31 +16,32 @@
 *.dump
 *.jou
 .nfs*
+*.swp
 core
+version.env
 
 doc/src
 
-sysc/paranut_tb
-sysc/memu_tb
-sysc/jtag_dtm_tb
-sysc/dm_tb
-sysc/hls-*
-sysc/config.h
+hw/sim/pn-sim
+hw/sysc/tb/memu/memu_tb
+hw/sysc/tb/jtag_dtm/jtag_dtm_tb
+hw/sysc/tb/dm/dm_tb
+hw/sysc/hls-*
+hw/sysc/paranut-config.h
+hw/sysc/Documentation/html
+hw/sysc/Documentation/latex
 
-sysc/paranut.config
-sysc/paranut.creator
-sysc/paranut.creator.user
-sysc/paranut.creator.user.*
-sysc/paranut.files
-sysc/paranut.includes
+hw/sysc/paranut.config
+hw/sysc/paranut.creator
+hw/sysc/paranut.creator.user
+hw/sysc/paranut.creator.user.*
+hw/sysc/paranut.files
+hw/sysc/paranut.includes
 
 sw/test_all/test_all
 sw/test_all/uart0.?x
 sw/hello_newlib/hello_newlib
 
-sw/libparanut/Documentation/html
-sw/libparanut/Documentation/latex
-sw/libparanut/INSTALL
 sw/libparanut_unittest/Documentation/html
 sw/libparanut_unittest/Documentation/latex
 sw/libparanut_unittest/libparanut_unittest
@@ -53,24 +55,7 @@ sw/coremark_v1.0/coremark.exe
 sw/mode2_demo/mode2_demo
 sw/mode1_demo/mode1_demo
 
-hw/bin/paranut_temp/
-hw/bin/paranut_z20/
-
-hw/rtl/vhdl/paranut/MDbgu*
-hw/rtl/vhdl/paranut/MExu*
-hw/rtl/vhdl/paranut/MLsu*
-hw/rtl/vhdl/paranut/MIfu*
-hw/rtl/vhdl/paranut/MIntC*
-hw/rtl/vhdl/paranut/MMExtension*
-hw/rtl/vhdl/paranut/MDebugModule*
-hw/rtl/vhdl/paranut/MDtm*
-
-hw/rtl/vhdl/paranut/paranut_config.vhd
-hw/rtl/vhdl/tb/paranut/mparanut_tb
-hw/rtl/vhdl/tb/paranut/paranut
-hw/rtl/vhdl/tb/paranut/paranut_config.vhd
-
-systems/*/hardware/build.bd
-systems/*/hardware/build
-systems/*/vivado_cores
+hw/vhdl/tb/paranut/mparanut_tb
+hw/vhdl/tb/paranut/paranut
+hw/vhdl/tb/paranut/paranut_config.vhd
 **/__pycache__

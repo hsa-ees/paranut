@@ -1,0 +1,6 @@
+*.o
+*.log
+build/
+Documentation/html
+Documentation/latex
+INSTALL/

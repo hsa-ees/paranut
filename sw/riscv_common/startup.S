@@ -61,7 +61,7 @@ tohost:
 fromhost:
    .word 0
 
-.section ".pntdata","aw",@progbits
+.section ".pntdata","aw",@nobits
 .align   4                             /* align _thread_data to 2^4 bytes     */
 _thread_data:
    .zero 32*4*2                        /* thread space for 32 CPUs (256 Byte) */
@@ -70,10 +70,7 @@ shared_mem_start:
    .zero 4                             /* adress of shared memory start       */
 shared_mem_size:
    .zero 4                             /* shared memory size in byte          */
-
-error_string:                          /* prepare error message               */
-   .string "There was an error in the startup code. Contact maintainers!\n\n"
-   
+  
    
 /* declare labels in here to be global */
 .globl   _tdata_begin                  /* label for area .tdata.begin         */
@@ -145,7 +142,7 @@ _start:
    * syscalls.c implementation.
    */
    
-   csrr  a0,      mhartid              /* read core ID                        */
+   csrr  a0,      0xCD4              /* read core ID from pncoreid CSR      */
    bnez  a0,      init_gp              /* other CPUs can immediately load gp  */
    
    li    t0,      0                    /* set t0 to 0                         */
@@ -175,9 +172,9 @@ init_tp:
   /*
    * Iniialize thread pointer to after end of uninitialized segment.
    * Using the AND with -64 (0xFFFFFFE0) aligns the tp.
-   * Afterwards, give each core 16MB of stack/TLS and shuffle the stack pointers
-   * around so they point at the end of the stack for each core (stack grows
-   * downwards).
+   * Afterwards, give each core __usr_stack_heap_size (defined in paranut.ld) 
+   * stack/TLS and shuffle the stack pointers around so they point at the end 
+   * of the stack for each core (stack grows downwards).
    */ 
    
    la    tp,      _end + 63
@@ -185,8 +182,8 @@ init_tp:
    mv    sp,      tp                   /* set sp to tp                        */
    
    mv    t0,      a0                   /* copy core id to t0                  */
-   li    t1,      0x1000000            /* put 16MB offset into t1             */
-   add   sp,      sp,      t1          /* add 16MB to sp                      */
+   la    t1,      __usr_stack_heap_size/* load the offset/size into t1        */
+   add   sp,      sp,      t1          /* add offset to sp                    */
    
   /*
    * The Thread module demands a shared memory space for the cores. This shall
@@ -197,35 +194,18 @@ init_tp:
    sw    tp,      0(t5)                /* set shared_mem_start                */
    la    t5,      shared_mem_size      /* load adress of shared_mem_size      */
    sw    t1,      0(t5)                /* set shared_mem_size                 */
-   add   tp,      tp,      t1          /* add 16MB to tp                      */
-   add   sp,      sp,      t1          /* add 16MB to sp                      */
+   add   tp,      tp,      t1          /* add offset to tp                    */
+   add   sp,      sp,      t1          /* add offset to sp                    */
    
    
 tp_loop:
-   beqz  t0,      init_bss             /* if t0 is zero, leave loop           */
-   add   tp,      tp,      t1          /* add 16MB to tp                      */
-   add   sp,      sp,      t1          /* add 16MB to sp                      */
+   beqz  t0,      setup_cache          /* if t0 is zero, leave loop           */
+   add   tp,      tp,      t1          /* add offset to tp                    */
+   add   sp,      sp,      t1          /* add offset to sp                    */
    addi  t0,      t0,      -1          /* substract 1 from t0                 */
    j     tp_loop                       /* go to start of loop                 */
-
-
-init_bss:
-
-  /*
-   * Initialize the bss (CePU only).
-   * Necessary for C libraries to work properly.
-   */
-
-   bnez  a0,      pn_thread_entry      /* if core id not zero, skip this and  */
-                                       /*  go into pn_thread_entry            */
-   
-   la    a0,      __bss_start          /* load start adress into a0           */
-   la    a2,      __bss_end            /* load end address into a2            */
-   sub   a2,      a2,      a0          /* load size of bss into a2            */
-   li    a1,      0                    /* load 0 into a1                      */
-   call  memset                        /* memset(__bss_start, 0, size_of_bss) */
-
-
+       
+    
 setup_cache:
    
   /*
@@ -235,40 +215,58 @@ setup_cache:
    * takes more ressources.
    */
    
-   la    t0,      _thread_data         /* check if we are in a simulation     */
-   lb    t1,      0(t0)                /* load first byte from _thread_data   */
-   xori  t1,      t1,      'S'         /* check if first byte is an S         */
-   beqz  t1,      cache_enable         /* if we are in simulation, skip cache */
-                                       /*  invalidation                       */
-                                       
-   la    t0,      _start               /* load start address of memory        */
-   csrr  t1,      0xFC8                /* read pnmemsize register             */
-   add   t1,      t0,      t1          /* set t1 to first illegal address     */
-   addi  t1,      t1,      -4          /* set t1 to last word                 */
-
-   csrr  t2,      0xFC5                /* read pncacheinfo register           */
-   srli  t2,      t2,      8           /* shift right to get cache banks      */
-   slli  t2,      t2,      2           /* shift left to multiply with 4       */
-   
-   /* t2 contains cache line size in byte now */
-
-invalidation_loop:
-   .word (0x100B | ((6) << 15) | (((0) & 0xfff) << 20))
-                                       /* invalidate line which contains      */
-                                       /*  address in register 6 (t1)         */
-   sub   t1,      t1,      t2	         /* substract line size from end        */
-   bge   t1,      t0,      invalidation_loop
-                                       /* proceed if t1 is smaller than start */
+   bnez  a0,      pn_thread_entry      /* if core id not zero, skip this and  */
+                                       /*  go into pn_thread_entry            */
+invalidate_all:
+   .word 0x0000600B                    /* invalidate all special ParaNut inst */
+   fence                               /* wait for completion                 */
    
 cache_enable:
-   li    t0,      3                    /* load 0b101 into t0                  */
-   csrs  0x7C4,   t0                   /* set pncache register                */
+   li    t0,      3                    /* load 0b11 into t0                   */
+   csrs  0x7C0,   t0                   /* set pncache register                */
+  
+
+
+reloc_data:
+  /*
+   * Relocate the .data section from permanent memory (flash, rom, ...) to RAM
+   * (CePU only).
+   * Writes full words for improved performance (.data section is word aligned)
+   */
+   
+   la    t0,      __src_data_start     /* load address of .data to copy from */
+   la    t1,      __data_size          /* load the size of the section       */
+   add   t1,      t1,     t0           /* calculate end address              */
+   la    t2,      __data_start         /* load target address                */
+reloc_loop:   
+   lw    t3,      0(t0)                /* read value from source to t3       */ 
+   sw    t3,      0(t2)                /* write value to target              */
+   addi  t0,      t0,     4            /* increment source address           */
+   addi  t2,      t2,     4            /* increment target address           */
+   bne   t0,      t1,     reloc_loop   /* check if source addr /= end addr   */
+
+
+init_bss:
+
+  /*
+   * Initialize the bss (CePU only).
+   * Necessary for C libraries to work properly.
+   */
+   
+   la    a0,      __bss_start          /* load start adress into a0           */
+   la    a2,      __bss_size           /* load size of bss into a2            */
+   li    a1,      0                    /* load 0 into a1                      */
+   call  memset                        /* memset(__bss_start, 0, size_of_bss) */
+
    
   /*
    * Jump into C code.
    */
    
+   call __libc_init_array              /* Call __libc_init_array              */
    j     _init                         /* CePU jump into _init (syscalls.c)   */
+   call __libc_fini_array              /* Call __libc_fini_array - never reached
+                                          but should be executed by exit()    */
    
    
 startup_error:
@@ -307,5 +305,9 @@ is_3:
    addi  t0,      t0,      4           /* increment to next instruction       */
    csrw  mepc,    t0                   /* write back                          */
    mret                                /* machine mode exception return       */
+
+
+error_string:                          /* prepare error message               */
+   .string "There was an error in the startup code. Contact maintainers!\n\n"
 
 /*EOF**************************************************************************/

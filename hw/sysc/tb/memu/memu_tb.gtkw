@@ -1,0 +1,97 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Mon Aug 17 13:47:49 2020
+[*]
+[dumpfile] "/home/alex/paranut/sysc/tb/memu/memu_tb.vcd"
+[dumpfile_mtime] "Mon Aug 17 13:45:34 2020"
+[dumpfile_size] 687782002
+[savefile] "/home/alex/paranut/sysc/tb/memu/memu_tb.gtkw"
+[timestart] 2678
+[size] 1000 600
+[pos] -1 -1
+*-8.137011 830 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 212
+[signals_width] 158
+[sst_expanded] 1
+[sst_vpaned_height] 148
+@28
+SystemC.reset
+SystemC.clk
+@200
+-
+@28
+SystemC.wb_ack
+SystemC.wb_cyc
+SystemC.wb_stb
+SystemC.wb_we
+@22
+SystemC.wb_sel[3:0]
+SystemC.wb_adr[31:0]
+SystemC.wb_dat_w[31:0]
+SystemC.wb_dat_r[31:0]
+@200
+-
+-
+@28
+SystemC.wp_wr(0)
+SystemC.wp_ack(0)
+@22
+SystemC.wp_bsel(0)[3:0]
+SystemC.wp_adr(0)[31:0]
+SystemC.wp_data(0)[31:0]
+@200
+-
+@28
+SystemC.wp_wr(1)
+SystemC.wp_ack(1)
+@22
+SystemC.wp_adr(1)[31:0]
+SystemC.wp_data(1)[31:0]
+@200
+-
+@28
+SystemC.rp_rd(0)
+SystemC.rp_ack(0)
+@22
+SystemC.rp_bsel(0)[3:0]
+SystemC.rp_adr(0)[31:0]
+SystemC.rp_data(0)[31:0]
+@200
+-
+-
+@28
+SystemC.rp_rd(1)
+SystemC.rp_ack(1)
+@22
+SystemC.rp_adr(1)[31:0]
+SystemC.rp_data(1)[31:0]
+@200
+-
+@28
+SystemC.rp_rd(2)
+SystemC.rp_ack(2)
+@22
+SystemC.rp_adr(2)[31:0]
+SystemC.rp_data(2)[31:0]
+@200
+-
+@28
+SystemC.rp_rd(3)
+SystemC.rp_ack(3)
+@22
+SystemC.rp_adr(3)[31:0]
+SystemC.rp_data(3)[31:0]
+@200
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+[pattern_trace] 1
+[pattern_trace] 0

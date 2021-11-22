@@ -25,10 +25,13 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Check for PARANUT_HOME (<ParaNut-Dir>/settings.sh)
-ifndef PARANUT_HOME
-$(error PARANUT_HOME is not set. Source <ParaNut-Dir>/settings.sh first)
-endif
+# Root of ParaNut repository or local project  
+PARANUT ?= ../..
+
+# Flash target options
+PN_FIRMWARE_ELF ?= 
+PN_SYSTEM_HDF ?=
+PN_SYSTEM_BIT ?=
 
 # Configuration options 
 CROSS_COMPILE ?= riscv64-unknown-elf
@@ -46,12 +49,14 @@ SOURCES = $(wildcard *.c)
 OBJECTS = $(patsubst %.c,%.o,$(SOURCES)) 
 HEADERS = $(wildcard *.h)
 
-SYSTEMS_DIR = $(PARANUT_HOME)/systems
-RISCV_COMMON_DIR = $(PARANUT_HOME)/sw/riscv_common
-PN_LIB_DIR	= $(PARANUT_HOME)/sw/libparanut/INSTALL
+PN_SYSTEMS_DIR = $(PARANUT)/systems
+RISCV_COMMON_DIR = $(PARANUT)/sw/riscv_common
+PN_LIB_DIR = $(PARANUT)/sw/libparanut/build
+PN_LIB_LIB_DIR = $(PN_LIB_DIR)/lib
+PN_LIB_INC_DIR = $(PN_LIB_DIR)/include
 
 # Add libparanut to dependecies
-HEADERS +=  $(PN_LIB_DIR)/libparanut.h
+HEADERS +=  $(PN_LIB_INC_DIR)/paranut.h
 
 CFG_MARCH ?= rv32ima
 
@@ -63,9 +68,9 @@ else
 endif
 
 CFLAGS = -O2 -march=$(CFG_MARCH) -mabi=ilp32 -I$(RISCV_COMMON_DIR) 
-CFLAGS += -D_ATOMIC=$(ATOMIC)  -I$(PN_LIB_DIR)
+CFLAGS += -D_ATOMIC=$(ATOMIC)  -I$(PN_LIB_INC_DIR)
 LDFLAGS =  $(CFLAGS) -static -nostartfiles -lc $(RISCV_COMMON_DIR)/startup.S $(RISCV_COMMON_DIR)/syscalls.c -T $(RISCV_COMMON_DIR)/paranut.ld
-LDFLAGS += -lparanut -L$(PN_LIB_DIR) 
+LDFLAGS += -lparanut -L$(PN_LIB_LIB_DIR) 
 
 # Software Targets
 all: $(ELF) dump
@@ -76,23 +81,37 @@ $(ELF): $(OBJECTS)
 %.o:	%.c $(HEADERS)
 	$(CC) -c $(CFLAGS) $<
 
+
 # libparanut Target
-$(PN_LIB_DIR)/libparanut.h: 
-	+$(MAKE) -C $(PARANUT_HOME)/sw/libparanut all
+$(PN_LIB_INC_DIR)/paranut.h: 
+	+$(MAKE) -C $(PARANUT)/sw/libparanut all
+
 
 # ParaNut Targets
 .PHONY: sim
 sim: $(ELF)
-	+$(MAKE) -C  $(PARANUT_HOME)/sysc paranut_tb
-	$(PARANUT_HOME)/sysc/paranut_tb -t0 $<
+	+$(MAKE) -C $(PARANUT)/hw/sim
+	$(PARANUT)/hw/sim/pn-sim -t0 $<
 
+# Generic Flash targets (set PN_* accordingly)
+.PHONY: flash flash-bit
+flash: bin
+	pn-flash -c -p $(ELF).bin $(PN_SYSTEM_HDF) $(PN_FIRMWARE_ELF)
+
+flash-bit: bin
+	pn-flash -c -b $(PN_SYSTEM_BIT) -p $(ELF).bin $(PN_SYSTEM_HDF) $(PN_FIRMWARE_ELF)
+
+
+# Special System Flash targets for testing inside the source repository
 .PHONY: flash-%
 flash-%: bin
-	paranut_flash -c -p $(ELF).bin $(SYSTEMS_DIR)/$*/hardware/build/system.hdf $(SYSTEMS_DIR)/$*/hardware/firmware/firmware.elf
-	
+	if [ ! -d $(PN_SYSTEMS_DIR) ]; then echo; echo "INFO: The flash targets are only for testing inside the source repository!"; echo; exit 1; fi
+	pn-flash -c -p $(ELF).bin $(PN_SYSTEMS_DIR)/$*/hardware/build/system.hdf $(PN_SYSTEMS_DIR)/$*/hardware/firmware/firmware.elf
+
 flash-%-bit: bin
-	paranut_flash -c -b $(SYSTEMS_DIR)/$*/hardware/build/system.bit -p $(ELF).bin \
-	                               $(SYSTEMS_DIR)/$*/hardware/build/system.hdf $(SYSTEMS_DIR)/$*/hardware/firmware/firmware.elf
+	if [ ! -d $(PN_SYSTEMS_DIR) ]; then echo "INFO: The flash targets are only for testing inside the source repository!"; exit 1; fi
+	pn-flash -c -b $(PN_SYSTEMS_DIR)/$*/hardware/build/system.bit -p $(ELF).bin \
+                            $(PN_SYSTEMS_DIR)/$*/hardware/build/system.hdf $(PN_SYSTEMS_DIR)/$*/hardware/firmware/firmware.elf
 
 # Misc Targets
 .PHONY: dump

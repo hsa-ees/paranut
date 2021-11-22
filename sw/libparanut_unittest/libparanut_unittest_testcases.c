@@ -1,5 +1,6 @@
 /*
  * Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
+ *                     Alexander Bahle (<alexander.bahle@hs-augsburg.de>)
  *
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
@@ -115,10 +116,10 @@
  * Weak definitions of functions called in linked_threaded_test().
  */
 #if !(defined DOXYGEN)
-#if !(defined PN_WITH_LINK)
-PN_CID pn_begin_linked(PN_NUMC numcores)     { return 0; }
-PN_CID pn_begin_linked_m(PN_CMSK coremask)   { return 0; }
-int    pn_end_linked(void)                   { return 0; }
+#if !(defined PN_WITH_LINK) 
+PN_CID pn_begin_linked(PN_NUMC numcores, void *frame_adr)     { return 0; }
+PN_CID pn_begin_linked_m(PN_CMSK coremask, void *frame_adr)   { return 0; }
+int    pn_end_linked(void)                                    { return 0; }
 #endif /* !(defined PN_WITH_LINK) */
 #if !(defined PN_WITH_THREAD)
 PN_CID pn_begin_threaded(PN_NUMC numcores)   { return 0; }
@@ -240,11 +241,11 @@ static TEST_RET linked_threaded_test(char *funcname, PN_CID (*funcp)())
    /* begin linked or threaded mode */
    if ((funcp == &pn_begin_linked) || (funcp == &pn_begin_threaded))
    {
-      cid = funcp(NUMCORE_MIN);
+      cid = funcp(NUMCORE_MIN, NULL);
    }
    else if ((funcp == &pn_begin_linked_m) || (funcp == &pn_begin_threaded_m))
    {
-      cid = funcp(CPU_MSK);
+      cid = funcp(CPU_MSK, NULL);
    }
    else
    {
@@ -561,6 +562,26 @@ TEST_RET test_time(void)
 _implausible:
    printf("   Implausible." TERMNL);
    return TEST_FAIL;
+}
+
+/*----------------------------------------------------------------------------*/
+
+TEST_RET test_clock_freq(void)
+{
+  /*
+   * locals
+   */
+   unsigned int freq;                  /* system frequency                    */
+      
+   printf("   Test pn_clock_freq()." TERMNL);
+   freq = pn_clock_freq();
+   if (freq == 0) /* only test we can make here */
+   {
+      printf("   Frequency %i returned by pn_clock_freq() is not valid." TERMNL,
+                                                          freq);
+      return TEST_FAIL;
+   }
+   return TEST_SUCCESS;
 }
 
 /*----------------------------------------------------------------------------*/

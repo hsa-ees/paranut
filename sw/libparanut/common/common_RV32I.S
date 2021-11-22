@@ -161,7 +161,7 @@ numcores_as:
 
 coreid_as:
 
-   csrr  a0,   mhartid                 /* put mhartid in return value         */
+   csrr  a0,   pncoreid                 /* put pncoreid in return value         */
    ret                                 /* return                              */
    
 /*----------------------------------------------------------------------------*/

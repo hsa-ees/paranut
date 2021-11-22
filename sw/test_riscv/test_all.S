@@ -48,7 +48,7 @@ _start:
 				# make sure only CePU proceeds 
 				la 		x1, ex_handler
 				csrrw   x0, mtvec, x1 
-				csrr x1, mhartid
+				csrr x1, 0x0D4
 				beqz x1, loadstore
 				
 				# Only CoPUs:

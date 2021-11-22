@@ -58,7 +58,7 @@ Software / demo system usage:
      This step will take some time:
      > make build 
      or e.g.
-     > make build BUILD=zybo_z7020 SOFTWARE_SRC=mode1_demo 
+     > make build BOARD=zybo_z7020 SOFTWARE_SRC=mode1_demo 
 
   3) Connect your board to your computer and power on the board.
      Then upload the hardware and software to the board:

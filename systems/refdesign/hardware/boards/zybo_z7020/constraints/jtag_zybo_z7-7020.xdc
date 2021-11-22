@@ -28,29 +28,28 @@
 #  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# JTAG clock
+
+### JTAG on JD, lower pin row
+
+# TDI (JD7)
+set_property IOSTANDARD LVCMOS33  [get_ports tdi];
+set_property PACKAGE_PIN  U14     [get_ports tdi];
+
+# TMS (JD8)
+set_property IOSTANDARD LVCMOS33  [get_ports tms];
+set_property PACKAGE_PIN  U15     [get_ports tms];
+
+# JTAG clock (JD9)
 set_property IOSTANDARD LVCMOS33  [get_ports tck];
-set_property PACKAGE_PIN  T14     [get_ports tck];
+set_property PACKAGE_PIN  V17     [get_ports tck];
 # JTAG clock is constrained to 42ns (is 24MHz):
 create_clock -name jtag_tck -period 20.000 [get_ports tck];
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets tck];
 # Mark this clock and the system clock domain asynchronous:
-set_clock_groups -asynchronous -group clk_fpga_0 -group [get_clocks jtag_tck]
+set_clock_groups -asynchronous -group { clk_fpga_0 } -group [get_clocks jtag_tck]
 
-# TMS
-set_property IOSTANDARD LVCMOS33  [get_ports tms];
-set_property PACKAGE_PIN  T15     [get_ports tms];
-
-# TDI
-set_property IOSTANDARD LVCMOS33  [get_ports tdi];
-set_property PACKAGE_PIN  P14     [get_ports tdi];
-
-# TDO
+# TDO (JD10)
 set_property IOSTANDARD LVCMOS33  [get_ports tdo];
-set_property PACKAGE_PIN  R14     [get_ports tdo];
+set_property PACKAGE_PIN  V18     [get_ports tdo];
 
-# AUX_RESET
-set_property IOSTANDARD LVCMOS33  [get_ports aux_reset_in];
-set_property PACKAGE_PIN  K18     [get_ports aux_reset_in];                           
-
-set_clock_groups -asynchronous -group clk_fpga_0 -group [get_clocks jtag_tck]
+                  

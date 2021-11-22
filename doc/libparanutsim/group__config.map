@@ -1,0 +1,8 @@
+<map id="Configuration" name="Configuration">
+<area shape="rect" id="node1" href="$group__config__lsu.html" title="Load Store Unit options. " alt="" coords="169,5,283,32"/>
+<area shape="rect" id="node2" href="$group__config__simulation.html" title="SystemC Simulation options. " alt="" coords="185,56,267,83"/>
+<area shape="rect" id="node3" href="$group__config__exu.html" title="Execution Unit options. " alt="" coords="172,107,280,133"/>
+<area shape="rect" id="node4" href="$group__config__general.html" title="General options. " alt="" coords="193,157,259,184"/>
+<area shape="rect" id="node5" href="$group__config__memu.html" title="Memory Unit options. " alt="" coords="177,208,275,235"/>
+<area shape="rect" id="node7" href="$group__config__ifu.html" title="Instruction Fetch Unit options. " alt="" coords="152,259,300,285"/>
+</map>

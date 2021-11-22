@@ -25,10 +25,13 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Check for PARANUT_HOME (<ParaNut-Dir>/settings.sh)
-ifndef PARANUT_HOME
-$(error PARANUT_HOME is not set. Source <ParaNut-Dir>/settings.sh first)
-endif
+# Root of ParaNut repository or local project  
+PARANUT ?= ../..
+
+# Flash target options
+PN_FIRMWARE_ELF ?= 
+PN_SYSTEM_HDF ?=
+PN_SYSTEM_BIT ?=
 
 # Configuration options 
 CROSS_COMPILE ?= riscv64-unknown-elf
@@ -59,9 +62,8 @@ $(ELF): $(ELF).S
 # ParaNut Targets
 .PHONY: sim
 sim: $(ELF)
-	+$(MAKE) -C  $(PARANUT_HOME)/sysc paranut_tb
-	$(PARANUT_HOME)/sysc/paranut_tb -t0 -m 0x10002000 0x10002050 $<
-
+	+$(MAKE) -C $(PARANUT)/hw/sim pn-sim
+	$(PARANUT)/hw/sim/pn-sim  -t0 -m 0x10002000 0x10002050 $<
 
 # Misc Targets
 .PHONY: dump

@@ -1,5 +1,6 @@
 /*
  * Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
+ *                     Alexander Bahle (<alexander.bahle@hs-augsburg.de>)
  *
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
@@ -30,7 +31,7 @@
  * \file
  * \brief      Contains architecture independent internal prototypes and defines needed in \ref mo.
  * 
- * Is included by all modules and includes the \ref libparanut.h itself, thereby
+ * Is included by all modules and includes the \ref paranut.h itself, thereby
  * is a "common layer" for all modules.
  *
  * \internal
@@ -39,7 +40,7 @@
 
 /*Includes*********************************************************************/
 
-#include "libparanut.h"
+#include "paranut.h"
 
 /*Commonly Used Defines********************************************************/
 
@@ -105,6 +106,19 @@
                      ALL_HALTED                                                \
                      if (!(coremask & 0b1))                                    \
                         return PN_ERR_PARAM;                                   \
+
+/**
+ * \internal
+ * \def        BEGIN_LINKED_STACK_FRAME_CHECK
+ * \brief      Performs stack_frame checks in \ref pn_begin_linked().
+ * 
+ */
+ extern int shared_mem_size;
+#define BEGIN_LINKED_STACK_FRAME_CHECK                                        \
+                      if (frame_adr != NULL &&                                \
+                          (frame_adr < stack_ptr_as() ||                      \
+                           frame_adr > (stack_ptr_as() + shared_mem_size)))   \
+                        return PN_ERR_PARAM;                                  \
                
 /**
  * \internal
