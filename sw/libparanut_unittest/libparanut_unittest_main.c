@@ -1,5 +1,6 @@
 /*
  * Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
+ *                     Alexander Bahle (<alexander.bahle@hs-augsburg.de>)
  *
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
@@ -122,7 +123,7 @@ int main()
 #endif /* PN_WITH_CACHE */   
    
 #ifdef PN_WITH_BASE
-
+  
   /**
    * \fn       TEST_RET test_time(void)
    * \brief    Tests function pn_time_ns().
@@ -132,6 +133,14 @@ int main()
    TEST(test_time)
    
    start = pn_time_ns();
+   
+  /**
+   * \fn       TEST_RET test_clock_freq(void)
+   * \brief    Tests function pn_clock_freq().
+   * 
+   * Tested next so we can make sure time for the rest of the test is correct.
+   */
+   TEST(test_clock_freq)
    
   /**
    * \fn       TEST_RET test_numcores(void)

@@ -1,0 +1,217 @@
+#!/bin/bash
+
+###########################################################################
+#
+#  This file is part of the ParaNut project.
+#
+#  Copyright (C) 2020-2021 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+#                          Michael Schaeferling <michael.schaeferling@hs-augsburg.de>
+#      Efficient Embedded Systems Group
+#      Hochschule Augsburg, University of Applied Sciences
+#
+#  Description:
+#    Create a ParaNut project directory.
+#
+#  --------------------- LICENSE ------------------------------------------
+#  Redistribution and use in source and binary forms, with or without modification,
+#  are permitted provided that the following conditions are met:
+#
+#  1. Redistributions of source code must retain the above copyright notice, this
+#     list of conditions and the following disclaimer.
+#
+#  2. Redistributions in binary form must reproduce the above copyright notice,
+#     this list of conditions and the following disclaimer in the documentation and/or
+#     other materials provided with the distribution.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+#  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+#  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+#  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+#  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+#  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+#  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+#  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+###########################################################################
+
+
+VERSION=0.9
+
+TOOL="${0##*/}"
+CMDLINE="${0##*/} $@"
+
+
+
+############################## Options (defaults) ##############################
+
+NEWPROJECT_PATH="./paranut"
+
+
+
+############################## Usage and error helpers #########################
+
+check_paranut_env () {
+  if [ -z $PARANUT_TOOLS ]; then
+    echo "ERROR: Environment variable PARANUT_TOOLS is not set.";
+    echo "  Source <ParaNut-Dir>/settings.sh first to use this tool."
+    exit 1
+  fi
+}
+
+
+usage () {
+  echo "Usage: $TOOL -c [<project_folder>]"
+  echo
+  echo "Create a ParaNut project directory."
+  echo
+  echo "Options:"
+  echo
+  echo "  -c [<project_folder>]"
+  echo "     Create a new ParaNut project in the specified folder (defaults to '$NEWPROJECT_PATH')."
+}
+
+
+error () {
+  echo "ERROR: $1"
+  echo
+  usage
+  exit
+}
+
+
+
+############################## create_project script ######################################
+
+create_project () {
+
+  # Setup variables...
+  PARANUT_SRC="$1"
+  NEWPROJECT_PATH="$2"
+
+  # Check if project path/file already exists:
+  if [ -e $NEWPROJECT_PATH ]; then
+    echo "ERROR: Path '$NEWPROJECT_PATH' already exists."
+    exit
+  fi
+
+  echo "Creating new ParaNut project in '$NEWPROJECT_PATH'."
+  mkdir -p $NEWPROJECT_PATH
+  cd $NEWPROJECT_PATH
+
+  #echo "Populating ..."
+  # Copy readme file
+  #echo " - Project README file."
+  cp -t . $PARANUT_TOOLS/share/newproject/README
+
+  # Copy config and settings file
+  #echo " - main Makefile and configuration."
+  cp -t . $PARANUT_SRC/Makefile $PARANUT_SRC/config.mk
+
+  # Copy SystemC model source
+  #echo " - SystemC model source."
+  mkdir -p hw/sysc
+  cp -r -t hw/sysc $PARANUT_SRC/hw/sysc/Makefile $PARANUT_SRC/hw/sysc/*.{cpp,h,tcl}
+
+  # Copy pn-sim source and templates
+  #echo " - Simulation source files."
+  mkdir -p hw/sim
+  cp -t hw/sim $PARANUT_SRC/hw/sim/Makefile $PARANUT_SRC/hw/sim/*.{cpp,h,mk}
+
+  # Copy RISC-V software linker script, startup code and syscalls
+  #echo " - RISC-V software linker script, startup code and syscalls."
+  mkdir -p sw/riscv_common
+  cp -r -t sw/riscv_common $PARANUT_SRC/sw/riscv_common/*
+  cp -r -t sw $PARANUT_SRC/sw/ParaNut.mk
+
+  # Copy libparanut
+  #echo " - libparanut."
+  mkdir -p sw/libparanut
+  cp -r -t sw/libparanut $PARANUT_SRC/sw/libparanut/*
+
+  # Copy hardware source
+  #echo " - Hardware sources and tools."
+  mkdir -p hw/vhdl/paranut
+  cp -r -t hw/vhdl/paranut $PARANUT_SRC/hw/vhdl/paranut/*
+  cp -r -t hw/vhdl/ $PARANUT_SRC/hw/vhdl/*.vhd
+  mkdir -p hw/tools
+  cp -r -t hw/tools $PARANUT_SRC/hw/tools/Makefile.inc $PARANUT_SRC/hw/tools/paranut.tcl $PARANUT_SRC/hw/tools/generate_mimpid.sh
+
+  # Add Version Reference
+  #echo " - version reference."
+  if [[ "$(basename $1)" == "src" ]]; then
+    cp $PARANUT_SRC/version.env .
+  else
+    PROJECT_DIR=$PWD
+    cd $PARANUT_SRC
+    echo "# Git describe" > $PROJECT_DIR/version.env
+	  echo "PN_GITVERSION=0.0-0*"  >> $PROJECT_DIR/version.env
+	  echo "# MIMPID Version Value" >> $PROJECT_DIR/version.env
+	  echo "CFG_NUT_MIMPID=0x000001" >> $PROJECT_DIR/version.env
+    cd $PROJECT_DIR;
+  fi  
+}
+
+
+
+############################## Main ############################################
+
+
+# Sanity checks...
+
+# Print usage on empty call...
+if [[ "$1" == "" ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+
+# Sanity checks...
+
+# Check for ParaNut environment...
+check_paranut_env
+
+
+# Check if we are working with an installed or plain repository source tree:
+if [ -d $PARANUT_TOOLS/../src ]; then
+  # Copy from installed ParaNut source
+  echo "Running $TOOL to create a project from installed source tree."
+  PARANUT_SRC=$PARANUT_TOOLS/../src
+else
+  # Copy from ParaNut repository
+  echo "Running $TOOL to create a project from GIT source tree."
+  PARANUT_SRC=$PARANUT_TOOLS/../
+fi
+
+
+
+# Parse known options...
+PARSE_OPTS="1"
+while [[ $PARSE_OPTS == "1" ]]; do
+  case "$1" in
+    # Help/Usage
+    -h|--help)
+      usage
+      exit 0
+      ;;
+
+    -c)
+      if [[ "$2" == "" ]]; then
+        shift 1
+      else
+        NEWPROJECT_PATH="./$2/"
+        shift 2
+      fi
+      ;;
+
+    -*)
+      error "Unknown option '$1'"
+      ;;
+    *)
+      PARSE_OPTS="0"
+      ;;
+  esac
+done
+
+# Go ahead...
+create_project $PARANUT_SRC $NEWPROJECT_PATH

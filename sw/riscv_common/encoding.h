@@ -1045,20 +1045,21 @@
 // Special ParaNut cause
 #define CAUSE_COPU_EXCEPTION 0x10
 // Special ParaNut CSRs
-#define CSR_PNCPUS 0xFC0
-#define CSR_PNM2CP 0xFC1
-#define CSR_PNX 0xFC2
-#define CSR_PNCAUSE 0xFC3
-#define CSR_PNEPC 0xFC4
-#define CSR_PNCACHEINFO 0xFC5
-#define CSR_PNCACHESETS 0xFC6
-#define CSR_PNCLOCKINFO 0xFC7
-#define CSR_PNMEMSIZE 0xFC8
-#define CSR_PNGRPSEL 0x7C0
-#define CSR_PNCE 0x7C1
-#define CSR_PNLM 0x7C2
-#define CSR_PNXSEL 0x7C3
-#define CSR_PNCACHE 0x7C4
+#define CSR_PNCACHE 0x7C0
+#define CSR_PNGRPSEL 0x8C0
+#define CSR_PNCE 0x8C1
+#define CSR_PNLM 0x8C2
+#define CSR_PNXSEL 0x8C3
+#define CSR_PNM2CP 0xFC0
+#define CSR_PNX 0xFC1
+#define CSR_PNCAUSE 0xFC2
+#define CSR_PNEPC 0xFC3
+#define CSR_PNCACHEINFO 0xFC4
+#define CSR_PNCACHESETS 0xFC5
+#define CSR_PNCLOCKINFO 0xFC6
+#define CSR_PNMEMSIZE 0xFC7
+#define CSR_PNCPUS 0xCD0
+#define CSR_PNCOREID 0xCD4
 
 #endif
 #ifdef DECLARE_INSN

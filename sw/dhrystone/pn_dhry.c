@@ -13,5 +13,5 @@
 
 
 #include "dhry.h"
-
-long time () { return 0; }
+#define TIMES
+//long time () { return 0; }

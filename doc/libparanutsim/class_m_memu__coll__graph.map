@@ -1,0 +1,10 @@
+<map id="MMemu" name="MMemu">
+<area shape="rect" id="node3" href="$class_m_tag_ram.html" title="MTagRam" alt="" coords="6,184,89,211"/>
+<area shape="rect" id="node6" href="$class_m_bank_ram.html" title="MBankRam" alt="" coords="113,184,203,211"/>
+<area shape="rect" id="node7" href="$class_m_write_port.html" title="MWritePort" alt="" coords="227,184,315,211"/>
+<area shape="rect" id="node8" href="$class_m_arbiter.html" title="MArbiter" alt="" coords="340,184,411,211"/>
+<area shape="rect" id="node9" href="$class_m_read_port.html" title="MReadPort" alt="" coords="435,184,523,211"/>
+<area shape="rect" id="node10" href="$class_m_bus_if.html" title="MBusIf" alt="" coords="547,184,611,211"/>
+<area shape="rect" id="node4" href="$struct_s_tag_entry.html" title="STagEntry" alt="" coords="5,95,89,121"/>
+<area shape="rect" id="node5" href="$struct_s_tag.html" title="STag" alt="" coords="21,5,74,32"/>
+</map>

@@ -18,6 +18,7 @@
  * \section Copyright
  * 
  * Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
+ *                     Alexander Bahle (<alexander.bahle@hs-augsburg.de>)
  *
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
@@ -105,7 +106,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <string.h>
-#include "libparanut.h"
+#include "paranut.h"
 
 /*Architecture Defines*********************************************************/
 
@@ -260,6 +261,7 @@ typedef int8_t TEST_RET;
 /*Test Case Prototypes*********************************************************/
 
 TEST_RET test_time(void);
+TEST_RET test_clock_freq(void);
 TEST_RET test_numcores(void);
 TEST_RET test_cap(void);
 TEST_RET test_link(void);

@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['bifcacheack',['BifCacheAck',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699ace7a3777fc736ae1b3be9a1f72ba316d',1,'memu.h']]],
+  ['bifcacheall',['BifCacheAll',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a2c7cd25a45ecf74856122469ea9fcecf',1,'memu.h']]],
+  ['bifcachereaddirtybanks',['BifCacheReadDirtyBanks',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699aab78450dc38b39c2c99ff87661b546a9',1,'memu.h']]],
+  ['bifcachereadtag',['BifCacheReadTag',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a7482856145b78309de72686871dbe4a5',1,'memu.h']]],
+  ['bifcachereplaceinvalidatetag',['BifCacheReplaceInvalidateTag',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699abe82d6fa23df06f783a3ee31f85ab30b',1,'memu.h']]],
+  ['bifcachereplacereadidata',['BifCacheReplaceReadIdata',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699ac1ee8f32ba4e50e6d3f3e1329b5286b3',1,'memu.h']]],
+  ['bifcachereplacewritebanks',['BifCacheReplaceWriteBanks',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699ac22105ff608ee69c7df8b6e247acccb7',1,'memu.h']]],
+  ['bifcacherequestllwait',['BifCacheRequestLLWait',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a286d459d699a69f24426bc13feaf0eeb',1,'memu.h']]],
+  ['bifcacherequestrtwait',['BifCacheRequestRTWait',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a39eaaebfd6d98a77908ddc23dcc39015',1,'memu.h']]],
+  ['bifcachewritebackvictim',['BifCacheWriteBackVictim',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a947bc12f148efba3947ff0c65ddcbbd6',1,'memu.h']]],
+  ['bifcachewritetag',['BifCacheWriteTag',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699ad3c71f3bea7819d18fb50100206b5aa4',1,'memu.h']]],
+  ['bifdirectread1',['BifDirectRead1',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a4821ae27c57a62bd2e14ef264313cfa5',1,'memu.h']]],
+  ['bifdirectread2',['BifDirectRead2',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a9f5e30521b7e7089a48939da738d7f7d',1,'memu.h']]],
+  ['bifdirectwrite',['BifDirectWrite',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a377eb3f2b564afa8a73b907804e43ac5',1,'memu.h']]],
+  ['bifidle',['BifIdle',['../memu_8h.html#aba3528e9a45df22ae7c552652b4da699a76513b1ee409e8db91c981f26bb344b9',1,'memu.h']]],
+  ['branch',['BRANCH',['../exu_8h.html#adf9b8210e31cbd3b68a183a7746d66b2ad9b20a9207fb2cd3021b9eb0b7c6fe5e',1,'exu.h']]],
+  ['breakpoint',['Breakpoint',['../exu_8h.html#a5bbc8fd7be8c989951bd1ba3f551bee8a81123d611e191bb170882ac422011016',1,'exu.h']]],
+  ['btype',['BType',['../exu_8h.html#a68bdaf0ef5e73e576a60a75a56663abdac62adeb426d213cc6af8cfcea13de0c1',1,'exu.h']]]
+];

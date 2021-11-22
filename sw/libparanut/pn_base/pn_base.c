@@ -1,5 +1,6 @@
 /*
  * Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
+ *                     Alexander Bahle (<alexander.bahle@hs-augsburg.de>) 
  *
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
@@ -230,6 +231,11 @@ int pn_halt_CoPU_gm(PN_CMSK *coremask_array, PN_NUMG array_size)
    return PN_ERR_NOIMP;
 }
 
+unsigned int pn_clock_freq(void)
+{
+  return freq_as();
+}
+
 long long int pn_time_ns(void)
 {
   /*
@@ -248,8 +254,6 @@ long long int pn_time_ns(void)
    #ifndef PN_COMPILE_RAW
       COPU_CHECK
    #endif /* PN_COMPILE_RAW */
-
-   ticks = ticks_as();
    
   /**
    * \internal
@@ -274,6 +278,7 @@ long long int pn_time_ns(void)
       s_factor = 1000000000LL / s_freq;
    }
    
+   ticks = ticks_as();
    return ticks * s_factor;
 }
 

@@ -1,0 +1,9 @@
+<map id="paranut.h" name="paranut.h">
+<area shape="rect" id="node2" href="$common_8h.html" title="Contains architecture independent internal prototypes and defines needed in libparanut Modules..." alt="" coords="455,80,592,107"/>
+<area shape="rect" id="node3" href="$pn__base_8c.html" title="Contains architecture independent implementations of the Base Module functions. " alt="" coords="5,155,140,181"/>
+<area shape="rect" id="node4" href="$pn__cache_8c.html" title="Contains architecture independent implementations of the Cache Module functions. " alt="" coords="165,155,314,181"/>
+<area shape="rect" id="node5" href="$pn__exception_8c.html" title="Contains (somewhat) architecture independent implementations of the Exception Module functions..." alt="" coords="339,155,529,181"/>
+<area shape="rect" id="node6" href="$pn__link_8c.html" title="Contains architecture independent implementations of the Link Module functions. " alt="" coords="553,155,672,181"/>
+<area shape="rect" id="node7" href="$pn__spinlock_8c.html" title="Contains architecture independent implementations of the Spinlock Module functions. " alt="" coords="696,155,871,181"/>
+<area shape="rect" id="node8" href="$pn__thread_8c.html" title="Contains architecture independent implementations of the Thread Module functions. ..." alt="" coords="895,155,1045,181"/>
+</map>

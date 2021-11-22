@@ -39,14 +39,14 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "libparanut.h"
+#include "paranut.h"
 
 // DEFINES:
 // ------------------------------------------------------------------------------
 #define BITMASK 0xFF
 #define DATA_SIZE 3000 //(1920*1080)
 
-#define _CLKS_PER_MSEC (read_csr(0xFC7)/1000)
+#define _CLKS_PER_MSEC (read_csr(0xFC6)/1000)
 
 // GLOBAL VARIABLES:
 // ------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ char* parallel_func(int cpuid) {
 }
 
 int main(){
-	uint32_t cpus = read_csr(0xFC0);
+	uint32_t cpus = read_csr(0xCD0);
 	uint32_t start, end, seq_time;
 	uint32_t *histogram1, *histogram2, *data;
     int cpuid;

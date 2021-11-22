@@ -1,6 +1,6 @@
 #  This file is part of the ParaNut project.
 # 
-#  Copyright (C) 2019-2020 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+#  Copyright (C) 2019-2021 Alexander Bahle <alexander.bahle@hs-augsburg.de>
 #                          Michael Schaeferling <michael.schaeferling@hs-augsburg.de>
 #      Hochschule Augsburg, University of Applied Sciences
 #
@@ -33,7 +33,14 @@
 #  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+ifndef PARANUT_TOOLS
+$(error PARANUT_TOOLS is not set)
+endif
+
+
 BOARD_DIR=boards/zybo_z7020
+
 CONSTRAINTS=$(wildcard $(BOARD_DIR)/constraints/*.xdc)
 
 .PHONY: all
@@ -44,6 +51,7 @@ all: generate_project
 #   - a set of additional source files (e.g. constraints)
 .PHONY: generate_project
 generate_project:
+	# Create project
 	mkdir -p build.bd
 	ln -s -f ../$(BOARD_DIR)/bd/design_1.bd build.bd/design_1.bd
 	( echo 'create_project -force system ./build -part xc7z020clg400-1'; \

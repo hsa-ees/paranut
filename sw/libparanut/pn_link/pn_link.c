@@ -1,6 +1,7 @@
 /*
  * Copyright 2019-2020 Anna Pfuetzner (<annakerstin.pfuetzner@gmail.com>)
- *
+ *                     Alexander Bahle (<alexander.bahle@hs-augsburg.de>)
+ * 
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
  * 
@@ -49,17 +50,18 @@
 
 /*Assembly Functions***********************************************************/
 
-extern PN_CID  set_linked_as(PN_CMSK coremask);
+extern PN_CID  set_linked_as(PN_CMSK coremask, void *frame_adr);
 extern PN_CMSK read_PNLM_as(void);
 extern void    write_PNLM_as(PN_CMSK coremask);
+extern void*   stack_ptr_as(void);
 
 /*Local Defines****************************************************************/
 
 /*Static Functions*************************************************************/
 
 /*Module Functions*************************************************************/
-
-PN_CID pn_begin_linked(PN_NUMC numcores)
+#include <stdio.h>
+PN_CID pn_begin_linked(PN_NUMC numcores, void *frame_adr)
 {
   /*
    * locals
@@ -70,25 +72,28 @@ PN_CID pn_begin_linked(PN_NUMC numcores)
    #ifndef PN_COMPILE_RAW
    
       BEGIN_THREADED_LINKED_SEC_CHECK
-         
+      BEGIN_LINKED_STACK_FRAME_CHECK
+      
    #endif /* PN_COMPILE_RAW */
    
    CONVERT_NUMC_TO_MASK
-   
+      
    /* start linked execution */ 
-   return set_linked_as(coremask);
+   return set_linked_as(coremask, frame_adr);
 }
 
-PN_CID pn_begin_linked_m(PN_CMSK coremask)
+
+PN_CID pn_begin_linked_m(PN_CMSK coremask, void *frame_adr)
 {
    #ifndef PN_COMPILE_RAW
    
       BEGIN_THREADED_LINKED_SEC_CHECK_M
+      BEGIN_LINKED_STACK_FRAME_CHECK
       
    #endif /* PN_COMPILE_RAW */
    
    /* start linked execution */
-   return set_linked_as(coremask);
+   return set_linked_as(coremask, frame_adr);
 }
 
 PN_CID pn_begin_linked_gm(PN_CMSK *coremask_array, PN_NUMG array_size)

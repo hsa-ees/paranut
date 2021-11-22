@@ -252,8 +252,6 @@ interrupt:
   /*
    * If we got here, it means we have an interrupt, not an exception.
    * First, remove the interrupt flag, then call actual interrupt handler.
-   * Afterwards, check if interrupts were previously enabled (mstatus.MPIE) and
-   * enable interrupts again if they were.
    * For interrupts, MEPC points to the instruction where execution should 
    * resume after interrupt is handled.
    */
@@ -263,11 +261,6 @@ interrupt:
    
    jal   handle_int                    /* call interrupt handler              */
    
-   csrr  a0,      mstatus              /* load machine status into a0         */
-   andi  a0,      a0,      0x80        /* check on MPIE bit                   */
-   srli  a0,      a0,      4           /* if MPIE was set before, set MIE     */
-   csrs  mstatus, a0                   /* activate all that is set in a0      */
-
 return:
   
   /*

@@ -1,0 +1,173 @@
+#  -----------------------------------------------------------------------------
+#
+#  This file is part of the ParaNut project.
+#
+#  Copyright (C) 2021 Michael Schaeferling <michael.schaeferling@hs-augsburg.de>
+#                     Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>
+#      Hochschule Augsburg, University of Applied Sciences
+#
+#  Description:
+#    Coding conventions for the ParaNut project.
+#
+#  --------------------- LICENSE -----------------------------------------------
+#  Redistribution and use in source and binary forms, with or without modification,
+#  are permitted provided that the following conditions are met:
+#
+#  1. Redistributions of source code must retain the above copyright notice, this
+#     list of conditions and the following disclaimer.
+#
+#  2. Redistributions in binary form must reproduce the above copyright notice,
+#     this list of conditions and the following disclaimer in the documentation and/or
+#     other materials provided with the distribution.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+#  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+#  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+#  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+#  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+#  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+#  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+#  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#  -----------------------------------------------------------------------------
+
+
+
+General conventions
+===================
+
+1. File header
+
+In each file (code source, scripts, info text, ...), a file header *needs* to exist,
+containing (at least) the following information:
+  - Author(s) / Company
+  - Date (of origin)
+  - (optionally) Revisions (Date, Author, change log)
+  - Purpose
+  - Licensing information
+
+As the ParaNut project uses the "2-Clause BSD License", it may be appropriate to
+use the standard header for your files. Therefore, do not forget to revisit the
+text in curly brackets {} to fit your actual details/needs:
+
+#  -----------------------------------------------------------------------------
+#
+#  This file is part of the ParaNut project.
+#
+#  Copyright (C) xxxx-yyyy {Author 1} <{Author 1 eMail}>
+#                          {Author 2} <{Author 2 eMail}>
+#      Hochschule Augsburg, University of Applied Sciences
+#
+#  Description:
+#    {Put a *descriptive* text on your file contents here.}
+#
+#  --------------------- LICENSE -----------------------------------------------
+#  Redistribution and use in source and binary forms, with or without modification,
+#  are permitted provided that the following conditions are met:
+#
+#  1. Redistributions of source code must retain the above copyright notice, this
+#     list of conditions and the following disclaimer.
+#
+#  2. Redistributions in binary form must reproduce the above copyright notice,
+#     this list of conditions and the following disclaimer in the documentation and/or
+#     other materials provided with the distribution.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+#  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+#  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+#  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+#  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+#  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+#  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+#  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#  -----------------------------------------------------------------------------
+
+
+
+Source code files
+=================
+
+1. Indentation
+
+In order to avoid wild growth on indentation, please mind the following rules:
+
+  a) Do not use tabs, instead use spaces.
+     Of course, use tabs if they are really required, e.g. in Makefiles.
+
+  b) 2 space indentation is preferred. One may use 4 spaces for better readability,
+     but keep in mind that your code will expand to the right quickly.
+     Regardless of whether using 2 or 4 spaces, pay attention to keep your
+     indentation scheme consistent in each single file.
+
+2. Trailing white spaces
+
+Before adding your files to the repository, check if there are trailing spaces
+on line endings. Also avoid white spaces in empty lines.
+
+
+
+Makefiles
+=========
+
+  - The following targets *need* to exist:
+
+    1.a clean
+       -> clean up (completely)
+        How to control:
+        a) git status   -> no more "untracked files"
+        b) meld paranut/ paranut.fresh/
+    1.b (optionally) veryclean
+        - may be there for compatibility reasons, identically to 'clean'
+          -> "veryclean: clean"
+
+      - Block-Design files are treated as source code (*.bd)
+
+    2. build
+       -> just build (compilations, etc.), do *not* install anything
+
+    3. install
+       -> just install (do *not* build anything)
+       (may be called as 'root')
+
+    4. test
+       -> compile
+       -> Perform all non-interactive tests:
+          (unit) tests (software), hardware simulations
+       Purpose: regular regression tests (e.g. automatic nightly builds/runs)
+
+  - Default-Target ('make') = 'build'
+
+  - Hierarchies
+    - Rules (Targets) are also valid for sub-makefiles
+    - main Makefiles can/should delegate tasks to sub Makefiles
+    - (avoid duplicate code)
+
+
+Versioning
+==========
+
+The ParaNut Project follows the very common Major, Minor, Revision scheme. While Major
+and Minor version changes are beeing made manually using git-tags, the revision is determined
+by git as the number of commits since the last version tag.
+
+Version Tags must have the following format:
+  
+  v.<Major>.<Minor>
+
+  <Major> and <Minor> may only contain digits.
+  VersionTags may not contain any additional text. They may however be annotated tags, in order to carry 
+  additional information.
+
+Subsequently we use ```git describe --tags --long --dirty='*'``` to generate our version strings.
+The therefore derived string contains the version, as well as the corresponding commit hash.
+It additionally provides a "Dirty Flag", as an asterix appended to the Version 
+string, indicating, that changes have been made to the Code corresponding with 
+that version. 
+E.g.: v15.5-24-gab008ca*
+
+A ParaNut Processor provides the Version in the Machine Implementation ID Register in an encoded format. This 
+is explained in the paranut-manual.
+

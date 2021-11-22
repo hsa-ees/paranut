@@ -38,7 +38,7 @@
 #include <encoding.h>
 #include <stdlib.h>
 
-#include "libparanut.h"
+#include "paranut.h"
 
 // DEFINES:
 // ------------------------------------------------------------------------------
@@ -48,7 +48,7 @@
 #define PARALLEL 1
 #endif
 
-#define _CLKS_PER_MSEC (read_csr(0xFC7)/1000)
+#define _CLKS_PER_MSEC (read_csr(0xFC6)/1000)
 
 // GLOBAL VARIABLES:
 // ------------------------------------------------------------------------------
@@ -57,121 +57,103 @@ int *a, *b, *s;
 // FUNCTIONS:
 // ------------------------------------------------------------------------------
 void init_arrays(){
-	// Initialize arrays
-	for (int n = 0; n < ASIZE; n++) {
-		a[n] = n;
-		b[n] = ASIZE-n;
-		s[n] = 0;
-        //printf("s[%d] = %d, a[%d] = %d,  b[%d] = %d\n", n, s[n], n, a[n], n, b[n] );
-	}
+  // Initialize arrays
+  for (int n = 0; n < ASIZE; n++) {
+    a[n] = n;
+    b[n] = ASIZE-n;
+    s[n] = 0;
+  }
 }
 
 int test_result(){
-	printf("Testing results ...\n");
-	for (int n = 0; n < ASIZE; n++){
-		if( s[n] != ASIZE) {
-			printf("ERROR at s[%d]: %d != %d\n", n, s[n], ASIZE);
-			return -1;
-		}
-	}
-	printf("Test successful!\n");
-	
-	return 0;
+  printf("Testing results ...\n");
+  for (int n = 0; n < ASIZE; n++){
+    if( s[n] != ASIZE) {
+      printf("ERROR at s[%d]: %d != %d\n", n, s[n], ASIZE);
+      return -1;
+    }
+  }
+  printf("Test successful!\n");
+
+  return 0;
 }
 
 
 int main(){
-	int n, id;
+  int n, id;
 #if PARALLEL == 1
-	uint32_t cpus = read_csr(0xFC0);
+	uint32_t cpus = read_csr(0xCD0);
 #else
-	uint32_t cpus = PARALLEL;
+  uint32_t cpus = PARALLEL;
 #endif
-	uint32_t start, end, seq_time, par_time;
-	
-	printf("\nWelcome to the ParaNut mode 1 demo\n----------------------------------\n\n");
-	printf("Current system has %d CPUs\n", cpus);
-	
-	a = malloc(ASIZE*sizeof(int));
-	b = malloc(ASIZE*sizeof(int));
-	s = malloc(ASIZE*sizeof(int));
-	
+  uint32_t start, end, seq_time, par_time;
+
+  printf("\nWelcome to the ParaNut mode 1 demo\n----------------------------------\n\n");
+  printf("Current system has %d CPUs\n", cpus);
+
+  a = malloc(ASIZE*sizeof(int));
+  b = malloc(ASIZE*sizeof(int));
+  s = malloc(ASIZE*sizeof(int));
+
     if(a == NULL || b == NULL || s == NULL){
         printf("ERROR: Could not allocate enough memory: a = %p, b = %p, s= %p", a, b, s);
         return -1;
     }    
-	
-	//------------------------------------------------
-	// Sequential version
-	//------------------------------------------------
-	init_arrays();
-	printf("\nSequential add (s[%d] = a[%d] + b[%d]) ...\n", ASIZE, ASIZE, ASIZE);
-	
-	start = read_csr(mcycle); // Start of measurement
-	for (n = 0; n < ASIZE; n += 1)
-		s[n] = a[n] + b[n];
-	end = read_csr(mcycle); // End of measurement 	
-	seq_time = end - start;
-	printf("Sequential add cycles: %d\n", seq_time);
-	
-	if(test_result() != 0)
-		return -1;
-	
-	
-	//------------------------------------------------
-	// Vectorized version
-	//------------------------------------------------
-	init_arrays();
-	printf("\n%d times vector add (s[%d] = a[%d] + b[%d]) ...\n", cpus, ASIZE, ASIZE, ASIZE);
-	
-	start = read_csr(mcycle); // Start of measurement	
-	id = pn_begin_linked (cpus);
-	for (n = id; n < ASIZE; n += cpus)
-		s[n] = a[n] + b[n];
-	pn_end_linked ();
-	end = read_csr(mcycle); // End of measurement 
-	par_time = end - start;
-	printf("vector add cycles: %d\n", par_time);
-	
-	if(test_result() != 0)
-		return -1;
-	
-		
-	//------------------------------------------------
-	// Display statistic
-	//------------------------------------------------
-	printf("\nParaNut mode 1 demo results:\n----------------------------------\n\n");
-	printf("           |   clks   |  time/ms  | \n");
-	printf("sequential | %8d | %9.2f | \n", seq_time, (float)seq_time / _CLKS_PER_MSEC); 
-	printf("vectorized | %8d | %9.2f | \n", par_time, (float)par_time / _CLKS_PER_MSEC); 
-	printf("diff       | %8d | %9.2f | \n", seq_time - par_time, (float)seq_time / _CLKS_PER_MSEC - (float)par_time / _CLKS_PER_MSEC); 
-	printf("Speedup: %.2f\n", (float)seq_time/par_time);
-		
-	//------------------------------------------------
-	// Vectorized version
-	//------------------------------------------------
-	/*
-	init_arrays();
-	printf("%d times inefficient vector add ...\n", cpus);
-	
-	start = read_csr(mcycle); // Start of measurement	
-	id = pn_begin_linked (cpus);
-	for (n = 0; n < ASIZE; n += cpus)
-		// Note: n is always identical in all threads
-		s[n + id] = a[n + id] + b[n + id];
-	
-	pn_end_linked ();
-	end = read_csr(mcycle); // End of measurement 
-	printf("Inefficient vector add cycles: %d\n", end - start);
-	
-	if(test_result() != 0)
-		return -1;
-	*/
-
-    // Cleanup
-	free(a);
-	free(b);
-	free(s);
+  
+  //------------------------------------------------
+  // Sequential version
+  //------------------------------------------------
+  init_arrays();
+  printf("\nSequential add (s[%d] = a[%d] + b[%d]) ...\n", ASIZE, ASIZE, ASIZE);
+  
+  start = read_csr(mcycle); // Start of measurement
+  for (n = 0; n < ASIZE; n += 1)
+    s[n] = a[n] + b[n];
+  end = read_csr(mcycle); // End of measurement 	
+  seq_time = end - start;
+  printf("Sequential add cycles: %d\n", seq_time);
+  
+  if(test_result() != 0)
+    return -1;
+  
+  
+  //------------------------------------------------
+  // Vectorized version
+  //------------------------------------------------
+  init_arrays();
+  printf("\n%d times vector add (s[%d] = a[%d] + b[%d]) ...\n", cpus, ASIZE, ASIZE, ASIZE);
+  
+  start = read_csr(mcycle); // Start of measurement	
+  id = PN_BEGIN_LINKED(cpus); 
+  if (id < 0) {
+    printf("ERROR: pn_begin_linked: %d\n", id);
+    return id;
+  }
+  for (n = id; n < ASIZE; n += cpus)
+    s[n] = a[n] + b[n];
+  PN_END_LINKED();
+  end = read_csr(mcycle); // End of measurement 
+  par_time = end - start;
+  printf("vector add cycles: %d\n", par_time);
+  
+  if(test_result() != 0)
+    return -1;
+  
     
-	printf("\n\nEnd of ParaNut mode 1 demo\n----------------------------------\n\n");
+  //------------------------------------------------
+  // Display statistic
+  //------------------------------------------------
+  printf("\nParaNut mode 1 demo results:\n----------------------------------\n\n");
+  printf("           |   clks   |  time/ms  | \n");
+  printf("sequential | %8d | %9.2f | \n", seq_time, (float)seq_time / _CLKS_PER_MSEC); 
+  printf("vectorized | %8d | %9.2f | \n", par_time, (float)par_time / _CLKS_PER_MSEC); 
+  printf("diff       | %8d | %9.2f | \n", seq_time - par_time, (float)seq_time / _CLKS_PER_MSEC - (float)par_time / _CLKS_PER_MSEC); 
+  printf("Speedup: %.2f\n", (float)seq_time/par_time);
+    
+  // Cleanup
+  free(a);
+  free(b);
+  free(s);
+    
+  printf("\n\nEnd of ParaNut mode 1 demo\n----------------------------------\n\n");
 }	

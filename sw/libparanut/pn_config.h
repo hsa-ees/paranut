@@ -95,7 +95,7 @@
  * \brief      Register width in bit.
  * 
  * Was set to 32 bit in this documentation to enable Doxygen to properly write
- * down the typedefs in the Typedefs section of libparanut.h. This should not 
+ * down the typedefs in the Typedefs section of paranut.h. This should not 
  * be of interest at the moment since there is only a 32 bit version of the 
  * ParaNut, but it may become relevant in the future.
  */

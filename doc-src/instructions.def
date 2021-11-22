@@ -1,0 +1,807 @@
+#  This file is part of the ParaNut project.
+# 
+#  Copyright (C) 2010-2018 Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>
+#      Hochschule Augsburg, University of Applied Sciences
+#
+#  Redistribution and use in source and binary forms, with or without modification, 
+#  are permitted provided that the following conditions are met:
+# 
+#  1. Redistributions of source code must retain the above copyright notice, this 
+#     list of conditions and the following disclaimer.
+# 
+#  2. Redistributions in binary form must reproduce the above copyright notice,
+#     this list of conditions and the following disclaimer in the documentation and/or
+#     other materials provided with the distribution.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+#  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+#  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+#  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+#  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+#  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON 
+#  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+#  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+
+# ***********************************************
+
+SEC "ALU Instructions"
+
+INS l.add "Add"
+COD 111000 ddddd aaaaa bbbbb - 00 ---- 0000
+FMT "l.add rD, rA, rB"
+DES "The contents of the general-purpose registers rA and rB are added. The result is placed into rD."
+OPE "rD <- rA + rB"
+OP_ "SR[CY] <- Carry"
+OP_ "SR[OV] <- Overflow"
+EXC "Range Exception"
+END
+
+INS l.addc "Add with Carry"
+COD 111000 ddddd aaaaa bbbbb - 00 ---- 0001
+FMT "l.addc rD, rA, rB"
+DES "The contents of the general-purpose registers rA, rB, and the carry flag are added. The result is placed into rD."
+OPE "rD <- rA + rB + SR[CY]"
+OP_ "SR[CY] <- Carry"
+OP_ "SR[OV] <- Overflow"
+EXC "Range Exception"
+END
+
+INS l.sub "Subtract"
+COD 111000 ddddd aaaaa bbbbb - 00 ---- 0010         
+FMT "l.sub rD, rA, rB"
+DES "The contents of the general-purpose register rB is subtracted from rA. The result is placed into rD."
+DE_ "{\em Note:} The OR1k specification does not clearly specify whether the carry flag is affected or not."
+OPE "rD <- rA - rB"
+OP_ "SR[CY] <- Carry"
+OP_ "SR[OV] <- Overflow"
+EXC "Range Exception"
+END
+
+INS l.and "Logical AND"
+COD 111000 ddddd aaaaa bbbbb - 00 ---- 0011         
+FMT "l.and rD, rA, rB"
+DES "A bit-wise logical AND operation is performed on the contents of the general-purpose registers rA and rB. The result is placed into rD."
+OPE "rD <- rA and rB"
+EXC "None"
+END
+
+INS l.or "Logical OR"
+COD 111000 ddddd aaaaa bbbbb - 00 ---- 0100         
+FMT "l.or rD, rA, rB"
+DES "A bit-wise logical OR operation is performed on the contents of the general-purpose registers rA and rB. The result is placed into rD."
+OPE "rD <- rA or rB"
+EXC "None"
+END
+
+INS l.xor "Logical XOR"
+COD 111000 ddddd aaaaa bbbbb - 00 ---- 0101         
+FMT "l.xor rD, rA, rB"
+DES "A bit-wise logical XOR operation is performed on the contents of the general-purpose registers rA and rB. The result is placed into rD."
+OPE "rD <- rA xor rB"
+EXC "None"
+END
+
+
+INS l.sll "Shift Left Logical"
+COD 111000 ddddd aaaaa bbbbb - 00 00-- 1000         
+FMT "l.sll rD, rA, rB"        # rB = no. positions
+DES "The contents of register rA are shifted left by the number of bit positions specified in register rB. Low-order bits are filled with 0. The result is placed into rD."
+OPE "rD[31:rB[4:0]] <- rA[31-rB[4:0]:0]"
+OP_ "rD[rB[4:0]-1:0] <- 0"
+EXC "None"
+END
+
+INS l.srl "Shift Right Logical"
+COD 111000 ddddd aaaaa bbbbb - 00 01-- 1000         
+FMT "l.srl rD, rA, rB"        # rB = no. positions
+DES "The contents of register rA are shifted right by the number of bit positions specified in register rB. High-order bits are filled with 0. The result is placed into rD."
+OPE "rD[31-rB[4:0]:0] <- rA[31:rB[4:0]]"
+OP_ "rD[31:32-rB[4:0]] <- 0"
+EXC "None"
+END
+
+INS l.sra "Shift Right Arithmetic"
+COD 111000 ddddd aaaaa bbbbb - 00 10-- 1000         
+FMT "l.sra rD, rA, rB"        # rB = no. positions
+DES "The contents of register rA are shifted right by the number of bit positions specified in register rB. High-order bits are filled with rA[31]. The result is placed into rD."
+OPE "rD[31-rB[4:0]:0] <- rA[31:rB[4:0]]"
+OP_ "rD[31:32-rB[4:0]] <- rA[31]"
+EXC "None"
+END
+
+#INS
+#COD 111000 ddddd aaaaa bbbbb - 00 11-- 1000 (opt)
+#FMT "l.ror rD, rA, rB"        # rB = no. positions
+#DES
+#OPE
+#EXC "None"
+#END
+
+
+#INS
+#COD 111000 ddddd aaaaa ----- - 00 00-- 1100 (opt)   
+#FMT "l.exths rD, rA"          # sign-extend half-word
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 111000 ddddd aaaaa ----- - 00 01-- 1100 (opt)   
+#FMT "l.extbs rD, rA"          # sign-extend byte
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 111000 ddddd aaaaa ----- - 00 10-- 1100 (opt)   
+#FMT "l.exthz rD, rA"          # zero-extend half-word
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 111000 ddddd aaaaa ----- - 00 11-- 1100 (opt)   
+#FMT "l.extbz rD, rA"          # zero-extend byte
+#DES
+#OPE
+#EXC "None"
+#END
+
+
+INS l.cmov "Conditional Move"
+COD 111000 ddddd aaaaa bbbbb - 00 ---- 1110         
+FMT "l.cmov rD, rA, rB"
+DES "If SR[F] is set, general-purpose register rA is placed into register rD. Otherwise, register rB is placed into rD."
+OPE "rD[31:0] < - SR[F] ? rA[31:0] : rB[31:0]"
+EXC "None"
+END
+
+INS l.mul "Multiply Signed"
+COD 111000 ddddd aaaaa bbbbb - 11 ---- 0110         
+FMT "l.mul rD, rA, rB"
+DES "The contents of registers rA and rB are multiplied. The result is truncated to 32 bit and placed into register rD. Both operands are treated as {\em signed} integers."
+DE_ "None ({\em Note:} In contrast to the OR1k specification, the flags CY and OV are not affected, and no range exception can be generated."
+OPE "rD <- rA * rB"
+EXC "None (OR1k: Range Exception)"
+END
+
+INS l.mulu "Multiply Unsigned"
+COD 111000 ddddd aaaaa bbbbb - 11 ---- 1011         
+FMT "l.mulu rD, rA, rB"       # multiply unsigned
+DES "The contents of registers rA and rB are multiplied. The result is truncated to 32 bit and placed into register rD. Both operands are treated as {\em unsigned} integers."
+DE_ "None ({\em Note:} In contrast to the OR1k specification, the flags CY and OV are not affected."
+OPE "rD <- rA * rB"
+EXC "None (OR1k: Range Exception)"
+END
+
+
+#INS
+#COD 111000 ddddd aaaaa bbbbb - 11 ---- 1001 (opt)   
+#FMT "l.div rD, rA, rB"        # divide signed
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 111000 ddddd aaaaa bbbbb - 11 ---- 1010 (opt)   
+#FMT "l.divu rD, rA, rB"       # divide unsigned
+#DES
+#OPE
+#EXC "None"
+#END
+
+
+#INS
+#COD 111000 ddddd aaaaa ----- - 00 ---- 1111 (opt)   
+#FMT "l.ff1 rD, rA"            # find first 1
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 111000 ddddd aaaaa ----- - 01 ---- 1111 (opt)   
+#FMT "l.fl1 rD, rA"            # find last 1
+#DES
+#OPE
+#EXC "None"
+#END
+
+
+INS l.sfeq "Set Flag if Equal"
+COD 111001 00000 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfeq rA, rB"           # set flag if =            [  Z         ]
+DES "The contents of registers rA and rB are compared. The flag SR[F] is set, if they are equal, and unset otherwise."
+OPE "SR[F] <- (rA == rB)"
+EXC "None"
+END
+
+INS l.sfne "Set Flag if Not Equal"
+COD 111001 00001 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfne rA, rB"           # set flag if !=           [ !Z         ]
+DES "The contents of registers rA and rB are compared. The flag SR[F] is set, if they are different, and unset otherwise."
+OPE "SR[F] <- (rA != rB)"
+EXC "None"
+END
+
+INS l.sfgtu "Set Flag if Greater Than Unsigned"
+COD 111001 00010 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfgtu rA, rB"          # set flag if > unsigned   [ !Z & !C    ]
+DES "The contents of registers rA and rB are interpreted as unsigned numbers and compared. The flag SR[F] is set, if rA > rB, and unset otherwise."
+OPE "SR[F] <- (rA > rB)"
+EXC "None"
+END
+
+INS l.sfgeu "Set Flag if Greater or Equal Unsigned"
+COD 111001 00011 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfgeu rA, rB"          # set flag if >= unsigned  [      !C    ]
+DES "The contents of registers rA and rB are interpreted as unsigned numbers and compared. The flag SR[F] is set, if rA >= rB, and unset otherwise."
+OPE "SR[F] <- (rA >= rB)"
+EXC "None"
+END
+
+INS l.sfltu "Set Flag Less Than Unsigned"
+COD 111001 00100 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfltu rA, rB"          # set flag if < unsigned   [       C
+DES "The contents of registers rA and rB are interpreted as unsigned numbers and compared. The flag SR[F] is set, if rA < rB, and unset otherwise."
+OPE "SR[F] <- (rA < rB)"
+EXC "None"
+END
+
+INS l.sfleu "Set Flag if Less or Equal Unsigned"
+COD 111001 00101 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfleu rA, rB"          # set flag if <= unsigned  [  Z |  C    ]
+DES "The contents of registers rA and rB are interpreted as unsigned numbers and compared. The flag SR[F] is set, if rA <= rB, and unset otherwise."
+OPE "SR[F] <- (rA <= rB)"
+EXC "None"
+END
+
+INS l.sfgts "Set Flag if Greater Than Signed"
+COD 111001 01010 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfgts rA, rB"          # set flag if > signed
+DES "The contents of registers rA and rB are interpreted as signed numbers and compared. The flag SR[F] is set, if rA > rB, and unset otherwise."
+OPE "SR[F] <- (rA > rB)"
+EXC "None"
+END
+
+INS l.sfges "Set Flag if Greater or Equal Signed"
+COD 111001 01011 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfges rA, rB"          # set flag if >= signed
+DES "The contents of registers rA and rB are interpreted as signed numbers and compared. The flag SR[F] is set, if rA >= rB, and unset otherwise."
+OPE "SR[F] <- (rA >= rB)"
+EXC "None"
+END
+
+INS l.sflts "Set Flag Less Than Signed"
+COD 111001 01100 aaaaa bbbbb - -- ---- ----         
+FMT "l.sflts rA, rB"          # set flag if < signed
+DES "The contents of registers rA and rB are interpreted as signed numbers and compared. The flag SR[F] is set, if rA < rB, and unset otherwise."
+OPE "SR[F] <- (rA < rB)"
+EXC "None"
+END
+
+INS l.sfles "Set Flag if Less or Equal Signed"
+COD 111001 01101 aaaaa bbbbb - -- ---- ----         
+FMT "l.sfles rA, rB"          # set flag if <= signed
+DES "The contents of registers rA and rB are interpreted as signed numbers and compared. The flag SR[F] is set, if rA <= rB, and unset otherwise."
+OPE "SR[F] <- (rA <= rB)"
+EXC "None"
+END
+
+INS l.addi "Add Immediate"
+COD 100111 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.addi rD, rA, I"        # i is sign-extended (exts)
+DES "The contents of the general-purpose registers rA and the sign-extended immediate value I are added. The result is placed into rD."
+OPE "rD <- rA + exts(I)"
+OP_ "SR[CY] <- Carry"
+OP_ "SR[OV] <- Overflow"
+EXC "None"
+END
+
+INS l.addic "Add Immediate with Carry"
+COD 101000 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.addic rD, rA, I"       # i is sign-extended
+DES "The contents of the general-purpose registers rA, the sign-extended immediate value I, and the carry flag are added. The result is placed into rD."
+OPE "rD <- rA + exts(I) + SR[CY]"
+OP_ "SR[CY] <- Carry"
+OP_ "SR[OV] <- Overflow"
+EXC "None"
+END
+
+INS l.andi "Logical AND with Immediate Half Word"
+COD 101001 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.andi rD, rA, I"        # i is zero-extended (extz)
+DES "A bit-wise logical AND operation is performed on the contents of the general-purpose registers rA and the zero-extended immediate value I. The result is placed into rD."
+OPE "rD <- rA and extz(I)"
+EXC "None"
+END
+
+INS l.ori "Logical OR with Immediate Half Word"
+COD 101010 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.ori rD, rA, I"         # i is zero-extended (extz)
+DES "A bit-wise logical OR operation is performed on the contents of the general-purpose registers rA and the zero-extended immediate value I. The result is placed into rD."
+OPE "rD <- rA or extz(I)"
+EXC "None"
+END
+
+INS l.xori "Logical XOR with Immediate Half Word"
+COD 101011 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.xori rD, rA, I"        # i is sign-extended (Note: zero-extended in OR1200)
+DES "A bit-wise logical XOR operation is performed on the contents of the general-purpose registers rA and the sign-extended immediate value I. The result is placed into rD."
+DE_ "{\em Note:} In the OR1200 implementation, the immediate value is zero-extended, whereas \paranut sticks to the original OR1k specification. This allows a 32-bit NOT operation to be implemented as \texttt{l.xori rA, rB, -1}."
+OPE "rD <- rA xor exts(I)"
+EXC "None"
+END
+
+
+INS l.muli "Multiply Immediate Signed"
+COD 101100 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.muli rD, rA, I"        # multiply immediate signed
+DES "The contents of the register rA and the immediate value I are multiplied. The result is truncated to 32 bit and placed into register rD. Both operands are treated as signed integers."
+DE_ "None ({\em Note:} In contrast to the OR1k specification, the flags CY and OV are not affected, and no range exception can be generated."
+OPE "rD <- rA * exts(I)"
+EXC "None (OR1k: Range Exception)"
+END
+
+
+INS l.sfeqi "Set Flag if Equal Immediate"
+COD 101111 00000 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfeqi rA, I"
+DES "The contents of the register rA and the immediate value I are compared. The flag SR[F] is set, if they are equal, and unset otherwise."
+OPE "SR[F] <- (rA == I)"
+EXC "None"
+END
+
+INS l.sfnei "Set Flag if Not Equal Immediate"
+COD 101111 00001 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfnei rA, I"
+DES "The contents of the register rA and the immediate value I are compared. The flag SR[F] is set, if they are different, and unset otherwise."
+OPE "SR[F] <- (rA != I)"
+EXC "None"
+END
+
+INS l.sfgtui "Set Flag if Greater Than Unsigned Immediate"
+COD 101111 00010 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfgtui rA, I"
+DES "The contents of the register rA and the immediate value I are interpreted as unsigned numbers and compared. The flag SR[F] is set, if rA > I, and unset otherwise."
+OPE "SR[F] <- (rA > I)"
+EXC "None"
+END
+
+INS l.sfgeui "Set Flag if Greater or Equal Unsigned Immediate"
+COD 101111 00011 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfgeui rA, I"
+DES "The contents of the register rA and the immediate value I are interpreted as unsigned numbers and compared. The flag SR[F] is set, if rA >= I, and unset otherwise."
+OPE "SR[F] <- (rA >= I)"
+EXC "None"
+END
+
+INS l.sfltui "Set Flag Less Than Unsigned Immediate"
+COD 101111 00100 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfltui rA, I"
+DES "The contents of the register rA and the immediate value I are interpreted as unsigned numbers and compared. The flag SR[F] is set, if rA < I, and unset otherwise."
+OPE "SR[F] <- (rA < I)"
+EXC "None"
+END
+
+INS l.sfleui "Set Flag if Less or Equal Unsigned Immediate"
+COD 101111 00101 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfleui rA, I"
+DES "The contents of the register rA and the immediate value I are interpreted as unsigned numbers and compared. The flag SR[F] is set, if rA <= I, and unset otherwise."
+OPE "SR[F] <- (rA <= I)"
+EXC "None"
+END
+
+INS l.sfgtsi "Set Flag if Greater Than Signed Immediate"
+COD 101111 01010 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfgtsi rA, I"
+DES "The contents of the register rA and the immediate value I are interpreted as signed numbers and compared. The flag SR[F] is set, if rA > I, and unset otherwise."
+OPE "SR[F] <- (rA > I)"
+EXC "None"
+END
+
+INS l.sfgesi "Set Flag if Greater or Equal Signed Immediate"
+COD 101111 01011 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfgesi rA, I"
+DES "The contents of the register rA and the immediate value I are interpreted as signed numbers and compared. The flag SR[F] is set, if rA >= I, and unset otherwise."
+OPE "SR[F] <- (rA >= I)"
+EXC "None"
+END
+
+INS l.sfltsi "Set Flag Less Than Signed Immediate"
+COD 101111 01100 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sfltsi rA, I"
+DES "The contents of the register rA and the immediate value I are interpreted as signed numbers and compared. The flag SR[F] is set, if rA < I, and unset otherwise."
+OPE "SR[F] <- (rA < I)"
+EXC "None"
+END
+
+INS l.sflesi "Set Flag if Less or Equal Signed Immediate"
+COD 101111 01101 aaaaa iiiii i ii iiii iiii # (opt)
+FMT "l.sflesi rA, I"
+DES "The contents of the register rA and the immediate value I are interpreted as signed numbers and compared. The flag SR[F] is set, if rA <= I, and unset otherwise."
+OPE "SR[F] <- (rA <= I)"
+EXC "None"
+END
+
+
+#INS
+#COD 101110 ddddd aaaaa ----- - -- 00-i iiii (opt)   
+#FMT "l.slli rD, rA, I"
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 101110 ddddd aaaaa ----- - -- 01-i iiii (opt)   
+#FMT "l.srli rD, rA, I"
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 101110 ddddd aaaaa ----- - -- 10-i iiii (opt)   
+#FMT "l.srai rD, rA, I"
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 101110 ddddd aaaaa ----- - -- 11-i iiii (opt)   
+#FMT "l.rori rD, rA, I"
+#DES
+#OPE
+#EXC "None"
+#END
+
+
+INS l.movhi "Move Immediate High"
+COD 000110 ddddd ----0 iiiii i ii iiii iiii
+FMT "l.movhi rD, I"           # move immediate high
+DES "The immediate value I is placed into the high-order 16 bits of register rD. The low-order bits of rD are cleared."
+OPE "rD[31:16] <- I"
+OP_ "rD[15:0] <- 0"
+EXC "None"
+END
+
+
+#INS
+#COD 110001 ----- aaaaa bbbbb - -- ---- 0001 (opt)   
+#FMT "l.mac"           # multiply signed and accumulate
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 010011 iiiii ----- bbbbb i ii iiii iiii (opt)   
+#FMT "l.maci"          # multiply immediate signed and accumulate
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 000110 ddddd ----1 00000 0 00 0000 0000 (opt)   
+#FMT "l.macrc"         # MAC read and  clear
+#DES
+#OPE
+#EXC "None"
+#END
+
+#INS
+#COD 110001 ----- aaaaa bbbbb - -- ---- 0010 (opt)   
+#FMT "l.msb rA, rB"    # multiply signed and substract
+#DES
+#OPE
+#EXC "None"
+#END
+
+
+
+# ***********************************************
+
+SEC "Load \& Store Instructions"
+
+INS l.lwz "Load Word and Extend with Zero"
+COD 100001 ddddd aaaaa iiiii i ii iiii iiii
+FMT "l.lwz rD, I(rA)" # load word & zero-extend
+DES "A word is loaded from memory and placed into register rD. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+DE_ "{\em Note:} For \paranut, the instructions l.lwz and l.lws are equivalent."
+OPE "rD <- Mem (rA + exts(I)) [31:0]"
+EXC "Alignment \\\\ TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS l.lws "Load Word and Extend with Sign"
+COD 100010 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.lws rD, I(rA)" # load word & sign-extend
+DES "A word is loaded from memory and placed into register rD. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+DE_ "{\em Note:} For \paranut, the instructions l.lwz and l.lws are equivalent."
+OPE "rD <- Mem (rA + exts(I)) [31:0]"
+EXC "Alignment \\\\ TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS l.lbz "Load Byte and Extend with Zero"
+COD 100011 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.lbz rD, I(rA)" # load byte & zero-extend
+DES "A single byte is loaded from memory, zero-extended, and then placed into register rD. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+OPE "rD <- extz ( Mem (rA + exts(I)) [7:0] )"
+EXC "TLB miss \\\\ Page fault \\\\ Bus error"
+EXC "None"
+END
+
+INS l.lbs "Load Byte and Extend with Sign"
+COD 100100 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.lbs rD, I(rA)" # load byte & sign-extend
+DES "A single byte is loaded from memory, sign-extended, and then placed into register rD. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+OPE "rD <- exts ( Mem (rA + exts(I)) [7:0] )"
+EXC "TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS l.lhz "Load Half Word and Extend with Zero"
+COD 100101 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.lhz rD, I(rA)" # load half word & zero-extend
+DES "A half word is loaded from memory, zero-extended, and then placed into register rD. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+OPE "rD <- extz ( Mem (rA + exts(I)) [15:0] )"
+EXC "Alignment \\\\ TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS l.lhs "Load Half Word and Extend with Sign"
+COD 100110 ddddd aaaaa iiiii i ii iiii iiii         
+FMT "l.lhs rD, I(rA)" # load half word & sign-extend
+DES "A half word is loaded from memory, sign-extended, and then placed into register rD. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+OPE "rD <- exts ( Mem (rA + exts(I)) [15:0] )"
+EXC "Alignment \\\\ TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS l.sw "Store Word"
+COD 110101 iiiii aaaaa bbbbb i ii iiii iiii         
+FMT "l.sw I(rA), rB"  # store word
+DES "The contents of register rB are stored as a word. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+OPE "Mem (rA + exts(I)) <- rB"
+EXC "Alignment \\\\ TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS l.sb "Store Byte"
+COD 110110 iiiii aaaaa bbbbb i ii iiii iiii         
+FMT "l.sb I(rA), rB"  # store byte
+DES "The low-order bits of register rB are stored as a byte. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+OPE "Mem (rA + exts(I)) <- rB[7:0]"
+EXC "TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS l.sw "Store Half Word"
+COD 110111 iiiii aaaaa bbbbb i ii iiii iiii
+FMT "l.sh I(rA), rB"  # store half word
+DES "The low-order bits of register rB are stored as a half word. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+OPE "Mem (rA + exts(I)) <- rB[15:0]"
+EXC "Alignment \\\\ TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+
+
+# ***********************************************
+
+SEC "Control Flow Instructions"
+
+INS l.j "Jump"
+COD 000000 nnnnn nnnnn nnnnn n nn nnnn nnnn         
+FMT "l.j N"           # jump to exts(4*N)
+DES "The instruction jumps unconditionally with a delay of one instruction. The target address is determined by adding an immediate constant offset to the current PC, which refers the address of the jump instruction. The immediate offset is determined by multiplying the sign-extended 26-bit immediate value I by 4."
+OPE "PC <- PC + 4 * exts(N)"
+EXC "None"
+END
+
+INS l.jal "Jump and Link"
+COD 000001 nnnnn nnnnn nnnnn n nn nnnn nnnn         
+FMT "l.jal N"         # jump and link
+DES "The instruction jumps unconditionally with a delay of one instruction, and the address of the instruction after the delay slot is placed into the link register. The target address is determined by adding an immediate constant offset to the current PC, which refers the address of the jump instruction. The immediate offset is determined by multiplying the sign-extended 26-bit immediate value I by 4."
+OPE "LR <- PC + 8"
+OP_ "R9 <- PC + 4 * exts(N)"
+EXC "None"
+END
+
+INS l.bnf "Branch if No Flag"
+COD 000011 nnnnn nnnnn nnnnn n nn nnnn nnnn         
+FMT "l.bnf N"
+DES "If the flag SR[F] is not set, the instruction jumps with a delay of one instruction. The target address is determined by adding an immediate constant offset to the current PC, which refers the address of the jump instruction. The immediate offset is determined by multiplying the sign-extended 26-bit immediate value I by 4."
+OPE "if (SR[F] == 0) PC <- PC + 4 * exts(N)"
+EXC "None"
+END
+
+INS l.bnf "Branch if Flag"
+COD 000100 nnnnn nnnnn nnnnn n nn nnnn nnnn         
+FMT "l.bf N"
+DES "If the flag SR[F] is set, the instruction jumps with a delay of one instruction. The target address is determined by adding an immediate constant offset to the current PC, which refers the address of the jump instruction. The immediate offset is determined by multiplying the sign-extended 26-bit immediate value I by 4."
+OPE "if (SR[F] == 1) PC <- PC + 4 * exts(N)"
+EXC "None"
+END
+
+
+INS l.nop "No Operation"
+COD 000101 01--- ----- kkkkk k kk kkkk kkkk         
+FMT "l.nop K"         # NOP
+DES "In general, the instruction does nothing. However, the OR1K simulator, certain values for K may trigger special actions."
+DE_ "The instruction {\em l.nop 1} is handled as a HALT instruction."
+DE_ "{\em Note:} Different from the OR1k specification, the execution time may also be zero."
+OPE "(None)"
+EXC "None"
+END
+
+
+INS l.jr "Jump Register"
+COD 010001 ----- ----- bbbbb - -- ---- ----         
+FMT "l.jr rB"         # jump register
+DES "The instruction jumps unconditionally with a delay of one instruction. The contents of general-purpose register rB are used as the target address."
+OPE "PC <- rB"
+EXC "None"
+END
+
+INS l.jalr "Jump and Link Register"
+COD 010010 ----- ----- bbbbb - -- ---- ----         
+FMT "l.jalr rB"       # jump and link register
+DES "The instruction jumps unconditionally with a delay of one instruction, and the address of the instruction after the delay slot is placed into the link register. The contents of general-purpose register rB are used as the target address."
+OPE "R9 <- PC + 8"
+OP_ "PC <- rB"
+EXC "None"
+END
+
+
+INS l.sys "System Call"
+COD 001000 00000 00000 kkkkk k kk kkkk kkkk         
+FMT "l.sys K"           # system call
+DES "Execution of this instruction results in the system call exception. The system calls exception is a request to the operating system to provide operating system services. The immediate value can be used to specify which system service is requested, alternatively a GPR defined by the ABI can be used to specify system service."
+OPE "EPCR <- NPC"
+OP_ "ESR <- SR"
+OP_ "PC <- 0xc00"
+EXC "System call"
+END
+
+#INS l.trap "Trap Exception"
+#COD 001000 01000 00000 kkkkk k kk kkkk kkkk (opt)
+#FMT "l.trap K"          # trap exception
+#DES
+#OPE
+#FLA "None"
+#EXC "None"
+#END
+
+INS l.rfe "Return from Exception"
+COD 001001 ----- ----- ----- - -- ---- ----         
+FMT "l.rfe"           # return from exception
+DES "Execution of this instruction partially restores the state of the processor prior to the exception. This instruction does not have a delay slot."
+OPE "PC <- EPCR"
+OP_ "SR <- ESR"
+EXC "None"
+END
+
+
+
+# ***********************************************
+
+SEC "Special Instructions"
+
+INS l.mfspr "Move from Special Purpose Register"
+COD 101101 ddddd aaaaa kkkkk k kk kkkk kkkk         
+FMT "l.mfspr rD, rA, K"      # move from special purpose register
+DES "The contents of the special register, defined by contents of register rA logically ORed with the immediate value, are moved into register rD."
+OPE "rD <- SR(rA or K)"
+EXC "None"
+END
+
+INS l.mfspr "Move to Special Purpose Register"
+COD 110000 kkkkk aaaaa bbbbb k kk kkkk kkkk         
+FMT "l.mtspr rA, rB, K"      # move to special purpose register
+DES "The contents of the general-purpose register rB are moved into the special register defined by contents of register rA logically ORed with the immediate value."
+OPE "SR(rA or K) <- rD"
+EXC "None"
+END
+
+
+
+
+INS l.lwa "Load Word Atomic (Load-Link)"
+COD 011011 ddddd aaaaa iiiii i ii iiii iiii
+FMT "l.lwa rD, I(rA)"
+DES "A word is loaded from memory and placed into register rD. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+DE_ "A {\em link} is kept for the effective address, and a later {\em l.swa} instruction can only succeed if this address has not been modified by a different CPU core in the meantime."
+DE_ "{\em l.lwa} and {\em l.swa} implement the operations commonly known as 'load-link' and 'store-conditional' (LL, SC) with weak semantics. SC may eventually fail even if the word was not modified. Nested LL/SC pairs are not allowed, the outer SC may always fail in this case."
+OPE "EA <- rA + exts(I)"
+OP_ "rD <- Mem (EA)"
+OP_ "Link (EA) <- 1"
+EXC "Alignment \\\\ TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS l.swa "Store Word Atomic (Store-Conditional)"
+COD 110011 iiiii aaaaa bbbbb i ii iiii iiii         
+FMT "l.swa I(rA), rB"
+DES "If a {\em link} obtained by a previous {\em l.swa} instruction is still valid, the contents of register rB are stored as a word. The effective address is determined by adding the contents of rA to the sign-extended immediate value I."
+DE_ "The flag register F is set, depending on whether the store operation was performed or not."
+DE_ "{\em l.lwa} and {\em l.swa} implement the operations commonly known as 'load-link' and 'store-conditional' (LL, SC) with weak semantics. SC may eventually fail even if the word was not modified. Nested LL/SC pairs are not allowed, the outer SC may always fail in this case."
+OPE "EA <- rA + exts(I)"
+OP_ "if Link (EA) = 1: SR[F] <- 1, Mem (EA) <- rB"
+OP_ "else:             SR[F] <- 0"
+EXC "Alignment \\\\ TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+
+
+#INS
+#COD 001000 10000 00000 00000 0 00 0000 0000 (opt)   
+#FMT "l.msync"         # memory synchronisation
+#DES
+#OPE
+#FLA "None"
+#EXC "None"
+#END
+
+#INS
+#COD 001000 10100 00000 00000 0 00 0000 0000 (opt)   
+#FMT "l.psync"         # pipeline synchronisation
+#DES
+#OPE
+#FLA "None"
+#EXC "None"
+#END
+
+#INS
+#COD 001000 11000 00000 00000 0 00 0000 0000 (opt)   
+#FMT "l.csync"         # context synchronisation
+#DES
+#OPE
+#FLA "None"
+#EXC "None"
+#END
+
+
+
+# ***********************************************
+
+SEC '\paranut Extensions\label{sec:is_ref-instructions-paranut}'
+
+INS p.cinvalidate "Invalidate cache line"
+COD 111110 iiiii aaaaa ---01 i ii iiii iiii
+FMT "p.cinvalidate I(rA)"  # cache invalidate
+DES "The contents of rA are added to the sign-extended immediate value I to obtain an effective address. If the memory block containing this address is stored in the cache, it is removed from the cache. An eventually modified cache block is not written back."
+#OPE "(None)"
+EXC "TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS p.cwriteback "Write back cache line"
+COD 111110 iiiii aaaaa ---10 i ii iiii iiii
+FMT "p.cwriteback I(rA)"         # cache writeback
+DES "The contents of rA are added to the sign-extended immediate value I to obtain an effective address. If the memory block containing this address is stored in the cache and modified, it is written back to main memory."
+#OPE "(None)"
+EXC "TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+INS p.cflush "Flush cache line"
+COD 111110 iiiii aaaaa ---11 i ii iiii iiii
+FMT "p.cflush I(rA)"         # cache flush
+DES "The contents of rA are added to the sign-extended immediate value I to obtain an effective address. If the memory block containing this address is stored in the cache, it is written back to main memory (if modified) and then removed from the cache."
+#OPE "(None)"
+EXC "TLB miss \\\\ Page fault \\\\ Bus error"
+END
+
+
+
+
+#011100 xxxxx xxxxx xxxxx x xx xxxx xxxx (opt)   l.cust1
+#011101 xxxxx xxxxx xxxxx x xx xxxx xxxx (opt)   l.cust2
+#011110 xxxxx xxxxx xxxxx x xx xxxx xxxx (opt)   l.cust3
+#011111 xxxxx xxxxx xxxxx x xx xxxx xxxx (opt)   l.cust4
+#111100 ddddd aaaaa bbbbb l ll lllk kkkk (opt)   l.cust5 rD, rA, rB, L, K
+#111101 xxxxx xxxxx xxxxx x xx xxxx xxxx (opt)   l.cust6 (?)
+#111110 xxxxx xxxxx xxxxx x xx xxxx xxxx (opt)   l.cust7 (?)
+#111111 xxxxx xxxxx xxxxx x xx xxxx xxxx (opt)   l.cust8 (?)

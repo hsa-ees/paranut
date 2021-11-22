@@ -1,0 +1,8 @@
+<map id="libparanut Modules" name="libparanut Modules">
+<area shape="rect" id="node1" href="$group__ba.html" title="Functions for getting the status of your ParaNut and halting cores. " alt="" coords="198,5,297,32"/>
+<area shape="rect" id="node2" href="$group__ca.html" title="Special functions for controlling the shared ParaNut cache. " alt="" coords="194,56,301,83"/>
+<area shape="rect" id="node3" href="$group__ex.html" title="Functions for controlling the handling of interrupts/exceptions. " alt="" coords="184,107,311,133"/>
+<area shape="rect" id="node4" href="$group__li.html" title="Functions for using the linked mode. " alt="" coords="201,157,293,184"/>
+<area shape="rect" id="node6" href="$group__sp.html" title="Functions and structure used for synchronizing memory access. " alt="" coords="188,208,307,235"/>
+<area shape="rect" id="node7" href="$group__th.html" title="Functions for using the threaded mode. " alt="" coords="193,259,301,285"/>
+</map>

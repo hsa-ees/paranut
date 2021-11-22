@@ -60,101 +60,108 @@
 
 /**
  * \internal
+ * \def        pncache
+ * \brief      ParaNut Cache control register.
+ */
+#define pncache      0x7C0
+
+/**
+ * \internal
  * \def        pngrpsel
  * \brief      ParaNut CPU group select register.
  */
-#define pngrpsel     0x7C0
+#define pngrpsel     0x8C0
 
 /**
  * \internal
  * \def        pnce
  * \brief      ParaNut CPU enable register.
  */
-#define pnce         0x7C1
+#define pnce         0x8C1
 
 /**
  * \internal
  * \def        pnlm
  * \brief      ParaNut CPU linked mode register.
  */
-#define pnlm         0x7C2
+#define pnlm         0x8C2
 
 /**
  * \internal
  * \def        pnxsel
  * \brief      ParaNut CoPU exception select register.
  */
-#define pnxsel       0x7C3
-
-/**
- * \internal
- * \def        pncache
- * \brief      ParaNut Cache control register.
- */
-#define pncache      0x7C4
-
-/**
- * \internal
- * \def        pncpus
- * \brief      ParaNut number of CPUs register.
- */
-#define pncpus       0xFC0
+#define pnxsel       0x8C3
 
 /**
  * \internal
  * \def        pnm2cap
  * \brief      ParaNut CPU capabilities register.
  */
-#define pnm2cap      0xFC1
+#define pnm2cap      0xFC0
 
 /**
  * \internal
  * \def        pnx
  * \brief      ParaNut CoPU exception pending register.
  */
-#define pnx          0xFC2
+#define pnx          0xFC1
 
 /**
  * \internal
  * \def        pncause
  * \brief      ParaNut CoPU trap cause ID register.
  */
-#define pncause      0xFC3
+#define pncause      0xFC2
 
 /**
  * \internal
  * \def        pnepc
  * \brief      ParaNut CoPU exception program counter register.
  */
-#define pnepc        0xFC4
+#define pnepc        0xFC3
 
 /**
  * \internal
  * \def        pncacheinfo
  * \brief      ParaNut cache information register.
  */
-#define pncacheinfo  0xFC5
+#define pncacheinfo  0xFC4
 
 /**
  * \internal
  * \def        pncachesets
  * \brief      ParaNut number of cache sets register.
  */
-#define pncachesets  0xFC6
+#define pncachesets  0xFC5
 
 /**
  * \internal
  * \def        pnclockinfo
  * \brief      ParaNut clock speed information register.
  */
-#define pnclockinfo  0xFC7
+#define pnclockinfo  0xFC6
 
 /**
  * \internal
  * \def        pnmemsize
  * \brief      ParaNut memory size register.
  */
-#define pnmemsize    0xFC8
+#define pnmemsize    0xFC7
+
+/**
+ * \internal
+ * \def        pncpus
+ * \brief      ParaNut number of CPUs register.
+ */
+#define pncpus       0xCD0
+
+/**
+ * \internal
+ * \def        pncoreid
+ * \brief      ParaNut core ID register.
+ */
+#define pncoreid       0xCD4
 
 /**
  * \internal
@@ -253,3 +260,4 @@
  */
                   
 /*EOF**************************************************************************/
+
