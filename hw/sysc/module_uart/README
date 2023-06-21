@@ -1,0 +1,74 @@
+# UART 16750 Hardware Module
+
+## Summary
+
+This folder contains the SystemC hardware description for a UART 16750 Hardware Module that is Wishbone compatible.
+
+
+## Configuration Options for ParaNut
+
+There are configuration options in the config.mk files at the root of the project and in the system/refdesign/hardware/boards/[boardname]/config.mk.
+
+Available configuration options:
+
+* CFG_UART_ENABLE: Enables the Synthesis of the UART Module
+* CFG_UART_BASE_ADDRESS: Sets the base address of the UART Module in the ParaNuts address space
+
+Additionally there is a way to connect the RX and TX lines of the UART Module to external pins on the boards or to leave them internal. This can be configured with an option when synthesising the ParaNut
+
+```sh
+make build UART_EXT=0
+```
+to leave the UART internal or
+```sh
+make build UART_EXT=1
+```
+to make RX and TX external
+
+*Note: When leaving the UART Pins is the default. That means the "UART_EXT=0" isn't needed*
+
+## Configuration of the UART16750 Hardware Registers
+
+The configuration of the chip is described in the [Datasheet](https://www.ti.com/lit/gpn/tl16c750)
+
+*Note: The clock for the baudrate generator is divided to match a 1.8 MHz crystal, this is achived by the slib_clock_div uart_bg1 in the wb8_uart_16750 and can be adjusted. Please refere to the table describing the Divisor Latches for this crystal.*
+
+## Testbenches
+
+The testbenches for this UART Module can be found in the folder tb/uart.
+
+It is possible to run all the testbenches at once when running the following command in that folder.
+
+```sh
+make run
+```
+
+It is also possible to run the testbench of one submodule when running the same command in the folder with the submodules name.
+
+## High Level Synthesis
+
+This is a manual on how to do high level synthesis for the UART module
+
+### Installing the Prerequisites:
+
+#### ICSC:
+
+1. Follow the instructions found here [ICSC](https://github.com/intel/systemc-compiler/wiki/Getting-started)
+2. Write the ICSC_HOME Environment Variable to your .bashrc
+**Important:** don't add the setenv.sh to your .bashrc otherwise the ParaNut won't work correctly
+
+#### sv2:
+1. Download the current version of the sv2v tool from the following link:         [sv2v](https://github.com/zachjs/sv2v/releases/tag/v0.0.10)
+2. Unzip the Package and add the Folder that is containing the sv2v executable to your PATH variable
+
+### Running High Level Synthesis:
+
+Run the following command:
+
+```sh
+make update_uart
+```
+
+**Important:** This Command needs to be run in a console where the settings64.sh of Vivado is not sourced
+
+

@@ -1,0 +1,13 @@
+[package]
+name = "encoding"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.docs.rs]
+default-target = "riscv32i-unknown-none-elf"
+
+[dependencies]
+
+
+[build-dependencies]
+bindgen = "0.64.0"

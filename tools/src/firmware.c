@@ -2,9 +2,10 @@
  *
  *  This file is part of the ParaNut project.
  *
- *  Copyright (C) 2018-2020 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+ *  Copyright (C) 2018-2022 Alexander Bahle <alexander.bahle@hs-augsburg.de>
  *                          Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>
  *                          Michael Schaeferling <michael.schaeferling@hs-augsburg.de>
+ *                          Nico Borgsmueller <nico.borgsmueller@hs-augsburg.de>
  *      Efficient Embedded Systems Group
  *      Hochschule Augsburg, University of Applied Sciences
  *
@@ -44,6 +45,7 @@
 #include "xparameters.h"
 #include "xgpiops.h"
 #include "xtime_l.h"
+#include "uzlib.h"
 
 /*  Host communication
  *  ==================
@@ -109,15 +111,20 @@
  *  Command: Write block memory
  *  ------------------------
  *
- *    CMD:  "\0x16 ?b <adr> <size> <block_size>"
- *    ANS1: "\0x06 ?b <adr> <size> <block_size>"
- *    ... RAW DATA TRANSFER UNTILL SIZE ...
- *    ANS2: "\0x06 ?b <adr+size> <size> <block_size>"
+ *    CMD:  "\0x16 ?b <adr> <size> <block_size> <compressed>"
+ *    ANS1: "\0x06 ?b <adr> <size> <block_size> <compressed>"
+ *    ... RAW DATA TRANSFER, expects following ACK every "block_size" bytes:
+ *    ACK: "\0x06 ?k"
+ *    ... UNTIL SIZE ...
+ *    ANS2: "\0x06 ?b <adr+size> <size> <block_size> <compressed>"
  *
  *  Write large amount of data to memory (e.g. application code).
+ *  If the compressed flag (1 or 0) is set, the content should be uncompressed with gzip to the given location.
  *
  *  The first answer is the acknowledgement and start signal for the host application to start sending
- *  the raw data. If enough bytes were received (= <size>) the firmware sends the second answer to
+ *  the raw data. To control the transmission speed and prevent the receive buffer from overflowing,
+ *  data is sent in chunks of "block_size" bytes, which have to be acknowledged by the firmware.
+ *  If enough bytes were received (= <size>) the firmware sends the second answer to
  *  complete the block data transfer.
  *
  *  NOTE: During the raw data transfer no other command can be received or handled!
@@ -453,15 +460,86 @@ void cmd_mem_write (const char *cmd, const char *args) {
   printf ("\x06 ?w %08lx %08lx\n", adr, data);
 }
 
+static int read_until_ack;
+static uint32_t ack_chunk_size;
+int getchar_with_ack() {
+  int new_char = getchar();
+  read_until_ack += 1;
+
+  if (read_until_ack == ack_chunk_size) {
+    read_until_ack = 0;
+    getchar(); // read final \n from FIFO
+    printf ("\x06 ?k\n");
+  }
+  return new_char;
+}
+
+// This is called by the decompression library once new data is required
+static uint32_t block_size;
+int uncompress_callback(struct uzlib_uncomp *uncomp) {
+  if (block_size > 0) {
+    block_size -= 1;
+    return getchar_with_ack();
+  }
+  return -1;
+}
+
+uint32_t decompress (const char *cmd, uint32_t adr, uint32_t size) {
+  TINF_DATA tinf;
+  uint8_t dict[32768];
+  int tinf_res;
+  uint8_t output;
+  uint32_t i = 0;
+
+  // Define size for decompression callback
+  block_size = size;
+
+  // Init data structure
+  uzlib_uncompress_init(&tinf, dict, 32768);
+
+  // Use callback for streaming decompression
+  tinf.source = NULL;
+  tinf.source_limit = NULL;
+  tinf.source_read_cb = &uncompress_callback;
+
+  tinf_res = uzlib_gzip_parse_header(&tinf);
+  if (tinf_res != TINF_OK) {
+    command_error ("Uncompress parse header failed", cmd);
+    return 0;
+  }
+
+  // Decompress byte by byte, write it directly to target addr
+  while (1) {
+    // Always reset output buffer
+    tinf.dest_start = tinf.dest = &output;
+    // Only read one byte per step
+    tinf.dest_limit = tinf.dest + 1;
+    // Uncompress with checksum checking
+    tinf_res = uzlib_uncompress_chksum(&tinf);
+    if (tinf_res == TINF_DONE) {
+      break;
+    }
+    if (tinf_res != TINF_OK) {
+      char buf[100];
+      sprintf(buf, "Uncompress failed: %i; bytes read %u; bytes produced: %i", tinf_res, block_size, i);
+      command_error (buf, cmd);
+      return 0;
+    }
+    // Write data out
+    Xil_Out8(adr + i, output);
+    i++;
+  }
+  return size - block_size;
+}
+
 void cmd_block_write (const char *cmd, const char *args) {
-  uint32_t adr, size, chunk_size, cnt = 0;
-  char c;
+  uint32_t adr, size, chunk_size, compressed, cnt = 0;
 
   /* Sanity ... */
   if (!hardware_ok ()) return;
 
   /* Scan command ... */
-  if (sscanf (args, "%lx %lx %lx", &adr, &size, &chunk_size) != 3) {
+  if (sscanf (args, "%lx %lx %lx %lx", &adr, &size, &chunk_size, &compressed) != 4) {
         command_error ("Syntax error", cmd);
         return;
   }
@@ -474,21 +552,26 @@ void cmd_block_write (const char *cmd, const char *args) {
         return;
   }
 
+  // Reset ACK counter
+  read_until_ack = 0;
+  ack_chunk_size = chunk_size;
   /* Send acknowledge for program size first */
-  printf("\x06 ?b %08lx %08lx %08lx\n", adr, size, chunk_size);
+  printf("\x06 ?b %08lx %08lx %08lx %1lx\n", adr, size, chunk_size, compressed);
 
   /* Start program receiving */
-  for (uint32_t end_adr = adr + size; adr < end_adr; adr++){
-      Xil_Out8(adr, getchar());
+  if (compressed) {
+    adr = adr + decompress(cmd, adr, size);
+  } else {
+    for (uint32_t end_adr = adr + size; adr < end_adr; adr++){
+        Xil_Out8(adr, getchar_with_ack());
+    }
   }
-  /* Read the trailing "\n" */
-  c = getchar();
 
   /* Write from cache to DDR */
   Xil_DCacheFlush();
 
   /* Print confirmation ... */
-  printf("\x06 ?b %08lx %08lx %08lx\n", adr, size, chunk_size);
+  printf("\x06 ?b %08lx %08lx %08lx %1lx\n", adr, size, chunk_size, compressed);
 }
 
 void cmd_set_adr (const char *cmd, const char *args) {
@@ -516,6 +599,8 @@ void cmd_set_adr (const char *cmd, const char *args) {
 
   /* Send result (UART)... */
   printf ("\x06 ?! %08lx %08lx\n", TOHOST_ADR, FROMHOST_ADR);
+
+  clear_receiver();
 }
 
 void cmd_reset_pl (const char *cmd, const char *args) {
@@ -609,6 +694,8 @@ int main() {
 
   /* Clear UART and TOHOST/FROMHOST ... */
   clear_receiver();
+
+  uzlib_init();
 
   /* Main loop ... */
   quit = 0;

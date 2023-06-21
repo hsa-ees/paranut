@@ -1,0 +1,10 @@
+Changes between FreeRTOS+IO V1.0.0 and V1.0.1 released 18 November 2012
+
+	+ Correct typo ioconfgiUSE_UART_POLLED_RX to ioconfigUSE_UART_POLLED_RX.
+	+ Fix bug to allow device names to include numeric characters.  For example 
+	  I2C channel 1 named "/I2C1/" is now recognised as device number 1, not
+	  device number 2.
+	+ Circular buffer reads no longer wait on the binary semaphore if there are 
+	  already characters in the buffer.
+
+

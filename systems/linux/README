@@ -1,0 +1,120 @@
+  ,===========================================,
+  |                                           |
+  |         ParaNut Reference System          |
+  |                                           |
+  '==========================================='
+
+Authors: Alexander Bahle <alexander.bahle@hs-augsburg.de>
+         Christian Meyer <christian.meyer@hs-augsburg.de>
+Date of revision: 2022-07-11
+
+
+Development environment: Xilinx Vivado 2017.2
+
+
+Target Boards: 
+  * Digilent Zybo board (Zynq Z-7010, XC7Z010) (Retired) 
+    Set during build: BOARD=zybo
+  * Digilent Zybo Z7-20 board (Zynq Z-7020, XC7Z020)
+    Set during build: BOARD=zybo_z7020
+
+  Note: Vivado Board Files must be installed!
+   Ensure you have installed the Vivado Board Files for your target
+   board. These files can be obtained from Digilent or Avnet (they call 
+   it "Board Definitions") and are placed in the Vivado installation
+   directory at '%Vivado-Dir/data/boards/board_files/'.
+
+
+Additional hardware (optional):
+  * a OpenOCD compatible JTAG debugger (see doc/paranut-manual.pdf)
+
+
+Info on Vivado IP cores:
+  * PARANUT: ParaNut processor 
+
+
+Software / demo system usage:
+  The Linux kernel and other required software components will be located in the 
+  'software/' directory.
+  
+
+
+**************
+* Quickstart *
+**************
+  0) For proper operation of Vivado (needed to generate an ASTERICS IP 
+     core for Vivado and to build the system) make sure you source your 
+     Vivado environment:
+     > source <VIVADO-DIR>/settings64.sh
+     
+     Make sure you source the ParaNut environment prior to any action 
+     in the project folder:
+     > source <PARANUT-DIR>/settings.sh
+
+  1) Build the whole system (hardware platform and Linux)
+     Select your board during this step. Default is 'zybo'. 
+     The software is copied from '<PARANUT-DIR>/sw'.
+     Can also be changed to another software located in the same
+     directory by setting the 'SOFTWARE_SRC' variable.
+     This step will take some time:
+     > make build 
+     or e.g.
+     > make build BOARD=zybo_z7020
+
+  3) Connect your board to your computer and power on the board.
+     Then upload the hardware and software to the board:
+     > make run
+
+
+
+****************
+* Make Targets *
+****************
+
+  Following make targets help to build a complete system
+  which is put to operation on the target board.
+
+  * paranut_core :          Generate the ParaNut IP core for
+                            Xilinx Vivado using in the 'vivado_cores'
+                            directory. 
+
+  * software:               Populate the software directory with the
+                            Linux sources and more required software
+                            components.
+                            
+  * clean-software:         Remove 
+  * build_system:           Generate and build the whole demo system
+                            (hardware + software) from sources.
+                      NOTE: target 'paranut_core' has to be run once before!
+
+  * run:                    Run the demo on the target board.
+                      NOTE: target 'build_system' has to be run once before!
+
+  * all / build_and_run :   The lazy target: performs all needed steps
+                            automatically, no more interaction needed.
+                            This one uses following targets:
+                              1) paranut_core
+                              2) build_system
+                              3) run
+                            Just make sure to connect the board, as it
+                            will be programmed right after hardware and
+                            software are built.
+
+
+************************
+* Directory structure: *
+************************
+ - refdesign/
+   |- README:         This file.
+   |- Makefile:       The main Makefile to build and run the system
+   |- hardware/
+   |  |- boards/:     board support files (blockdesign, ParaNut config, 
+   |  |               constraints, firmware source...)
+   |  |- build/:      build directory, system level (generated)
+   |  |- build.bd/:   build directory for blockdesign files (generated)
+   |  '- firmware/:   build directory for firmware running on ZYNQ ARM 
+   |                  processors (generated)
+   |- software/:      Linux and more software components for ParaNut processor
+   '- vivado_cores/:  IP core repository, containing the
+                      ParaNut IP cores for use in Vivado (generated)
+   

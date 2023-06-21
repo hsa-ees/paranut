@@ -1,3 +1,4 @@
 <map id="Base Module" name="Base Module">
-<area shape="rect" id="node2" href="$group__mo.html" title="Modules of libparanut. " alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node1" title="Functions for getting the status of your ParaNut and halting cores." alt="" coords="200,5,307,31"/>
+<area shape="rect" id="node2" href="$group__mo.html" title="Modules of libparanut." alt="" coords="5,5,152,31"/>
 </map>

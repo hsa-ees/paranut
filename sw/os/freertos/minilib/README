@@ -1,0 +1,2 @@
+Contains commonly used defines to allow compilation without a standard C library.
+Includes _clzsi2 from libgcc.

@@ -1,0 +1,178 @@
+\documentclass[12pt,english,pointednumbers,liststotoc,idxtotoc]{scrreprt}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=25mm,bmargin=30mm,lmargin=25mm,rmargin=25mm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{makeidx}
+\makeindex
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage[most]{tcolorbox}
+\definecolor{consolecolor}{RGB}{220,220,220}
+\newcommand{\consolebox}[1]{\par\hspace{0.25cm}\colorbox{consolecolor}
+	{\texttt{#1}}\newline}
+\providecommand{\gitversion}[1]{1.00}
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% [From the LyX User Guide]...
+
+\usepackage{ifpdf} % part of the hyperref bundle
+\ifpdf % if pdflatex is used
+
+% set fonts for nicer pdf view
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+% link all cross references and URLs in pdf output
+\usepackage[colorlinks=true, bookmarks, bookmarksnumbered,
+linkcolor=black, citecolor=black, urlcolor=blue, filecolor=blue,
+pdfpagelayout=OneColumn, pdfnewwindow=true,
+pdfstartview=XYZ, plainpages=false, pdfpagelabels,
+pdfauthor={Gundolf Kiefer}, pdftex,
+pdftitle={ParaNut},pdfsubject={ParaNut},
+pdfkeywords={ParaNut}]{hyperref}
+
+\else % if dvi or ps is produced
+
+% link all cross references and URLs in dvi output
+\usepackage[ps2pdf]{hyperref}
+
+\fi % end if pdflatex is used
+
+% the pages of the TOC are numbered roman
+% and a pdf-bookmark for the TOC is added
+\pagenumbering{roman}
+\let\myTOC\tableofcontents
+\renewcommand\tableofcontents{%
+	\pdfbookmark[1]{Contents}{}
+	\myTOC
+	\cleardoublepage
+	\pagenumbering{arabic} }
+
+% define a short command for \textvisiblespace
+\newcommand{\spce}{\textvisiblespace}
+
+% redefine the greyed out note
+%\renewenvironment{lyxgreyedout}
+% {\textcolor{blue}\bgroup}{\egroup}
+
+
+% [GK] ...
+
+% Headings and footers...
+\fancyhead[L]{\slshape \leftmark}
+\fancyhead[C,R]{}
+\fancyfoot[L]{\paranut: Configuration tool, User manual, \today}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+
+\renewcommand{\footrulewidth}{0.6pt}
+\renewcommand{\headrulewidth}{0.6pt}
+
+\fancypagestyle{plain}{
+	\fancyhead[L,C,R]{}
+	\renewcommand{\headrulewidth}{0pt}
+} 
+
+%\newcolumntype{d}[1]{D{.}{.}{#1}}
+% New column types to use in tabular environment for instruction formats.
+% Allocate 0.18in per bit.
+\newcolumntype{I}{>{\centering\arraybackslash}p{0.18in}}
+% Two-bit centered column.
+\newcolumntype{W}{>{\centering\arraybackslash}p{0.36in}}
+% Three-bit centered column.
+\newcolumntype{F}{>{\centering\arraybackslash}p{0.54in}}
+% Four-bit centered column.
+\newcolumntype{Y}{>{\centering\arraybackslash}p{0.72in}}
+% Five-bit centered column.
+\newcolumntype{R}{>{\centering\arraybackslash}p{0.9in}}
+% Six-bit centered column.
+\newcolumntype{S}{>{\centering\arraybackslash}p{1.08in}}
+% Seven-bit centered column.
+\newcolumntype{O}{>{\centering\arraybackslash}p{1.26in}}
+% Eight-bit centered column.
+\newcolumntype{E}{>{\centering\arraybackslash}p{1.44in}}
+% Ten-bit centered column.
+\newcolumntype{T}{>{\centering\arraybackslash}p{1.8in}}
+% Twelve-bit centered column.
+\newcolumntype{M}{>{\centering\arraybackslash}p{2.2in}}
+% Sixteen-bit centered column.
+\newcolumntype{K}{>{\centering\arraybackslash}p{2.88in}}
+% Twenty-bit centered column.
+\newcolumntype{U}{>{\centering\arraybackslash}p{3.6in}}
+% Twenty-bit centered column.
+\newcolumntype{L}{>{\centering\arraybackslash}p{3.6in}}
+% Twenty-five-bit centered column.
+\newcolumntype{J}{>{\centering\arraybackslash}p{4.5in}}
+
+\tcbset{
+    colback=gray!15,
+	width=0.94\textwidth,
+	colframe=gray!25,
+	arc=0mm,
+    }
+\newenvironment{commentary}
+{ 	\begin{center}
+	\begin{tcolorbox}
+	\small \em
+		
+	}
+	{	
+	\end{tcolorbox}
+	\end{center}
+}
+
+\newcommand{\wunits}[2]{\mbox{#1\,#2}}
+
+%\usepackage{graphicx} % part of the hyperref bundle
+\newcommand{\paranut}{\mbox{\em ParaNut}}
+
+\renewcommand{\caplabelfont}{\bf}
+
+\makeatother
+
+\usepackage{float}
+\usepackage{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\renewcommand{\lstlistingname}{Listing}
+\definecolor{lstBackground}{RGB}{220,220,220}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+\lstset{
+	float=hbp,
+	basicstyle=\ttfamily\color{black}\small,
+	identifierstyle=\color{colIdentifier},
+	keywordstyle=\color{colKeys},
+	stringstyle=\color{colString},
+	commentstyle=\color{colComments},
+	columns=flexible,
+	tabsize=2,
+	frame=single,
+	extendedchars=true,
+	showspaces=false,
+	showstringspaces=false,
+	numbers=left,
+	numberstyle=\tiny,
+	breaklines=true,
+	backgroundcolor=\color{lstBackground},
+	breakautoindent=true
+}
+
+\newcommand{\instbit}[1]{\mbox{\scriptsize #1}}
+\newcommand{\instbitrange}[2]{~\instbit{#1} \hfill \instbit{#2}~}
+

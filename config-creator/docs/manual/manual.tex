@@ -1,0 +1,100 @@
+\input{packages}
+\begin{document}
+
+	\sloppy
+	
+	\input{titlepage}	
+\pagenumbering{arabic}
+\chapter{User manual}
+The Config creator is a tool that allows the user to modify/create the configuration
+file of the ParaNut processor.\\\\
+Additional features:
+\begin{itemize}
+	\item Saving presets of the configuration
+	\item Approximating resource usage
+\end{itemize}
+
+\section{Starting page}
+
+\begin{figure}[!h]
+    \noindent \begin{centering}
+        \includegraphics[width=15cm]{images/start_page}
+        \par\end{centering}
+    \caption{Screenshot of the starting page}
+\end{figure}
+
+\begin{enumerate}
+	\item Select desired theme. You can choose between light and dark theme.
+	\item Select your desired hardware to continue with the configuration progress.
+	\item Choose between predefined configurations and a manual configuration of the ParaNut.
+Beginner mode:
+Contains a list of already \glqq ready-to-use\grqq{} configurations and your saved presets.
+Expert mode:
+Contains a step by step configuration process, where every module can be adjusted by certain parameters.
+	\item These are links leading to an overview article of the ParaNut project from the embedded world exposition in 2020 and to the EES-ParaNut project GitHub.
+\end{enumerate}
+
+\newpage
+\section{Beginner mode}
+
+\begin{figure}[!h]
+    \noindent \begin{centering}
+        \includegraphics[width=15cm]{images/auto_page}
+        \par\end{centering}
+    \caption{Screenshot of the beginner mode page}
+\end{figure}
+
+\begin{enumerate}
+	\item Each section represents either a predefined system or one of your saved presets. 
+	\item Pressing the \glqq Cancel\grqq{}  button will redirect you to the starting page.
+
+\end{enumerate}
+\newpage
+\section{Expert mode}
+
+\begin{figure}[!h]
+    \noindent \begin{centering}
+        \includegraphics[width=15cm]{images/edit_page}
+        \par\end{centering}
+    \caption{Screenshot of the expert mode page}
+\end{figure}
+
+\begin{enumerate}
+	\item The manual configuration page has a navigation bar, which is used to jump between the individual modules.
+	\item Each module has its own parameters which reveal tips and explanations when hovering over them.
+	\item The configuration process consists of three different input types:
+
+	\begin{enumerate}
+		\item[1] Checkboxes, which decide whether content should be added.
+		\item[2] Comboboxes, which have drop-downs containing the different options to choose from.
+		\item[3] Slider, which allows to select an accurate value.
+		\item[4] Simple integer entries, resembling the desired value of the associated parameter.
+  (invalid entries will return warnings or errors.)
+	\end{enumerate}
+	\item The hardware resource utilization progress bar resembles the used hardware resource capacity relative to its maximum resources.
+
+		Pressing the \glqq Apply \grqq{} button will commit your entered values, while jumping to the overview page.
+		Pressing the \glqq Cancel \grqq{} button will terminate the manual configuration process and you will be sent to the starting page.
+
+\end{enumerate}
+\newpage
+\section{Overview page}
+
+This page is the last stop before the finished configuration file. On this page all your manually selected or predefined options will be summarized, giving you the chance to make changes.
+
+\begin{figure}[!h]
+    \noindent \begin{centering}
+        \includegraphics[width=15cm]{images/final_page}
+        \par\end{centering}
+    \caption{Screenshot of the overview page}
+\end{figure}
+
+\begin{enumerate}
+	\item Each different module has ist own section with an \glqq Edit\grqq{}  button, which leads to the corresponding module page in the manual configuration.
+	\item The \glqq Cancel\grqq{}  button will lead you back to the starting page.
+	\item Your configuration will be saved as a preset. From now on it will be shown in your Beginner mode section of the tool.
+	\item Your configuration will be saved as a finished config.mk file on your computer.
+
+\end{enumerate}
+
+\end{document}

@@ -1,3 +1,4 @@
 <map id="Cache Module" name="Cache Module">
-<area shape="rect" id="node2" href="$group__mo.html" title="Modules of libparanut. " alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node1" title="Special functions for controlling the shared ParaNut cache." alt="" coords="200,5,315,31"/>
+<area shape="rect" id="node2" href="$group__mo.html" title="Modules of libparanut." alt="" coords="5,5,152,31"/>
 </map>

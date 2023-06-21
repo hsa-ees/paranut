@@ -7,7 +7,7 @@
 #      Hochschule Augsburg, University of Applied Sciences
 #
 #  Description:
-#    ParaNut top-level Makefile.
+#    ParaNut software section Makefile.
 #
 #  --------------------- LICENSE -----------------------------------------------
 #  Redistribution and use in source and binary forms, with or without modification,
@@ -33,7 +33,13 @@
 #  -----------------------------------------------------------------------------
 
 
-PREFIX ?= /opt/paranut
+PARANUT_HOME ?= $(abspath $(CURDIR)/..)
+include $(PARANUT_HOME)/directory-base.mk
+
+TARGET_DIRS := $(shell find $(SW_APPLICATIONS_DIR)/* -type d)
+TARGET_DIRS += $(shell find $(SW_TEST_APPLICATIONS_DIR)/* -type d)
+TARGET_DIRS += $(shell find $(SW_OS_DIR)/* -type d)
+TARGET_DIRS += $(shell find $(HAL_DIR)/* -type d)
 
 ################################################################################
 #                                                                              #
@@ -46,6 +52,9 @@ PREFIX ?= /opt/paranut
 .PHONY: all
 all: help
 
+.PHONY: $(TARGET_DIRS)
+$(TARGET_DIRS):
+	-$(MAKE) -C $@ clean 2> /dev/null
 
 # Print usage info ...
 .PHONY: help
@@ -56,7 +65,9 @@ help:
 	@echo
 	@echo "Targets:"
 	@echo
-	@echo "  install     : Install software source files to the directory given by parameter PREFIX"
+	@echo "  install     : Install software source files to the directory given by parameter INSTALL_DIR"
+	@echo "                (default: /opt/paranut)"
+	@echo "  clean-all       : Clean all subdirectories (delete compilation artefacts)""
 	@echo "                (default: /opt/paranut)"
 
 
@@ -65,58 +76,35 @@ help:
 #     Installing                                                               #
 #                                                                              #
 ################################################################################
-
-# RISC-V software files
-SRC_FILES += riscv_common/paranut.ld \
-             riscv_common/encoding.h \
-             riscv_common/syscalls.c \
-             riscv_common/startup.S
-
-SRC_FILES += libparanut/README \
-             libparanut/Makefile \
-             libparanut/paranut.h \
-             libparanut/pn_config.h \
-             libparanut/common/common.h \
-             libparanut/common/common_RV32I.S \
-             libparanut/common/custom_RV32I.S \
-             libparanut/pn_base/pn_base.c \
-             libparanut/pn_base/pn_base_RV32I.S \
-             libparanut/pn_cache/pn_cache.c \
-             libparanut/pn_cache/pn_cache_RV32I_buildscript.py \
-             libparanut/pn_cache/pn_cache_RV32I_auto.S \
-             libparanut/pn_cache/pn_cache_RV32I_32.S \
-             libparanut/pn_cache/pn_cache_RV32I_64.S \
-             libparanut/pn_cache/pn_cache_RV32I_128.S \
-             libparanut/pn_cache/pn_cache_RV32I_256.S \
-             libparanut/pn_cache/pn_cache_RV32I_512.S \
-             libparanut/pn_cache/pn_cache_RV32I_1024.S \
-             libparanut/pn_cache/pn_cache_RV32I_2048.S \
-             libparanut/pn_exception/pn_exception.c \
-             libparanut/pn_exception/pn_exception_RV32I.S \
-             libparanut/pn_link/pn_link.c \
-             libparanut/pn_link/pn_link_RV32I.S \
-             libparanut/pn_spinlock/pn_spinlock.c \
-             libparanut/pn_spinlock/pn_spinlock_RV32I.S \
-             libparanut/pn_thread/pn_thread.c \
-             libparanut/pn_thread/pn_thread_RV32I.S
-
-SRC_FILES += hello_newlib/hello_newlib.c \
-             hello_newlib/Makefile
-
-SRC_FILES += ParaNut.mk
-
-# Install 
-
+INSTALL_DIR_SUFFIX=$(subst $(PARANUT_HOME),,$(SW_DIR))
 .PHONY: install
-install:
-	@echo
-	@echo "### Installing SW sources to $(PREFIX) ###"
-	@if [ $(PREFIX) ]; then \
-	  # Install SRC_FILES \
-	  for FILE in $(SRC_FILES); do \
-	    install -Dp -m 644 -t $(PREFIX)/src/sw/`dirname $$FILE` $$FILE; \
-	  done; \
-	  # Install libparanut lib and includes \
-	  $(MAKE) -C libparanut install SUFFIX=libparanut; \
-	fi
+install: | install-base $(OS_INSTALL)
 
+
+.PHONY: install-base
+install-base:
+	@echo
+	@echo "### Installing SW sources to $(INSTALL_DIR) ###"
+	mkdir -p $(INSTALL_DIR)/$(INSTALL_DIR_SUFFIX); \
+	cp -dr --no-preserve=ownership $(HAL_DIR) $(INSTALL_DIR)/$(INSTALL_DIR_SUFFIX); \
+	cp -dr --no-preserve=ownership $(SW_APPLICATIONS_DIR)/hello_newlib $(INSTALL_DIR)/$(INSTALL_DIR_SUFFIX)
+
+freertos: 
+	@make -C $(SW_OS_DIR)/freertos externals; \
+	cp -dr --no-preserve=ownership $(SW_OS_DIR)/freertos $(INSTALL_DIR)/$(INSTALL_DIR_SUFFIX)/freertos; \
+	cp -dr --no-preserve=ownership $(SW_OS_DIR)/freertos_hello $(INSTALL_DIR)/$(INSTALL_DIR_SUFFIX)/freertos_hello
+	
+linux:
+	cp -dr --no-preserve=ownership $(SW_OS_DIR)/linux $(INSTALL_DIR)/$(INSTALL_DIR_SUFFIX)/linux;
+
+all-os: freertos linux
+
+################################################################################
+#                                                                              #
+#     Cleaning                                                                 #
+#                                                                              #
+################################################################################
+.PHONY: clean-all
+clean-all: $(TARGET_DIRS)
+	@echo
+	@echo "### All sw directories cleaned ###"

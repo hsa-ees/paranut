@@ -1,3 +1,5 @@
 <map id="MPeripheral" name="MPeripheral">
-<area shape="rect" id="node3" href="$class_m_w_b_memory.html" title="Simulation ready configurable Wishbone slave memory. " alt="" coords="5,155,108,181"/>
+<area shape="rect" id="node1" title="Class containing the interface for Wishbone slave peripherals." alt="" coords="30,80,130,107"/>
+<area shape="rect" id="node3" href="$class_m_w_b_memory.html" title="Simulation ready configurable Wishbone slave memory." alt="" coords="25,155,135,181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,155,32"/>
 </map>

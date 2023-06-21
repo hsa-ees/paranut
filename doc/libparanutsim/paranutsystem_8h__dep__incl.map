@@ -1,5 +1,6 @@
 <map id="paranutsystem.h" name="paranutsystem.h">
-<area shape="rect" id="node2" href="$paranut-sim_8h.html" title="paranut&#45;sim.h" alt="" coords="33,80,134,107"/>
-<area shape="rect" id="node4" href="$paranutsystem_8cpp.html" title="paranutsystem.cpp" alt="" coords="158,80,291,107"/>
-<area shape="rect" id="node3" href="$memu__tb_8cpp.html" title="tb/memu/memu_tb.cpp" alt="" coords="5,155,161,181"/>
+<area shape="rect" id="node1" title="The MParaNutSystem class for simulation." alt="" coords="104,5,236,32"/>
+<area shape="rect" id="node2" href="$paranut-sim_8h.html" title=" " alt="" coords="36,80,149,107"/>
+<area shape="rect" id="node4" href="$paranutsystem_8cpp.html" title=" " alt="" coords="174,80,321,107"/>
+<area shape="rect" id="node3" href="$memu__tb_8cpp.html" title=" " alt="" coords="5,155,180,181"/>
 </map>

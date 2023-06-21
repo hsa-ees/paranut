@@ -1,3 +1,4 @@
 <map id="Exception Module" name="Exception Module">
-<area shape="rect" id="node2" href="$group__mo.html" title="Modules of libparanut. " alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node1" title="Functions for controlling the handling of interrupts/exceptions." alt="" coords="200,5,339,31"/>
+<area shape="rect" id="node2" href="$group__mo.html" title="Modules of libparanut." alt="" coords="5,5,152,31"/>
 </map>

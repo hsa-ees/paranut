@@ -2,8 +2,11 @@
 #
 #  This file is part of the ParaNut project.
 #
-#  Copyright (C) 2019 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+#  Copyright (C) 2019-2022 Alexander Bahle <alexander.bahle@hs-augsburg.de>
 #                     Philip Manke
+#                     Christian H. Meyer <christian.meyer@hs-augsburg.de>
+#                2023 Elias Schuler <elias.schuler@hs-augsburg.de>
+#					            Lukas Bauer <lukas.bauer@hs-aubsburg.de>
 #      Hochschule Augsburg, University of Applied Sciences
 #
 #  Description:
@@ -120,7 +123,11 @@ set files [list \
  "[file normalize "$origin_dir/../vhdl/paranut/lsu.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/exu.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/csr.vhd"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/uart.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/lfsr.vhd"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/mptw.vhd"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/mtlb.vhd"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/timer.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/marbiter.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/mem_tech.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/mbankram.vhd"]"\
@@ -137,7 +144,13 @@ set files [list \
  "[file normalize "$origin_dir/../vhdl/paranut/mparanut.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/mreadport.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/mtagram.vhd"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/mtimer.vhd"]"\
  "[file normalize "$origin_dir/../vhdl/paranut/mwriteport.vhd"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/muart.vhd"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/UARTModule.v"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/GPIOModule.v"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/gpio.vhd"]"\
+ "[file normalize "$origin_dir/../vhdl/paranut/mgpio.vhd"]"\
 ]
 # Add all paranut library files
 add_files -norecurse -fileset [get_filesets sources_1] $files
@@ -152,6 +165,9 @@ set MDebugModuleFiles [glob -nocomplain -- $origin_dir/../vhdl/paranut/MDebugMod
 set MDtmFiles [glob -nocomplain -- $origin_dir/../vhdl/paranut/MDtm*.vhd]
 set MMExtensionFiles [glob -nocomplain -- $origin_dir/../vhdl/paranut/MMExtension*.vhd]
 set MCsrFiles [glob -nocomplain -- $origin_dir/../vhdl/paranut/MCsr*.vhd]
+set MPtwFiles [glob -nocomplain -- $origin_dir/../vhdl/paranut/MPtw*.vhd]
+set MTlbFiles [glob -nocomplain -- $origin_dir/../vhdl/paranut/MTlb*.vhd]
+set MtimerFiles [glob -nocomplain -- $origin_dir/../vhdl/paranut/Mtimer*.vhd]
 
 # Add all HLS files
 add_files -norecurse -fileset [get_filesets sources_1] $MExuFiles
@@ -161,6 +177,9 @@ add_files -norecurse -fileset [get_filesets sources_1] $MIntCFiles
 add_files -norecurse -fileset [get_filesets sources_1] $MDebugModuleFiles
 add_files -norecurse -fileset [get_filesets sources_1] $MDtmFiles
 add_files -norecurse -fileset [get_filesets sources_1] $MCsrFiles
+add_files -norecurse -fileset [get_filesets sources_1] $MPtwFiles
+add_files -norecurse -fileset [get_filesets sources_1] $MTlbFiles
+add_files -norecurse -fileset [get_filesets sources_1] $MtimerFiles
 if {[llength $MMExtensionFiles] != 0} {
 	add_files -norecurse -fileset [get_filesets sources_1] $MMExtensionFiles
 }

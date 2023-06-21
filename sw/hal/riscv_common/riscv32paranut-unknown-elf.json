@@ -1,0 +1,43 @@
+{
+  "arch": "riscv32",
+  "cpu": "generic-rv32",
+  "data-layout": "e-m:e-p:32:32-i64:64-n32-S128",
+  "eh-frame-header": false,
+  "executables": true,
+  "features": "+m,+a",
+  "is-builtin": false,
+  "llvm-target": "riscv32",
+  "max-atomic-width": 32,
+  "panic-strategy": "abort",
+  "relocation-model": "static",
+  "target-pointer-width": "32",
+  "target-endian": "little",
+
+  "vendor": "unknown",
+  "os": "unknown",
+  "target-family": "unix",
+
+  "linker": "riscv64-unknown-elf-gcc",
+  "linker-flavor": "gcc",
+  "pre-link-args": {
+      "gcc": [
+          "-T../../hal/riscv_common/paranut.ld",
+          "-march=rv32i",
+          "-mabi=ilp32",
+
+          "../../hal/riscv_common/startup.S",
+          "../../hal/riscv_common/syscalls.c",
+
+          "-nostartfiles",
+          "-static"
+      ]
+  },
+  "post-link-args": {
+      "gcc": [
+          "-L../../../systems/refdesign/sw/lib",
+          "-lparanut",
+          "-lc",
+          "-lgcc"
+      ]
+  }
+}

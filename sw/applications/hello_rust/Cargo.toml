@@ -1,0 +1,8 @@
+[package]
+name = "hello_rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bindgen-paranut-sys = {path = "../../hal/rust_intern_crates/bindgen-paranut-sys"}
+libc-print = {git = "https://github.com/dbartussek/rust-libc-print.git"}

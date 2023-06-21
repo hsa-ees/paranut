@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wb_5fport_5fsize',['WB_PORT_SIZE',['../paranut-peripheral_8h.html#a19fcba6e4cbcf050be38ad4c83f6e66e',1,'paranut-peripheral.h']]],
-  ['words_5fbigendian',['WORDS_BIGENDIAN',['../memu__tb_8cpp.html#a82e69009d3cd108c8aad8afe44fb1132',1,'memu_tb.cpp']]]
+  ['virtadr_5flength_3204',['VIRTADR_LENGTH',['../ptw_8h.html#acd319e6aad0a2be401895f3415ce738e',1,'ptw.h']]],
+  ['virtadr_5fsp_5flength_3205',['VIRTADR_SP_LENGTH',['../ptw_8h.html#a13cedbf86b99b5eaca28b749d7eb68f9',1,'ptw.h']]]
 ];

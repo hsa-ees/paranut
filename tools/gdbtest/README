@@ -1,0 +1,36 @@
+# pn-debug-test
+
+This script allows the user to test the debug infrastructure of the ParaNut system.
+
+**Prerequisits:**
+- Needs the package ```procps```
+
+Install on Debian:
+
+```sh
+    $ sudo apt install procps
+```
+
+
+**Instructions:**
+
+1. Source the settings file from the root directory of the repository
+```sh
+    $ source settings.sh
+```
+
+
+3. Open the file "openocd-sim.cfg" located in the tools/etc/ folder
+
+4. Between lines 61-68 uncomment the line starting with "riscv expose_csr" corrosponing to the privilege mode of ParaNut you want to test
+    They are the modes 1, 2, 3.
+
+5. Run the test with the following command:
+```sh
+$ pn-debug-test <privelge mode> <Path to OpenOCD>
+```
+Replace "\<privilege mode\>" with the the number of the mode that you want to test
+
+Replace "\<Path to OpenOCD\>" with the path to the OpenOCD executable that you want to use. **Note:** This is Optional when this Parameter is not given the OpenOCD written in PATH Variable is used
+
+**Note:** The log files for the simulator, OpenOCD and GDB will be saved in the folder tools/gdbtest

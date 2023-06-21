@@ -1,20 +1,28 @@
 <map id="paranutsystem.cpp" name="paranutsystem.cpp">
-<area shape="rect" id="node2" href="$paranutsystem_8h.html" title="The MParaNutSystem class for simulation. " alt="" coords="897,80,1015,107"/>
-<area shape="rect" id="node3" href="$base_8h.html" title="Helpers, Makros and performance measuring Classes used in most ParaNut files. " alt="" coords="575,379,636,405"/>
-<area shape="rect" id="node5" href="$paranut-config_8h.html" title="Configuration Makros used in most ParaNut files. " alt="" coords="253,379,368,405"/>
-<area shape="rect" id="node6" href="$nut_8h.html" title="nut.h" alt="" coords="424,155,475,181"/>
-<area shape="rect" id="node14" href="$jtag__dtm_8h.html" title="jtag_dtm.h" alt="" coords="1164,229,1247,256"/>
-<area shape="rect" id="node18" href="$memory_8h.html" title="memory.h" alt="" coords="1005,229,1085,256"/>
-<area shape="rect" id="node21" href="$interconnect_8h.html" title="interconnect.h" alt="" coords="904,155,1008,181"/>
-<area shape="rect" id="node22" href="$remote__bitbang_8h.html" title="remote_bitbang.h" alt="" coords="1144,155,1267,181"/>
-<area shape="rect" id="node7" href="$dm_8h.html" title="dm.h" alt="" coords="648,304,699,331"/>
-<area shape="rect" id="node8" href="$exu_8h.html" title="exu.h" alt="" coords="541,229,595,256"/>
-<area shape="rect" id="node11" href="$csr_8h.html" title="csr.h" alt="" coords="303,229,353,256"/>
-<area shape="rect" id="node12" href="$ifu_8h.html" title="ifu.h" alt="" coords="102,304,149,331"/>
-<area shape="rect" id="node13" href="$intc_8h.html" title="intc.h" alt="" coords="23,304,78,331"/>
-<area shape="rect" id="node16" href="$lsu_8h.html" title="lsu.h" alt="" coords="379,304,429,331"/>
-<area shape="rect" id="node17" href="$memu_8h.html" title="memu.h" alt="" coords="453,304,523,331"/>
-<area shape="rect" id="node9" href="$mextension_8h.html" title="mextension.h" alt="" coords="723,304,823,331"/>
-<area shape="rect" id="node10" href="$exu__csr_8h.html" title="exu_csr.h" alt="" coords="225,304,303,331"/>
-<area shape="rect" id="node19" href="$paranut-peripheral_8h.html" title="The MPeripheral class containing the interface for Wishbone slave peripherals. " alt="" coords="899,304,1035,331"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1217,5,1364,32"/>
+<area shape="rect" id="node2" href="$paranutsystem_8h.html" title="The MParaNutSystem class for simulation." alt="" coords="1225,80,1357,107"/>
+<area shape="rect" id="node3" href="$base_8h.html" title="Helpers, Makros and performance measuring Classes used in most ParaNut files." alt="" coords="503,379,569,405"/>
+<area shape="rect" id="node6" href="$paranut-config_8h.html" title="Configuration Makros used in most ParaNut files." alt="" coords="801,379,929,405"/>
+<area shape="rect" id="node7" href="$nut_8h.html" title=" " alt="" coords="721,155,775,181"/>
+<area shape="rect" id="node16" href="$jtag__dtm_8h.html" title=" " alt="" coords="1470,229,1562,256"/>
+<area shape="rect" id="node23" href="$memory_8h.html" title=" " alt="" coords="1373,155,1459,181"/>
+<area shape="rect" id="node25" href="$interconnect_8h.html" title=" " alt="" coords="1233,155,1348,181"/>
+<area shape="rect" id="node26" href="$remote__bitbang_8h.html" title=" " alt="" coords="1535,155,1673,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="611,453,701,480"/>
+<area shape="rect" id="node5" title=" " alt="" coords="499,453,573,480"/>
+<area shape="rect" id="node8" href="$dm_8h.html" title=" " alt="" coords="1138,304,1193,331"/>
+<area shape="rect" id="node9" href="$exu_8h.html" title=" " alt="" coords="584,229,643,256"/>
+<area shape="rect" id="node12" href="$csr_8h.html" title=" " alt="" coords="918,229,970,256"/>
+<area shape="rect" id="node14" href="$ifu_8h.html" title=" " alt="" coords="644,304,695,331"/>
+<area shape="rect" id="node15" href="$intc_8h.html" title=" " alt="" coords="719,304,777,331"/>
+<area shape="rect" id="node18" href="$lsu_8h.html" title=" " alt="" coords="1060,304,1113,331"/>
+<area shape="rect" id="node19" href="$memu_8h.html" title=" " alt="" coords="255,229,331,256"/>
+<area shape="rect" id="node22" href="$mtimer_8h.html" title=" " alt="" coords="386,304,467,331"/>
+<area shape="rect" id="node10" href="$mextension_8h.html" title=" " alt="" coords="43,304,154,331"/>
+<area shape="rect" id="node11" href="$exu__csr_8h.html" title=" " alt="" coords="903,304,985,331"/>
+<area shape="rect" id="node13" href="$paranut-peripheral_8h.html" title="The MPeripheral class containing the interface for Wishbone slave peripherals." alt="" coords="1268,304,1423,331"/>
+<area shape="rect" id="node17" title=" " alt="" coords="1558,304,1629,331"/>
+<area shape="rect" id="node20" href="$ptw_8h.html" title=" " alt="" coords="305,304,362,331"/>
+<area shape="rect" id="node21" href="$tlb_8h.html" title=" " alt="" coords="229,304,280,331"/>
+<area shape="rect" id="node24" title=" " alt="" coords="1383,229,1446,256"/>
 </map>

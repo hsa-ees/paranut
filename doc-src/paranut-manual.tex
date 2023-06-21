@@ -1,30 +1,32 @@
 %  This file is part of the ParaNut project.
-% 
-%  Copyright (C) 2010-2020 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+%
+%  Copyright (C) 2010-2022 Alexander Bahle <alexander.bahle@hs-augsburg.de>
 %						   Anna Pfuetzner <annakerstin.pfuetzner@gmail.com>
 %						   Christian Meyer <Christian.Meyer@hs-augsburg.de>
+%						   Nico Borgsmüller <Nico.Borgsmueller@hs-augsburg.de>
 %						   Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>
+%                     2023 Lukas Bauer <lukas.bauer@hs-augsburg.de>
 %      Hochschule Augsburg, University of Applied Sciences
 %
-% Redistribution and use in source and binary forms, with or without modification, 
+% Redistribution and use in source and binary forms, with or without modification,
 % are permitted provided that the following conditions are met:
-% 
-% 1. Redistributions of source code must retain the above copyright notice, this 
+%
+% 1. Redistributions of source code must retain the above copyright notice, this
 %    list of conditions and the following disclaimer.
-% 
+%
 % 2. Redistributions in binary form must reproduce the above copyright notice,
 %    this list of conditions and the following disclaimer in the documentation and/or
 %    other materials provided with the distribution.
 %
-% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
-% ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-% WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+% ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+% WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 % DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-% ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
-% (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-% LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON 
-% ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
-% (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+% ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+% (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+% LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+% ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+% (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 % SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
@@ -48,6 +50,7 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage[most]{tcolorbox}
+\usepackage{tabularx}
 \definecolor{consolecolor}{RGB}{220,220,220}
 \newcommand{\consolebox}[1]{\par\hspace{0.25cm}\colorbox{consolecolor}
 	{\texttt{#1}}\newline}
@@ -116,7 +119,7 @@ pdfkeywords={ParaNut}]{hyperref}
 \fancypagestyle{plain}{
 	\fancyhead[L,C,R]{}
 	\renewcommand{\headrulewidth}{0pt}
-} 
+}
 
 %\newcolumntype{d}[1]{D{.}{.}{#1}}
 % New column types to use in tabular environment for instruction formats.
@@ -159,9 +162,9 @@ pdfkeywords={ParaNut}]{hyperref}
 { 	\begin{center}
 	\begin{tcolorbox}
 	\small \em
-		
+
 	}
-	{	
+	{
 	\end{tcolorbox}
 	\end{center}
 }
@@ -208,49 +211,50 @@ pdfkeywords={ParaNut}]{hyperref}
 \newcommand{\instbit}[1]{\mbox{\scriptsize #1}}
 \newcommand{\instbitrange}[2]{~\instbit{#1} \hfill \instbit{#2}~}
 
+% create a directory tree
+\usepackage{dirtree}
 
 
 \begin{document}
 
 	\pagenumbering{roman}
-	
+
 	\sloppy
-	
+
 	\begin{titlepage}
-		
+
 		\begin{flushright}
 			\includegraphics[width=5cm]{figs/hsa_logo}
 			\par\end{flushright}
-		
+
 		\begin{center}
-			\vfill ~ \vfill
 			\par\end{center}
-		
+
 		\begin{doublespace}
 			\begin{center}
 				\textsf{\textbf{\Huge{}The \paranut Processor}}
 				\par\end{center}{\Huge \par}
-			
+
 			\begin{center}
 				\textsf{\textbf{\large{}Architecture Description and Reference Manual}}
 				\par\end{center}{\large \par}
 		\end{doublespace}
-		
+
 		\begin{center}
 			\includegraphics[width=5cm]{figs/pn_logo}
 
 			\textsf{\vfill}
 			\par\end{center}
-		
+
 		\begin{center}
-			\textsf{\LARGE{}Gundolf Kiefer, Alexander Bahle, Christian H. Meyer, Felix Wagner}
+			\textsf{\LARGE{}Gundolf Kiefer, Alexander Bahle, Christian H. Meyer, Felix Wagner, Nico Borgsm\"uller}
 			\par\end{center}{\LARGE \par}
-		
+
 		\begin{center}
 			\textsf{\large{}Hochschule Augsburg \textendash{} University of Applied
 				Sciences}\\
 			\par\end{center}{\large \par}
-		
+
 		\begin{center}
 			\texttt{\large{}gundolf.kiefer@hs-augsburg.de}
 			\par\end{center}{\large \par}
@@ -258,15 +262,15 @@ pdfkeywords={ParaNut}]{hyperref}
 		\begin{center}
 			\textsf{
 				\large{}With contributions by: \\
-					Michael Sch\"aferling, Anna Pf\"utzner, Patrick Zacharias
+					Michael Sch\"aferling, Anna Pf\"utzner, Patrick Zacharias, Abdurrahman Celep, Lukas Bauer
 			}
 			\par\end{center}{\large \par}
-		
-		
+
+
 		\begin{center}
 			\textsf{\vfill}
 			\par\end{center}
-		
+
 		\begin{center}
 			\textsf{\large{}Version: \gitversion}
 			\par\end{center}{\LARGE \par}
@@ -322,6 +326,19 @@ set directory!
 	\hline
 	1.0.0            & 2021-11-22    & Major rework of the manual, avoiding duplication of general RISC-V information;\par Switch to Git-based versioning\tabularnewline
 	\hline
+	1.0.0            & 2022-07-04    & Add experimental MMU and Linux support\tabularnewline
+	\hline
+	1.0.47           & 2022-12-02    & Add Rust language setup\tabularnewline
+	\hline
+	1.0.0            & 2023-01-17    & Add Config Creator user manual\tabularnewline
+	\hline
+	1.0.114			 & 2023-02-15	 & Reworked CSR Section, added instructions to install GDB and OpenOCD and reworked debugging chapters in appendix \tabularnewline
+	                 &               & \tabularnewline
+	\hline
+	1.4.9			 & 2023-06-13	 & Update rust chapter and bibliography\tabularnewline
+	                 &               & \tabularnewline
+	\hline
+	1.5.0			 & 2023-06-13	 & Update paths to new project structure, add libparanut and bare metal description \tabularnewline
 	                 &               & \tabularnewline
 	\hline
 \end{tabular}
@@ -360,7 +377,7 @@ results can be found in \cite{Kief15}.
 The \paranut instruction set architecture is compatible with the
 RISC-V specification. The RISC-V architecture is an open source
 load and store RISC architecture designed with the purpose
-to support a wide spectrum of different chips from small microcontrollers to server CPUs. \cite{userspec}.
+to support a wide spectrum of different chips from small microcontrollers to server CPUs \cite{userspec}.
 Scalability is achieved by defining a minimalistic basic instruction
 set (RV32I) together with optional extensions including a floating-point
 unit (FPU) or a memory management unit (MMU). Furthermore, the basic
@@ -368,14 +385,18 @@ architecture offers configuration options such as different register
 file sizes or optional arithmetic instructions.
 
 \paranut processors implement all mandatory instructions according
-to the RV32I specification. Features unique to \paranut require
-some additional \paranut-specific instructions. These will be encapsulated
-in a small support library, so that they are still usable without
+to the RV32I specification. Per default it additionally provides the \textit{Zicsr} - Control and Status Register (CSR) Instructions.
+A \paranut may be configured to moreover support the full M-Extension - Standard Extension for Integer Multiplication and Division.
+The RISC-V Standard Extension for Atomic Instructions (A-Extension) is only partially implemented to reduce hardware area and energy 
+consumption. The \paranut only supports the Load Reserved and Store Conditional instructions from the Atomic Extension.   
+
+Features unique to \paranut require
+some additional \paranut-specific instructions. These are encapsulated
+in a small support library, so that they are usable without
 compiler modifications. For software development, the GCC tool chain
-from the RISC-V project can be used without any modifications. A
-cycle-accurate SystemC model can be used as an instructions set simulator.
+from the RISC-V project can be used without any modifications.
 To date, an operating environment based on the \textquotedbl{}newlib\textquotedbl{}
-C library allows to compile and run software both in the simulator
+C library allows compiling and running software both in the simulator
 and on real hardware.
 
 \section{Structural Organisation}
@@ -455,7 +476,7 @@ to and from the system bus are handled by a bus interface unit, which
 presently supports the Wishbone bus standard, but can easily be replaced
 to support other busses such as AXI.
 
-\section{Execution Modes and Capabilities}
+\section{Execution Modes and Capabilities} \label{executionmodes}
 
 A CPU in the \paranut architecture can run in 4 different modes:
 \begin{labeling}{00.00.0000}
@@ -522,45 +543,10 @@ the CePU. In the C language, such critical instructions can be generated
 out of ``if'' statements, ``case'' statements and loop constructs.
 As long as the conditions always evaluate equally on all CPUs, SIMD
 code can be easily written using a standard compiler and a thread-like
-programming model. Figure \ref{fig:Vectorized-loop} shows an example
-of a vectorized loop. The macros 'pn\_begin\_linked' and 'pn\_end\_linked'
-open and close a parallel code section, respectively. Since the body
-of the ``for'' loop does not contain any conditional branches and
-the loop end condition ``n < 100'' always evaluates equally on all
-CPUs, this code is executable on an SIMD-based processor variant.
+programming model. 
 
-\begin{figure}
-	\textbf{\tiny{}}
-	\begin{lstlisting}[basicstyle={\small},language=C]
-		int a[100], b[100], s[100];
-		
-		void add_arrays_sequential () {
-			for (n = 0; n < 100; n += 1)
-				s[n] = a[n] + b[n];
-		}
-		
-		void add_arrays_parallel () {
-			int n, cpu_no;
-			
-			// Activate 3 (=4-1) CoPUs in the "Linked" state and
-			pn_begin_linked (4);       
-			
-			//   get the number of this CPU...
-			cpu_no = pn_get_cpu_no();
-			
-			// performs 4 additions in parallel
-			for (n = 0; n < 100; n += 4)
-				s[n + cpu_no] = a[n + cpu_no] + b[n + cpu_no];    
-			
-			// End linked mode, deactivate the CoPUs...
-			pn_end_linked ();
-		}   
-		\end{lstlisting}
-	{\tiny \par}
-
-	\caption{Example of a vectorized loop\label{fig:Vectorized-loop}}
-\end{figure}
-
+For an example and more information on how to programm SIMD-vectorized code 
+see \ref{cha:libparanut}.
 
 \section{Multi-Threading}
 
@@ -570,8 +556,8 @@ by the CePU. This is somewhat a limitation compared to Mode 3, in
 which the CPUs operate more autonomously. However, Mode 2 is sufficient
 for all typical applications, in which multi-threading is used as
 an acceleration measure.
-
-%% [[ TBD: reference to pthreads, OpenMP, ... ]]
+\ref{cha:libparanut} showcases a minimal example on how the enable Mode 2 
+inside a C-program.
 
 \chapter{Instruction Set Reference\label{cha:is_ref}}
 This chapter contains the instruction set reference for the \paranut achitecture.
@@ -591,7 +577,7 @@ in Table~\ref{privcombs} and can be configured by setting the desired number of 
 			1                & M               & Simple embedded systems                     \\
 			2                & M, U            & Secure embedded systems                     \\
 			3                & M, S, U         & Systems running Unix-like operating systems \\
-			
+
 			\hline
 		\end{tabular}
 	\end{center}
@@ -599,9 +585,10 @@ in Table~\ref{privcombs} and can be configured by setting the desired number of 
 	\label{privcombs}
 \end{table*}
 
-Note that the N-Extension, enabling User-mode exception and interrupt handling
-is currently not supported. Furthermore, no Memory Management Unit MMU is implemented
-at this time, thus no virtual address translation is possible in any mode.
+Note that user-mode exception and interrupt handling
+is currently not supported. If supervisor mode is configured,
+a Memory Management Unit (MMU) is available. For more details on
+the MMU, see \cite{Mey22}.
 
 \clearpage
 
@@ -613,29 +600,29 @@ This chapter contains additional implementation specific information on some ins
 
 \subsection{Conditional Branches}
 
-Currently no branch prediction is featured, 
+Currently no branch prediction is featured,
 branches as well as jumps stall the instruction fetch until the condition and/or address is evaluated.
 
 \subsection{Load and Store Instructions}
 
-A \paranut raises the appropriate address misaligned exception on misaligned loads and stores. 
-The trap is taken according to specification and the failing address is saved in \emph{mtval} 
-for further handling. Misaligned stores do not cause any changes in memory. 
+A \paranut raises the appropriate address misaligned exception on misaligned loads and stores.
+The trap is taken according to specification and the failing address is saved in \emph{mtval}
+for further handling. Misaligned stores do not cause any changes in memory.
 Misaligned loads do not change the value of \emph{rd}.
 
 
 \subsection{Memory Ordering Instructions}
 \label{sec:fence}
 
-The \paranut processor operates inorder and the write buffer of the Load Store Units is emptied 
+The \paranut processor operates inorder and the write buffer of the Load Store Units is emptied
 inorder so the FENCE instruction is currently implemented as a LSU flush and the IFU buffer is also cleared.
 
 
-For synchronization between a \paranut processor and other hardware in the system the special cache 
+For synchronization between a \paranut processor and other hardware in the system the special cache
 control instructions described in Section \ref{sec:csr_instructions} can be used.
 
 \subsection{Control and Status Register Instructions} \label{sec:csr_instructions}
-	
+
 SYSTEM instructions are used to access system functionality that might
 require privileged access and are encoded using the I-type instruction
 format.  These can be divided into two main classes: those that
@@ -696,15 +683,15 @@ The CINV, CWB and CFLUSH instructions control the MemU cache. All of these opera
 	This section describes the Control and Status Registers (CSRs), which are either
 	standard machine or supervisor CSRs, or specific to the \paranut architecture.
 	The addresses used are defined in the RISC-V Privileged Architecture Instruction
-	Set Manual \cite{privspec}. All registers are 32 bits wide. Registers mentioned in Tables \ref{tab:machine-CSRs}, \ref{tab:supervisor-CSRs}, and \ref{tab:paranut-CSRs} 
+	Set Manual \cite{privspec}. All registers are 32 bits wide. Registers mentioned in Tables \ref{tab:machine-CSRs}, \ref{tab:supervisor-CSRs}, and \ref{tab:paranut-CSRs}
 	are readable only by the \emph{CePU}.
-	
-	The descriptions, tables and figures in Sections \ref{field}, \ref{machine} and \ref{supervisor} are derived from the RISC-V privileged ISA \cite{privspec}. Clarifications or deviations from the specification are added as comments. 
-	
-	
-	\subsection{Terminology and Conventions for CSR Field Specifications} 
+
+	The descriptions, tables and figures in Sections \ref{field}, \ref{machine} and \ref{supervisor} are derived from the RISC-V privileged ISA \cite{privspec}. Clarifications or deviations from the specification are added as comments.
+
+
+	\subsection{Terminology and Conventions for CSR Field Specifications}
 	\label{field}
-	Tables \ref{tab:csr_abbriviations} and \ref{tab:privilege_abbriviations} list abbreviations frequently used in this chapter. A more detailed description of 
+	Tables \ref{tab:csr_abbriviations} and \ref{tab:privilege_abbriviations} list abbreviations frequently used in this chapter. A more detailed description of
 	the abbreviations may be found in Chapter 2.3 of the RISC-V Privileged Architecture Instruction Set Manual \cite{privspec}.
 	Tables~\ref{tab:machine-CSRs}, \ref{tab:supervisor-CSRs}, and \ref{tab:paranut-CSRs} contain information about the available
 	CSRs and their access restrictions.\\
@@ -751,8 +738,9 @@ The CINV, CWB and CFLUSH instructions control the MemU cache. All of these opera
 Table~\ref{tab:machine-CSRs} lists all Control and Status Registers (CSR) implemented by the \paranut
 architecture. Unless mentioned otherwise, they are implemented according to the
 RISC-V specification \cite{privspec}. The following subsections describe the implementation-specific
-details as they are implemented on a \paranut. Note, that all registers listed in this section are solely available on the CePU. 
+details as they are implemented on a \paranut. Note, that all registers listed in this section are solely available on the CePU.
 Trying to access them from a CoPU raises an Illegal Instruction exception.
+Because the address of the registers {\tt mtime}, {\tt mtimeh}, {\tt mtimecmp} and {\tt mtimecmph} are configurable and memory-mapped, a fixed address is not given.
 
 \begin{table}[htb!]
 	\begin{center}
@@ -792,13 +780,13 @@ Trying to access them from a CoPU raises an Illegal Instruction exception.
 				\tt 0xB03 & MRW       & \tt mhpmcounter3            & Machine performance-monitoring counter.           \\
 				\tt 0xB04 & MRW       & \tt mhpmcounter4            & Machine performance-monitoring counter.           \\
 				          &           & \multicolumn{1}{c|}{\vdots} & \                                                 \\
-				\tt 0xB1F & MRW       & \tt mhpmcounter31           & Machine performance-monitoring counter.           \\
+				\tt 0xB08 & MRW       & \tt mhpmcounter8           & Machine performance-monitoring counter.           \\
 				\tt 0xB80 & MRW       & \tt mcycleh                 & Upper 32 bits of {\tt mcycle}, RV32I only.        \\
 				\tt 0xB82 & MRW       & \tt minstreth               & Upper 32 bits of {\tt minstret}, RV32I only.      \\
 				\tt 0xB83 & MRW       & \tt mhpmcounter3h           & Upper 32 bits of {\tt mhpmcounter3}, RV32I only.  \\
 				\tt 0xB84 & MRW       & \tt mhpmcounter4h           & Upper 32 bits of {\tt mhpmcounter4}, RV32I only.  \\
 				          &           & \multicolumn{1}{c|}{\vdots} & \                                                 \\
-				\tt 0xB9F & MRW       & \tt mhpmcounter31h          & Upper 32 bits of {\tt mhpmcounter31}, RV32I only. \\
+				\tt 0xB88 & MRW       & \tt mhpmcounter8          & Upper 32 bits of {\tt mhpmcounter31}, RV32I only. \\
 				\hline
 				\multicolumn{4}{|c|}{Machine Counter Setup}                                                             \\
 				\hline
@@ -809,10 +797,10 @@ Trying to access them from a CoPU raises an Illegal Instruction exception.
 				\hline
 				\multicolumn{4}{|c|}{Machine Timer Registers}                                                           \\
 				\hline
-				\tt 0xF01 & MRW       & \tt mtime                   & Machine timer register.                           \\
-				\tt 0xF02 & MRW       & \tt mtimeh                  & Upper 32 bits of {\tt mtime}                      \\
-				\tt 0xF03 & MRW       & \tt mtimecmp                & Machine timer compare register.                   \\
-				\tt 0xF04 & MRW       & \tt mtimecmph               & Upper 32 bits of {\tt mtimecmp}                   \\
+				\tt -     & MRW       & \tt mtime                   & Machine timer register.                           \\
+				\tt -     & MRW       & \tt mtimeh                  & Upper 32 bits of {\tt mtime}.                     \\
+				\tt -     & MRW       & \tt mtimecmp                & Machine timer compare register.                   \\
+				\tt -     & MRW       & \tt mtimecmph               & Upper 32 bits of {\tt mtimecmp}.                  \\
 				\hline
 			\end{tabular}
 		}
@@ -877,7 +865,7 @@ flag, indicating if the hardware has been modified.
 			\begin{tabular}{ccEc}
 				\instbitrange{31}{24}              		       &
 				\instbitrange{23}{16}                 		   &
-				\instbitrange{15}{1}                		   &			
+				\instbitrange{15}{1}                		   &
 				\instbit{0}                                    \\
 				\hline
 				\multicolumn{1}{|c|}{Major} &
@@ -928,39 +916,66 @@ Implements the flags listed in Figure~\ref{mstatusreg-rv32}, which represent onl
 should be preserved on writes for forward compatibility reasons, as indicated in Table~\ref{tab:csr_abbriviations}
 
 
+
 \begin{figure*}[h!]
-	{\footnotesize
-		\begin{center}
-			\begin{tabular}{Ecccccccccc}
-				\instbitrange{MXLEN-1}{9}           &
-				\instbit{8}                         &
-				\instbit{7}                         &
-				\instbit{6}                         &
-				\instbit{5}                         &
-				\instbit{4}                         &
-				\instbit{3}                         &
-				\instbit{2}                         &
-				\instbit{1}                         &
-				\instbit{0}                                                             \\
-				\hline
-				\multicolumn{1}{|c|}{\textit{WPRI}} &
-				\multicolumn{1}{c|}{SPP}            &
-				\multicolumn{1}{c|}{MPIE}           &
-				\multicolumn{1}{|c|}{\textit{WPRI}} &
-				\multicolumn{1}{c|}{SPIE}           &
-				\multicolumn{1}{|c|}{\textit{WPRI}} &
-				\multicolumn{1}{c|}{MIE}            &
-				\multicolumn{1}{|c|}{\textit{WPRI}} &
-				\multicolumn{1}{c|}{SIE}            &
-				\multicolumn{1}{|c|}{\textit{WPRI}}                                     \\
-				\hline
-				23                                  & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
-			\end{tabular}
-		\end{center}
-	}
-	\vspace{-0.1in}
-	\caption{Machine-mode status register ({\tt mstatus}) for RV32.}
-	\label{mstatusreg-rv32}
+    \begin{center}
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{ccccccccc}
+    \\
+    \instbitrange{31}{23} &
+    \instbit{22} &
+    \instbit{21} &
+    \instbit{20} &
+    \instbit{19} &
+    \instbit{18} &
+    \instbitrange{17}{13} &
+    \instbitrange{12}{11}
+    \\
+    \hline
+    \multicolumn{1}{|c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{TSR} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{TVM} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{SUM} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{|c|}{MPP[1:0]} &
+    \\
+    \hline
+    9 & 1 & 1 & 1 & 1 & 1 & 5 & 2 & \\
+    \end{tabular}
+    \begin{tabular}{cccccccccccc}
+    \\
+    &
+    \instbitrange{10}{9} &
+    \instbit{8} &
+    \instbit{7} &
+    \instbit{6} &
+    \instbit{5} &
+    \instbit{4} &
+    \instbit{3} &
+    \instbit{2} &
+    \instbit{1} &
+    \instbit{0} \\
+    \hline
+    &
+    \multicolumn{1}{|c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{SPP} &
+    \multicolumn{1}{c|}{MPIE} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{SPIE} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{MIE} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{SIE} &
+    \multicolumn{1}{c|}{\textit{WPRI}} \\
+    \hline
+    & 2 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+    \end{tabular}
+    \end{center}
+    \vspace{-0.1in}
+    \caption{Machine-mode status register (\texttt{mstatus}) of the \paranut{}.}
+    \label{mstatusreg-rv32}
 \end{figure*}
 
 \subsubsection{Machine ISA Register ({\tt misa})}
@@ -1012,14 +1027,13 @@ shows the possibilities of configuration. MXL is fixed to 1 to indicate 32-bit s
 
 \subsubsection{Machine Interrupt Registers ({\tt mip} and {\tt mie})}
 
-	These registers are read-write registers, but currently without any functionality. In later
-	revisions they might be reworked.
-
+	These registers are read-write registers, but currently only the {\tt MTIP} bit of the {\tt mip} register and the {\tt MTIE} bit of the {\tt mie} register are implemented
+	according to \cite{privspec}.
 
 	\subsubsection{Machine Trap Vector Base Address Register ({\tt mtvec})}
 
 	Currently, the lowest two bits are fixed to zero, which indicates that all traps set the program counter to BASE+4.
-	
+
 	\begin{figure*}[h!]
 		{\footnotesize
 			\begin{center}
@@ -1038,7 +1052,7 @@ shows the possibilities of configuration. MXL is fixed to 1 to indicate 32-bit s
 		\caption{Supervisor trap vector base address register ({\tt stvec}).}
 		\label{mtvecreg}
 	\end{figure*}
-	
+
 
 \subsubsection{Machine Trap Delegation Registers ({\tt medeleg} and {\tt mideleg})}
 
@@ -1049,7 +1063,7 @@ shows the possibilities of configuration. MXL is fixed to 1 to indicate 32-bit s
 	\subsubsection{Machine Cause Register ({\tt mcause})}
 \label{sec:mcause}
 
-	After a trap occured, {\tt mcause} contains one of the flags listed in 
+	After a trap occured, {\tt mcause} contains one of the flags listed in
 	Table~\ref{tab:mcauses-Exceptions-Interrupts}. Note that environment
 	calls may only occur if the corresponding mode is configured.
 
@@ -1086,11 +1100,11 @@ shows the possibilities of configuration. MXL is fixed to 1 to indicate 32-bit s
 			1         & 4              & {\em Not implemented}                                   \\
 			1         & 5              & {\em Not implemented}                                   \\
 			1         & 6              & {\em Not implemented}                                   \\
-			1         & 7              & {\em Not implemented}                                   \\
-			1         & 8              & {\em Not implemented}                                   \\
-			1         & 9              & {\em Not implemented}                                   \\
+			1         & 7              & Machine timer interrupt                                 \\
+			1         & 8              & User external interrupt \\
+			1         & 9              & Supervisor external interrupt \\
 			1         & 10             & {\em Not implemented}                                   \\
-			1         & 11             & {\em Not implemented}                                   \\
+			1         & 11             & Machine external interrupt \\
 			1         & $\ge$12        & {\em Reserved}                                   \\ \hline
 			0         & 0              & Instruction address misaligned          \\
 			0         & 1              & {\em Not implemented}                                   \\
@@ -1104,10 +1118,10 @@ shows the possibilities of configuration. MXL is fixed to 1 to indicate 32-bit s
 			0         & 9              & Environment call from S-mode            \\
 			0         & 10             & {\em Not implemented}                                   \\
 			0         & 11             & Environment call from M-mode            \\
-			0         & 12             & {\em Not implemented}                                   \\
-			0         & 13             & {\em Not implemented}                                   \\
+			0         & 12             & Instruction page fault \\
+			0         & 13             & Load page fault \\
 			0         & 14             & {\em Not implemented}                                   \\
-			0         & 15             & {\em Not implemented}                                   \\
+			0         & 15             & Store/AMO page fault \\
 			0         & 16             & ParaNut CoPU exception \\
 			0         & $\ge$17        & {\em Reserved}                                   \\
 			\hline
@@ -1118,17 +1132,18 @@ shows the possibilities of configuration. MXL is fixed to 1 to indicate 32-bit s
 \end{table*}
 
 \subsubsection{Hardware Performance Monitor}
+\label{sec:hwpmon}
 
 	The hardware performance monitor counters can be configured in the \paranut at compile
 	or synthesis time through the configuration file. They can be fully disabled for minimal
 	space requirements. Reads will then return a fixed value of zero.
 	\bigbreak
-	When the performance counters are enabled, {\tt mcycle/h} has a width of 64 bit, but the width 
+	When the performance counters are enabled, {\tt mcycle/h} has a width of 64 bit, but the width
 	of all the other performance counters can be configured to be between 33 and 64 bit. Also the
 	amount of performance registers can be changed from 8 to 32. A minimum of 8 is required because
 	the first 6 are reserved for the events specified in Table \ref{tab:mhpmcounters-ParaNut-Events}.
-	These registers will also be set to zero on reset and won't read an arbitrary value. 
-	Since the events for the counters are implementation specific the {\tt mhpmevent3-mphmevent31} 
+	These registers will also be set to zero on reset and won't read an arbitrary value.
+	Since the events for the counters are implementation specific the {\tt mhpmevent3-mphmevent31}
 	registers have a fixed value of zero.
 
 
@@ -1156,42 +1171,51 @@ shows the possibilities of configuration. MXL is fixed to 1 to indicate 32-bit s
 
 \subsubsection{Machine Timer Registers ({\tt mtime} and {\tt mtimecmp})}
 
-	The \paranut currently doesn't implement any timers, hence {\tt mtime/h} and {\tt mtimecmp/h} read fixed 
-	values of zero and are implemented as \textit{WARL} on writes. In a future implementation, they will be implemented
-	according to \cite{privspec}.
+    The 64-bit {\tt mtimeh} and {\tt mtimecmp} registers are split up into the 32-bit memory mapped registers {\tt mtime} / {\tt mtimeh} and {\tt mtimecmp} / {\tt mtimecmph}.
+    The upper 32-bit of {\tt mtime} and {\tt mtimecmp} are the {\tt mtimeh} and {\tt mtimecmph} registers.
 
+    The {\tt mtime/h} registers provide a real-time counter with 64-bit precision running at a constant frequency.
+    The timebase is defined in the {\tt pntimebase} register described in Section \ref{sec:pntimebase}.
+    A 64-bit timer compare register is provided  by the {\tt mtimecmp/h} registers.
+    A timer interrupt occurs when the {\tt mtime/h} register contains a value greater than or equal to the value in the {\tt mtimecmp/h} register.
 
-\begin{figure}[h!]
+\begin{figure*}[h!]
 	{\footnotesize
 		\begin{center}
-			\begin{tabular}{@{}J}
-				\instbitrange{63}{0}            \\
+			\begin{tabular}{K@{}K}
+				\instbitrange{63}{32}                             &
+				\instbitrange{31}{0}                                  \\
 				\hline
-				\multicolumn{1}{|c|}{\tt 0 (\textit{WARL})} \\
+				\multicolumn{1}{|c|}{{\tt mtimeh}} &
+				\multicolumn{1}{c|}{{\tt mtime}}                      \\
 				\hline
-				64                              \\
+				32                                               & 32 \\
 			\end{tabular}
 		\end{center}
 	}
 	\vspace{-0.1in}
 	\caption{Machine time register (memory-mapped control register).}
-\end{figure}
+	\label{mtimereg}
+\end{figure*}
 
-\begin{figure}[h!]
+\begin{figure*}[h!]
 	{\footnotesize
 		\begin{center}
-			\begin{tabular}{@{}J}
-				\instbitrange{63}{0}               \\
+			\begin{tabular}{K@{}K}
+				\instbitrange{63}{32}                             &
+				\instbitrange{31}{0}                                  \\
 				\hline
-				\multicolumn{1}{|c|}{\tt 0 (\textit{WARL})} \\
+				\multicolumn{1}{|c|}{{\tt mtimecmph}} &
+				\multicolumn{1}{c|}{{\tt mtimecmp}}                   \\
 				\hline
-				64                                 \\
+				32                                               & 32 \\
 			\end{tabular}
 		\end{center}
 	}
 	\vspace{-0.1in}
 	\caption{Machine time compare register (memory-mapped control register).}
-\end{figure}
+	\label{mtimecmpcreg}
+\end{figure*}
 
 \pagebreak{}
 
@@ -1224,6 +1248,10 @@ when the \paranut was configured to implement supervisor mode.
 				\tt 0x142 & SRW       & \tt scause   & Supervisor trap cause.                         \\
 				\tt 0x143 & SRW       & \tt stval    & Supervisor bad address or instruction.         \\
 				\hline
+				\multicolumn{4}{|c|}{Supervisor Protection and Translation}                           \\
+				\hline
+				\tt 0x180 & SRW       & \tt satp & Supervisor address translation and protection.     \\
+				\hline
 			\end{tabular}
 		}
 	\end{center}
@@ -1238,41 +1266,44 @@ raises an Illegal Instruction exception.
 \subsubsection{Supervisor Status Register ({\tt sstatus})}
 \label{sstatus}
 
-The flags listed in Figure~\ref{sstatusreg-rv32} represent a subset of {\tt mstatus} and are 
+The flags listed in Figure~\ref{sstatusreg-rv32} represent a subset of {\tt mstatus} and are
 implementes as defined in \cite{privspec}. \textit{WPRI} indicates that the bits are not yet implemented and
-should be preserved on writes for forward compatibility reasons. 
+should be preserved on writes for forward compatibility reasons.
 
 \begin{figure*}[h!]
-	{\footnotesize
-		\begin{center}
-			\setlength{\tabcolsep}{4pt}
-			\scalebox{0.95}{
-				\begin{tabular}{Lcccccc}
-					\\
-					\instbitrange{SXLEN-1}{9}           &
-					\instbit{8}                         &
-					\instbitrange{7}{6}                 &
-					\instbit{5}                         &
-					\instbitrange{4}{2}                 &
-					\instbit{1}                         &
-					\instbit{0}                                                 \\
-					\hline
-					\multicolumn{1}{|c|}{\textit{WPRI}} &
-					\multicolumn{1}{c|}{SPP}            &
-					\multicolumn{1}{c|}{\textit{WPRI}}  &
-					\multicolumn{1}{c|}{SPIE}           &
-					\multicolumn{1}{c|}{\textit{WPRI}}  &
-					\multicolumn{1}{c|}{SIE}            &
-					\multicolumn{1}{c|}{\textit{WPRI}}
-					\\
-					\hline
-					22                                  & 1 & 2 & 1 & 3 & 1 & 1 \\
-				\end{tabular}}
-		\end{center}
-	}
-	\vspace{-0.1in}
-	\caption{Supervisor-mode status register ({\tt sstatus}) for RV32.}
-	\label{sstatusreg-rv32}
+    {\footnotesize
+    \begin{center}
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{ccccccccc}
+    \\
+    \instbitrange{31}{19} &
+    \instbit{18} &
+    \instbitrange{17}{9} &
+    \instbit{8} &
+    \instbitrange{7}{6} &
+    \instbit{5} &
+    \instbitrange{4}{2} &
+    \instbit{1} &
+    \instbit{0} \\
+    \hline
+    \multicolumn{1}{|c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{SUM} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{SPP} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{SPIE} &
+    \multicolumn{1}{c|}{\textit{WPRI}} &
+    \multicolumn{1}{c|}{SIE}  &
+    \multicolumn{1}{c|}{\textit{WPRI}}
+    \\
+    \hline
+    13 & 1 & 8 & 1 & 2 & 1 & 3 & 1 & 2 \\
+    \end{tabular}
+    \end{center}
+    }
+    \vspace{-0.1in}
+    \caption{Supervisor-mode status register (\texttt{sstatus}) of the \paranut{}.}
+    \label{sstatusreg-rv32}
 \end{figure*}
 
 
@@ -1301,13 +1332,84 @@ The {\tt scause} register behaves analogous to {\tt mcause} and may contain valu
 \end{figure*}
 
 
+\subsubsection{Supervisor Address Translation and Protection (\texttt{satp}) Register} \mbox{}\\
+\label{sec:satp}
+
+The field \texttt{MODE} enables virtual addressing as explained in \cite{Mey22}. In contrast to \cite{privspec}, field \texttt{PPN} is only 20 bits wide.
+
+\begin{figure}[h!]
+{\footnotesize
+\begin{center}
+\begin{tabular}{c@{}E@{}K}
+\instbit{31} &
+\instbitrange{30}{20} &
+\instbitrange{19}{0} \\
+\hline
+\multicolumn{1}{|c|}{\texttt{MODE}} &
+\multicolumn{1}{|c|}{\textit{WPRI}} &
+\multicolumn{1}{|c|}{\texttt{PPN}} \\
+\hline
+1 & 11 & 20 \\
+\end{tabular}
+\end{center}
+}
+\vspace{-0.1in}
+\caption{RV32 Supervisor address translation and protection register \texttt{satp}.}
+\label{rv32satp}
+\end{figure}
+
+
+\subsection{Unprivileged/User Control and Status Registers}
+\label{unprivileged}
+
+This chapter describes the RISC-V unprivileged(/user)-level Control and Status
+Registers listed in \ref{tab:unprivileged-CSRs}, which were originally specified
+in RISC-V Volume II \cite{privspec}. Note that these registers are only available
+when the \paranut was configured to implement user mode. The registers listed in Table
+\ref{tab:unprivileged-CSRs} are the only registers of the user-mode with functunality.
+The rest of the user mode registers are listed in Chapter \ref{sec:csr_no_impl} and have no
+functunality but are implemented to prevent errors when using OpenOCD.\\
+Note: In the SystemC Code the prefix "u" is used for CSR registers of user mode. This
+was done to prevent a collison between the C function "time" and the CSR "time" while maintaing a
+uniform naming convention for all user mode CSRs. When trying to access the registers with assembler instructions the
+names from table \ref{tab:unprivileged-CSRs} or the addresses can be used.
+
+\begin{table}[htb!]
+	\begin{center}
+		\resizebox{\textwidth}{!}{%
+			\begin{tabular}{|l|l|l|l|}
+				\hline
+				Number    & Privilege & Name         & Description                                   	  \\
+				\hline
+				\multicolumn{4}{|c|}{Unprivileged/User Counter/Timers RO}                                 \\
+				\hline
+				\tt 0xC00 & URO       & \tt cycle  & Cycle counter for RDCYCLE instruction.                   	  \\
+				\tt 0xC80 & URO       & \tt cycleh  & Upper 32 bits of cycle, RV32 only.                 \\
+				\hline
+			\end{tabular}
+		}
+	\end{center}
+	\caption{Currently allocated unprivileged/user RISC-V CSRs}
+	\label{tab:unprivileged-CSRs}
+\end{table}
+
+In the following subsections, all registers and their flags are listed and explained if the \paranut's behaviour differs
+from the RISC-V specification. All registers may only be accessed on the CePU. Trying to access them from a CoPU
+raises an Illegal Instruction exception.
+
+\subsubsection{Cycle Registers ({\tt cycle/cycleh})}
+\label{cycle}
+
+These registers are shadow registers of {\tt mcycle} and {\tt mcycleh} and are a read-only variant of the registers for use in user mode.
+For a description of the registers see Chapter \ref{sec:hwpmon}.
+
 
 \subsection{\paranut-Specific Control and Status Registers}
 
 Table \ref{tab:paranut-CSRs} shows the \paranut-specific
 registers, which are used to query the hardware configuration and
-to read the status of the CPU array. All registers are only available on a CePU, 
-except for {\tt pncoreid}, which can also be read by CoPUs. All of these registers are available 
+to read the status of the CPU array. All registers are only available on a CePU,
+except for {\tt pncoreid}, which can also be read by CoPUs. All of these registers are available
 in any configuration of the \paranut, regardless of which privilege modes are implemented.
 
 \begin{table}[htb!]
@@ -1323,6 +1425,8 @@ in any configuration of the \paranut, regardless of which privilege modes are im
 				\hline
 				\multicolumn{4}{|c|}{\paranut User R/W (Non-Standard R/W)}                          \\
 				\hline
+				\tt 0x841 & URW       & \tt pncause     & ParaNut CoPU trap cause ID.               \\
+				\tt 0x842 & URW       & \tt pnepc       & ParaNut CoPU exception program counter.   \\
 				\tt 0x8C0 & URW       & \tt pngrpsel    & ParaNut CPU group select.                 \\
 				\tt 0x8C1 & URW       & \tt pnce        & ParaNut CPU enable register.              \\
 				\tt 0x8C2 & URW       & \tt pnlm        & ParaNut CPU linked mode register.         \\
@@ -1332,12 +1436,12 @@ in any configuration of the \paranut, regardless of which privilege modes are im
 				\hline
 				\tt 0xFC0 & MRO       & \tt pnm2cp      & ParaNut CPU capabilities register         \\
 				\tt 0xFC1 & MRO       & \tt pnx         & ParaNut CoPU exception pending.           \\
-				\tt 0xFC2 & MRO       & \tt pncause     & ParaNut CoPU trap cause ID.               \\
-				\tt 0xFC3 & MRO       & \tt pnepc       & ParaNut CoPU exception program counter.   \\
 				\tt 0xFC4 & MRO       & \tt pncacheinfo & ParaNut cache information.                \\
 				\tt 0xFC5 & MRO       & \tt pncachesets & ParaNut number of cache sets.             \\
 				\tt 0xFC6 & MRO       & \tt pnclockinfo & ParaNut clock speed information.          \\
 				\tt 0xFC7 & MRO       & \tt pnmemsize   & ParaNut memory size.                      \\
+				\tt 0xFC8 & MRO       & \tt pnece       & ParaNut exception chip enable.            \\
+				\tt 0xFC9 & MRO       & \tt pntimebase  & ParaNut machine timer timbease.           \\
 				\hline
 				\multicolumn{4}{|c|}{\paranut User R (Non-Standard R)}                              \\
 				\hline
@@ -1398,12 +1502,12 @@ Currently, the lowest two bits are fixed to zero, which indicates that all traps
 
 \subsubsection{ParaNut CPU enable register ({\tt pnce})}
 
-The {\tt pnce} register is an MXLEN-bit read-write register formatted as shown in Figure~\ref{pnce}. It only takes legal values (\textit{WARL}). 
-Each bit corresponds to one CPU, bit 0 represents the CePU. By writing into this register, the	CePU can activate or deactivate CoPUs. 
-By reading the register, the CePU can determine whether the CoPU is actually (in)active (enabled/halted). Both activation and deactivation 
-may take some time until the CoPU reaches a stable state. On deactivation by the CePU the CoPU is guaranteed to finish it's current 
+The {\tt pnce} register is an MXLEN-bit read-write register formatted as shown in Figure~\ref{pnce}. It only takes legal values (\textit{WARL}).
+Each bit corresponds to one CPU, bit 0 represents the CePU. By writing into this register, the	CePU can activate or deactivate CoPUs.
+By reading the register, the CePU can determine whether the CoPU is actually (in)active (enabled/halted). Both activation and deactivation
+may take some time until the CoPU reaches a stable state. On deactivation by the CePU the CoPU is guaranteed to finish it's current
 instruction.\\
-After deactivation the CPU will be in Mode~0. For CPUs with capability $\geq$ 2 this means their IFU is reset and upon activation they will 
+After deactivation the CPU will be in Mode~0. For CPUs with capability $\geq$ 2 this means their IFU is reset and upon activation they will
 start execution at the reset vector address.\\
 In systems with more than 32 CPUs the {\tt pngrpsel} register must be used to control  CoPUs with core~ID > 31.
 
@@ -1502,7 +1606,7 @@ The IEN field enables (1) or disables (0) the use of the cache for data access.\
 
 \begin{commentary}
 	Writing to these registers does not trigger any flush or write-back operation. Hence, when disabling the cache, it
-	must be flushed or written back by software using the CFLUSH(A) or CWB(A) instructions listed in Section~\ref{sec:is_ref-paranut_instructions} 
+	must be flushed or written back by software using the CFLUSH(A) or CWB(A) instructions listed in Section~\ref{sec:is_ref-paranut_instructions}
 	if the cache may contain modified data.
 \end{commentary}
 
@@ -1575,7 +1679,7 @@ In systems with more than 32 CPUs the {\tt pngrpsel} register must be used to re
 
 \subsubsection{ParaNut CoPU trap cause ID ({\tt pncause})}
 
-The {\tt pncause} register is an MXLEN-bit read-only register formatted as shown in Figure~\ref{pncause}. It holds the cause of exception of the CoPU selected by {\tt pnxsel} and {\tt pngrpsel}. The CSR only holds legal values as defined in {\tt mcause}.\\
+The {\tt pncause} register is an MXLEN-bit read-write register formatted as shown in Figure~\ref{pncause}. It holds the cause of exception of the CoPU selected by {\tt pnxsel} and {\tt pngrpsel}. The CSR only holds legal values as defined in {\tt mcause}.\\
 
 \begin{figure}[h!]
 	{\footnotesize
@@ -1596,7 +1700,7 @@ The {\tt pncause} register is an MXLEN-bit read-only register formatted as shown
 
 \subsubsection{ParaNut CoPU exception program counter ({\tt pnepc})}
 
-The {\tt pnepc} register is an MXLEN-bit read-only register formatted as shown in Figure~\ref{pnepc}. It holds the exception program counter of the CoPU selected by {\tt pnxsel} and {\tt pngrpsel}. The CSR only holds legal values as defined in {\tt mepc}.\\
+The {\tt pnepc} register is an MXLEN-bit read-write register formatted as shown in Figure~\ref{pnepc}. It holds the exception program counter of the CoPU selected by {\tt pnxsel} and {\tt pngrpsel}. The CSR only holds legal values as defined in {\tt mepc}.\\
 
 \begin{figure}[h!]
 	{\footnotesize
@@ -1724,6 +1828,48 @@ The {\tt pnmemsize} register is an MXLEN-bit read-only register formatted as sho
 	\label{pnmemsize}
 \end{figure}
 
+\subsubsection{ParaNut exception CPU enable ({\tt pnece})}
+
+The {\tt pnece} register is an MXLEN-bit read-only register formatted as shown in Figure~\ref{pnece}. It stores the value of {\tt pnce} before execution of the exception or interrupt process as described in \ref{sec:is_ref-exceptions}.\\
+
+\begin{figure}[h!]
+	{\footnotesize
+		\begin{center}
+			\begin{tabular}{@{}J}
+				\instbitrange{31}{0}                \\
+				\hline
+				\multicolumn{1}{|c|}{\tt pnece} \\
+				\hline
+				32                                  \\
+			\end{tabular}
+		\end{center}
+	}
+	\vspace{-0.1in}
+	\caption{ParaNut exception chip enable ({\tt pnece}).}
+	\label{pnece}
+\end{figure}
+
+\subsubsection{ParaNut machine timer timebase ({\tt pntimebase})} \label{sec:pntimebase}
+
+The {\tt pntimebase} register is an MXLEN-bit read-only register formatted as shown in figure~\ref{pntimebase}. It holds the machine timer timebase in \textmu{}s set at compile or synthesis time.\\
+
+\begin{figure}[h!]
+	{\footnotesize
+		\begin{center}
+			\begin{tabular}{@{}J}
+				\instbitrange{31}{0}                \\
+				\hline
+				\multicolumn{1}{|c|}{\tt pntimebase} \\
+				\hline
+				32                                  \\
+			\end{tabular}
+		\end{center}
+	}
+	\vspace{-0.1in}
+	\caption{ParaNut machine timer timebase ({\tt pntimebase}).}
+	\label{pntimebase}
+\end{figure}
+
 \subsubsection{ParaNut core ID register ({\tt pncoreid})}
 
 The {\tt pncoreid} register is an MXLEN-bit read-only register formatted as shown in figure~\ref{pncoreid}. It is the only register accesible from CoPUs. This is required to initiate LinkedMode.\\
@@ -1745,6 +1891,78 @@ The {\tt pncoreid} register is an MXLEN-bit read-only register formatted as show
 	\label{pncoreid}
 \end{figure}
 
+\subsection{Control and Status registers without implementation}
+\label{sec:csr_no_impl}
+
+Table \ref{tab:implemented-CSRs} shows the registers that where implemented to
+comply with the RISC-V specification, they don't have any functionality. This was done to prevent errors while using OpenOCD with the \paranut.
+Reading from these registers will return the value 0x0 and writes to these registers will
+be ignorred.\\ Note: That the user mode CSR have the prefix "u" added in the SystemC Code. This
+was done to prevent a collison between the C function "time" and the CSR "time" while maintaing a
+uniform naming convention for all user mode CSRs.
+
+\begin{table}[htb!]
+	\begin{center}
+		\resizebox{\textwidth}{!}{%
+			\begin{tabular}{|l|l|l|l|}
+				\hline
+				Number    & Privilege & Name            & Description                               \\
+				\hline
+				\multicolumn{4}{|c|}{Supervisor RW}                              \\
+				\hline
+				\tt 0x106 & SRW       & \tt scounteren   			& Supervisor counter enable.								 \\
+				\tt 0x10A & SRW       & \tt senvcfg   				& Supervisor environment configuration register.			 \\
+				\tt 0x5A8 & SRW       & \tt scontext   				& Supervisor-mode context register.						 \\
+				\hline
+				\multicolumn{4}{|c|}{Machine R/W}                       \\
+				\hline
+				\tt 0x306 & MRW       & \tt mcounteren     			& Machine counter enable.           \\
+				\tt 0x310 & MRW       & \tt mstatush	   			& Additional machine status register, RV32 only           \\
+				\tt 0x30A & MRW       & \tt menvcfg        			& Machine environment configuration register.          \\
+				\tt 0x31A & MRW       & \tt menvcfgh       			& Additional machine env. conf. register, RV32 only.           \\
+				\tt 0x320 & MRW       & \tt mcounterinhibit         & Machine counter-inhibit register.				           \\
+				\tt 0x323 & MRW       & \tt mhpmevent3           	& Machine performance-monitoring event selector.           \\
+				\tt 0x324 & MRW       & \tt mhpmevent4           	& Machine performance-monitoring event selector.           \\
+				&           & \multicolumn{1}{c|}{\vdots} & \                                                 \\
+				\tt 0x33F & MRW       & \tt mhpmevent31           	& Machine performance-monitoring event selector.           \\
+				\tt 0x7A0 & MRW       & \tt tselect           		& Debug/Trace trigger register select.          \\
+				\tt 0xB09 & MRW       & \tt mhpmcounter9            & Machine performance-monitoring counter.           \\
+				          &           & \multicolumn{1}{c|}{\vdots} & \                                                 \\
+				\tt 0xB1F & MRW       & \tt mhpmcounter31           & Machine performance-monitoring counter.           \\
+				\tt 0xB89 & MRW       & \tt mhpmcounter9h           & Upper 32 bits of \tt mhpmcounter9, RV32 only.           \\
+						  &           & \multicolumn{1}{c|}{\vdots} & \                                                 \\
+	  			\tt 0xB1F & MRW       & \tt mhpmcounter31h          & Upper 32 bits of \tt mhpmcounter31, RV32 only.           \\
+				% \hline
+				% \multicolumn{4}{|c|}{User R/W}                          \\
+				% \hline
+				\hline
+				\multicolumn{4}{|c|}{User RO}                              \\
+				\hline
+				\tt 0xC01 & URO       & \tt time       			& Timer for RDTIME instruction.                   		\\
+				\tt 0xCD2 & URO       & \tt instret    			& Instructions-retired counter for RDINSTRET instruction. \\
+				\tt 0xCD3 & URO       & \tt hpmcounter3    		& Performance-monitoring counter. 						\\
+				\tt 0xCD4 & URO       & \tt hpmcounter4    		& Performance-monitoring counter. 						\\
+				          &           & \multicolumn{1}{c|}{\vdots} & \                                          			\\
+				\tt 0xC1F & URO       & \tt hpmcounter31   		& Performance-monitoring counter.						 \\
+				\tt 0xC81 & URO       & \tt timeh       			& Upper 32 bits of \tt time , RV32 only.                	\\
+				\tt 0xC82 & URO       & \tt instreth    			& Upper 32 bits of \tt instret, RV32 only.				 \\
+				\tt 0xC83 & URO       & \tt hpmcounter3h    		& Upper 32 bits of \tt uhpmcounter3, RV32 only.			\\
+				\tt 0xC84 & URO       & \tt hpmcounter4h   		& Upper 32 bits of \tt uhpmcounter4, RV32 only.			\\
+				          &           & \multicolumn{1}{c|}{\vdots} & \                                          			\\
+				\tt 0xC9F & URO       & \tt hpmcounter31h   		& Upper 32 bits of \tt uhpmcounter31, RV32 only.			 \\
+				\hline
+				\multicolumn{4}{|c|}{Machine RO}                         \\
+				\hline
+				\tt 0xF15 & MRO       & \tt mconfigptr      		& Pointer to configuration data structure .        \\
+
+				\hline
+			\end{tabular}
+		}
+	\end{center}
+	\caption{CSRs without functionality}
+	\label{tab:implemented-CSRs}
+\end{table}
+
 \pagebreak{}
 
 
@@ -1757,7 +1975,8 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 \begin{enumerate}
 	\item Trap information is saved to the following registers:
 	      \begin{itemize}
-		      \item The address of the current instruction (PC) in {\tt mepc}
+		      \item The address of the current instruction (PC) for all cores each in their {\tt mepc}
+		      \item The enable ParaNut CPU enable register \ref{pnce} in {\tt pnece}
 		      \item The appropriate cause in {\tt mcause}
 		      \item The current value of the pnx input port in {\tt pnx}
 		      \item Interrupts are disabled by writing the value of MIE to MPIE and setting MIE to zero in {\tt mstatus}
@@ -1765,13 +1984,15 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 	\item The CePU triggers and waits for \underline{all} CoPUs (enabled/linked or not) to change into Mode 0 (halt) after they finish their current instruction.
 	\item Execution is continued at the address saved in the {\tt mtvec} register.
 	\item \textit{Execution of the exception handler}
-	\item The exception handler finishes by using the MRET instruction which continues execution at the address saved in {\tt mepc} and takes all CoPUs back to their previous exception state.
+	\item The exception handler finishes by using the MRET instruction which continues execution at the address saved in {\tt mepc}.
 \end{enumerate}
 
 \begin{commentary}
-	The change in execution mode in step 2 is \underline{not} visible to the programmer through the {\tt pnce} or {\tt pnlm} CSRs. However writing to these registers will influence/change the execution mode of the CoPUs after executing the MRET instruction in the CePU.\\
-	\\
-	We decided on this approach to simplify the hardware and remove the need for shadow registers which save the state of the {\tt pnce} or {\tt pnlm} CSRs on exception entry.
+	The change in execution mode in step 2 is \underline{visible} to the programmer through the {\tt pnce} or {\tt pnlm} CSRs. Writing to these registers will influence/change the execution mode of the CoPUs immediately.
+
+	This allows for simultaneous saving/restoring of the current context and is required for task-switching. In this case the old value can be read from {\tt pnece} and saved to {\tt pnce}, which will re-enable the CoPUs. No additional shadow register is required for {\tt pnlm} as it can be written/read while only the CePU is running.
+
+	Please note that this means, that {\tt pnece} will need to be saved to {\tt pnce} as part of the exception handler to continue execution.
 \end{commentary}
 
 \subsubsection*{If an exception occurs inside a Mode~2 CoPU, the following steps are performed:}
@@ -1783,9 +2004,8 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 	\item \textit{Execution of the exception handler}
 	      \begin{itemize}
 		      \item By reading {\tt pnx} the exception handler can determine on which CoPU(s) an exception occurred and after setting the {\tt pnxsel} CSR the cause and PC of the selected CoPU can be read from the {\tt pncause} and {\tt pnepc}.
-		      \item The CoPU must be enabled through {\tt pnce} to indicate that the exception was handled and that the execution can continue for the next instruction. (Note: otherwise the CoPU will still indicate an exception to the CePU, which in turn will reenter the exception handling procedure again)
 	      \end{itemize}
-	\item The exception handler finishes by using the MRET instruction which continues execution at the address saved in {\tt mepc} and takes all CoPUs out of their exception state.
+	\item The exception handler finishes by using the MRET instruction which continues execution at the address saved in {\tt mepc}.
 \end{enumerate}
 
 \subsubsection*{If an exception occurs inside a Mode~1 CoPU, the following steps are performed:}
@@ -1801,12 +2021,391 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 	\item \textit{Execution of the exception handler}
 	      \begin{itemize}
 		      \item By reading {\tt pnx} the exception handler can determine on which CoPU(s) an exception occurred and after setting the {\tt pnxsel} CSR the cause and PC of the selected CoPU can be read from the {\tt pncause} and {\tt pnepc}.
-		      \item The CoPU must be enabled through {\tt pnce} to indicate that the exception was handled. (Note: otherwise the CoPU will still indicate an exception to the CePU, which in turn will reenter the exception handling procedure again)
 	      \end{itemize}
-	\item The exception handler finishes by using the MRET instruction which continues execution at the address saved in {\tt mepc} and takes all CoPUs out of their exception state.
+	\item The exception handler finishes by using the MRET instruction which continues execution at the address saved in {\tt mepc}.
 \end{enumerate}
 
+\subsubsection*{If an interrupt occurs the following steps are performed (MIE == 1):}
+\begin{enumerate}
+	\item The CePU and CoPUs all complete their current instruction.
+	\item The CePU halts itself and waits for the CoPUs to halt as well (according to the MIE flag set in {\tt mstatus}).
+	\item The CoPUs halt by respecting the interrupt enable flags as set in the CePU (prior to them being disabled).
+	\item Execution is continued at the address saved in the {\tt mtvec} register.
+	\item \textit{Execution of the trap handler}
+	\item The trap handler finishes by using the MRET instruction which continues execution at the address saved in {\tt mepc}.
+\end{enumerate}
+
+\subsubsection*{If an interrupt occurs the following steps are performed (MIE == 0):}
+\begin{enumerate}
+	\item The appropriate interrupt pending bit is set.
+	\item If an exception handler finishes by using the MRET instruction, MPIE is restored and MIE is used accordingly. This means if MIE and the pending bit is set (or the situation which sets the pending bit is unresolved), the trap handler will be entered once more. Otherwise execution at the address saved in {\tt mepc} will continue.
+\end{enumerate}
+
+\chapter{Libparanut}\label{cha:libparanut}
+In order to access the ParaNut's special registers and functionalities, a hardware abstraction layer is provided with the repository.
+The \textit{libparanut} is a C library that provides a low level of abstraction to the processor's func-
+tionalities. This section will give a brief overview about the main features of the library and basic examples on how to use them.
+For more indepth information, see the full reference manual \cite{libparanutmanual}. 
+
+\begin{table}[ht!]
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}PN\_CID PN\_BEGIN\_THREADED \\ (PN\_NUMC numcores)\end{tabular}}      & Put numcores CPUs in threaded mode                                                                         \\ \hline
+	\textbf{int PN\_END\_THREADED (void)}                                                                    & End threaded execution                                                                                     \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}PN\_CID PN\_BEGIN\_LINKED \\ (PN\_NUMC numcores)\end{tabular}}        & Put numcores CPUs in linked mode                                                                           \\ \hline
+	\textbf{int PN\_END\_LINKED (void)}                                                                      & End linked execution                                                                                       \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}int pn\_spinlock\_init \\ (\_pn\_spinlock* spinlock)\end{tabular}}    & Create spinlock                                                                                            \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}int pn\_spinlock\_lock \\ (\_pn\_spinlock* spinlock)\end{tabular}}    & Wait for spinlock (blocking)                                                                               \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}int pn\_spinlock\_trylock \\ (\_pn\_spinlock* spinlock)\end{tabular}} & Try to acquire spinlock (non-blocking)                                                                     \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}int pn\_spinlock\_unlock \\ (\_pn\_spinlock* spinlock)\end{tabular}}  & Unlock spinlock                                                                                            \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}int pn\_spinlock\_destroy\\ (\_pn\_spinlock* spinlock)\end{tabular}}  & Destroy spinlock                                                                                           \\ \hline
+	\textbf{struct \_pn\_spinlock}                                                                           & Synchronization primitive                                                                                  \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}PN\_NUMC pn\_numcores\\ (void)\end{tabular}}                          & \begin{tabular}[c]{@{}l@{}}Get number of cores present in \\ ParaNut processor\end{tabular}                \\ \hline
+	\textbf{PN\_CMSK pn\_m2cap(void)}                                                                        & \begin{tabular}[c]{@{}l@{}}Get number of mode 2 capable cores \\ present in ParaNut processor\end{tabular} \\ \hline
+	\textbf{PN\_CID pn\_coreid(void)}                                                                        & Get id of the core executing the function                                                                  \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}int pn\_halt\_CoPU\\ (PN\_CID coreid)\end{tabular}}                   & \begin{tabular}[c]{@{}l@{}}Halt specific CoPU \\ (must be executed by CePU)\end{tabular}                   \\ \hline
+	\textbf{int64\_t pn\_time\_ns(void)}                                                                     & Get execution time in ns                                                                                   \\ \hline
+	\end{tabular}
+	\caption{Relevant libparanut Types and Functions}
+	\label{tab:libparanutTypesNfuncs}
+	\end{table}
+
+Table \ref{tab:libparanutTypesNfuncs} lists the most relevant functions and types provided by libparanut. Most of the 
+listed library components concern managing parallelism on a ParaNut processor. As discussed in \ref{executionmodes}, 
+the ParaNut offeres two distinct types of parallelism. These are represented as \textit{linked} and \textit{threaded mode} 
+in the \textit{libparanut}.
+Figure \ref{fig:threadedcode} shows a minimal example of threaded execution, Figure \ref{fig:linkedcode} 
+shows how to execute code in Linked Mode. 
+
+In both cases, cid will contain the id of the executing core and may thus be used to selectevly access 
+different data with the parallel running cores. Its content is equivalent to the result of \textit{PN\_CID pn\_coreid(void)}.
+Not that (with the exception of protecting data through mutexes/spinlocks where necessary), the threaded execution does not 
+require any special programming paradigms. Code inbetween \textit{PN\_BEGIN\_THREADED} and \textit{PN\_END\_THREADED} may use 
+any normally available C-code. When running in Linked Mode, code inbetween \textit{PN\_BEGIN\_LINKED} and \textit{PN\_END\_LINKED},
+can not contain any conditional jumps (that may result in different instructions on the active cores). However there is no need 
+to use any special syntax either.
+
+\begin{figure}[ht!]
+	\centering
+	\begin{lstlisting}
+	#include <libparanut.h>
+	int main(){
+
+	 int cid = PN_BEGIN_THREADED(4);
+	 /*
+	 code placed here is executed in parrallel,
+	 in a threaded manner,
+	 by 4 cores (including the CePU)
+	 */
+	 PN_END_THREADED();
+
+	 // When PN_END_THREADED is called by CePU, 
+	 // it will wait for all CoPUs to halt.
+	 // When called by a CoPU, will halt it
+	}
+	\end{lstlisting}
+	\caption{Example using Threaded Mode}
+	\label{fig:threadedcode}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\begin{lstlisting}
+	#include <libparanut.h>
+	int main(){
+	 int cid = PN_BEGIN_LINKED(4);
+	 /*
+	 code placed here is executed in parrallel,
+	 in a SIMD manner.
+	 by 4 cores (including the CePU)
+	 */
+	 PN_END_LINKED();
+	 // PN_END_LINKED is reached by all cores simultaneously,
+	 // all CoPUs are halted afterwards.
+	}
+	\end{lstlisting}
+	\caption{Example using Linked Mode}
+	\label{fig:linkedcode}
+\end{figure}
+
+\chapter{Operating Environments\label{cha:is_ref}}
+
+\section{Bare Metal and newlib\label{sec:is_ref}}
+Most software currently built for and provided with the ParaNut is intended to run 
+baremetall. A number of custom syscalls functions for the ParaNut enable developers 
+to make use of the embedded library \textit{newlib} [https://sourceware.org/newlib/]. Most notably \textit{<stdio.h>}, \textit{<time.h>}.
+In bare metal mode one may additionally use the functionality provided by the \textit{libparanut} as 
+described in \ref{cha:libparanut}. See \textit{hello\_newlib}, \textit{mode1\_demo} and \textit{mode2\_demo} 
+in \textit{sw/applications} for extensive examples on how to program embedded code for the ParaNut processor.
+
+\section{Linux\label{sec:is_ref}}
+\textit{Linux} as one of the most common operating system kernels is already partially starting on the \paranut. It uses \textit{OpenSBI} as a bootloader. A pre-configured setup can be found at \texttt{sw/os/linux}.
+\\
+\\
+Before compiling the project, make sure that the \texttt{config.mk} file of the \paranut has the correct values set. The A and M extensions (\texttt{CFG\_EXU\_M\_EXTENSION}, \texttt{CFG\_EXU\_A\_EXTENSION}) have to be enabled and the number of privilege levels (\texttt{CFG\_PRIV\_LEVELS}) must be set to 3. The TLB (\texttt{CFG\_MMU\_TLB\_ENABLE}) can be enabled for faster execution.
+\\
+\\
+Running\\
+
+\consolebox{\$ cd sw/os/linux}
+\consolebox{\$ make}
+\\
+clones the \textit{Linux} Kernel and \textit{OpenSBI} as well as downloads a compiler toolchain to the \texttt{external} folder. Note that either \texttt{PARANUT\_TOOLS} or directly \texttt{PN\_EXTERNAL} (to the \texttt{external} folder) has to be set.
+It then copies a prepared \textit{Linux} Config inside and compiles a very simple version of the \textit{Linux} Kernel. A device tree \texttt{paranut.dts} is generated from the template \texttt{paranut-template.dts} by filling in values from the config, including the memory address or the \texttt{mtimer} location and frequency. The device tree as well as the Kernel is combined with \textit{OpenSBI} and compiled into a single ELF file.
+\\
+\\
+To run it in the simulator, use\\
+
+\consolebox{\$ make sim}
+\\
+You will first see the \textit{OpenSBI} boot messages appear before the \textit{Linux} Kernel begins to start. Note that this process might take a very long time in the simulator.
+\\
+\\
+For running in hardware, a separate refdesign is provided at \texttt{systems/linux}.
+
+\newpage
+\section{Rust\label{sec:is_ref}}
+\texttt{Abdurrahman Celep}
+\newline
+\subsection{Why Rust with Paranut?}
+The Rust language is a modern and growing programming language, which is similar to C and C++.
+In contrast to other programming languages, memory safety is guaranteed.
+Rust provides security features that focus on preventing program errors that lead to memory access errors or buffer overflows.
+To accomplish this, it uses a borrow checker to validate references.
+Without garbage collection, Rust can guarantee memory safety and has optional reference counting.
+This makes Rust more robust against security vulnerabilities introduced in programming.
+\newline
+\newline
+With the help of this new language, it is possible to write programs for the ParaNut project that can guarantee reliable code and secure memory access.
+
+\subsection{Working with Rust}
+
+To work with the programming language, it is important to look at Rust Cross-Compilation for RISC-V.
+The main aspects are: how \texttt{rustc} works and what configurations are necessary to target RISC-V when compiling Rust programs.
+\newline
+\newline
+The support platforms, also called targets, are separated in three tiers. Each of the tiers has a different set of guarantees. The ParaNut uses
+a custom target \textit{riscv32paranut-unknown-none-elf} platform, which is currently in Tier 3. It means there is no official support for a target and it 
+may or may not work (In our case it works).
+\newline
+\newline
+More information about the platforms can be found on the website \cite{rustcPlatformSupport}.
+\newline
+
+\subsection{Build the Project}
+For the ParaNut processor, the target \textit{riscv32paranut-unknown-non-elf} is needed.
+The custom target \textit{riscv32paranut-unknown-non-elf} in a Json file which can be found in:
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}[language=bash]
+$ <RISCV_TOOLCHAIN_DIR>/sw/hal/riscv-common
+	\end{lstlisting}
+\end{minipage}
+\newline
+\newline
+\subsubsection*{Working with Cargo Enviroment}
+Cargo is a package manager for Rust, which makes development much easier. The package manager downloads the Rust package's dependencies,
+ compiles them, creates distributable packages, and uploads them to creates.io, the Rust community's package registry.\cite{rustupCargo}
+\newline
+\subsubsection*{Configuration}
+First, a project must be created:
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}[language=bash]
+$ cargo new hello_rust
+	\end{lstlisting}
+\end{minipage}
+\newline
+\newline
+It will give the following directory structure:
+\newline
+\newline
+
+\begin{minipage}{\textwidth}
+	\dirtree{%
+	.1 rusty-risc.
+	.2 Cargo.toml.
+	.2 src.
+	.3 main.rs.
+}
+\end{minipage}
+\newline
+\newline
+\newline
+In Chapter \ref{sec::rust_example} main.rs is presented in more details.
+\newline
+\newline
+To use the RISC-V toolchain, the Cargo Environment has to be configured.
+For the configuration a direcory named \texttt{.cargo} containing a file named \texttt{config.toml} has to be created.
+\newline
+\newline
+
+\begin{minipage}{\textwidth}
+	\dirtree{%
+		.1 rusty-risc.
+		.2 .cargo.
+		.3 config.toml.
+		.2 Cargo.toml.
+		.2 src.
+		.3 main.rs.
+	}
+\end{minipage}
+\newline
+\newline
+\newline
+The \texttt{config.toml} file contains the configuration for the package manager.
+When a project is built, cargo searches all parent directories and the current directory for configuration files.\cite{rustupCargoConfiguration}
+\newline
+\newline
+For the ParaNut project the \texttt{config.toml} file looks like:
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}
+[target.riscv32paranut-unknown-none-elf]
+runner = $(RISCV_SIMULATOR)
+
+[build]
+target = "riscv32paranut-unknown-none-elf"
+
+[unstable]
+build-std = ["core", "alloc"]
+	\end{lstlisting}
+\end{minipage}
+To use the \texttt{riscv32paranut-unknown-none-elf} platform support, the default target has to be overwritten in the \texttt{[build]} table.
+This is followed by setting up the platform target in table \texttt{[target.riscv32paranut-unknown-none-elf]}.
+Inside the table the linker, runner and Rustflags can be defined. In the [unstable] table features like core and alloc are included to use them in the project.
+\newline
+\newline
+\subsubsection*{Build the Project}
+Now the Rust project can be built with:
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}[language=bash]
+$ cargo +nightly build
+	\end{lstlisting}
+\end{minipage}
+\newline
+\newline
+After the build, the elf file will be shown in \texttt{target/riscv32paranut-unknown-none-elf}\newline
+\texttt{/debug/<elf-file>} and it can be run with a RISC-V simulator. In case of the ParaNut project use \texttt{pn-sim}.
+
+\subsection{The main Program}\label{sec::rust_example}
+
+The main file has the following structure
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}
+#![no_std]
+#![no_main]
+
+...
+
+[no_mangle]
+pub extern "C" fn main() -> i32 {
+
+	/* inside the main function*/
+
+	loop{} 
+}
+	\end{lstlisting}
+\end{minipage}
+\newline
+\newline
+It is important to note that the program will run on bare metal,
+so the standard Rust library and standard main function can not be used \cite{embedonomiconNostd}.
+They can be disabled with \texttt{\#![no\_std]} and \texttt{\#![no\_main]}.
+The attribute \texttt{no\_mangle} means, that any function exported by Rust that is used outside of Rust must be instructed not be mangled by the compiler.
+This is because the Rust compiler mangles symbol names differently than native code linkers expect \cite{rustNoMangle}.
+In the next step, a custom main function is defined, which ends with an infinity loop.
+\newline
+\newline
+To define the behavior of \texttt{panic!} in a \texttt{no\_std} application, it is important to create a \texttt{panic handler}.
+This ensures that when problems occur, the system is kept in a loop.\cite{rustonomicon}
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}
+use core::panic::PanicInfo;
+
+...
+
+#[panic_handler]
+fn panic(_panic: &PanicInfo<'_>) -> ! {
+	loop {}
+}
+	\end{lstlisting}
+\end{minipage}
+\subsection{Using an intern crate}
+To use the ParanNut library, a special crate is needed (\texttt{bindgen\_paranut\_crate}).
+For this purpose an internal crate was created, which can be found in the
+folder \texttt{/sw/hal/intern\_rust\_crate}. Please note that this folder contains only
+crates that are not published on the crate.io website.
+(If you want create new internal crates, feel free to do it in this directory)
+Also please be sure that \texttt{bindgen} is also installed. (See more about bindgen in \cite{crateioBindgen})
+\newline
+\newline
+To be able to work with the intern crate, the desired crates must be written in the Cargo.toml.
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}
+[dependencies]
+bindgen-stdio-sys = {path = "../rust_intern_crates/bindgen-paranut-sys"}
+	\end{lstlisting}
+\end{minipage}
+\newline
+Under the \texttt{dependencies} the crate \texttt{bindgen\_paranut\_crate} is defined,
+which is located in the path \texttt{/rust\_intern\_crates/bindgen-paranut-sys}.
+After that, the crate can be used in the \texttt{main.rs}.
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}
+use bindgen_paranut_sys as stdio;
+
+...
+
+pub extern "C" fn main() -> i32 {
+	println!("Hello ParaNut!");
+	...
+}
+	\end{lstlisting}
+\end{minipage}
+\newline
+\newline
+\subsection{Using the Simulator}
+The generated elf file can be run in the simulator \texttt{pn\_sim}. Information on building and running the simulator can be found in
+Chapter \ref{sec::systemc_simulation}. Finally, a print output should appear in the terminal.
+\newline
+\newline
+\begin{minipage}{\textwidth}
+	\vspace{-3pt}
+	\begin{lstlisting}
+$ $<PARANUT_HOME>/hw/sim/pn-sim /target/riscv32paranut-unknown-none-elf/debug/<elf file>
+	\end{lstlisting}
+\end{minipage}
+
 \newpage{}
+
+% Here begins the chapter on tools for ParaNut
+\chapter{Tools}
+
+% Here begins the Section User manual for ParaNut: Config creator
+\input{pn_config_creator_manual}
+
 
 \begin{thebibliography}{1}
 	\bibitem[1]{Kief15}Gundolf~Kiefer, Michael~Seider,~and Michael~Schaeferling:
@@ -1814,12 +2413,23 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 	Processor Architecture for FPGA-based Systems'', Proceedings of the
 	\emph{embedded world Conference}, Nuernberg, Feb.~24-26, 2015
 
-	\bibitem[2]{userspec}:Andrew Waterman, Krste Asanovi\'{c}, RISC-V Foundation: ``The RISC-V Instruction Set Manual	Volume I: User-Level ISA'', Document Version 2.2, 2017, www.riscv.org
+	\bibitem[2]{userspec}Andrew Waterman, Krste Asanovi\'{c}, RISC-V Foundation: ``The RISC-V Instruction Set Manual	Volume I: User-Level ISA'', Document Version 2.2, 2017, www.riscv.org
 
 	\bibitem[3]{privspec}Andrew Waterman, Krste Asanovi\'{c}, RISC-V Foundation: ``The RISC-V Instruction Set Manual	Volume II: Privileged Architecture'', Document Version 1.10, 2017, www.riscv.org
 
 	\bibitem[4]{HePa07}John.~L.~Hennessy, David~A.~Patterson: ``Computer
-	Architecture: A Quantitative Approach'', 5th edition, Elsevier, 2012
+	Architecture: A Quantitative Approach'', 6th edition, Elsevier, 2019
+	\bibitem[5]{Mey22}Christian~H.~Meyer, ``A Memory Management Unit for the ParaNut'', 2022
+	\bibitem[6]{rustupChannels} ``The rustup book: 2.Concepts: 2.1.Channels'', [Online: accessed 13. Jun. 2023], https://rust-lang.github.io/rustup/concepts/channels.html
+	\bibitem[7]{rustcPlatformSupport} ``The rustc book: 6.Platfrom Support'', [Online: accessed 13. Jun. 2023], https://doc.rust-lang.org/rustc/platform-support.html
+	\bibitem[8]{rustupCargo} ``The Cargo book'', [Online: accessed 13. Jun. 2023], https://doc.rust-lang.org/cargo/
+	\bibitem[9]{rustupCargoConfiguration} ``The Cargo book: 3.Cargo Reference: 3.6.Configuration'', [Online: accessed 13. Jun. 2023], https://doc.rust-lang.org/cargo/reference/config.html
+	\bibitem[10]{embedonomiconNostd} ``Embedonomicon: 1. The smallest \#![no\_std] program'', [Online: accessed 13. Jun. 2023], https://docs.rust-embedded.org/embedonomicon/smallest-no-std.html
+	\bibitem[11]{rustNoMangle} ``The Embedded Rust Book: 10.Interoperability: 10.2.A little Rust with your C'', [Online: accessed 13. Jun. 2023], https://docs.rust-embedded.org/book/interoperability/rust-with-c.html
+	\bibitem[12]{rustonomicon} ``The Rustonomicon: 12.Beneath std: 12.1.\#[panic\_handler]'', [Online: accessed 13. Jun. 2023], https://doc.rust-lang.org/nomicon/panic-handler.html
+	\bibitem[13]{crateioBindgen} ``crate.io: bindgen'', [Online: accessed 13. Jun. 2023],https://crates.io/crates/bindgen
+	\bibitem[14]{geeksforgeeksLibrary} ``Geeksforgeeks: Rust - Creating a Library'', [Online: accessed 13. Jun. 2023], https://www.geeksforgeeks.org/rust-creating-a-library/
+	\bibitem[15]{libparanutmanual}A. Pfuetzner:  ``libparanut'', [Online: accessed 09. Jun. 2023], https://github.com/hsa-ees/paranut/blob/master/doc/libparanut\_manual.pdf
 \end{thebibliography}
 \addcontentsline{toc}{chapter}{Bibliography}
 
@@ -1842,10 +2452,10 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 	\begin{lstlisting}[label={lst:hello-newlib-c}, language={c},caption={hello\_newlib.c, simple application using the newlib},captionpos=b]
 	#include <stdio.h>
 	#include <unistd.h>
-			
+
 	int main () {
 		int n;
-		
+
 		for (n = 1; n <= 10; n++)
 			printf ("%2i. Hello World!\n", n);
 		return 0;
@@ -1853,105 +2463,55 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 		\end{lstlisting}
 
 	\begin{lstlisting}[label={lst:hello-newlib-c}, language={make},caption={Makefile, for building software with the newlib},captionpos=b]
- # Root of ParaNut repository or local project  
- PARANUT ?= ../..
- 
- # Flash target options
- PN_FIRMWARE_ELF ?= 
- PN_SYSTEM_HDF ?=
- PN_SYSTEM_BIT ?=
- 
- # Configuration options 
- CROSS_COMPILE ?= riscv64-unknown-elf
- 
- CC      := $(CROSS_COMPILE)-gcc
- GXX     := $(CROSS_COMPILE)-g++
- OBJDUMP := $(CROSS_COMPILE)-objdump
- OBJCOPY := $(CROSS_COMPILE)-objcopy
- GDB     := $(CROSS_COMPILE)-gdb
- AR      := $(CROSS_COMPILE)-ar
- SIZE    := $(CROSS_COMPILE)-size
- 
- ELF = hello_newlib
- SOURCES = $(wildcard *.c)
- OBJECTS = $(patsubst %.c,%.o,$(SOURCES)) 
- HEADERS = $(wildcard *.h)
- 
- PN_SYSTEMS_DIR = $(PARANUT)/systems
- RISCV_COMMON_DIR = $(PARANUT)/sw/riscv_common
- 
- CFG_MARCH ?= rv32i
- 
- CFLAGS = -O2 -march=$(CFG_MARCH) -mabi=ilp32 -I$(RISCV_COMMON_DIR) 
- LDFLAGS =  $(CFLAGS) -static -nostartfiles -lc $(RISCV_COMMON_DIR)/startup.S $(RISCV_COMMON_DIR)/syscalls.c -T $(RISCV_COMMON_DIR)/paranut.ld
- 
- # Software Targets
- all: $(ELF) dump
- 
- $(ELF): $(OBJECTS)
- $(CC) -o $@ $^ $(LDFLAGS)
- 
- %.o:	%.c $(HEADERS)
- $(CC) -c $(CFLAGS) $<
- 
- 
- # ParaNut Targets
- .PHONY: sim
- sim: $(ELF)
- +$(MAKE) -C $(PARANUT)/hw/sim pn-sim
- $(PARANUT)/hw/sim/pn-sim -t0 $<
- 
- # Generic Flash targets (set PN_* accordingly)
- .PHONY: flash flash-bit
- flash: bin
- pn-flash -c -p $(ELF).bin $(PN_SYSTEM_HDF) $(PN_FIRMWARE_ELF)
- 
- flash-bit: bin
- pn-flash -c -b $(PN_SYSTEM_BIT) -p $(ELF).bin $(PN_SYSTEM_HDF) $(PN_FIRMWARE_ELF)
- 
- 
- # Special System Flash targets for testing inside the source repository
- .PHONY: flash-%
- flash-%: bin
- if [ ! -d $(PN_SYSTEMS_DIR) ]; then echo; echo "INFO: The flash targets are only for testing inside the source repository!"; echo; exit 1; fi
- pn-flash -c -p $(ELF).bin $(PN_SYSTEMS_DIR)/$*/hardware/build/system.hdf $(PN_SYSTEMS_DIR)/$*/hardware/firmware/firmware.elf
- 
- flash-%-bit: bin
- if [ ! -d $(PN_SYSTEMS_DIR) ]; then echo "INFO: The flash targets are only for testing inside the source repository!"; exit 1; fi
- pn-flash -c -b $(PN_SYSTEMS_DIR)/$*/hardware/build/system.bit -p $(ELF) \
- $(PN_SYSTEMS_DIR)/$*/hardware/build/system.hdf $(PN_SYSTEMS_DIR)/$*/hardware/firmware/firmware.elf
- 
-  
- # Misc Targets
- .PHONY: dump
- dump: $(ELF).dump
- $(ELF).dump: $(ELF)
- $(OBJDUMP) -S -D $< > $@
- 
- .PHONY: bin
- bin: $(ELF).bin
- $(ELF).bin: $(ELF) 
- $(OBJCOPY) -S -O binary $< $@
- 
- .PHONY: clean
- clean:
- rm -f *.o *.o.s *.c.s $(ELF) $(ELF).bin $(ELF).dump 
+################# Software Configuration ###############
+
+# SOFTWARE_SRC:               Sources that are used for Simulation as well as 
+#                             synthesis. (including the testbench/sc_main file)
+SOFTWARE_SRC ?= hello_newlib.c
+		
+# LIBRARY_DEPENDENCIES:      Paranut specific libraries, this software 
+#                            depends on. Mainly used to make shure the respective 
+#                            files are built
+LIBRARY_DEPENDENCIES ?= 
+		
+# SOFTWARE_CFLAGS:            Additional compiler flags this software needs
+SOFTWARE_CFLAGS ?= 
+		
+# SOFTWARE_LDFLAGS:           Additional linker flags this software needs
+SOFTWARE_LDFLAGS ?=  
+		
+# SYSTEM:					  Defines the system the software is run on
+#                             in simulation as well as on hardware
+PN_SYSTEM ?= refdesign
+		
+		
+########################################################
+##### DO NOT EDIT FROM HERE ON #########################
+########################################################
+		
+################# Module Makefile ######################
+APPLICATION_DIR:= $(abspath $(CURDIR))
+PARANUT_HOME ?= $(CURDIR)/../../..
+		
+################# Automatic Name Generation ############
+# Get Module name from folder name
+SOFTWARE_NAME = $(lastword $(subst /, ,$(APPLICATION_DIR)))
+		
+		
+################# Directory Makefile Include ###########
+include $(PARANUT_HOME)/directory-base.mk
+		
+################# Master Makefile Include #############
+		
+#######################################################
+##### CUSTOM TARGETS ##################################
+#######################################################
 		\end{lstlisting}
-
-	The Makefile requires the correct path to the top-level paranut folder \texttt{PN\_PARANUT} set correctly to include the following \paranut specific files:
-	\begin{itemize}
-		\item \textbf{\texttt{startup.s}:} \paranut startup file containing the reset
-		      routine.
-		\item \textbf{\texttt{syscalls.c}:} Implementation of the system calls required by the newlib (libgloss).
-		\item \textbf{\texttt{encoding.h}}: Defines and other helpers.
-		\item \textbf{\texttt{paranut.ld}}: Linker script for the \paranut memory model.
-	\end{itemize}
-
+	The Makefile requires the correct path to the top-level paranut folder \texttt{PARANUT\_HOME} set correctly to include the following \paranut specific files:
 	By default the parameter \texttt{CFG\_MARCH} is set to rv32i (only RV32I instructions). These can be changed according to the configuration made in the global config file.\\
-
 	To build the \texttt{hello\_newlib} application follow these steps (provided you are currently in the top level directory of the paranut repository):\\
 
-	\consolebox{\$ cd sw/hello\_newlib}
+	\consolebox{\$ cd sw/applications/hello\_newlib}
 	\consolebox{\$ make}
 
 	Example for a build with different configuration:\\
@@ -1959,9 +2519,12 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 	\consolebox{\$ make CFG\_MARCH=rv32im}
 
 	\subsection{Run the application in the SystemC simulation}
+	\label{sec::systemc_simulation}
 	To run the application in the SystemC simulation run the \texttt{paranut\_tb} with the built ELF file as parameter:\\
 
-	\consolebox{\$ \$PARANUT\_HOME/hw/sim/pn-sim hello\_newlib}
+	\consolebox{\$ \$PARANUT\_HOME/systems/refdesign/hw/sysc/pn-sim hello\_newlib}
+
+	
 
 	Or use the \texttt{sim} target of the Makefile:\\
 
@@ -1969,7 +2532,7 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 
 	To get a \emph{GTK-Wave} compatible trace file run the SystemC simulation with the \texttt{-t} parameter and a number bigger than 0:\\
 
-	\consolebox{\$ \$PARANUT\_HOME/hw/sim/pn-sim -t1 hello\_newlib}
+	\consolebox{\$ \$PARANUT\_HOME/systems/refdesign/hw/sysc/pn-sim -t1 hello\_newlib}
 
 	\begin{itemize}
 		\item \textbf{\texttt{-t0}:} No trace file will be generated.
@@ -1977,6 +2540,90 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 		\item \textbf{\texttt{-t2}:} First level of internal module signals (EXU, MEMU, IFU, LSU, ...).
 		\item \textbf{\texttt{-t3}:} Second level of internal modules (MExtension, ReadPorts, WritePorts, ...)
 	\end{itemize}
+
+	\section{Installing GDB \label{sec:GDB_install}}
+	This chapter explains how to install a version of GDB in which the text user interface(tui) is enabled.
+
+	\textbf{Prerequisites:}
+	\begin{itemize}
+		\item libncurses-dev to be able to compile gdb with tui
+		\item The packages listed here: \url{https://github.com/riscv-collab/riscv-gnu-toolchain}
+		\item a symbolic link python that points to python3
+	\end{itemize}
+
+	\textbf{Information:}
+	\begin{itemize}
+		\item Buildtime with the -j4 option: 22 minutes
+		\item Size required for the repository: 11 GB
+		\item Size required for installed Toolchain: 1.4 GB
+		\item Installs the complete riscv-gnu-toolchain an the multilib libraray
+	\end{itemize}
+
+	To do this follow these instructions:
+
+	Install libncurses.
+	\consolebox{\$ sudo apt install libncurses-dev}
+
+	If the "python" command is not available on your system you need to create a symbolic
+	link named "python" pointing to the "python3" executable.\\
+
+	Download the source code from the GitHub repository.
+	\consolebox{\$ git clone https://github.com/riscv/riscv-gnu-toolchain}
+
+	Change directory into the newly downloaded repository.
+	\consolebox{\$ cd riscv-gnu-toolchain}
+
+	Checkout the Version "2023.01.04" with the following command
+	\consolebox{\$ git checkout 2023.01.04}
+
+	Configuring the toolchain with the following command (remove the \textbackslash from the command):
+	\consolebox{\$ ./configure -{}-prefix=/home/<username>/toolchain \textbackslash}
+	\consolebox{-{}-with-multilib-generator="rv32i-ilp32-{}-;rv32im-ilp32-{}-;rv32ima-ilp32-{}-"}
+	Note that the given prefix path is only a sugestion and can be changed by the user.
+
+	Compile and install the toolchain.
+	\consolebox{\$ make}
+
+	Now you have installed a complete toolchain from which only GDB is needed.
+	To only use the GDB from the compiled toolchain you can rename the GDB version from the
+	old toolchain and create a symbolic link that points to the new version in its place.
+	Alternatifly you can call this version of GDB by it's full path.
+	\section{Installing OpenOCD \label{sec:OpenOCD_install}}
+
+	This chapter explains how to install a OpenOCD version which supports the switching of memory access modes.
+
+	\textbf{Information:}
+	\begin{itemize}
+		\item Buildtime with the -j4 option: 1 minute
+		\item Size required for the repository: 227 MB
+		\item Size required for installed Toolchain: 23 MB
+		\item Installs OpenOCD in Version 0.12.0
+	\end{itemize}
+
+	To do this follow these instructions:
+
+	Download the source code from the GitHub repository.
+	\consolebox{\$ git clone https://git.code.sf.net/p/openocd/code openocd-code}
+
+	Change directory into the newly downloaded repository.
+	\consolebox{\$ cd openocd-code}
+
+	Checkout the Version "v0.12.0" with the following command
+	\consolebox{\$ git checkout v0.12.0}
+
+	Configuring the toolchain with the following commands:
+	\consolebox{\$ ./bootstrap}
+	\consolebox{\$ ./configure -{}-prefix=/home/<username>/openocd -{}-enable-remote-bitbang}
+	Note that the given prefix path is only a sugestion and can be changed by the user.\\
+
+
+	Compile and install the toolchain.
+	\consolebox{\$ make}
+	\consolebox{\$ make install}
+
+	To use the newly installed version of OpenOCD you need to add the folder of the executable to the systems path variable.
+	You can either add, the following command, to your .bashrc or run it before using OpenOCD.
+	\consolebox{\$ export PATH="<Path to OpenOCD bin folder>:\$PATH"}
 
 
 	\section{Using GDB with the SystemC simulation\label{sec:gdb-debug}}
@@ -1993,8 +2640,10 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 
 	Run the SystemC simulation with the ELF file you want to debug and the \texttt{-d} parameter to tell it to wait for a OpenOCD connection:\\
 
-	e.g. local repository:
-	\consolebox{\$ \$PARANUT\_HOME/hw/sim/pn-sim -d hello\_newlib}
+	Run the command for the local repository from the root of the repository.
+
+	e.g. local repository for hello\_newlib:
+	\consolebox{\$ /<Path to Reposetory>/systems/refdesign/hw/sysc/pn-sim -d <Path to Executable>/hello\_newlib}
 
 	e.g. installed:
 	\consolebox{\$ \$PARANUT\_HOME/bin/pn-sim -d hello\_newlib}
@@ -2004,13 +2653,45 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 		Currently you have to use the OpenOCD built with the RISC-V tools. If you have not added the \texttt{\$RISCV/bin} folder to your PATH or have a different version installed start OpenOCD with the full path name to avoid errors. E.g. \texttt{/opt/riscv/bin/openocd}
 	\end{commentary}
 	\vspace{.4cm}
+
+
+	Run the command for the local repository from the root of the repository.
+
+	local repository:
+	\consolebox{\$ openocd -f /<Path to Reposetory>/tools/etc/openocd-sim.cfg}
+
+	installed:
 	\consolebox{\$ openocd -f \$PARANUT\_TOOLS/etc/openocd-sim.cfg}
 
+	\begin{commentary}
+		To prevent error messages regarding csr register access please uncomment the
+		\texttt{riscv expose\_csrs} line for the right privivleg level. In the file \texttt{openocd-sim.cfg} located in tools/etc of the \paranut repository
+	\end{commentary}
+
+	\begin{commentary}
+		To use OpenOCD in a more efficent manner please install OpenOCD 0.12.0 as discribed in \ref{sec:OpenOCD_install} and
+		uncomment the following line \texttt{riscv set\_mem\_access abstract progbuf} in the \texttt{openocd-sim.cfg} file. Located in the folder tools/etc of the \paranut repository.
+	\end{commentary}
+
 	In yet another shell start the RISC-V GDB debug session:\\
+	For this you need to change into the directory containing the executable.\\
+	e.g for hello\_newlib:
+	\consolebox{\$ cd /<Path to Reposetory>/sw/applications/hello\_newlib}\\
+
+	run gdb for hello\_newlib:
 	\consolebox{\$ riscv64-unknown-elf-gdb hello\_newlib}
 
-	Lastly connect to OpenOCD as remote target:\\
+
+	Then connect to OpenOCD as remote target:\\
 	\consolebox{(gdb) target remote localhost:3333}
+
+	Load the register configuration for the current privilege level:\\
+	Replace the x with the privilege level configured in config.mk\\
+	Note: This path to the file is given for the case that gdb was started in the root of the repository.
+	If GDB was not started in that folder you need to ajust the path\\
+	\consolebox{(gdb) set tdesc filename /<Path to Reposetory>/tools/etc/gdb\_csr\_priv<x>.xml}\\
+
+
 
 	Now you are able to use all standard GDB commands to debug the application:\\
 	\consolebox{(gdb) break main}
@@ -2018,6 +2699,9 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 	\consolebox{(gdb) next}
 	\consolebox{(gdb) print n}
 	\consolebox{(gdb) help}
+
+	Additionally when you installed GDB as discribed in \ref{sec:GDB_install} then you can use commands like the following to switch into the tui mode:
+	\consolebox{(gdb) layout regs}
 
 	To reset the processor and start from the reset vector use following command:\\
 	\consolebox{(gdb) monitor reset halt}
@@ -2080,13 +2764,41 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 		Currently you have to use the OpenOCD built with the RISC-V tools. If you have not added the \texttt{\$RISCV/bin} folder to your PATH or have a different version installed start OpenOCD with the full path name to avoid errors. E.g. \texttt{/opt/riscv/bin/openocd}
 	\end{commentary}
 	\vspace{.4cm}
+	Run the command for the local repository from the root of the repository.
+
+	local repository:
+	\consolebox{\$ openocd -f /<Path to Reposetory>/tools/etc/openocd-board.cfg}
+
+	installed:
 	\consolebox{\$ openocd -f \$PARANUT\_TOOLS/etc/openocd-board.cfg}
 
+
+	\begin{commentary}
+		To prevent error messages regarding csr register access please uncomment the
+		\texttt{riscv expose\_csrs} line for the right privivleg level. In the file \texttt{openocd-board.cfg} in tools/etc of the \paranut repository.
+	\end{commentary}
+
+	\begin{commentary}
+		To use OpenOCD in a more efficent manner please install OpenOCD 0.12.0 as discribed in \ref{sec:OpenOCD_install} and
+		uncomment the following line \texttt{riscv set\_mem\_access abstract progbuf} in the \texttt{openocd-board.cfg} file. Located in the folder tools/etx of the \paranut repository.
+	\end{commentary}
+
 	In yet another shell start the RISC-V GDB debug session:\\
-	\consolebox{\$ riscv64-unknown-elf-gdb software/hello\_newlib}
+
+	eg for hello\_newlib
+	\consolebox{\$ riscv64-unknown-elf-gdb /<Path to Reposetory>/refdesign/software/hello\_newlib}
+
 
 	Lastly connect to OpenOCD as remote target:\\
 	\consolebox{(gdb) target remote localhost:3333}
+
+	Load the register configuration for the current privilege level:\\
+	Replace the x with the privilege level configured in config.mk located in the root of the repository.\\
+	Note: This path to the file is given for the case that gdb was started in the root of the repository.
+	If GDB was not started in tht folder you need to ajust the path\\
+	E.g:
+	\consolebox{(gdb) set tdesc filename /<Path to Reposetory>/tools/etc/gdb\_csr\_priv<x>.xml}\\
+
 
 	Now you are able to use all standard GDB commands to debug the application:\\
 	\consolebox{(gdb) break main}
@@ -2094,6 +2806,9 @@ may arise, excluding the {\tt ParaNut CoPU exception}, which is used to signal t
 	\consolebox{(gdb) next}
 	\consolebox{(gdb) print n}
 	\consolebox{(gdb) help}
+
+	Additionally when you installed GDB as discribed in \ref{sec:GDB_install} then you can use commands like the following to switch into the tui mode:
+	\consolebox{(gdb) layout regs}
 
 	Load the elf again through GDB:\\
 	\consolebox{(gdb) load}

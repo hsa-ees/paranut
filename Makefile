@@ -45,122 +45,87 @@
 ################################################################################
 
 
-# There are two main locations of ParaNut files, which can be referenced by these environment variables:
-# - PARANUT is to be set within a project / specific make files to point to the ParaNut (editable) sources to work with.
-# - PARANUT_TOOLS points to the (static) tools and helpers and is set when sourcing the ParaNut settings.[z]sh file.
-#
-# Both of these environment variables have different meanings depending on the stage/place you work with ParaNut:
-#  a) Source tree (e.g. obtained by a git clone from the ParaNut repository):
-#     - PARANUT -> source tree
-#     - PARANUT_TOOLS -> source tree
-#
-#  b) Installation (not to be used directly, as one usually creates a project from here and works within the project, see below):
-#     - (PARANUT -> installation, usually not used)
-#     - (PARANUT_TOOLS -> installation, usually not used)
-#
-#  c) Project (created by 'pn-newproject'):
-#     - PARANUT -> project
-#     - PARANUT_TOOLS -> installation
+# When settings.sh is sourced you can access the root of the ParaNut project 
+# - PARANUT_HOME is to be set within a project / specific make files to point to the ParaNut (editable) sources to work with.
 
+# define default target
+.PHONY: build
+build: build-all
 
+# This file is located at the root of the ParaNut git/install dir
+PARANUT_HOME ?= $(abspath $(CURDIR))
 
-# Software projects and systems to build/clean ...
-PN_SW_DIRS = coremarkv1.0 dhrystone dhrystone2.2 libparanut mode1_demo test_riscv hello_newlib libparanut_unittest mode2_demo
+ifdef INSTALL_PREFIX
+INSTALL_DIR = $(abspath $(INSTALL_PREFIX))
+endif
+
+# include common variables
+include directory-base.mk
 
 # ParaNut Xilinx IP core target directory
 IP_XILINX_TARGET_DIR ?= paranut_ip
 
-# Installation target directory ...
-PREFIX ?= /opt/paranut
-
-# This Makefile delegates work, thus we need to avoid relative paths:
-PREFIX_ABS = $(abspath $(PREFIX))
-
-
-
-
 ################################################################################
 #                                                                              #
-#     Default and help targets                                                 #
+#     Help targets                                                 #
 #                                                                              #
 ################################################################################
-
-
-# Default target ...
-.PHONY: all
-all: build
-
 
 # Update version file
-version.env: update-version
+$(VERSION_ENV): update-version
 
 .PHONY: update-version
 update-version:
-	@echo "Updating version file ..."
-	@if [ -d .git ]; then \
-	  echo "# Git describe" > version.env.new; \
-	  echo "PN_GITVERSION="$(shell git describe --tags --long --dirty='*')  >> version.env.new; \
-	  echo "# MIMPID Version Value" >> version.env.new; \
-	  echo "CFG_NUT_MIMPID="$(shell hw/tools/generate_mimpid.sh) >> version.env.new; \
-	else \
-	  echo "# Git describe" > version.env.new; \
-	  echo "PN_GITVERSION=0.0-0*" >> version.env.new; \
-	  echo "# MIMPID Version Value" >> version.env.new; \
-	  echo "CFG_NUT_MIMPID=0x000001" >> version.env.new; \
-	fi
-	@diff -q version.env version.env.new > /dev/null 2>&1 || mv version.env.new version.env; \
-	rm -f version.env.new; \
+	$(HW_TOOLS_DIR)/generate_versionfile.sh -g -t $(VERSION_ENV) -p ./
 
 
 # Print usage info ...
 .PHONY: help
 help:
 	@echo
+	@echo "Main Makefile for building and installing ParaNut"
+	@echo
 	@echo "Usage: make [<target>] [<parameter>=<value> ...]"
 	@echo
 	@echo "Targets:"
 	@echo
-	@echo "  build       : Build SystemC simulator and the ParaNut support library,"
-	@echo "                prepare for installation"
-	@echo "  install     : Install ParaNut to the directory given by parameter PREFIX"
-	@echo "                (default: /opt/paranut)"
-	@echo "  clean       : Delete most files created during the build process"
-	@echo "  veryclean   : Delete all files created during the build process"
+	@echo "  build                 : Build SystemC simulator and the ParaNut support library,"
+	@echo "                          prepare for installation"
+	@echo "  clean                 : Delete most files created during the build process"
+	@echo  
+	@echo "  help                  : Print this help"
+	@echo  
+	@echo "  hello                 : Build and simulate an example ParaNut program"
+	@echo "                          (from 'sw/hello_newlib')"
+	@echo  
+	@echo "  build-all             : Build everything, including software projects and systems"
+	@echo  
+	@echo "  build-sim             : Build the SystemC simulator ('libparanutsim.a' and 'pn-sim')"
+	@echo "  build-lib             : Build the ParaNut support library ('libparanut.a')"
+	@echo "  build-doc             : Build the ParaNut documentation files"
+	@echo  
+	@echo "  install               : Install ParaNut to the directory given by parameter INSTALL_DIR"
+	@echo "                          (default: /opt/paranut)"
 	@echo
-	@echo "  help        : Print this help"
-	@echo
-	@echo "  hello       : Build and simulate an example ParaNut program"
-	@echo "                (from 'sw/hello_newlib')"
-	@echo
-	@echo "  build-all   : Build everything, including software projects and systems"
-	@echo "  clean-all   : Delete most files created during the build process, including software projects and systems"
-	@echo "  veryclean-all   : Delete all files created during the build process, including software projects and systems"
-	@echo
-	@echo "  build-sim         : Build the SystemC simulator ('libparanutsim.a' and 'pn-sim')"
-	@echo "  build-lib         : Build the ParaNut support library ('libparanut.a')"
-	@echo "  build-ip-xilinx   : Build a ParaNut IP core for Xilinx FPGAs"
-	@echo "  build-sw          : Build all software projects (as defined by PN_SW_DIRS)"
-	@echo "  build-systems     : Build all systems (may be defined by PN_SYSTEMS,"
-	@echo "                      defaults to the ones declared in 'systems/Makefile')"
-	@echo
-	@echo "  test-sim          : Run test to verify basic functionality of simulation"
-	@echo "  test-lib          : Run unittests to verify libparanut functionality"
-	@echo "  test-vhdl         : Run testbenches to test vhdl code"
-	@echo "  test-sysc         : Run testbenches to test sysc code"
-	@echo
-	@echo "Parameters:"
-	@echo
-	@echo "  PN_SW_DIRS           : Space-separated list of software directories that will be cleaned"
-	@echo "  PN_SYSTEMS           : Space-separated list of systems (e.g. for target 'build-systems')"
-	@echo "  PREFIX               : Target directory for make install"
-	@echo "  IP_XILINX_TARGET_DIR : ParaNut Xilinx IP core target directory (for target 'build-ip-xilinx'),"
-	@echo "                         default directory is 'hw/tools/paranut_ip'."
-
+	@echo "Parameters:"  
+	@echo  
+	@echo "  INSTALL_PREFIX        : Target directory for make install"
+	@echo "  IP_XILINX_TARGET_DIR  : ParaNut Xilinx IP core target directory (for target 'build-ip-xilinx'),"
+	@echo "                          default directory is 'hw/tools/paranut_ip'."
+	@echo "  USE_ICSC              : Use the ICSC config section from systemc-config.mk to enable its libsystemc"
+	
+# @echo "  build-systems     : Build all systems (may be defined by PN_SYSTEMS,"
+# @echo "                      defaults to the ones declared in 'systems/Makefile')"
+# @echo "  build-sw          : Build all software projects (as defined by PN_SW_DIRS)"
+# @echo "  test-sim          : Run test to verify basic functionality of simulation"
+# @echo "  test-vhdl         : Run testbenches to test vhdl code"
+# @echo "  test-sysc         : Run testbenches to test sysc code"
+# @echo "  build-ip-xilinx   : Build a ParaNut IP core for Xilinx FPGAs"
 
 # Build and run "hello world" example ...
 PHONY: hello
 hello: build
-	$(MAKE) -C sw/hello_newlib sim
+	$(MAKE) -C $(SW_DIR)/applications/hello_newlib sim
 
 
 
@@ -174,27 +139,36 @@ hello: build
 
 
 # Build everything except vendor-specific synthesis products ...
-.PHONY: build
-build: build-sim build-lib
+.PHONY: build-all
+build-all: build-sim build-lib
 
 
 .PHONY: build-sim
-build-sim: config.mk
+build-sim: config.mk $(VERSION_ENV)
 	@echo
 	@echo "######### Building SystemC Simulator #########";
 	@echo
-	$(MAKE) -C hw/sim build
+	$(MAKE) -C $(PNS_SYSC_DIR) build-sim
 
 
 # Build the ParaNut support library/libraries ...
 .PHONY: build-lib
-build-lib:
+build-lib: $(VERSION_ENV)
 	@echo
 	@echo "######### Building ParaNut Support Library #########";
 	@echo
-	+$(MAKE) -C sw/libparanut
+	+$(MAKE) -C $(HAL_DIR)/libparanut build-lib
+	+$(MAKE) -C $(HAL_DIR)/libgpio build-lib
+	+$(MAKE) -C $(HAL_DIR)/libuart build-lib
+	+$(MAKE) -C $(HAL_DIR)/libbluetooth build-lib
 
-
+# Build the ParaNut documentation ...
+.PHONY: build-doc
+build-doc: $(VERSION_ENV)
+	@echo
+	@echo "######### Building ParaNut Documentation #########";
+	@echo
+	$(MAKE) -C doc-src build
 
 
 
@@ -212,19 +186,19 @@ build-ip-xilinx:
 	@echo "######### Generating ParaNut IP core for Xilinx FPGAs #########"
 	@echo
 	# Execute all HLS targets first
-	+$(MAKE) -C hw/sysc copy
+	+$(MAKE) -C $(HW_DIR)/sysc copy
 	# Build the IP core
-	+$(MAKE) -C hw/tools -f Makefile.inc $@ IP_XILINX_TARGET_DIR=$(IP_XILINX_TARGET_DIR)
+	+$(MAKE) -C $(HW_DIR)/tools -f Makefile.inc $@ IP_XILINX_TARGET_DIR=$(IP_XILINX_TARGET_DIR)
 
 
 
-# Build the ParaNut support library/libraries ...
+# Build the ParaNut supplemented systems ...
 .PHONY: build-systems
 build-systems:
 	@echo
 	@echo "######### Building ParaNut Systems #########";
 	@echo
-	+$(MAKE) -C systems build
+	+$(MAKE) -C $(SYSTEMS_DIR) build
 
 
 
@@ -242,43 +216,47 @@ ROOT_FILES = settings.sh settings.zsh
 # Top-Level info, config and Makefile
 SRC_FILES = README.md \
             config.mk \
-            Makefile
+            Makefile \
+			directory-base.mk \
+			systemc-config.mk
 
 
-# Install the ParaNut repository to the directory specified by PREFIX ...
+# Install the ParaNut repository to the directory specified by INSTALL_DIR ...
 .PHONY: install
-install: build update-version
+install: build
 	@echo 
-	@echo "######### Installing to $(PREFIX) #########" 
+	@echo "######### Installing to $(INSTALL_DIR) #########" 
 	@echo 
 	@if [ -d src ]; then \
 	  echo "INFO: The install target is only available inside the source repository!";\
 	else \
 	  # Create target dir \
-	    mkdir -p $(PREFIX_ABS) \
+	    mkdir -p $(INSTALL_DIR) \
 	  # Install ROOT_FILES \
 	    for FILE in $(ROOT_FILES); do \
-	      install -Dp -m 644 -t $(PREFIX_ABS)/`dirname $$FILE` $$FILE; \
+	      install -Dp -m 644 -t $(INSTALL_DIR)/`dirname $$FILE` $$FILE; \
 	    done; \
 	  # Install SRC_FILES \
 	    for FILE in $(SRC_FILES); do \
-	      install -Dp -m 644 -t $(PREFIX_ABS)/src/`dirname $$FILE` $$FILE; \
+	      install -Dp -m 644 -t $(INSTALL_DIR)/`dirname $$FILE` $$FILE; \
 	    done; \
 	  # Install DOCUMENTATION \
-	    $(MAKE) -C doc-src install PREFIX=$(PREFIX_ABS); \
+	    $(MAKE) -C $(DOC_SRC_DIR) install; \
 	  # Install SW \
-	    $(MAKE) -C sw install PREFIX=$(PREFIX_ABS); \
+	    $(MAKE) -C $(SW_DIR) install; \
 	  # Install HW \
-	    $(MAKE) -C hw install PREFIX=$(PREFIX_ABS); \
+	    $(MAKE) -C $(HW_DIR) install; \
 	  # Install tools \
-	    $(MAKE) -C tools install PREFIX=$(PREFIX_ABS); \
-	  # Add version.env \
-	    cp version.env  $(PREFIX_ABS)/src/version.env; \
+	    $(MAKE) -C $(TOOLS_DIR) install; \
+	  # Install config creator \
+	    $(MAKE) -C $(CFG_CREATOR_DIR) install; \
+	  # Install default system \
+	    $(MAKE) -C $(SYSTEMS_DIR) install; \
+	  # Install external \
+	    $(MAKE) -C $(EXTERNAL_DIR) install; \
+	  # Add $(VERSION_ENV) \
+	    cp $(VERSION_ENV)  $(INSTALL_DIR)/version.env; \
 	fi
-
-
-
-
 
 ################################################################################
 #                                                                              #
@@ -286,19 +264,14 @@ install: build update-version
 #                                                                              #
 ################################################################################
 
-# test libparanut
-PHONY: test-lib
-test-lib:
-	$(MAKE) -C sw/libparanut_unittest;
-
 # test basic functionality of simulator
 PHONY: test-sim
 test-sim: test-hello_newlib
 
-# run sysc test benches
-PHONY: test-sysc
-test-sysc:
-	$(MAKE) -C hw/sysc/tb run;
+# # run sysc test benches
+# PHONY: test-sysc
+# test-sysc:
+# 	$(MAKE) -C hw/sysc/tb run;
 
 
 # run vhdl test benches
@@ -318,35 +291,27 @@ test-vhdl:
 
 # Clean up most files created during the build process
 PHONY: clean
-clean:
-	+$(MAKE) -C hw/sysc clean
-	+$(MAKE) -C hw/sim clean
-	@if [ -d doc-src ]; then \
-	  $(MAKE) -C doc-src clean; \
-	fi;
-	@for DIR in $(PN_SW_DIRS); do \
-	  if [ -d $$DIR ]; then $(MAKE) -C $$DIR PORT_DIR=paranut clean; fi; \
-	done;
-	$(MAKE) -C sw/libparanut clean;
-	rm -f version.env
+clean: clean-hw clean-sw clean-systems clean-external clean-doc
+	@rm -f $(VERSION_ENV)
 
-# Clean up *everything* created during the build process
-PHONY: veryclean
-veryclean: clean
-	rm -rf hw/tools/$(IP_XILINX_TARGET_DIR)
+# These are most likely never intentionally called by a user, but include them here for documentation
+# These are also not tracked by version control and created by prepase_sdl.sh in sw/sdl_demo
+PHONY: clean-external
+clean-external:
+	@$(MAKE) --silent -C $(EXTERNAL_DIR) clean-all
 
+PHONY: clean-hw
+clean-hw:
+	@$(MAKE) --silent -C $(HW_DIR) clean-all
 
-# Clean up most files, including software and systems directories ...
-PHONY: clean-all
-clean-all: clean
-	+$(MAKE) -C hw/sysc clean-all
-	@if [ -d systems ]; then \
-	  $(MAKE) -C systems clean; \
-	fi;
+PHONY: clean-sw
+clean-sw:
+	@$(MAKE) --silent -C $(SW_DIR) clean-all
 
-# Clean up *everything*, including software and systems directories ...
-PHONY: veryclean-all
-veryclean-all: clean-all veryclean
-	@if [ -d systems ]; then \
-	  $(MAKE) -C systems veryclean; \
-	fi;
+PHONY: clean-systems
+clean-systems:
+	@$(MAKE) --silent -C $(SYSTEMS_DIR) clean-all
+
+PHONY: clean-doc
+clean-doc:
+	@$(MAKE) --silent -C $(DOC_SRC_DIR) clean

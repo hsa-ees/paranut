@@ -1,0 +1,1625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">gtk_theme/icons/dialog-ok-apply.png</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">gtk_theme/icons/dialog-cancel.png</property>
+  </object>
+  <object class="GtkSizeGroup" id="input"/>
+  <object class="GtkAdjustment" id="perfcounter_bits">
+    <property name="lower">33</property>
+    <property name="upper">64</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">1</property>
+  </object>
+  <object class="GtkWindow" id="main_window">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">ParaNut: Config-Creator</property>
+    <property name="window-position">center</property>
+    <property name="default-width">856</property>
+    <property name="default-height">800</property>
+    <property name="hide-titlebar-when-maximized">True</property>
+    <property name="icon">images/logo_new.png</property>
+    <property name="gravity">center</property>
+    <child>
+      <object class="GtkBox" id="box1">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkSeparator" id="separator1">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="body">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkNotebook" id="notebook">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="margin-left">10</property>
+                <property name="margin-right">10</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="hscrollbar-policy">never</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-top">30</property>
+                                <property name="label" translatable="yes">General options</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkFrame">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="margin-start">10</property>
+                                <property name="margin-end">10</property>
+                                <property name="margin-top">10</property>
+                                <property name="margin-bottom">10</property>
+                                <property name="label-xalign">0</property>
+                                <property name="shadow-type">out</property>
+                                <child>
+                                  <object class="GtkAlignment">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="left-padding">12</property>
+                                    <child>
+                                      <!-- n-columns=3 n-rows=10 -->
+                                      <object class="GtkGrid">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-left">30</property>
+                                        <property name="margin-right">30</property>
+                                        <property name="margin-start">30</property>
+                                        <property name="margin-end">30</property>
+                                        <property name="margin-top">30</property>
+                                        <property name="margin-bottom">30</property>
+                                        <property name="row-spacing">30</property>
+                                        <property name="column-homogeneous">True</property>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the total number of ParaNut cores (ExUs).</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of cores:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of (capability-1) ParaNut cores that can only operate in linked mode.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of capability-1-cores:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the system memory size in bytes.
+(-8MB are recommended for simulation.
+-Otherwise the memory size must fit to the used board).</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">System memory size [MB]:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">4</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of external interrupt lines.
+(must be at least 1)</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of external interrupt lines:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">5</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkSeparator">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">6</property>
+                                            <property name="width">3</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the simulation clock frequency in Hz.
+(the configured value can be read from the pnclockinfo CSR).</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Simulation clock speed [Hz]:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">8</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the maximum number of peripherals that can be connected to the system Wishbone.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Simulation maximum peripherals:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">9</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="cpu_cap1_cores">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_cores" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_cores" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">1</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="mem_size">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_number" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_number" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">4</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="ex_int">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_number" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_number" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">5</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="sim_clk_speed">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_number" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_number" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">8</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="sim_max_periphery">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_number" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_number" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">9</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="label" translatable="yes">SystemC simulation options</property>
+                                            <attributes>
+                                              <attribute name="weight" value="bold"/>
+                                              <attribute name="underline" value="True"/>
+                                            </attributes>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">7</property>
+                                            <property name="width">3</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of (capability-2) ParaNut cores.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of capability-2-cores:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of (capability-3) ParaNut cores.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of capability-3-cores:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">3</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="cpu_cap2_cores">
+                                            <property name="visible">True</property>
+                                            <property name="sensitive">False</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">2</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="cpu_cap3_cores">
+                                            <property name="visible">True</property>
+                                            <property name="sensitive">False</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">3</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="cpu_cores_ld">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <property name="max-width-chars">5</property>
+                                            <property name="input-purpose">digits</property>
+                                            <signal name="activate" handler="check_cores" swapped="no"/>
+                                            <signal name="activate" handler="check_ld" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_cores" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_ld" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">0</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child type="label">
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel" id="allgemeinBar">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">General</property>
+                  </object>
+                  <packing>
+                    <property name="tab-expand">True</property>
+                    <property name="tab-fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-top">30</property>
+                                <property name="label" translatable="yes">Configuration of the Execution Unit (EXU)</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkFrame">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="margin-start">10</property>
+                                <property name="margin-end">10</property>
+                                <property name="margin-top">10</property>
+                                <property name="margin-bottom">10</property>
+                                <property name="label-xalign">0</property>
+                                <property name="shadow-type">out</property>
+                                <child>
+                                  <object class="GtkAlignment">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="left-padding">12</property>
+                                    <child>
+                                      <!-- n-columns=3 n-rows=5 -->
+                                      <object class="GtkGrid">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-left">30</property>
+                                        <property name="margin-right">30</property>
+                                        <property name="margin-start">30</property>
+                                        <property name="margin-end">30</property>
+                                        <property name="margin-top">30</property>
+                                        <property name="margin-bottom">30</property>
+                                        <property name="row-spacing">30</property>
+                                        <property name="column-homogeneous">True</property>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Indicates whether the RISC-V Extension hardware should be enabled/disabled.</property>
+                                            <property name="halign">end</property>
+                                            <property name="valign">start</property>
+                                            <property name="label" translatable="yes">RISC-V ISA extension:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the RISC-V privilege modes of the ParaNut.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Privilege Mode options:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Specifies whether the hardware performance counters should be enabled/disabled.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Performance counter:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkComboBoxText" id="perfcount_enable">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <items>
+                                              <item id="0" translatable="yes">Performance counter disabled</item>
+                                              <item id="1" translatable="yes">Performance counter and 64 bit cycle counter</item>
+                                            </items>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">2</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of bits of the hardware performance counters.
+(Warning: must be between 33 and 64)</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Performance counter register width:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">3</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the log2 of the number of performance counters.
+(Warning: Currently 3 is the only supported value).</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Performance counter registers:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">4</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="perfcounters_ld">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_ld" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_ld" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">4</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkBox">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <property name="orientation">vertical</property>
+                                            <property name="spacing">5</property>
+                                            <child>
+                                              <object class="GtkCheckButton" id="a_extension">
+                                                <property name="label" translatable="yes">A extension</property>
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">True</property>
+                                                <property name="receives-default">False</property>
+                                                <property name="draw-indicator">True</property>
+                                                <signal name="toggled" handler="load_progress_bar" swapped="no"/>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">True</property>
+                                                <property name="position">0</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <object class="GtkCheckButton" id="m_extension">
+                                                <property name="label" translatable="yes">M extension</property>
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">True</property>
+                                                <property name="receives-default">False</property>
+                                                <property name="draw-indicator">True</property>
+                                                <signal name="toggled" handler="load_progress_bar" swapped="no"/>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">True</property>
+                                                <property name="position">1</property>
+                                              </packing>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">0</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkComboBoxText" id="priv_levels">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <items>
+                                              <item id="1" translatable="yes">only M-Mode available</item>
+                                              <item id="2" translatable="yes">M- and U-Mode available</item>
+                                              <item id="3" translatable="yes">M-, S- and U-Mode, enables Memory Management</item>
+                                            </items>
+                                            <signal name="changed" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">1</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkScale">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-start">30</property>
+                                            <property name="adjustment">perfcounter_bits</property>
+                                            <property name="restrict-to-fill-level">False</property>
+                                            <property name="round-digits">1</property>
+                                            <property name="digits">0</property>
+                                            <property name="has-origin">False</property>
+                                            <signal name="change-value" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">3</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child type="label">
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel" id="exuBar">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">EXU</property>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                    <property name="tab-expand">True</property>
+                    <property name="tab-fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-top">30</property>
+                                <property name="label" translatable="yes">Configuration of the Memory-Unit (MemU)</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkFrame">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="margin-start">10</property>
+                                <property name="margin-end">10</property>
+                                <property name="margin-top">10</property>
+                                <property name="margin-bottom">10</property>
+                                <property name="label-xalign">0</property>
+                                <property name="shadow-type">out</property>
+                                <child>
+                                  <object class="GtkAlignment">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="left-padding">12</property>
+                                    <child>
+                                      <!-- n-columns=3 n-rows=6 -->
+                                      <object class="GtkGrid">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-left">30</property>
+                                        <property name="margin-right">30</property>
+                                        <property name="margin-start">30</property>
+                                        <property name="margin-end">30</property>
+                                        <property name="margin-top">30</property>
+                                        <property name="margin-bottom">30</property>
+                                        <property name="row-spacing">30</property>
+                                        <property name="column-homogeneous">True</property>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes"> Defines the number of cache banks.
+-A cache line has (2^Banks * 2^Ways) words.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of cache banks:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="cache_banks_ld">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_ld" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_ld" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">0</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of sets.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of cache sets:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes"> Defines the number of cache ways (cache associativity).
+-A bank has (2^Sets * 2^Ways) words.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of cache ways:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the cache replacement method.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Cache replacement method:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">3</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the MemU arbitration method/strategy, either a round-robin or pseudo-random arbitration. 
+ &gt;0 - round-robin arbitration, switches every (1 &lt;&lt; CFG_MEMU_ARBITER_METHOD) clocks 
+&lt;0 - pseudo-random arbitration (LFSR-based)</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Arbiter method:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">4</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the width of the master Wishbone data bus.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Busif data width:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">5</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="cache_sets_ld">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_ld" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_ld" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">1</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkComboBoxText" id="cache_ways_ld">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <items>
+                                              <item id="0" translatable="yes">1-way set-associativity</item>
+                                              <item id="1" translatable="yes">2-way set-associativity</item>
+                                              <item id="2" translatable="yes">4-way set-associativity</item>
+                                            </items>
+                                            <signal name="changed" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">2</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkComboBoxText" id="cache_replace_lru">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <items>
+                                              <item id="0" translatable="yes">random replacement</item>
+                                              <item id="1" translatable="yes">LRU replacement</item>
+                                            </items>
+                                            <signal name="changed" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">3</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkComboBoxText" id="busif_width">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <items>
+                                              <item id="32" translatable="yes">32 Bit data width</item>
+                                              <item id="64" translatable="yes">64 Bit data width</item>
+                                            </items>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">5</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="arbiter_method">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_arbiter_method" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_integer" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_arbiter_method" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">4</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child type="label">
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel" id="memuBar">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="margin-top">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">MemU</property>
+                  </object>
+                  <packing>
+                    <property name="position">2</property>
+                    <property name="tab-expand">True</property>
+                    <property name="tab-fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-top">30</property>
+                                <property name="label" translatable="yes">Configuration of the Memory Management Unit (MMU)</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkFrame">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="margin-start">10</property>
+                                <property name="margin-end">10</property>
+                                <property name="margin-top">10</property>
+                                <property name="margin-bottom">10</property>
+                                <property name="label-xalign">0</property>
+                                <property name="shadow-type">out</property>
+                                <child>
+                                  <object class="GtkAlignment">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="left-padding">12</property>
+                                    <child>
+                                      <!-- n-columns=3 n-rows=2 -->
+                                      <object class="GtkGrid">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-left">30</property>
+                                        <property name="margin-right">30</property>
+                                        <property name="margin-start">30</property>
+                                        <property name="margin-end">30</property>
+                                        <property name="margin-top">30</property>
+                                        <property name="margin-bottom">30</property>
+                                        <property name="row-spacing">30</property>
+                                        <property name="column-homogeneous">True</property>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Indicates whether the TLB should be enabled/disabled.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Translation Lookaside Buffer:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkComboBoxText" id="tlb_enable">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <items>
+                                              <item id="1" translatable="yes">Enabled</item>
+                                              <item id="0" translatable="yes">Disabled</item>
+                                            </items>
+                                            <signal name="changed" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">0</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of TLB entries.
+(must be at least 1)</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Number of TLB entries:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="tlb_entries_ld">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_ld" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_ld" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">1</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child type="label">
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel" id="mmuBar">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">MMU</property>
+                  </object>
+                  <packing>
+                    <property name="position">3</property>
+                    <property name="tab-expand">True</property>
+                    <property name="tab-fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-top">30</property>
+                                <property name="label" translatable="yes">Configuration of the Instruction Fetch Unit (IFU)</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkFrame">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="margin-start">10</property>
+                                <property name="margin-end">10</property>
+                                <property name="margin-top">10</property>
+                                <property name="margin-bottom">10</property>
+                                <property name="label-xalign">0</property>
+                                <property name="shadow-type">out</property>
+                                <child>
+                                  <object class="GtkAlignment">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="left-padding">12</property>
+                                    <child>
+                                      <!-- n-columns=3 n-rows=1 -->
+                                      <object class="GtkGrid">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="margin-start">30</property>
+                                        <property name="margin-end">30</property>
+                                        <property name="margin-top">30</property>
+                                        <property name="margin-bottom">30</property>
+                                        <property name="column-homogeneous">True</property>
+                                        <child>
+                                          <object class="GtkEntry" id="ibuf_size_ld">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_ld" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_ld" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">0</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of instruction buffer elements.
+(max. number of prefetched instructions).</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">Instruction buffer size:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">0</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child type="label">
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel" id="ifuBar">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">IFU</property>
+                  </object>
+                  <packing>
+                    <property name="position">4</property>
+                    <property name="tab-expand">True</property>
+                    <property name="tab-fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-top">30</property>
+                                <property name="label" translatable="yes">Configuration of the Load/Store Unit (LSU)</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkFrame">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="margin-start">10</property>
+                                <property name="margin-end">10</property>
+                                <property name="margin-top">10</property>
+                                <property name="margin-bottom">10</property>
+                                <property name="label-xalign">0</property>
+                                <property name="shadow-type">out</property>
+                                <child>
+                                  <object class="GtkAlignment">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="left-padding">12</property>
+                                    <child>
+                                      <!-- n-columns=3 n-rows=1 -->
+                                      <object class="GtkGrid">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="margin-left">30</property>
+                                        <property name="margin-right">30</property>
+                                        <property name="margin-start">30</property>
+                                        <property name="margin-end">30</property>
+                                        <property name="margin-top">30</property>
+                                        <property name="margin-bottom">30</property>
+                                        <property name="column-homogeneous">True</property>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Defines the number of write buffer elements of the LSU.</property>
+                                            <property name="halign">end</property>
+                                            <property name="label" translatable="yes">LSU write buffer size:</property>
+                                            <property name="wrap">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry" id="wbuf_size_ld">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="margin-left">30</property>
+                                            <property name="margin-start">30</property>
+                                            <signal name="activate" handler="check_ld" swapped="no"/>
+                                            <signal name="activate" handler="load_progress_bar" swapped="no"/>
+                                            <signal name="changed" handler="check_number" swapped="no"/>
+                                            <signal name="focus-out-event" handler="check_ld" swapped="no"/>
+                                            <signal name="focus-out-event" handler="load_progress_bar" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">0</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child type="label">
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">5</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel" id="lsuBar">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">LSU</property>
+                  </object>
+                  <packing>
+                    <property name="position">5</property>
+                    <property name="tab-expand">True</property>
+                    <property name="tab-fill">False</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="footer">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
+            <property name="margin-top">20</property>
+            <property name="margin-bottom">20</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkButton" id="button_start_page">
+                    <property name="label">Cancel</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">start</property>
+                    <property name="image">image2</property>
+                    <signal name="clicked" handler="on_button_start_page_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack-type">end</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkAccelLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Hardware resource utilization:</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkProgressBar" id="progress_bar">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-left">30</property>
+                    <property name="margin-right">30</property>
+                    <property name="margin-start">30</property>
+                    <property name="margin-end">30</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="fraction">0.07</property>
+                    <property name="show-text">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack-type">end</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkButton" id="button_final_page">
+                    <property name="label">Finish</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">end</property>
+                    <property name="image">image1</property>
+                    <signal name="clicked" handler="on_button_final_page_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack-type">end</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkSizeGroup" id="NameBars">
+    <widgets>
+      <widget name="allgemeinBar"/>
+      <widget name="exuBar"/>
+      <widget name="memuBar"/>
+      <widget name="mmuBar"/>
+      <widget name="ifuBar"/>
+      <widget name="lsuBar"/>
+    </widgets>
+  </object>
+  <object class="GtkPopover" id="banner">
+    <property name="width-request">400</property>
+    <property name="height-request">-1</property>
+    <property name="can-focus">False</property>
+    <property name="relative-to">separator1</property>
+    <child>
+      <object class="GtkLabel" id="message_widget">
+        <property name="height-request">35</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">label</property>
+        <property name="wrap">True</property>
+        <attributes>
+          <attribute name="style" value="normal"/>
+          <attribute name="weight" value="bold"/>
+        </attributes>
+      </object>
+    </child>
+  </object>
+</interface>

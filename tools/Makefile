@@ -31,17 +31,17 @@
 #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #  -----------------------------------------------------------------------------
 
-# TOOL_PARTS will be copied to $PREFIX/tools/:
-TOOL_PARTS = bin etc share src
+# TOOL_PARTS will be copied to $INSTALL_DIR/tools/:
+TOOL_PARTS = bin etc lib share src application-base.mk hal-base.mk sysc-base.mk
 
 
 build:
 	# nothing to be done here
 
 install:
-	@test "$(PREFIX)" != "" || ( echo "ERROR: Make variable 'PREFIX' must be set for the 'install' target."; exit 3; )
-	@mkdir -p $(PREFIX)/tools/ ; \
-	cp -dr --no-preserve=ownership ${TOOL_PARTS} $(PREFIX)/tools/
+	@test "$(INSTALL_DIR)" != "" || ( echo "ERROR: Make variable 'INSTALL_DIR' must be set for the 'install' target."; exit 3; )
+	@mkdir -p $(INSTALL_DIR)/tools/ ; \
+	cp -dr --no-preserve=ownership ${TOOL_PARTS} $(INSTALL_DIR)/tools/
 
 clean:
 	# nothing to be done here

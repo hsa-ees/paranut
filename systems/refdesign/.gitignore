@@ -1,7 +1,0 @@
-hardware/boards/zybo/firmware.c
-hardware/build.bd
-hardware/build
-hardware/firmware
-software/
-paranut/
-vivado_cores/

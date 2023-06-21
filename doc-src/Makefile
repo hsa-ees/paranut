@@ -27,8 +27,8 @@
 #  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
-
+PARANUT_HOME ?= $(abspath $(CURDIR)/..)
+include $(PARANUT_HOME)/directory-base.mk
 ################################################################################
 #                                                                              #
 #     Settings                                                                 #
@@ -49,16 +49,15 @@ FIG_DPI=150
 #                                                                              #
 ################################################################################
 
-.PHONY: build
-build: pdf
+
 
 .PHONY: help
 help:
 	@echo -e 'Usage: make [command] [<PARAMETER>=<VALUE>]'
 	@echo -e 'Commands:'
 	@echo -e '\t build \t\t builds the .tex Document defined by DOCNAME'
-	@echo -e '\t commit \t executes build and copies the created document to /doc'
-	@echo -e '\t install \t installs the documentation contained in /doc to PREFIX'
+	@echo -e '\t build-pdf \t builds paranut-manual.pdf in doc-src'
+	@echo -e '\t install \t installs the documentation contained in /doc to INSTALL_DIR'
 	@echo -e '\t clean \t\t deletes files created by build'
 	@echo -e '\t view \t\t used to view the document defined by DOCNAME with the viewer defined by PDFVIEWER'
 	@echo -e '\t pdf \t builds the .tex Document defined by DOCNAME'
@@ -71,14 +70,8 @@ help:
 #     Version file                                                             #
 #                                                                              #
 ################################################################################
-
-VERSION_FILE ?= ../version.env
-
-$(VERSION_FILE): update-version
-
-.PHONY: update-version
-update-version:
-	$(MAKE) -C ../ update-version
+$(VERSION_ENV): 
+	$(MAKE) -C $(PARANUT_HOME) update-version
 
 
 
@@ -89,29 +82,27 @@ update-version:
 ################################################################################
 
 INSTALLATION_FILES = ../doc/paranut-manual.pdf \
-         ../doc/2013-master_thesis-michael_seider.pdf \
-         ../doc/2020-master_thesis-alexander_bahle.pdf \
-         ../doc/2020-master_thesis-alexander_bahle-presentation.pdf \
-         ../doc/paper-ew2015.pdf \
-         ../doc/paper-ew2020.pdf \
+         ../doc/technical_reports/2013-master_thesis-michael_seider.pdf \
+         ../doc/technical_reports/2020-master_thesis-alexander_bahle.pdf \
+         ../doc/technical_reports/2020-master_thesis-alexander_bahle-presentation.pdf \
+         ../doc/papers/paper-ew2015.pdf \
+         ../doc/papers/paper-ew2020.pdf \
          ../doc/libparanut_manual.pdf \
-         ../doc/libparanut_manual_internal.pdf
+         ../doc/libparanut_manual_internal.pdf \
+		 
 
 .PHONY: install
 install:
 	@echo
-	@echo "### Installing documentation to $(PREFIX) ###"
-	@if [ $(PREFIX) ]; then \
+	@echo "### Installing documentation to $(INSTALL_DIR) ###"
+	@if [ $(INSTALL_DIR) ]; then \
 	  # Install FILES \
 	  for FILE in $(INSTALLATION_FILES); do \
-	    install -Dp -m 644 -t $(PREFIX)/doc $$FILE; \
+	    install -Dp -m 644 -t $(INSTALL_DIR)/doc $$FILE; \
 	  done; \
-	  # Install libparanut documentation: \
-	  make -C ../sw/libparanut install-doc SUFFIX=libparanut; \
-	  # Install libparanutsim documentation: \
-	  make -C ../hw/sysc install-doc SUFFIX=libparanutsim; \
 	fi
-
+	@cp -r ../doc/libparanut $(INSTALL_DIR)/doc/libparanut 
+	@cp -r ../doc/libparanutsim $(INSTALL_DIR)/doc/libparanutsim
 
 
 ################################################################################
@@ -120,11 +111,11 @@ install:
 #                                                                              #
 ################################################################################
 
-.PHONY: pdf
-pdf: update-version ${DOCNAME}.pdf 
+.PHONY: build-pdf
+build-pdf: $(VERSION_ENV) ${DOCNAME}.pdf 
 
-%.pdf:	%.tex $(VERSION_FILE)
-	$(eval GITVERSIONESCAPED= $(shell grep PN_GITVERSION $(VERSION_FILE) | sed 's#^.*=##' | sed 's/_/\\\\_/g'))
+%.pdf:	%.tex $(VERSION_ENV)
+	$(eval GITVERSIONESCAPED= $(shell grep PN_GITVERSION $(VERSION_ENV) | sed 's#^.*=##' | sed 's/_/\\\\_/g'))
 	echo "VERSION=$(GITVERSIONESCAPED)"
 	pdflatex \\newcommand\\gitversion{$(GITVERSIONESCAPED)}\\input{$<} # Pass 1
 	pdflatex \\newcommand\\gitversion{$(GITVERSIONESCAPED)}\\input{$<} # Pass 2
@@ -160,11 +151,10 @@ ${DOCNAME}.pdf: figs/pn_logo.png
 
 # Create all documentations (paranut-manual, Doxygen libparanutsim, Doxygen liparanut) 
 # and commit them to the ../doc directory.  
-.PHONY: commit
-commit: pdf
+.PHONY: build
+build: build-pdf
 	cp ${DOCNAME}.pdf ../doc
-	+$(MAKE) -C ../hw/sysc install-doc DOC=$(abspath ../doc)/libparanutsim
-	+$(MAKE) -C ../sw/libparanut install-doc DOC=$(abspath ../doc)/libparanut
+	+$(MAKE) -C $(HAL_DIR)/libparanut install-doc INSTALL_DIR=$(abspath ../doc)/libparanut
 
 
 
@@ -187,4 +177,6 @@ view: ${DOCNAME}.pdf
 ################################################################################
 
 clean:
-	rm -f instructions.tex figs/*.png ${DOCNAME}.pdf *.aux *.bbl *.blg *.dvi *.log *.idx *.out *.toc *.synctex.gz
+	@echo
+	@echo "### All doc directories cleaned ###"
+	@rm -f instructions.tex figs/*.png ${DOCNAME}.pdf *.aux *.bbl *.blg *.dvi *.log *.idx *.out *.toc *.synctex.gz

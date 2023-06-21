@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_m_para_nut_system.html" title="Complete ParaNut System ready for simulation. " alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node1" href="$class_c_perf_mon.html" title="Performance monitor class." alt="" coords="5,5,91,32"/>
+<area shape="rect" id="node2" href="$class_c_perf_mon_c_p_u.html" title="CPU performance monitor class." alt="" coords="139,5,251,32"/>
 </map>

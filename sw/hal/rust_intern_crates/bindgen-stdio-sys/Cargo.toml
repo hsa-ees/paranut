@@ -1,0 +1,11 @@
+[package]
+name = "bindgen-stdio-sys"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+
+[dependencies]
+
+
+[build-dependencies]
+bindgen = "0.65.1"

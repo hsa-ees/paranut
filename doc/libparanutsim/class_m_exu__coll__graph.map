@@ -1,6 +1,8 @@
 <map id="MExu" name="MExu">
-<area shape="rect" id="node3" href="$class_m_m_extension.html" title="MMExtension" alt="" coords="169,171,271,197"/>
-<area shape="rect" id="node5" href="$class_c_perf_mon_c_p_u.html" title="CPU performance monitor class. " alt="" coords="295,171,406,197"/>
-<area shape="rect" id="node6" href="$class_c_perf_mon.html" title="Performance monitor class. " alt="" coords="310,95,391,121"/>
-<area shape="rect" id="node7" href="$class_c_event_def.html" title="Event definition class. " alt="" coords="307,5,394,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="100,260,159,287"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,155,121"/>
+<area shape="rect" id="node3" href="$class_m_m_extension.html" title=" " alt="" coords="74,171,185,197"/>
+<area shape="rect" id="node4" href="$class_c_perf_mon_c_p_u.html" title="CPU performance monitor class." alt="" coords="209,171,321,197"/>
+<area shape="rect" id="node5" href="$class_c_perf_mon.html" title="Performance monitor class." alt="" coords="223,95,308,121"/>
+<area shape="rect" id="node6" href="$class_c_event_def.html" title="Event definition class." alt="" coords="220,5,311,32"/>
 </map>

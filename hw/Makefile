@@ -2,14 +2,12 @@
 #
 #  This file is part of the ParaNut project.
 #
-#  Copyright (C) 2010-2021 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+#  Copyright (C) 2010-2020 Alexander Bahle <alexander.bahle@hs-augsburg.de>
 #                          Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>
-#                          Felix Wagner <felix.wagner1@hs-augsburg.de>
-#                          Michael Schaeferling <michael.schaeferling@hs-augsburg.de>
 #      Hochschule Augsburg, University of Applied Sciences
 #
 #  Description:
-#    ParaNut top-level Makefile.
+#    ParaNut software section Makefile.
 #
 #  --------------------- LICENSE -----------------------------------------------
 #  Redistribution and use in source and binary forms, with or without modification,
@@ -35,7 +33,10 @@
 #  -----------------------------------------------------------------------------
 
 
-PREFIX ?= /opt/paranut
+PARANUT_HOME ?= $(abspath $(CURDIR)/..)
+include $(PARANUT_HOME)/directory-base.mk
+
+TARGET_DIRS := $(shell find $(SYSC_DIR)/* -type d)
 
 ################################################################################
 #                                                                              #
@@ -48,17 +49,22 @@ PREFIX ?= /opt/paranut
 .PHONY: all
 all: help
 
+.PHONY: $(TARGET_DIRS)
+$(TARGET_DIRS):
+	-$(MAKE) -C $@ clean 2> /dev/null
 
 # Print usage info ...
 .PHONY: help
 help:
-	@echo "This makefile is mainly used to install HW sources to your system. Usually there sould be no need for you to use it."
+	@echo "This makefile is mainly used to clean HW directories. Usually there sould be no need for you to use it."
 	@echo
 	@echo "Usage: make [<target>] [<parameter>=<value> ...]"
 	@echo
 	@echo "Targets:"
 	@echo
-	@echo "  install     : Install hardware source files to the directory given by parameter PREFIX"
+	@echo "  install     : Install hardware source files to the directory given by parameter INSTALL_DIR"
+	@echo "                (default: /opt/paranut)"
+	@echo "  clean-all       : Clean all subdirectories (delete compilation artefacts)""
 	@echo "                (default: /opt/paranut)"
 
 
@@ -67,117 +73,19 @@ help:
 #     Installing                                                               #
 #                                                                              #
 ################################################################################
-
-# SystemC model files
-SRC_FILES =  sysc/Makefile \
-             sysc/base.cpp \
-             sysc/dm.cpp \
-             sysc/exu.cpp \
-             sysc/csr.cpp \
-             sysc/ifu.cpp \
-             sysc/intc.cpp \
-             sysc/interconnect.cpp \
-             sysc/jtag_dtm.cpp \
-             sysc/lfsr.cpp \
-             sysc/lsu.cpp \
-             sysc/memory.cpp \
-             sysc/memu.cpp \
-             sysc/mextension.cpp \
-             sysc/nut.cpp \
-             sysc/paranutsystem.cpp \
-             sysc/remote_bitbang.cpp \
-             sysc/base.h \
-             sysc/paranut-config.template.h \
-             sysc/debug_rom.h \
-             sysc/dm.h \
-             sysc/exu.h \
-             sysc/csr.h \
-             sysc/exu_csr.h \
-             sysc/ifu.h \
-             sysc/intc.h \
-             sysc/interconnect.h \
-             sysc/jtag_dtm.h \
-             sysc/lfsr.h \
-             sysc/lsu.h \
-             sysc/memory.h \
-             sysc/memu.h \
-             sysc/mextension.h \
-             sysc/nut.h \
-             sysc/paranut-sim.h \
-             sysc/paranutsystem.h \
-             sysc/paranut-peripheral.h \
-             sysc/remote_bitbang.h \
-             sysc/dm.tcl \
-             sysc/exu.tcl \
-             sysc/csr.tcl \
-             sysc/ifu.tcl \
-             sysc/intc.tcl \
-             sysc/jtag_dtm.tcl \
-             sysc/lsu.tcl \
-
-# Hardware tools files
-SRC_FILES += tools/Makefile.inc \
-             tools/paranut.tcl \
-
-SRC_FILES_EXEC += tools/generate_mimpid.sh \
-
-# VHDL files
-SRC_FILES += vhdl/ParaNut.vhd \
-             vhdl/swb2maxi.vhd \
-             vhdl/saxi2mwb.vhd \
-             vhdl/paranut/paranut.vhd \
-             vhdl/paranut/dbg.vhd \
-             vhdl/paranut/lsu.vhd \
-             vhdl/paranut/mexu.vhd \
-             vhdl/paranut/mcsr.vhd \
-             vhdl/paranut/types.vhd \
-             vhdl/paranut/memu_lib.vhd \
-             vhdl/paranut/paranut-fdeps.mk \
-             vhdl/paranut/tb_monitor.vhd \
-             vhdl/paranut/mdbg.vhd \
-             vhdl/paranut/mtagram.vhd \
-             vhdl/paranut/exu.vhd \
-             vhdl/paranut/csr.vhd \
-             vhdl/paranut/mem_tech.vhd \
-             vhdl/paranut/memu.vhd \
-             vhdl/paranut/ifu.vhd \
-             vhdl/paranut/text_io.vhd \
-             vhdl/paranut/mlsu_simple.vhd \
-             vhdl/paranut/mwriteport.vhd \
-             vhdl/paranut/mintc.vhd \
-             vhdl/paranut/mifu_bs.vhd \
-             vhdl/paranut/paranut_config.template.vhd \
-             vhdl/paranut/mem_inferred.vhd \
-             vhdl/paranut/mbankram.vhd \
-             vhdl/paranut/marbiter.vhd \
-             vhdl/paranut/txt_util.vhd \
-             vhdl/paranut/mhistogram.vhd \
-             vhdl/paranut/mlsu.vhd \
-             vhdl/paranut/mifu.vhd \
-             vhdl/paranut/histogram.vhd \
-             vhdl/paranut/lfsr.vhd \
-             vhdl/paranut/mparanut.vhd \
-             vhdl/paranut/mreadport.vhd \
-             vhdl/paranut/intc.vhd \
-             vhdl/paranut/mbusif.vhd \
-             vhdl/paranut/paranut_lib.vhd \
-             vhdl/paranut/mmemu.vhd
-
-# Install 
 .PHONY: install
 install:
 	@echo
-	@echo "### Installing HW sources to $(PREFIX) ###"
-	@if [ $(PREFIX) ]; then \
-	  # Install SRC_FILES \
-	  for FILE in $(SRC_FILES); do \
-	    install -Dp -m 644 -t $(PREFIX)/src/hw/`dirname $$FILE` $$FILE; \
-	  done; \
-	  for FILE_EXEC in $(SRC_FILES_EXEC); do \
-	    install -Dp -m 775 -t $(PREFIX)/src/hw/`dirname $$FILE_EXEC` $$FILE_EXEC; \
-	  done; \
-	  # Install libparanutsim \
-	  $(MAKE) -C sysc install SUFFIX=libparanutsim; \
-	  # Install sim (pn-sim) \
-	  $(MAKE) -C sim install; \
-	fi
+	@echo "### Installing HW sources to $(INSTALL_DIR) ###"
+	cp -dr --no-preserve=ownership $(HW_DIR) $(INSTALL_DIR);
+
+
+################################################################################
+#                                                                              #
+#     Cleaning                                                                 #
+#                                                                              #
+################################################################################
+.PHONY: clean-all
+clean-all: $(TARGET_DIRS)
+	@echo
+	@echo "### All hw directories cleaned ###"

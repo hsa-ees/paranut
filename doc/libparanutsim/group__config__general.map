@@ -1,3 +1,4 @@
 <map id="General" name="General">
-<area shape="rect" id="node2" href="$group__config.html" title="Configuration Makros used in most ParaNut files. " alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node1" title="General options." alt="" coords="163,5,236,31"/>
+<area shape="rect" id="node2" href="$group__config.html" title="Configuration Makros used in most ParaNut files." alt="" coords="5,5,115,31"/>
 </map>

@@ -1,0 +1,8 @@
+[target.riscv32paranut-unknown-elf]
+runner = "../../../systems/refdesign/hw/sysc/pn-sim"
+
+[build]
+target = "../../hal/riscv_common/riscv32paranut-unknown-elf.json"
+
+[unstable]
+build-std = ["core", "alloc"]

@@ -1,0 +1,62 @@
+# GPIO Hardware Module
+
+## Summary
+
+This folder contains the SystemC hardware description for a GPIO Hardware Module that is Wishbone compatible.
+
+
+## Configuration Options for ParaNut
+
+There are configuration options in the config.mk files at the root of the project and in the system/refdesign/hardware/boards/[boardname]/config.mk.
+
+Available configuration options:
+
+* CFG_GPIO_ENABLE: Enables the Synthesis of the GPIO Module
+* CFG_GPIO_BASE_ADDRESS: Sets the base address of the UART Module in the ParaNuts address space
+* CFG_GPIO_AMOUNT: Sets the amount of GPIO Pins beeing created only 8 is currently supported by the hardware constraint file
+* CFG_GPIO_OUTAMOUNT: Sets the amount of Output Pins for the GPIO Module, a maximum of 8 is supported at the moment, the rest of the CFG_GPIO_AMOUNT ist set as Input Pins
+
+## Configuration of the GPIO Hardware Register
+
+The Register of the GPIO Module is 32 bit wide to support the whisbone data in, only 8 bits of this regiser are beeing used at the moment
+bit 0 to CFG_GPIO_OUTAMOUNT-1 are beeing used as the bits to set the output pins high or low and are readable and writeable bit CFG_GPIO_OUTAMOUNT to CFG_GPIO_AMOUNT are beeing used for Input Pins this part of the register is readable only and cannot be set by a write command
+
+## Testbenches
+
+The testbenches for this GPIO Module can be found in the folder tb/gpio.
+
+To run them use the following command:
+
+```sh
+make run
+```
+
+## High Level Synthesis
+
+This is a manual on how to do high level synthesis for the GPIO module
+
+### Installing the Prerequisites:
+
+#### ICSC:
+
+1. Follow the instructions found here [ICSC](https://github.com/intel/systemc-compiler/wiki/Getting-started)
+2. Write the ICSC_HOME Environment Variable to your .bashrc
+**Important:** don't add the setenv.sh to your .bashrc otherwise the ParaNut won't work correctly
+
+#### sv2:
+1. Download the current version of the sv2v tool from the following link:         [sv2v](https://github.com/zachjs/sv2v/releases/tag/v0.0.10)
+2. Unzip the Package and add the Folder that is containing the sv2v executable to your PATH variable
+
+### Running High Level Synthesis:
+
+Run the following command:
+
+```sh
+make update_gpio
+```
+
+**Important:** This Command needs to be run in a console where the settings64.sh of Vivado is not sourced
+
+### For Further Information on the GPIO Module:
+Further information about the workings of the GPIO Module can be found in the */\<ParanutDirectory\>/sw/lib_gpio_api/README* and the */\<ParanutDirectory\>/sw/lib_gpio_api/libgpio_example/README*
+

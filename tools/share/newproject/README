@@ -7,10 +7,13 @@ This directory contains everything to start a new ParaNut project.
 Directory Contents
 ------------------
 
-- ./hw            - Hardware implementation (SystemC model, Simulator, ...)
-- ./sw            - Support library (*libparanut*) and common RISC-V files
-- config.mk       - Hardware configuration file
-- Makefile        - Top-level Makefile
+- ./hw                 - Hardware implementation (SystemC model, Simulator, ...)
+- ./sw                 - Support library (*libparanut*) and common RISC-V files
+- config.mk            - Hardware configuration file
+- config.reference.mk  - reference for hardware configuration options
+- Makefile             - Top-level Makefile
+- ParaNut.mk           - Easy access to ParaNut compiler configuration
+- version.env          - version control file
 
 
 Licensing
@@ -29,22 +32,23 @@ Getting Started
 Source your ParaNut installation (e.g. for an installation located in /opt/paranut/):
 $ . /opt/paranut/settings.sh
 
+Source your ICSC installation (e.g. for an installation located in /opt/icsc_home/):
+$ . /opt/icsc_home/settings.env
+
 
 2. Setting up the environment
 -----------------------------
 
 Create a new ParaNut project:
-$ pn-newproject -c paranut
+$ pn-newproject -c
 
 
-3. Building the *SystemC* model / Simulator
+3. Building the Simulator and Library
 -------------------------------------------
 
-Build a ParaNut simulator:
+$ make -C paranut build
 
-$ make -C paranut/hw/sim
-
-The simulator executable can now be used to run your ParaNut software ./paranut/hw/sim/pn-sim
+The simulator executable can now be used to run your ParaNut software ./paranut/hw/sysc/pn-sim
 
 
 4. Running "hello_world" on a *ParaNut* using the *SystemC* model / Simulator
@@ -72,18 +76,16 @@ int main () {
 To facilitate the software build process, create the following 'Makefile':
 
 #--- Makefile --------------------------------
-
+```
 # Default make target ...
 all: hello_world
 
 # ParaNut settings ...
-include ../paranut/sw/ParaNut.mk
-  # This defines:
-  # - compiler and linker flags as $(PARANUT_CFLAGS) and $(PARANUT_LDFLAGS)
-  # - cross compiler definitions as $(PARANUT_CC), $(PARANUT_CXX)
-  # - cross tools prefix $(PARANUT_CROSS) for various binutils
-  # - a helper target 'paranut-update' to build or update the ParaNut library
-  # - a helper target 'paranut-clean' to clean the ParaNut library
+include ../paranut/sysc/ParaNut.mk
+#  This defines:
+#  - compiler and linker flags as $(PARANUT_CFLAGS) and $(PARANUT_LDFLAGS)
+#  - cross compiler definitions as $(PARANUT_CC), $(PARANUT_CXX)
+#  - cross tools prefix $(PARANUT_CROSS) for various binutils
 
 # Compiler/Linker flags ...
 CFLAGS = -Wall -g -O2 $(PARANUT_CFLAGS)
@@ -91,18 +93,35 @@ LDFLAGS = -lm $(PARANUT_LDFLAGS)
 
 # Compiling ...
 hello_world.o: hello_world.c
-	$(MAKE) paranut-update
 	$(PARANUT_CC) -c $(CFLAGS) $<
 
 # Linking ...
 hello_world: hello_world.o
 	$(PARANUT_CC) -o $@ $^ $(LDFLAGS)
-
+```
 #--------------------------------------------------
-
 
 Build your software binary by running
 $ make
 
 Now you can run the hello_world executable on the previously built simulator by
-$ ../paranut/hw/sim/pn-sim hello_world
+calling
+$ ../paranut/hw/sysc/pn-sim hello_world
+
+# Tips
+For additional options and help for the usage of the main make file
+$ make -C paranut help
+
+You may wish to alter the ParaNut configuration in paranut/config.mk (e.g. to 
+change the number of CoPU or cache size). Make sure to rebuild the simulatior 
+after such changes.
+$ make -C paranut build-sim
+For reference, the paranut directory contains a config.reference.mk to give 
+you an overview of available options. Note that this file should be write potected 
+and is not intended for you to make changes to. Any config alterations that you would 
+like to make, must be made inside config.mk
+
+The simulator pn-sim offers many options that may be useful for debugging 
+and analyzing an application. For further information a help can be displayed.
+$ ../paranut/hw/sim/pn-sim -h
+

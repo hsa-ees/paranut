@@ -1,0 +1,299 @@
+{
+    "description": [
+        "#  -----------------------------------------------------------------------------",
+        "#",
+        "#  This file is part of the ParaNut project.",
+        "#",
+        "#  Copyright (C) 2019-2021 Alexander Bahle <alexander.bahle@hs-augsburg.de>",
+        "#                          Michael Schaeferling <michael.schaeferling@hs-augsburg.de>",
+        "#                          Christian Meyer <christian.meyer@hs-augsburg.de>",
+        "#      Hochschule Augsburg, University of Applied Sciences",
+        "#",
+        "#  Description:",
+        "#    This file contains the global configuration options for the ParaNut.",
+        "#",
+        "#  --------------------- LICENSE -----------------------------------------------",
+        "#  Redistribution and use in source and binary forms, with or without modification,",
+        "#  are permitted provided that the following conditions are met:",
+        "#",
+        "#  1. Redistributions of source code must retain the above copyright notice, this",
+        "#     list of conditions and the following disclaimer.",
+        "#",
+        "#  2. Redistributions in binary form must reproduce the above copyright notice,",
+        "#     this list of conditions and the following disclaimer in the documentation and/or",
+        "#     other materials provided with the distribution.",
+        "#",
+        "#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND",
+        "#  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED",
+        "#  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE",
+        "#  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR",
+        "#  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES",
+        "#  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;",
+        "#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON",
+        "#  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT",
+        "#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS",
+        "#  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
+        "#  -----------------------------------------------------------------------------",
+        "",
+        "",
+        "# Unit factors (do not edit!) ...",
+        "KB = 1024",
+        "MB = 1024*1024",
+        "",
+        ""
+    ],
+    "_Model__nut": {
+        "mtimer_timebase_us": {
+            "name": "CFG_NUT_MTIMER_TIMEBASE_US",
+            "value": "1000",
+            "description": [
+                "# timebase in us.",
+                "# Defines the mtime timebase in us"
+            ]
+        },
+        "mtimer_addr": {
+            "name": "CFG_NUT_MTIMER_ADDR",
+            "value": "0x80000000",
+            "description": [
+                "# mtimer base address.",
+                "# Defines the address at which the mtimer will be added to the system interconnect."
+            ]
+        },
+        "reset_addr": {
+            "name": "CFG_NUT_RESET_ADDR",
+            "value": "0x10000000",
+            "description": [
+                "# Simulation memory address.",
+                "# Defines the start address (reset address) of the ParaNut during simulation and",
+                "# the address at which the main memory will be added to the system interconnect.",
+                "# Also used to determine the cacheable memory addresses."
+            ]
+        },
+        "cpu_cores_ld": {
+            "name": "CFG_NUT_CPU_CORES_LD",
+            "value": "1",
+            "description": [
+                "# *********************** General options **************************************",
+                "# Number of cores overall as log2.",
+                "# Defines the log2 of the overall number of ParaNut cores (ExUs)."
+            ]
+        },
+        "cpu_cap1_cores": {
+            "name": "CFG_NUT_CPU_CAP1_CORES",
+            "value": "0",
+            "description": [
+                "# Number of cores (ExUs) with mode capability = 1 (linked).",
+                "# Defines the number of ParaNut cores (ExUs) that have a mode capability of 1 and thus can only",
+                "# operate in mode 1 (linked mode)."
+            ]
+        },
+        "mem_size": {
+            "name": "CFG_NUT_MEM_SIZE",
+            "value": "(256 * MB)",
+            "description": [
+                "# System memory size.",
+                "# Defines the system memory size in Bytes. 8MB is recommended for simulation, otherwise",
+                "# needs to match the memory size of the used board.",
+                "# Also used to determine the cacheable memory addresses."
+            ]
+        },
+        "ex_int": {
+            "name": "CFG_NUT_EX_INT",
+            "value": "2",
+            "description": [
+                "# Number of external interrupt lines.",
+                "# Defines the number of external interrupt lines. Needs to be at least equal to 1."
+            ]
+        },
+        "sim_clk_speed": {
+            "name": "CFG_NUT_SIM_CLK_SPEED",
+            "value": "25000000",
+            "description": [
+                "# *********************** SystemC simulation options ***************************",
+                "",
+                "# Simulation clock speed in Hz.",
+                "# Defines the simulation clock speed in Hz. The configured value can be read from the",
+                "# pnclockinfo CSR."
+            ]
+        },
+        "sim_max_periphery": {
+            "name": "CFG_NUT_SIM_MAX_PERIPHERY",
+            "value": "5",
+            "description": [
+                "# Simulation maximum peripherals number.",
+                "# Defines the maximum number of peripherals that can be connected to the systems Wishbone",
+                "# interconnect."
+            ]
+        }
+    },
+    "_Model__exu": {
+        "m_extension": {
+            "name": "CFG_EXU_M_EXTENSION",
+            "value": "1",
+            "description": [
+                "# *********************** EXU (Execution Unit) *********************************",
+                "",
+                "# RISC-V ISA Extensions",
+                "# Defines if the RISC-V Extension hardware is enabled/disabled.",
+                "# 0 - extension disabled",
+                "# 1 - extension enabled"
+            ]
+        },
+        "a_extension": {
+            "name": "CFG_EXU_A_EXTENSION",
+            "value": "1",
+            "description": [
+                ""
+            ]
+        },
+        "priv_levels": {
+            "name": "CFG_PRIV_LEVELS",
+            "value": "1",
+            "description": [
+                "# Privilege Mode options. ",
+                "# Defines the RISC-V privilege mode capability of the ParaNut. Do NOT use any other value!",
+                "# 1 - only M-Mode available",
+                "# 2 - M- and U-Mode available ",
+                "# 3 - M-, S- and U-Mode available, enable the Memory Management Unit (MMU)"
+            ]
+        },
+        "perfcount_enable": {
+            "name": "CFG_EXU_PERFCOUNT_ENABLE",
+            "value": "1",
+            "description": [
+                "# Performance counter enable.",
+                "# Defines if the hardware performance counters are enabled/disabled.",
+                "# 0 - no performance counters",
+                "# 1 - performance counter and 64bit cycle counter is added"
+            ]
+        },
+        "perfcounter_bits": {
+            "name": "CFG_EXU_PERFCOUNTER_BITS",
+            "value": "40",
+            "description": [
+                "# Performance counter register width.",
+                "# Defines the number of bits for the hardware performance counters.",
+                "# Warning: Has to be between 33 and 64."
+            ]
+        },
+        "perfcounters_ld": {
+            "name": "CFG_EXU_PERFCOUNTERS_LD",
+            "value": "3",
+            "description": [
+                "# Performance counter number of registers as log2.",
+                "# Defines the log2 of the number of hardware performance counters.",
+                "# Warning: 3 is the only supported value for now"
+            ]
+        }
+    },
+    "_Model__memu": {
+        "cache_banks_ld": {
+            "name": "CFG_MEMU_CACHE_BANKS_LD",
+            "value": "2",
+            "description": [
+                "# *********************** MemU (Memory Unit) ***********************************",
+                "",
+                "# Number of cache banks as log2.",
+                "# Defines the log2 of the number of cache banks.",
+                "# A cache line has a size of 2^CFG_MEMU_CACHE_BANKS_LD words. A good starting point is 2 (4 banks)."
+            ]
+        },
+        "cache_sets_ld": {
+            "name": "CFG_MEMU_CACHE_SETS_LD",
+            "value": "9",
+            "description": [
+                "# Number of cache sets as log2.",
+                "# Defines the log2 of the number of cache sets.",
+                "# A bank has 2^CFG_MEMU_CACHE_SETS_LD * 2^CFG_MEMU_CACHE_WAYS_LD words."
+            ]
+        },
+        "cache_ways_ld": {
+            "name": "CFG_MEMU_CACHE_WAYS_LD",
+            "value": "2",
+            "description": [
+                "# Number of cache ways as log2.",
+                "# Defines the log2 of the number of cache ways (cache associativity).",
+                "# A bank has 2^CFG_MEMU_CACHE_SETS_LD * 2^CFG_MEMU_CACHE_WAYS_LD words.",
+                "# 0 - 1-way set-associativity",
+                "# 1 - 2-way set-associativity",
+                "# 2 - 4-way set-associativity"
+            ]
+        },
+        "cache_replace_lru": {
+            "name": "CFG_MEMU_CACHE_REPLACE_LRU",
+            "value": "1",
+            "description": [
+                "# Cache replacement method.",
+                "# Defines the cache replacement method/strategy, either pseudo-random or least recently used (LRU).",
+                "# 0 - random replacement",
+                "# 1 - LRU replacement"
+            ]
+        },
+        "arbiter_method": {
+            "name": "CFG_MEMU_ARBITER_METHOD",
+            "value": "7",
+            "description": [
+                "# Arbiter Method.",
+                "# Defines the MemU arbitration method/strategy, either a round-robin or pseudo-random arbitration.",
+                "# >0 - round-robin arbitration, switches every (1 << CFG_MEMU_ARBITER_METHOD) clocks",
+                "# <0 - pseudo-random arbitration (LFSR-based)"
+            ]
+        },
+        "busif_width": {
+            "name": "CFG_MEMU_BUSIF_WIDTH",
+            "value": "32",
+            "description": [
+                "# Busif Data Width.",
+                "# Defines the width of the master Wishbone data bus.",
+                "# 32 - 32 Bit data width",
+                "# 64 - 64 Bit data width"
+            ]
+        }
+    },
+    "_Model__mmu": {
+        "tlb_enable": {
+            "name": "CFG_MMU_TLB_ENABLE",
+            "value": "0",
+            "description": [
+                "# ********************* MMU (Memory Management Unit) *****************************",
+                "",
+                "# Enable or disable the Translation Lookaside Buffer (TLB)",
+                "# 1 - TLB enabled"
+            ]
+        },
+        "tlb_entries_ld": {
+            "name": "CFG_MMU_TLB_ENTRIES_LD",
+            "value": "2",
+            "description": [
+                "# Number of TLB entries as log2. ",
+                "# Defines the log2 of the number of TLB entries.",
+                "# Must be at least 1"
+            ]
+        }
+    },
+    "_Model__ifu": {
+        "ibuf_size_ld": {
+            "name": "CFG_IFU_IBUF_SIZE_LD",
+            "value": "2",
+            "description": [
+                "# *********************** IFU (Instruction Fetch Unit) *************************",
+                "",
+                "# Instruction buffer size as log2.",
+                "# Defines the log2 of the number of instruction buffer elements (max. number of prefetched",
+                "# instructions)."
+            ]
+        }
+    },
+    "_Model__lsu": {
+        "wbuf_size_ld": {
+            "name": "CFG_LSU_WBUF_SIZE_LD",
+            "value": "2",
+            "description": [
+                "# *********************** LSU (Load-Store Unit) ********************************",
+                "",
+                "# LSU write buffer size as log2.",
+                "# Defines the log2 of the number of write buffer elements in the LSU."
+            ]
+        }
+    }
+}

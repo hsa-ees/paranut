@@ -1,7 +1,8 @@
 <map id="remote_bitbang.h" name="remote_bitbang.h">
-<area shape="rect" id="node2" href="$paranutsystem_8h.html" title="The MParaNutSystem class for simulation. " alt="" coords="95,80,213,107"/>
-<area shape="rect" id="node6" href="$remote__bitbang_8cpp.html" title="remote_bitbang.cpp" alt="" coords="237,80,373,107"/>
-<area shape="rect" id="node3" href="$paranut-sim_8h.html" title="paranut&#45;sim.h" alt="" coords="33,155,134,181"/>
-<area shape="rect" id="node5" href="$paranutsystem_8cpp.html" title="paranutsystem.cpp" alt="" coords="158,155,291,181"/>
-<area shape="rect" id="node4" href="$memu__tb_8cpp.html" title="tb/memu/memu_tb.cpp" alt="" coords="5,229,161,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="184,5,321,32"/>
+<area shape="rect" id="node2" href="$paranutsystem_8h.html" title="The MParaNutSystem class for simulation." alt="" coords="104,80,236,107"/>
+<area shape="rect" id="node6" href="$remote__bitbang_8cpp.html" title=" " alt="" coords="261,80,413,107"/>
+<area shape="rect" id="node3" href="$paranut-sim_8h.html" title=" " alt="" coords="36,155,149,181"/>
+<area shape="rect" id="node5" href="$paranutsystem_8cpp.html" title=" " alt="" coords="174,155,321,181"/>
+<area shape="rect" id="node4" href="$memu__tb_8cpp.html" title=" " alt="" coords="5,229,180,256"/>
 </map>

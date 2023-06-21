@@ -1,0 +1,2 @@
+#!/bin/sh
+python3 ${PARANUT_HOME}/config-creator/src/app.py > /dev/null &

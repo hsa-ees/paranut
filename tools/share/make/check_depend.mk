@@ -36,7 +36,7 @@
 
 .PHONY: check-paranut
 check-paranut:
-	@test "$(PARANUT_TOOLS)" != "" || ( echo "ERROR: Variable PARANUT_TOOLS is not set. ParaNut tools are needed for this target."; exit 3; )
+	@test "$(PARANUT_HOME)" != "" || ( echo "ERROR: Variable PARANUT_HOME is not set. ParaNut tools are needed for this target."; exit 3; )
 
 .PHONY: check-systemc
 check-systemc:

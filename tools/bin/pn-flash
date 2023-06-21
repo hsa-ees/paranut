@@ -4,9 +4,10 @@
 #
 #  This file is part of the ParaNut project.
 #
-#  Copyright (C) 2007-2021 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+#  Copyright (C) 2007-2022 Alexander Bahle <alexander.bahle@hs-augsburg.de>
 #                          Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>
 #                          Michael Schaeferling <michael.schaeferling@hs-augsburg.de>
+#                          Nico Borgsmueller <nico.borgsmueller@hs-augsburg.de>
 #      Efficient Embedded Systems Group
 #      Hochschule Augsburg, University of Applied Sciences
 #
@@ -52,6 +53,8 @@ import getopt
 import cmd
 import time
 import itertools
+import pyudev
+import glob
 
 
 versionMajor = 2
@@ -62,7 +65,14 @@ versionRevision = 0
 ################### Configuration #########################
 
 
-optSerialDevices = [ "/dev/ttyUSB1", "/dev/ttyUSB2", "/dev/ttyUSB0", "/dev/ttyZYBO"]
+optSerialDevices = ["/dev/ttyUSB*"]
+
+supportedBoards = { "digilent_generic": { "idVendor":"0403",
+                                          "idProduct":"6010",
+                                          "iProduct":"Digilent_Adept_USB_Device",
+                                          "bInterfaceNumber":b'01'
+                                        }
+                  }
 
 # Internal options...
 optDebug = False    # set to 'True' to enable additional debug output
@@ -76,6 +86,7 @@ optLoadBitfileCommand = \
   "pn-xil-program -b {0:s}" \
   "&& rm -fr .Xil pn-xil-program.tcl" \
 
+optElfCheckCmd = "file {0:s} | grep 'ELF' | grep 'RISC-V'"
 optObjcopy = "riscv64-unknown-elf-objcopy"
 optObjcopyCmd = "{0:s} -S -O binary {1:s} {2:s}"
 optObjcopyTmpFile = "objcopy.bin"
@@ -119,16 +130,58 @@ class Board:
 
     Board.serialDev = None
 
-    # Open serial device...
-    for devName in optSerialDevices:
-      if not Board.serialDev:
-        try:
-          Board.serialDev = serial.Serial (devName, 115200, timeout = 1)
-          print("Connected to " + devName)
-        except:
-          Board.serialDev = None
+    serialDevices=[]
+    for optSerialDevice in optSerialDevices:
+      for filename in glob.glob(optSerialDevice):
+        serialDevices.append(filename)
+
+    if len(serialDevices) != 0:
+      if optDebug: print("Serial devices to check: " + str(serialDevices))
+
+      udevContext = pyudev.Context()
+
+      for devName in serialDevices:
+        if not Board.serialDev:
+
+
+          # USB device sanity check...
+          device = pyudev.Devices.from_device_file(udevContext, devName)
+
+          # gets the values from the USB device for older and newer versions of libudev
+          deviceValues = {'devIdVendor':[device.get('ID_VENDOR_ID'),
+                                                          device.get('ID_USB_VENDOR_ID')],
+                                                  'devIdProduct':[device.get('ID_MODEL_ID'),
+                                                                  device.get('ID_USB_MODEL_ID')],
+                                                  'devProduct':[device.get('ID_MODEL'),
+                                                                device.get('ID_USB_MODEL')],
+                                                  'devIfNumber': [device.parent.parent.attributes.get('bInterfaceNumber')]}
+
+          # Check all available board types for compatibility:
+          for boardCandidate in supportedBoards:
+            boardIdVendor  = supportedBoards.get(boardCandidate).get('idVendor')
+            boardIdProduct = supportedBoards.get(boardCandidate).get('idProduct')
+            boardProduct   = supportedBoards.get(boardCandidate).get('iProduct')
+            boardIfNumber  = supportedBoards.get(boardCandidate).get('bInterfaceNumber')
+
+            if boardIdVendor  in deviceValues['devIdVendor'] and \
+               boardIdProduct in deviceValues['devIdProduct'] and \
+               boardProduct   in deviceValues['devProduct'] and \
+               boardIfNumber  in deviceValues['devIfNumber'] :
+              selectedBoard = [value for value in deviceValues['devProduct'] if boardProduct == value][0]
+              if optDebug: print("USB identity check OK for '" + device.device_node + "' ("+ selectedBoard +"), trying to connect...")
+
+            else:
+              if optDebug: print("USB identity check FAILED for '" + device.device_node + "', skipping.")
+              continue
+
+            try:
+              Board.serialDev = serial.Serial (devName, 115200, timeout = 1)
+              print("Connected to '" + devName + "' ("+ selectedBoard +")")
+            except:
+              Board.serialDev = None
+
     if not Board.serialDev:
-      raise ParaNutException ("Failed to open serial device (board connected?)")
+      raise ParaNutException ("Serial device not found (is the board connected?)")
     Board.serialDev.reset_input_buffer ()   # [2018-03-02] This does not work!!
 
     if writeFirmware:
@@ -271,9 +324,9 @@ class Board:
 
           # Dictionary for "b" answers...
           if prefix == '?b':
-            argDict = { "adr": args[0], "size": args[1], "chunk_size": args[2] }
+            argDict = { "adr": args[0], "size": args[1], "chunk_size": args[2], "compressed": args[3] }
 
-          # Dictionary for "b" answers...
+          # Dictionary for "a" answers...
           if prefix == '?a':
             argDict = { "state": "init_done" }
 
@@ -284,6 +337,10 @@ class Board:
           # Dictionary for "n" answers...
           if prefix == '?n':
             argDict = { "value": args[0]}
+
+          # Dictionary for "k" answers...
+          if prefix == '?k':
+            argDict = {}
 
           # Done...
           argDict["prefix"] = prefix
@@ -310,17 +367,18 @@ class Board:
         if triesLeft <= 0: raise ParaNutException ("Memory write command failed")
 
 
-  def blockWrite (offset, block):
+  def blockWrite (offset, block, compressed):
     """Write to ParaNut system memory."""
     i = 0
     j = 0
     ctrlc = 0
     size = len(block)
-    chunk_size = 500
-    Board.writeCommand ("\x16 ?b {0:08x} {1:08x} {2:08x}".format (offset, size, chunk_size))
+    chunk_size = 63
+    compressed_num = 1 if compressed else 0
+    Board.writeCommand ("\x16 ?b {0:08x} {1:08x} {2:08x} {3:1x}".format (offset, size, chunk_size, compressed_num))
     ans = Board.readAnswer (optNumTries)
     #~ print("Return: {0:08x} {1:08x}, schould be {2:08x} {3:08x}".format (ans["adr"], ans["size"], offset+j, size-j))
-    if ans["prefix"] != "?b" or ans["adr"] != offset or ans["size"] != size or ans["chunk_size"] != chunk_size:
+    if ans["prefix"] != "?b" or ans["adr"] != offset or ans["size"] != size or ans["chunk_size"] != chunk_size or ans["compressed"] != compressed_num:
       raise ParaNutException ("Did not receive command acknowledge!")
 
     # Send in chunks so we can give feedback to the user
@@ -329,7 +387,21 @@ class Board:
           ret = Board.serialDev.write (block[i:j])
           if ( ret != chunk_size and ret != (j - i) ) :
             raise ParaNutException ("Written bytes != chunk_size!")
+
+          # Major flaw/bug in pyserial? We need to write a \n (0x10) otherwise the last few bytes will never be output to
+          # the firmware and everything will hang. Another solution was to write a lot of data till some buffer probably
+          # was full and got flushed. NOTHING else would work (like what does flush() even do???) and out_waiting is also 0.
+          # Funny enough this problem did not show before because the old linker script put some data with the value 0x10 at the
+          # end of every binary.
+          Board.serialDev.write ("\n".encode('utf-8'))
           Board.serialDev.flush()
+
+          # Wait for ACK if not at the end
+          if (j - i) == chunk_size:
+            ans = Board.readAnswer ()
+            if ans["prefix"] != "?k":
+              raise ParaNutException ("Expected write ack, but received " + ans["prefix"])
+
           # Output of remaining data
           print("\rSent: {0:d} of {1:d} Bytes... ".format(j, size), end='')
       except KeyboardInterrupt:
@@ -341,18 +413,10 @@ class Board:
             shutdown()
             raise
 
-    # Major flaw/bug in pyserial? We need to write a \n (0x10) otherwise the last few bytes will never be output to
-    # the firmware and everything will hang. Another solution was to write a lot of data till some buffer probably
-    # was full and got flushed. NOTHING else would work (like what does flush() even do???) and out_waiting is also 0.
-    # Funny enough this problem did not show before because the old linker script put some data with the value 0x10 at the
-    # end of every binary.
-    Board.serialDev.write ("\n".encode('utf-8'))
-    Board.serialDev.flush()
-
     # Read confirmation
     ans = Board.readAnswer (optNumTries)
-    if ans["prefix"] != "?b" or ans["adr"] != offset+j or ans["size"] != size or ans["chunk_size"] != chunk_size:
-      #~ print("Return: {0:08x} {1:08x}, schould be {2:08x} {3:08x}".format (ans["adr"], ans["size"], offset+j, size,))
+    if ans["prefix"] != "?b" or ans["adr"] != offset+j or ans["size"] != size or ans["chunk_size"] != chunk_size or ans["compressed"] != compressed_num:
+      print("Return: {0:08x} {1:08x}, schould be {2:08x} {3:08x}".format (ans["adr"], ans["size"], offset+j, size,))
       raise ParaNutException ("Did not receive transimission confirmation!")
 
     print("OK\n")
@@ -401,17 +465,26 @@ def readBinary (binaryFileName):
 def objcopyElfFile (elfFileName):
   """returns binaryFile, the filename of the created binary"""
 
-  # Run objcopy...
-  ret = subprocess.run (optObjcopyCmd.format (optObjcopy, elfFileName, optObjcopyTmpFile),
+  # Check if supplied file is ELF...
+  ret = subprocess.run (optElfCheckCmd.format (elfFileName),
+              shell=True, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+              stderr=subprocess.STDOUT, universal_newlines=True, check=False, timeout=120);
+  if ret == "":
+    print ("Error: Supplied file is not RISC-V ELF.")
+    raise ParaNutException ("Failed to create a binary file from input ELF")
+
+  else:
+    # Run objcopy...
+    ret = subprocess.run (optObjcopyCmd.format (optObjcopy, elfFileName, optObjcopyTmpFile),
               shell=True, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
               stderr=subprocess.STDOUT, universal_newlines=True, check=False, timeout=120);
 
-  if ret.returncode != 0:
-    print ("FAILED!", flush=True)
-    print ("\n-------------------- DETAILED ERROR LOG FOLLOWS --------------------\n")
-    print (ret.stdout)
-    print ("\n-------------------- END OF DETAILED ERROR LOG ---------------------\n")
-    raise ParaNutException ("Failed to create a binary file from input ELF")
+    if ret.returncode != 0:
+      print ("FAILED!", flush=True)
+      print ("\n-------------------- DETAILED ERROR LOG FOLLOWS --------------------\n")
+      print (ret.stdout)
+      print ("\n-------------------- END OF DETAILED ERROR LOG ---------------------\n")
+      raise ParaNutException ("Failed to create a binary file from input ELF")
 
   return optObjcopyTmpFile
 
@@ -444,7 +517,7 @@ def shutdown ():
 
 
 # Banner...
-print ("ParaNut flash software %i.%i.%i   (C) 2019 Alexander Bahle, University of Applied Sciences Augsburg\n"
+print ("ParaNut flash software %i.%i.%i   (C) 2019-2022 Alexander Bahle et al., University of Applied Sciences Augsburg\n"
        % (versionMajor, versionMinor, versionRevision))
 
 # Read options...
@@ -502,30 +575,37 @@ if len(optAddress) == 2:
 if optBinary != "":
   print ("Transfer ParaNut software '{0:s}'.".format(optBinary))
   filename, file_ext = os.path.splitext(optBinary)
-  if file_ext != ".bin":
-    # If no binary is supplied try to create one by calling objcopy
+  compressed = False
+  if file_ext == ".elf" or file_ext == "":
+    # If elf file is supplied try to create binary by calling objcopy
+    print ("Generating stripped binary from elf file ... ", end="", flush=True)
     optBinary = objcopyElfFile(optBinary)
+    print ("done.")
+  elif file_ext == ".gz" or file_ext == ".gzip":
+    # If gzip compressed file is provided, set flag to unpack it on the board
+    compressed = True
   memory = readBinary (optBinary)
-  Board.blockWrite(0x10000000, memory)
-  # Check for transmission errors (first 10 words):
-  for i in range (0, 10):
-    data = Board.memRead (0x10000000 + (i*4))
-    memw = (memory[(i*4)+3] << 24) + (memory[(i*4)+2] << 16) + (memory[(i*4)+1] << 8) + memory[i*4]
-    #print ("0x{0:08x}: 0x{1:08x}".format (memw, data))
-    if data != memw:
-      print ("Binary 0x{0:08x} != Memory 0x{1:08x}".format (memw, data))
-      print("ERROR during transmission, try again or reset the hardware")
-      exit (4)
-  # Check for transmission errors (last 10 words):
-  words = int(len(memory) / 4)
-  for i in range (words-10, words):
-    data = Board.memRead (0x10000000 + (i*4))
-    memw = (memory[(i*4)+3] << 24) + (memory[(i*4)+2] << 16) + (memory[(i*4)+1] << 8) + memory[i*4]
-    #print ("0x{0:08x}: 0x{1:08x}".format (memw, data))
-    if data != memw:
-      print ("Binary 0x{0:08x} != Memory 0x{1:08x}".format (memw, data))
-      print("ERROR during transmission, try again or reset the hardware")
-      exit (4)
+  Board.blockWrite(0x10000000, memory, compressed)
+  if not compressed:
+    # Check for transmission errors (first 10 words):
+    for i in range (0, 10):
+      data = Board.memRead (0x10000000 + (i*4))
+      memw = (memory[(i*4)+3] << 24) + (memory[(i*4)+2] << 16) + (memory[(i*4)+1] << 8) + memory[i*4]
+      #print ("0x{0:08x}: 0x{1:08x}".format (memw, data))
+      if data != memw:
+        print ("Binary 0x{0:08x} != Memory 0x{1:08x}".format (memw, data))
+        print("ERROR during transmission, try again or reset the hardware")
+        exit (4)
+    # Check for transmission errors (last 10 words):
+    words = int(len(memory) / 4)
+    for i in range (words-10, words):
+      data = Board.memRead (0x10000000 + (i*4))
+      memw = (memory[(i*4)+3] << 24) + (memory[(i*4)+2] << 16) + (memory[(i*4)+1] << 8) + memory[i*4]
+      #print ("0x{0:08x}: 0x{1:08x}".format (memw, data))
+      if data != memw:
+        print ("Binary 0x{0:08x} != Memory 0x{1:08x}".format (memw, data))
+        print("ERROR during transmission, try again or reset the hardware")
+        exit (4)
 
 if optBitfile != "":
   Board.programBitfile(optBitfile)

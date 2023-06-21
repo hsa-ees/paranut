@@ -1,0 +1,6 @@
+<map id="Memory Management Unit (MMU)" name="Memory Management Unit (MMU)">
+<area shape="rect" id="node1" href="$group__config__lsu.html" title="Load Store Unit options." alt="" coords="427,5,550,31"/>
+<area shape="rect" id="node2" title="Memory Management Unit (MMU) options." alt="" coords="163,23,360,63"/>
+<area shape="rect" id="node4" href="$group__config__ifu.html" title="Instruction Fetch Unit options." alt="" coords="408,55,569,80"/>
+<area shape="rect" id="node3" href="$group__config.html" title="Configuration Makros used in most ParaNut files." alt="" coords="5,31,115,56"/>
+</map>

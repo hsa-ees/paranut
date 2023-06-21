@@ -1,0 +1,119 @@
+#! /bin/bash
+
+###########################################################################
+#
+#  This file is part of the ParaNut project.
+#
+#  Copyright (C) 2023 Lukas Bauer <lukas.bauer@hs-augsburg.de>
+#      Efficient Embedded Systems Group
+#      Hochschule Augsburg, University of Applied Sciences
+#
+#  Description:
+#      This script can test the whole debug infrastructure in simulation.
+#      It runs a simple program in the simulator and performes Debug tasks on
+#      this software and checks if the results matching with the expected results.
+#
+#  --------------------- LICENSE -----------------------------------------------
+#  Redistribution and use in source and binary forms, with or without modification,
+#  are permitted provided that the following conditions are met:
+#
+#  1. Redistributions of source code must retain the above copyright notice, this
+#     list of conditions and the following disclaimer.
+#
+#  2. Redistributions in binary form must reproduce the above copyright notice,
+#     this list of conditions and the following disclaimer in the documentation and/or
+#     other materials provided with the distribution.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+#  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+#  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+#  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+#  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+#  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+#  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+#  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+###########################################################################
+
+priv=$1
+oocd=$2
+
+
+
+# Checking if priv level is valid
+if [[ $priv -lt 1 || $priv -gt 3  || -z "$priv" ]];then
+    if [[ "$priv" -ne "-h" ]]; then
+        echo "Invalid Command:"
+    fi
+
+    echo "Help:"
+    echo "Usage gdb_debugtest <privileg level> <OpenOCD Path>"
+    echo "privilege level: 1-3"
+    echo "Optional: the path to the openocd executable"
+    echo "-h: to show this help"
+    exit
+fi
+
+# checking if paranut settings are sourced
+if [ -z ${PARANUT_TOOLS} ]; then
+    echo "Please source the settings.sh file"
+    exit
+fi
+
+if [ -z $oocd ]; then
+    oocd=openocd
+fi
+
+echo "Testing priv${priv} mode"
+
+
+# go to the root folder of the reposetory
+cd ${PARANUT_TOOLS}/..
+
+# set the correct privileg level in config.mk and in the gdbtestscript
+sed -e "s#{privilege}#${priv}#g" ${PARANUT_TOOLS}/gdbtest/gdb_debugtest_gdbscript_template > ${PARANUT_TOOLS}/gdbtest/gdb_debugtest_gdbscript
+sed -i -r "s/CFG_PRIV_LEVELS \?= [1-3]/CFG_PRIV_LEVELS \?= ${priv}/g" config.mk
+
+
+# build the necasary components of the paranut necesary for the test
+make veryclean
+make -j8
+make -C hw/sim clean
+make -C hw/sim
+make -C sw/hello_newlib clean
+make -C sw/hello_newlib
+
+
+# start the simulator, openocd and gdb and run the test
+hw/sim/pn-sim -d sw/hello_newlib/hello_newlib &> ${PARANUT_TOOLS}/gdbtest/sim.log &
+sleep 3
+$oocd -f ${PARANUT_TOOLS}/etc/openocd-sim.cfg &> ${PARANUT_TOOLS}/gdbtest/openocd.log &
+sleep 3
+riscv64-unknown-elf-gdb --batch -x ${PARANUT_TOOLS}/gdbtest/gdb_debugtest_gdbscript  sw/hello_newlib/hello_newlib > ${PARANUT_TOOLS}/gdbtest/gdb_priv${priv}_test.log
+
+# close openocd and the simulator when the test is done
+pkill -f "$oocd -f ${PARANUT_TOOLS}/etc/openocd-sim.cfg"
+pkill -f "hw/sim/pn-sim -d sw/hello_newlib/hello_newlib"
+
+# check if the results match with the expected values (ignores lines that are different in each run)
+output=$(diff -I"m[a-zA-Z0-8]*\s[ 0-9a-fx]*" -I"cycle[0-9x ]*" -I"Haltepunkt.*" -I"Breakpoint.*" -I"dscratch0[0-9x ]*" ${PARANUT_TOOLS}/gdbtest/gdb_priv${priv}_test.log ${PARANUT_TOOLS}/gdbtest/expected_results/gdb_priv${priv}_test.test)
+
+# reset the gdbtestscript and the config.mk file
+rm   ${PARANUT_TOOLS}/gdbtest/gdb_debugtest_gdbscript
+sed -i -r "s/CFG_PRIV_LEVELS \?= [1-3]/CFG_PRIV_LEVELS \?= 1/g" config.mk
+
+# cleanup after the test
+make veryclean
+make -C hw/sim clean
+make -C sw/hello_newlib clean
+
+# print out the test results
+if [ -z "$output" ];then
+    echo "Test finished succesfully";
+else
+    echo $output;
+    echo "Test failed";
+fi
+
+

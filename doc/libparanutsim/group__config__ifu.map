@@ -1,3 +1,4 @@
 <map id="Instruction Fetch Unit" name="Instruction Fetch Unit">
-<area shape="rect" id="node1" href="$group__config.html" title="Configuration Makros used in most ParaNut files. " alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node1" href="$group__config__mmu.html" title="Memory Management Unit (MMU) options." alt="" coords="5,5,203,45"/>
+<area shape="rect" id="node2" title="Instruction Fetch Unit options." alt="" coords="251,13,412,38"/>
 </map>

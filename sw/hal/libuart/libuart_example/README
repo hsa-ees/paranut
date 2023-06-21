@@ -1,0 +1,47 @@
+# Summary
+
+This programm provides a way to test the UART16750 Hardware Module and uses the libuart library
+The software can only be run on the FPGA Hardware and not in the simulator.
+
+# Prerequisites
+
+   - a zynq 7000 or zynq z7 7020 fpga board
+   - a usb to uart adapter
+   - picocom or a similar terminal programm
+   - icsc and sv2v (for running the hls synthesis), which can be found here:
+        - [ICSC](https://github.com/intel/systemc-compiler/wiki/Getting-started)
+        - [sv2v](https://github.com/zachjs/sv2v/releases/tag/v0.0.10)
+
+
+# Setting the Baudrate
+
+When setting the baudrate in the DLM and DLL registers it is important to note to do this [Datasheet](https://www.ti.com/lit/ds/symlink/tl16c750.pdf?ts=1673448438359&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTL16C750) according to the Table for the 1.8 MHz crystal.
+
+# Setup
+
+To run this program the following steps need to be done:
+
+1. Configure the CFG_UART_BASE_ENABLE attribute in the config.mk file in the root of the project and in the config.mk for the board being used to "true" to enable the UART module
+2. Change the address of the UART module with the CFG_UART_BASE_ADDRESS attribute in the config.mk at the root of the project and in the config.mk file of the board being used.
+    **Warning: When the Address the changed the UART  the HSL with ICSC needs to be rerun. For further informations read the README in /hw/sysc/uart**
+3. Build the hardware in the system/refdesign folder with the external UART enabled. For information on how to enable the UART on the external PMOD read the README file in system/refdesign
+
+4. Connect an UART adapter to the PMOD connector PE as follows:
+![If no Picture is shown please open this file in doc-src/figs with the name uart_connections.jpeg](../../../doc-src/figs/uart_connection.jpeg)
+
+5. When using  picocom open a connection with the following command:
+```sh
+sudo picocom -b 115200 /dev/ttyUSB0
+```
+It is possible that the device name of ttyUSB0 is not correct. Please change it to the device name of your USB to UART adapter
+6. Run the software in the sw/lib_uart_api/libuart_example folder with the following command:
+```sh
+    make flash-refdesign-bit
+```
+
+## For Further Information on the UART Module
+- Bachelor Thesis "Entwurf eines Demonstrators für intelligente Tierimplantate auf Basis eines ParaNut/RISC-V-Prozessors"
+
+- Bachelor Thesis "Weiterentwicklung der Debug-Infrastruktur des ParaNut-Prozessors"
+
+- READMEs in the /\<Paranut_Root_Directory\>/hw/sysc/uart and /\<Paranut_Root_Directory\>/sw/lib_uart_api/ and /\<Paranut_Root_Directory\>/sw/lib_uart_api/libuart_example

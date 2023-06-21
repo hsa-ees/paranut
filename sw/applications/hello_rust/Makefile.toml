@@ -1,0 +1,98 @@
+[env]
+# Root of ParaNut repository or local project  
+PARANUT = "../../.."
+
+# Channel option
+CARGO_MAKE_RUST_CHANNEL = "nightly"
+
+# Configuration options 
+CROSS_COMPILE = "riscv64-unknown-elf"
+
+OBJDUMP = "${CROSS_COMPILE}-objdump"
+OBJCOPY = "${CROSS_COMPILE}-objcopy"
+GDB     = "${CROSS_COMPILE}-gdb"
+AR      = "${CROSS_COMPILE}-ar"
+SIZE    = "${CROSS_COMPILE}-size"
+
+TARGET = "riscv32paranut-unknown-elf"
+
+ELF_DIR = "target/${TARGET}/debug"
+ELF_NAME = "hello_rust"
+
+# Flash target options
+PN_FIRMWARE_ELF = ""
+PN_SYSTEM_HDF = ""
+PN_SYSTEM_BIT = ""
+
+
+#Task for the makefile Commands
+
+#Build tasks
+[tasks.cargo-build]
+toolchain = "${CARGO_MAKE_RUST_CHANNEL}"
+command = "cargo"
+args = ["build"]
+
+#Clean tasks
+[tasks.cargo-clean]
+command = "cargo"
+args = ["clean"]
+
+[tasks.clean-files]
+command = "rm"
+args = ["-rf", "Cargo.lock"]
+
+[tasks.objdump]
+toolchain = "${CARGO_MAKE_RUST_CHANNEL}"
+script = ["${OBJDUMP} -S -D ${ELF_DIR}/${ELF_NAME} > ${ELF_DIR}/${ELF_NAME}.dump"]
+
+# Makefile Commands ###################################################################################
+
+[tasks.sim]
+toolchain = "${CARGO_MAKE_RUST_CHANNEL}"
+command = "cargo"
+args = ["run"]
+
+[tasks.dump]
+toolchain = "${CARGO_MAKE_RUST_CHANNEL}"
+dependencies = [
+    "objdump"
+]
+
+[tasks.bin]
+toolchain = "${CARGO_MAKE_RUST_CHANNEL}"
+command = "${OBJCOPY}"
+args = ["-S", "-O", "binary", "${ELF_DIR}/${ELF_NAME}", "${ELF_DIR}/${ELF_NAME}.bin"]
+
+[tasks.build]
+toolchain = "${CARGO_MAKE_RUST_CHANNEL}"
+dependencies = [
+    "cargo-build"
+]
+
+#Analyze task
+[tasks.analyze]
+toolchain = "${CARGO_MAKE_RUST_CHANNEL}"
+command = "cargo"
+args = ["clippy"]
+
+[tasks.clean]
+dependencies = [
+    "cargo-clean",
+    "clean-files"
+]
+
+[tasks.help]
+script = [
+    "echo '\n'Cargo Makefile ",
+    "echo ---------------'\n'",
+    "echo Usage: cargo make  ['<'target'>']'\n'",
+    "echo Targets:'\n'",
+    "echo build     : Build the rust project",
+    "echo analyze   : Analyze the rust project",
+    "echo bin       : Create a bin data",
+    "echo dump      : Create a dump data",
+    "echo sim       : Simulate the project",
+    "echo clean     : Clean the Project",
+    "echo help      : Help'\n'"    
+]

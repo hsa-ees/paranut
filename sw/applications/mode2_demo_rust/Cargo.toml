@@ -1,0 +1,14 @@
+[package]
+name = "mode2_demo_rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bindgen-paranut-sys = {path = "../../hal/rust_intern_crates/bindgen-paranut-sys"}
+paranut-allocator = {path = "../../hal/rust_intern_crates/paranut-allocator"}
+encoding = {path = "../../hal/rust_intern_crates/encoding"}
+libc-print = {git = "https://github.com/dbartussek/rust-libc-print.git"}
+
+
+[profile.dev]
+opt-level = 3

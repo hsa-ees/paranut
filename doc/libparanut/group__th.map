@@ -1,3 +1,4 @@
 <map id="Thread Module" name="Thread Module">
-<area shape="rect" id="node1" href="$group__mo.html" title="Modules of libparanut. " alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node1" href="$group__mo.html" title="Modules of libparanut." alt="" coords="5,5,152,31"/>
+<area shape="rect" id="node2" title="Functions for using the threaded mode." alt="" coords="200,5,319,31"/>
 </map>

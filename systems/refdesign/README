@@ -1,119 +1,117 @@
-  ,===========================================,
-  |                                           |
-  |         ParaNut Reference System          |
-  |                                           |
-  '==========================================='
+ParaNut Project Directory
+=========================
 
-Author: Alexander Bahle <alexander.bahle@hs-augsburg.de>
-Date of revision: 2020-02-12
+This directory contains everything to start a new ParaNut project.
 
 
-Development environment: Xilinx Vivado 2017.2
+Directory Contents
+------------------
+
+- ./hw            - Hardware implementation (SystemC model, Simulator, ...)
+- ./sw            - Support library (*libparanut*) and common RISC-V files
+- config.mk       - Hardware configuration file
+- Makefile        - Top-level Makefile
 
 
-Target Boards: 
-  * Digilent Zybo board (Zynq Z-7010, XC7Z010) (Retired) 
-    Set during build: BOARD=zybo
-  * Digilent Zybo Z7-20 board (Zynq Z-7020, XC7Z020)
-    Set during build: BOARD=zybo_z7020
+Licensing
+---------
 
-  Note: Vivado Board Files must be installed!
-   Ensure you have installed the Vivado Board Files for your target
-   board. These files can be obtained from Digilent or Avnet (they call 
-   it "Board Definitions") and are placed in the Vivado installation
-   directory at '%Vivado-Dir/data/boards/board_files/'.
-
-
-Additional hardware (optional):
-  * a OpenOCD compatible JTAG debugger (see doc/paranut-manual.pdf)
-
-
-Info on Vivado IP cores:
-  * PARANUT: ParaNut processor 
-
-
-Software / demo system usage:
-  The RISC-V software running on the ParaNut will be located in the 
-  'software/' directory.
-  
-
-
-**************
-* Quickstart *
-**************
-  0) For proper operation of Vivado (needed to generate an ASTERICS IP 
-     core for Vivado and to build the system) make sure you source your 
-     Vivado environment:
-     > source <VIVADO-DIR>/settings64.sh
-     
-     Make sure you source the ParaNut environment prior to any action 
-     in the project folder:
-     > source <PARANUT-DIR>/settings.sh
-
-  1) Build the whole system (hardware platform and demo software).
-     Select your board during this step. Default is 'zybo'. 
-     The software is copied from one of the '<PARANUT-DIR>/sw' directories.
-     Default is 'hello_newlib' but any other software can be selected by
-     setting 'SOFTWARE_SRC' variable.
-     This step will take some time:
-     > make build 
-     or e.g.
-     > make build BOARD=zybo_z7020 SOFTWARE_SRC=mode1_demo 
-
-  3) Connect your board to your computer and power on the board.
-     Then upload the hardware and software to the board:
-     > make run
+(see [LICENSE](https://github.com/hsa-ees/paranut/blob/master/LICENSE) or license notes in the respective directories / files)
 
 
 
-****************
-* Make Targets *
-****************
+Getting Started
+===============
 
-  Following make targets help to build a complete system
-  which is put to operation on the target board.
+1. Prerequisites
+----------------
 
-  * paranut_core :          Generate the ParaNut IP core for
-                            Xilinx Vivado using in the 'vivado_cores'
-                            directory. 
-
-  * software:               Populate the software directory with the 
-                            reference implementation specified by the
-                            SOFTWARE_SRC variable.
-                            
-  * clean-software:         Remove 
-  * build_system:           Generate and build the whole demo system
-                            (hardware + software) from sources.
-                      NOTE: target 'paranut_core' has to be run once before!
-
-  * run:                    Run the demo on the target board.
-                      NOTE: target 'build_system' has to be run once before!
-
-  * all / build_and_run :   The lazy target: performs all needed steps
-                            automatically, no more interaction needed.
-                            This one uses following targets:
-                              1) paranut_core
-                              2) build_system
-                              3) run
-                            Just make sure to connect the board, as it
-                            will be programmed right after hardware and
-                            software are built.
+Source your ParaNut installation (e.g. for an installation located in /opt/paranut/):
+$ . /opt/paranut/settings.sh
 
 
-************************
-* Directory structure: *
-************************
- - refdesign/
-   |- README:         This file.
-   |- Makefile:       The main Makefile to build and run the system
-   |- hardware/
-   |  |- boards/:     board support files (blockdesign, ParaNut config, 
-   |  |               constraints, firmware source...)
-   |  |- build/:      build directory, system level (generated)
-   |  |- build.bd/:   build directory for blockdesign files (generated)
-   |  '- firmware/:   build directory for firmware running on ZYNQ ARM 
-   |                  processors (generated)
-   |- software/:      Demo software for ParaNut processor (copied)
-   '- vivado_cores/:  IP core repository, containing the
-                      ParaNut IP cores for use in Vivado (generated)
-   
+2. Setting up the environment
+-----------------------------
+
+Create a new ParaNut project:
+$ pn-newproject -c
+
+
+3. Building the Simulator and Library
+-------------------------------------------
+
+$ make -C paranut build
+
+The simulator executable can now be used to run your ParaNut software ./paranut/hw/sim/pn-sim
+
+
+4. Running "hello_world" on a *ParaNut* using the *SystemC* model / Simulator
+-----------------------------------------------------------------------------
+
+To build a software project to run on the ParaNut, create a 'software' directory and change there:
+
+$ mkdir software
+$ cd software
+
+Create a source file 'hello_world.c' with the following content:
+
+/*--- hello_world.c --------------------------------*/
+
+#include <stdio.h>
+
+int main () {
+  printf ("Hallo Welt!\n");
+  return 0;
+}
+
+/*--------------------------------------------------*/
+
+
+To facilitate the software build process, create the following 'Makefile':
+
+#--- Makefile --------------------------------
+
+# Default make target ...
+all: hello_world
+
+# ParaNut settings ...
+include ../paranut/sw/ParaNut.mk
+  This defines:
+  - compiler and linker flags as $(PARANUT_CFLAGS) and $(PARANUT_LDFLAGS)
+  - cross compiler definitions as $(PARANUT_CC), $(PARANUT_CXX)
+  - cross tools prefix $(PARANUT_CROSS) for various binutils
+
+# Compiler/Linker flags ...
+CFLAGS = -Wall -g -O2 $(PARANUT_CFLAGS)
+LDFLAGS = -lm $(PARANUT_LDFLAGS)
+
+# Compiling ...
+hello_world.o: hello_world.c
+	$(PARANUT_CC) -c $(CFLAGS) $<
+
+# Linking ...
+hello_world: hello_world.o
+	$(PARANUT_CC) -o $@ $^ $(LDFLAGS)
+
+#--------------------------------------------------
+
+Build your software binary by running
+$ make
+
+Now you can run the hello_world executable on the previously built simulator by
+calling
+$ ../paranut/hw/sim/pn-sim hello_world
+
+# Tips
+For additional options and help for the usage of the main make file
+$ make -C paranut help
+
+You may wish to alter the ParaNut configuration in config.mk (e.g. to 
+change the number of CoPU or cache size). Make sure to rebuild the simulatior 
+after such changes.
+$ make -C paranut build-sim
+
+The simulator pn-sim offers many options that may be useful for debugging 
+and analyzing an application. For further information a help can be displayed.
+$ ../paranut/hw/sim/pn-sim -h
+

@@ -1,4 +1,7 @@
 <map id="paranut&#45;peripheral.h" name="paranut&#45;peripheral.h">
-<area shape="rect" id="node3" href="$base_8h.html" title="Helpers, Makros and performance measuring Classes used in most ParaNut files. " alt="" coords="51,80,112,107"/>
-<area shape="rect" id="node4" href="$paranut-config_8h.html" title="Configuration Makros used in most ParaNut files. " alt="" coords="136,80,251,107"/>
+<area shape="rect" id="node1" title="The MPeripheral class containing the interface for Wishbone slave peripherals." alt="" coords="43,5,198,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,95,181"/>
+<area shape="rect" id="node3" href="$base_8h.html" title="Helpers, Makros and performance measuring Classes used in most ParaNut files." alt="" coords="88,80,153,107"/>
+<area shape="rect" id="node5" href="$paranut-config_8h.html" title="Configuration Makros used in most ParaNut files." alt="" coords="178,80,306,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="119,155,194,181"/>
 </map>

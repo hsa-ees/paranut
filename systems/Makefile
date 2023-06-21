@@ -2,11 +2,12 @@
 #
 #  This file is part of the ParaNut project.
 #
-#  Copyright (C) 2021 Michael Schaeferling <michael.schaeferling@hs-augsburg.de>
+#  Copyright (C) 2010-2020 Alexander Bahle <alexander.bahle@hs-augsburg.de>
+#                          Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>
 #      Hochschule Augsburg, University of Applied Sciences
 #
 #  Description:
-#    ParaNut Systems Makefile.
+#    ParaNut software section Makefile.
 #
 #  --------------------- LICENSE -----------------------------------------------
 #  Redistribution and use in source and binary forms, with or without modification,
@@ -32,10 +33,10 @@
 #  -----------------------------------------------------------------------------
 
 
-# Configuration ...
-PN_SYSTEMS ?= refdesign \
-              soundchip
+PARANUT_HOME ?= $(abspath $(CURDIR)/..)
+include $(PARANUT_HOME)/directory-base.mk
 
+TARGET_DIRS := $(shell find $(SYSTEMS_DIR)/* -type d)
 
 ################################################################################
 #                                                                              #
@@ -48,94 +49,60 @@ PN_SYSTEMS ?= refdesign \
 .PHONY: all
 all: help
 
+.PHONY: $(TARGET_DIRS)
+$(TARGET_DIRS):
+	-$(MAKE) -C $@ clean 2> /dev/null
+
+.PHONY: $(PN_SYSTEM)
+$(PN_SYSTEM):
+	-$(MAKE) -C $@ clean 2> /dev/null
 
 # Print usage info ...
 .PHONY: help
 help:
-	@echo "Makefile for the ParaNut systems directory."
-	@echo "Here, we just invoke the systems Make targets to delegate work there."
+	@echo "This makefile is mainly used to clean system directories. Usually there sould be no need for you to use it."
 	@echo
 	@echo "Usage: make [<target>] [<parameter>=<value> ...]"
 	@echo
 	@echo "Targets:"
 	@echo
-	@echo "  build       : Install hardware source files to the directory given by parameter PREFIX"
-	@echo
-	@echo "  install     : Install system files to the directory given by parameter PREFIX"
-	@echo "                (only applicable by some systems)"
-	@echo
-	@echo "  clean       : Cleanup systems"
-	@echo "  veryclean   : Cleanup systems"
-	@echo
+	@echo "  install     : Install hardware source files to the directory given by parameter INSTALL_DIR"
+	@echo "                (default: /opt/paranut)"
+	@echo "  clean-all   : Clean all subdirectories (delete compilation artefacts)"
+	@echo "                (default: /opt/paranut)"
+	@echo "  clean       : Clean only PN_SYSTEM (default: $(PN_SYSTEM_DEFAULT))"
+	@echo "                (default: /opt/paranut)"
 
 
 ################################################################################
 #                                                                              #
-#     Build                                                                    #
+#     Installing                                                               #
 #                                                                              #
 ################################################################################
-
-.PHONY: build
-build:
-	@for p in $(PN_SYSTEMS); do \
-	  if [ -d "$$p" ]; then \
-	    echo ""; \
-	    echo "###########################################"; \
-	    echo "#                                         #"; \
-	    echo "#         Building ParaNut System         #"; \
-	    echo "#                                         #"; \
-	    echo "###########################################"; \
-	    echo "System Name: '$$p'"; \
-	    echo ""; \
-	    $(MAKE) -C $$p build || exit 1; \
-	    echo; \
-	  fi; \
-	done
-
-
-################################################################################
-#                                                                              #
-#     Install                                                                  #
-#                                                                              #
-################################################################################
-
+INSTALL_DIR_SUFFIX=$(subst $(PARANUT_HOME),,$(SYSTEMS_DIR))
+INSTALL_PN_SIM_BIN=$(INSTALL_DIR)/$(subst $(PARANUT_HOME),,$(PN_SIM_BIN))
+INSTALL_BIN_DIR=$(INSTALL_DIR)/$(subst $(PARANUT_HOME),,$(BIN_DIR))
 .PHONY: install
 install:
-	@test "$(PREFIX)" != "" || ( echo "ERROR: Make variable 'PREFIX' must be set for the 'install' target."; exit 3; )
 	@echo
-	@echo "### Installing system files to $(PREFIX) ###"
-	for p in $(PN_SYSTEMS); do \
-	  if [ -d "$$p" ]; then \
-	    $(MAKE) -C $$p install PREFIX=$(PREFIX) || exit 1; \
-	    echo; \
-	  fi; \
-	done
+	@echo "### Installing System sources to $(INSTALL_DIR) ###"
+	@echo "# Note: only system $(PN_SYSTEM) will be installed #"
+	mkdir -p $(INSTALL_DIR)/$(INSTALL_DIR_SUFFIX)
+	cp -dr --no-preserve=ownership $(PNS_DIR) $(INSTALL_DIR)/$(INSTALL_DIR_SUFFIX)
+	@echo "# Create link to pn-sim in bin dir #"
+	rm -f $(INSTALL_BIN_DIR)/$(PN_SIM_BIN_NAME)
+	ln -s $(INSTALL_PN_SIM_BIN) $(INSTALL_BIN_DIR)/$(PN_SIM_BIN_NAME)
 
 
 ################################################################################
 #                                                                              #
-#     Clean / Veryclean                                                        #
+#     Cleaning                                                                 #
 #                                                                              #
 ################################################################################
+.PHONY: clean-all
+clean-all: $(TARGET_DIRS)
+	@echo
+	@echo "### All system directories cleaned ###"
 
 .PHONY: clean
-clean:
-	@echo
-	@echo "### Cleaning systems ###"
-	@for p in $(PN_SYSTEMS); do \
-	  if [ -d "$$p" ]; then \
-	    $(MAKE) -C $$p clean || exit 1; \
-	    echo; \
-	  fi; \
-	done
-
-.PHONY: veryclean
-veryclean:
-	@echo
-	@echo "### Cleaning systems (very clean) ###"
-	@for p in $(PN_SYSTEMS); do \
-	  if [ -d "$$p" ]; then \
-	    $(MAKE) -C $$p veryclean || exit 1; \
-	    echo; \
-	  fi; \
-	done
+clean: $(PN_SYSTEM)

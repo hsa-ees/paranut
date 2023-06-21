@@ -1,0 +1,28 @@
+Run the Linux Kernel on the ParaNut.
+
+Run make in this folder to build a pre-configured binary consisting of
+a Linux Kernel, the OpenSBI bootloader and a device tree.
+
+Note that either PARANUT_TOOLS must be set to the tools folder or
+PN_EXTERNAL must point to the external folder.
+
+Steps performed by the Makefile:
+- Download and unpack compiler toolchain
+
+- Download linux kernel and checkout specific version
+- Install linux config
+- Build linux kernel
+
+- Update device tree by using the ParaNut config (memory address and size, mtimer address and frequency)
+- Build device tree using linux dtc (scripts/dtc/dtc)
+
+- Download correct version of OpenSBI
+- Build OpenSBI payload image with linux kernel and device tree
+
+The simulation can then be started by running make sim.
+Note that the following ParaNut configuration options have to be set:
+- CFG_PRIV_LEVELS=3
+- CFG_EXU_M_EXTENSION=1
+- CFG_EXU_A_EXTENSION=1
+
+See systems/linux for a hardware refdesign.

@@ -1,0 +1,4 @@
+This folder contains the sources required to build the FreeRTOS Kernel,
+that other applications can depend on.
+
+It also contains a test application that can be built using make.

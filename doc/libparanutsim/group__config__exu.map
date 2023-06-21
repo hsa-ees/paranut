@@ -1,3 +1,4 @@
 <map id="Execution Unit" name="Execution Unit">
-<area shape="rect" id="node2" href="$group__config.html" title="Configuration Makros used in most ParaNut files. " alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node1" title="Execution Unit options." alt="" coords="163,5,279,31"/>
+<area shape="rect" id="node2" href="$group__config.html" title="Configuration Makros used in most ParaNut files." alt="" coords="5,5,115,31"/>
 </map>

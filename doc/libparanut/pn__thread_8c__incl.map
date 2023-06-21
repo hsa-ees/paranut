@@ -1,5 +1,5 @@
 <map id="pn_thread/pn_thread.c" name="pn_thread/pn_thread.c">
-<area shape="rect" id="node2" href="$common_8h.html" title="Contains architecture independent internal prototypes and defines needed in libparanut Modules..." alt="" coords="47,80,130,107"/>
-<area shape="rect" id="node3" href="$paranut_8h.html" title="API of the libparanut. " alt="" coords="51,155,127,181"/>
-<area shape="rect" id="node5" href="$pn__config_8h.html" title="See Documentaion of libparanut Compile Time Parameters. " alt="" coords="95,229,184,256"/>
+<area shape="rect" id="node1" title="Contains architecture independent implementations of the Thread Module functions." alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node2" href="$common_8h.html" title="Contains architecture independent internal prototypes and defines needed in libparanut Modules." alt="" coords="43,80,134,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="47,155,131,181"/>
 </map>

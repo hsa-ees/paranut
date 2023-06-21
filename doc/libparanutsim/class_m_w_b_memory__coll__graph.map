@@ -1,4 +1,6 @@
 <map id="MWBMemory" name="MWBMemory">
-<area shape="rect" id="node2" href="$class_m_peripheral.html" title="Class containing the interface for Wishbone slave peripherals. " alt="" coords="5,80,96,107"/>
-<area shape="rect" id="node4" href="$class_c_memory.html" title="CMemory" alt="" coords="121,80,199,107"/>
+<area shape="rect" id="node1" title="Simulation ready configurable Wishbone slave memory." alt="" coords="83,155,194,181"/>
+<area shape="rect" id="node2" href="$class_m_peripheral.html" title="Class containing the interface for Wishbone slave peripherals." alt="" coords="30,80,130,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,155,32"/>
+<area shape="rect" id="node4" href="$class_c_memory.html" title=" " alt="" coords="155,80,240,107"/>
 </map>

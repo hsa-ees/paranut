@@ -1,0 +1,136 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Wed Dec  7 08:00:50 2022
+[*]
+[dumpfile] "/home/elias233/Bachelorarbeit/uart/systemc_uart16750/src/tb/uart_receiver/uart_receiver_tb.vcd"
+[dumpfile_mtime] "Wed Dec  7 07:58:49 2022"
+[dumpfile_size] 898973
+[savefile] "/home/elias233/Bachelorarbeit/uart/systemc_uart16750/src/tb/uart_receiver/uart_receiver_tb.gtkw"
+[timestart] 83313000
+[size] 1920 999
+[pos] -1 -1
+*-20.730242 90680000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] SystemC.
+[treeopen] SystemC.tb.
+[treeopen] SystemC.tb.uart_receiver.
+[sst_width] 204
+[signals_width] 304
+[sst_expanded] 1
+[sst_vpaned_height] 293
+@28
+SystemC.tb.uart_receiver.bi_o
+SystemC.tb.uart_receiver.clk_i
+@c00022
+SystemC.tb.uart_receiver.dout_o[7:0]
+@28
+(0)SystemC.tb.uart_receiver.dout_o[7:0]
+(1)SystemC.tb.uart_receiver.dout_o[7:0]
+(2)SystemC.tb.uart_receiver.dout_o[7:0]
+(3)SystemC.tb.uart_receiver.dout_o[7:0]
+(4)SystemC.tb.uart_receiver.dout_o[7:0]
+(5)SystemC.tb.uart_receiver.dout_o[7:0]
+(6)SystemC.tb.uart_receiver.dout_o[7:0]
+(7)SystemC.tb.uart_receiver.dout_o[7:0]
+@1401200
+-group_end
+@28
+SystemC.tb.uart_receiver.eps_i
+@29
+SystemC.tb.uart_receiver.fe_o
+@28
+SystemC.tb.uart_receiver.iBI
+SystemC.tb.uart_receiver.iBaudCountClear
+@22
+SystemC.tb.uart_receiver.iBaudCount[3:0]
+@28
+SystemC.tb.uart_receiver.iBaudStep
+SystemC.tb.uart_receiver.iBaudStepD
+@c00028
+SystemC.tb.uart_receiver.iDOUT[7:0]
+@28
+(0)SystemC.tb.uart_receiver.iDOUT[7:0]
+(1)SystemC.tb.uart_receiver.iDOUT[7:0]
+(2)SystemC.tb.uart_receiver.iDOUT[7:0]
+(3)SystemC.tb.uart_receiver.iDOUT[7:0]
+(4)SystemC.tb.uart_receiver.iDOUT[7:0]
+(5)SystemC.tb.uart_receiver.iDOUT[7:0]
+(6)SystemC.tb.uart_receiver.iDOUT[7:0]
+(7)SystemC.tb.uart_receiver.iDOUT[7:0]
+@1401200
+-group_end
+@28
+SystemC.tb.uart_receiver.iDataCountFinish
+SystemC.tb.uart_receiver.iDataCountInit
+@22
+SystemC.tb.uart_receiver.iDataCount[4:0]
+@28
+SystemC.tb.uart_receiver.iFE
+SystemC.tb.uart_receiver.iFSIN
+SystemC.tb.uart_receiver.iFStopBit
+SystemC.tb.uart_receiver.iFilterClear
+SystemC.tb.uart_receiver.iNoStopReceived
+SystemC.tb.uart_receiver.iParity
+SystemC.tb.uart_receiver.iParityReceived
+SystemC.tb.uart_receiver.iRXFinished
+@22
+SystemC.tb.uart_receiver.iRxNextState[3:0]
+SystemC.tb.uart_receiver.iRxState[3:0]
+@28
+SystemC.tb.uart_receiver.pe_o
+SystemC.tb.uart_receiver.pen_i
+SystemC.tb.uart_receiver.rst_i
+SystemC.tb.uart_receiver.rx_clear_i
+SystemC.tb.uart_receiver.rx_clk_i
+SystemC.tb.uart_receiver.rx_finished_o
+SystemC.tb.uart_receiver.sp_i
+SystemC.tb.uart_receiver.stb_i
+[color] 2
+SystemC.tb.uart_receiver.sin_i
+SystemC.tb.uart_receiver.wls_i[1:0]
+@c00200
+-mv_filter
+@28
+SystemC.tb.uart_receiver.rxmvf.clear_i
+SystemC.tb.uart_receiver.rxmvf.clk_i
+@22
+SystemC.tb.uart_receiver.rxmvf.counter[4:0]
+@28
+SystemC.tb.uart_receiver.rxmvf.d_i
+SystemC.tb.uart_receiver.rxmvf.q
+SystemC.tb.uart_receiver.rxmvf.q_o
+SystemC.tb.uart_receiver.rxmvf.rst_i
+SystemC.tb.uart_receiver.rxmvf.sample_i
+@1401200
+-mv_filter
+@c00200
+-input_filter
+@28
+SystemC.tb.uart_receiver.rx_isfsb.ce_i
+SystemC.tb.uart_receiver.rx_isfsb.clk_i
+SystemC.tb.uart_receiver.rx_isfsb.count[2:0]
+SystemC.tb.uart_receiver.rx_isfsb.d_i
+SystemC.tb.uart_receiver.rx_isfsb.q_o
+SystemC.tb.uart_receiver.rx_isfsb.rst_i
+@1401200
+-input_filter
+@800200
+-input_counter
+@28
+SystemC.tb.uart_receiver.rx_brc.clear_i
+SystemC.tb.uart_receiver.rx_brc.clk_i
+@22
+SystemC.tb.uart_receiver.rx_brc.counter[4:0]
+SystemC.tb.uart_receiver.rx_brc.d_i[3:0]
+@28
+SystemC.tb.uart_receiver.rx_brc.down_i
+SystemC.tb.uart_receiver.rx_brc.enable_i
+SystemC.tb.uart_receiver.rx_brc.load_i
+SystemC.tb.uart_receiver.rx_brc.overflow_o
+@22
+SystemC.tb.uart_receiver.rx_brc.q_o[3:0]
+@28
+SystemC.tb.uart_receiver.rx_brc.rst_i
+@1000200
+-input_counter
+[pattern_trace] 1
+[pattern_trace] 0

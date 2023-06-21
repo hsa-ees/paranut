@@ -1,11 +1,16 @@
 <map id="paranut&#45;peripheral.h" name="paranut&#45;peripheral.h">
-<area shape="rect" id="node2" href="$memory_8h.html" title="memory.h" alt="" coords="157,80,237,107"/>
-<area shape="rect" id="node9" href="$interconnect_8h.html" title="interconnect.h" alt="" coords="275,80,379,107"/>
-<area shape="rect" id="node3" href="$exu_8cpp.html" title="exu.cpp" alt="" coords="5,155,73,181"/>
-<area shape="rect" id="node4" href="$memory_8cpp.html" title="memory.cpp" alt="" coords="149,155,244,181"/>
-<area shape="rect" id="node5" href="$paranutsystem_8h.html" title="The MParaNutSystem class for simulation. " alt="" coords="268,155,387,181"/>
-<area shape="rect" id="node7" href="$memu__tb_8cpp.html" title="tb/memu/memu_tb.cpp" alt="" coords="156,304,312,331"/>
-<area shape="rect" id="node6" href="$paranut-sim_8h.html" title="paranut&#45;sim.h" alt="" coords="306,229,407,256"/>
-<area shape="rect" id="node8" href="$paranutsystem_8cpp.html" title="paranutsystem.cpp" alt="" coords="149,229,282,256"/>
-<area shape="rect" id="node10" href="$interconnect_8cpp.html" title="interconnect.cpp" alt="" coords="411,155,529,181"/>
+<area shape="rect" id="node1" title="The MPeripheral class containing the interface for Wishbone slave peripherals." alt="" coords="184,5,339,32"/>
+<area shape="rect" id="node2" href="$csr_8h.html" title=" " alt="" coords="98,80,150,107"/>
+<area shape="rect" id="node10" href="$interconnect_8h.html" title=" " alt="" coords="204,80,319,107"/>
+<area shape="rect" id="node12" href="$memory_8h.html" title=" " alt="" coords="382,155,469,181"/>
+<area shape="rect" id="node3" href="$csr_8cpp.html" title=" " alt="" coords="5,155,72,181"/>
+<area shape="rect" id="node4" href="$nut_8h.html" title=" " alt="" coords="97,155,151,181"/>
+<area shape="rect" id="node5" href="$nut_8cpp.html" title=" " alt="" coords="54,229,125,256"/>
+<area shape="rect" id="node6" href="$paranutsystem_8h.html" title="The MParaNutSystem class for simulation." alt="" coords="149,229,281,256"/>
+<area shape="rect" id="node7" href="$paranut-sim_8h.html" title=" " alt="" coords="29,304,142,331"/>
+<area shape="rect" id="node9" href="$paranutsystem_8cpp.html" title=" " alt="" coords="167,304,313,331"/>
+<area shape="rect" id="node8" href="$memu__tb_8cpp.html" title=" " alt="" coords="130,379,305,405"/>
+<area shape="rect" id="node11" href="$interconnect_8cpp.html" title=" " alt="" coords="227,155,357,181"/>
+<area shape="rect" id="node13" href="$exu_8cpp.html" title=" " alt="" coords="389,229,462,256"/>
+<area shape="rect" id="node14" href="$memory_8cpp.html" title=" " alt="" coords="486,229,589,256"/>
 </map>

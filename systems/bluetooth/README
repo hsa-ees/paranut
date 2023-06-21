@@ -1,0 +1,143 @@
+  ,===========================================,
+  |                                           |
+  |         ParaNut Reference System          |
+  |                                           |
+  '==========================================='
+
+Author: Alexander Bahle <alexander.bahle@hs-augsburg.de>
+        Elias SChuler <elias.schuler@hs-augsburg.de>
+Date of revision: 2022-01-18
+
+
+Development environment: Xilinx Vivado 2017.2
+
+
+Target Boards:
+  * Digilent Zybo board (Zynq Z-7010, XC7Z010) (Retired)
+    Set during build: BOARD=zybo
+  * Digilent Zybo Z7-20 board (Zynq Z-7020, XC7Z020)
+    Set during build: BOARD=zybo_z7020
+
+  Note: Vivado Board Files must be installed!
+   Ensure you have installed the Vivado Board Files for your target
+   board. These files can be obtained from Digilent or Avnet (they call
+   it "Board Definitions") and are placed in the Vivado installation
+   directory at '%Vivado-Dir/data/boards/board_files/'.
+
+
+Additional hardware (optional):
+  * a OpenOCD compatible JTAG debugger (see doc/paranut-manual.pdf)
+
+
+Info on Vivado IP cores:
+  * PARANUT: ParaNut processor
+
+
+Software / demo system usage:
+  The RISC-V software running on the ParaNut will be located in the
+  'software/' directory.
+
+
+
+**************
+* Quickstart *
+**************
+  0) For proper operation of Vivado (needed to generate an ASTERICS IP
+     core for Vivado and to build the system) make sure you source your
+     Vivado environment:
+     > source <VIVADO-DIR>/settings64.sh
+
+     Make sure you source the ParaNut environment prior to any action
+     in the project folder:
+     > source <PARANUT-DIR>/settings.sh
+
+  1) Build the whole system (hardware platform and demo software).
+     Select your board during this step. Default is 'zybo'.
+     The software is copied from one of the '<PARANUT-DIR>/sw' directories.
+     Default is 'hello_newlib' but any other software can be selected by
+     setting 'SOFTWARE_SRC' variable.
+     There is also now an option to enable or disable a UART Module to the Pmod on the board,
+     otherwise it won't be connected to an external Port, this can be accomplished by setting
+     the UART_EXT Flag after the make build, by default it isn't enabled, so nothing has changed
+     if you dont need an external UART
+     This step will take some time:
+     > make build
+
+     or e.g.
+     > make build BOARD=zybo_z7020 SOFTWARE_SRC=mode1_demo
+
+     <br/>or for using uart in external mode<br/>
+     >make build UART_EXT=1<br/>
+     make build BOARD=zybo_z7020 UART_EXT=1
+
+     or for using rust_intern_crates
+     > make build SOFTWARE_SRC=hello_rust SOFTWARE_FEATURE=rust
+  3) Connect your board to your computer and power on the board.
+     Then upload the hardware and software to the board:
+     > make run
+
+
+
+****************
+* Make Targets *
+****************
+
+  Following make targets help to build a complete system
+  which is put to operation on the target board.
+
+  * paranut_core:          Generate the ParaNut IP core for
+                            Xilinx Vivado using in the 'vivado_cores'
+                            directory.
+
+  * paranut:               Create a paranut directory populate the paranut
+                            directory with paranut installation.
+
+  * software:              Populate the software directory with the
+                            reference implementation specified by the
+                            SOFTWARE_SRC variable.
+
+  * build_system:          Generate and build the whole demo system
+                            (hardware + software) from sources.
+                      NOTE: target 'paranut_core' has to be run once before!
+
+  * build:                  Generate and build the whole demo system and
+                            create ParaNut IP core.
+
+  * run:                    Run the demo on the target board.
+                      NOTE: target 'build_system' has to be run once before!
+
+  * all / build_and_run:   The lazy target: performs all needed steps
+                            automatically, no more interaction needed.
+                            This one uses following targets:
+                              1) paranut_core
+                              2) build_system
+                              3) run
+                            Just make sure to connect the board, as it
+                            will be programmed right after hardware and
+                            software are built.
+
+  * clean-software:         Remove inside of software directory.
+
+  * clean:                  Remove the vivado_cores and demo software.
+
+  * veryclean:              Remove everything. (be careful!)
+
+
+************************
+* Directory structure: *
+************************
+ - refdesign/
+   |- README:         This file.
+   |- Makefile:       The main Makefile to build and run the system
+   |- hardware/
+   |  |- boards/:     board support files (blockdesign, ParaNut config,
+   |  |               constraints, firmware source...)
+   |  |- build/:      build directory, system level (generated)
+   |  |- build.bd/:   build directory for blockdesign files (generated)
+   |  '- firmware/:   build directory for firmware running on ZYNQ ARM
+   |                  processors (generated)
+   |- paranut/:       includes the paranut installation
+   |- software/:      Demo software for ParaNut processor (copied)
+   '- vivado_cores/:  IP core repository, containing the
+                      ParaNut IP cores for use in Vivado (generated)
+
