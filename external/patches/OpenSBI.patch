@@ -1,0 +1,447 @@
+From a06ca5928cc69eead866b8dbcedfd12ad09d79bb Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nico=20Borgsm=C3=BCller?= <nico.borgsmueller@hs-augsburg.de>
+Date: Thu, 23 Jun 2022 00:21:51 +0200
+Subject: [PATCH] OpenSBI: Add ParaNut support
+
+---
+ firmware/fw_base.S                    |  16 +++-
+ lib/sbi/riscv_atomic.c                |  89 ++++++++++++++++++++--
+ lib/sbi/riscv_locks.c                 |   7 +-
+ lib/sbi/sbi_illegal_insn.c            | 102 +++++++++++++++++++++++++-
+ lib/utils/serial/fdt_serial.c         |   4 +-
+ lib/utils/serial/fdt_serial_paranut.c |  40 ++++++++++
+ lib/utils/serial/objects.mk           |   1 +
+ 7 files changed, 249 insertions(+), 10 deletions(-)
+ create mode 100644 lib/utils/serial/fdt_serial_paranut.c
+
+diff --git a/firmware/fw_base.S b/firmware/fw_base.S
+index ab3e1b3..77f4bd4 100644
+--- a/firmware/fw_base.S
++++ b/firmware/fw_base.S
+@@ -47,6 +47,14 @@
+ 	.globl _start
+ 	.globl _start_warm
+ _start:
++// PN specific: Stop CoPUs
++	csrr t0, 0xcd4 // Read current hart id
++_pn_wait_copu:
++	bnez t0, _pn_wait_copu // Loop if not CePU
++
++	csrw 0x8c1, 0x1 // Only enable CePU
++// END PN specific
++
+ 	/* Find preferred boot HART id */
+ 	MOV_3R	s0, a0, s1, a1, s2, a2
+ 	call	fw_boot_hart
+@@ -60,7 +68,13 @@ _try_lottery:
+ 	/* Jump to relocation wait loop if we don't get relocation lottery */
+ 	lla	a6, _relocate_lottery
+ 	li	a7, 1
+-	amoadd.w a6, a7, (a6)
++0:
++	lr.w t0, (a6)
++	add t1, t0, a7
++	sc.w t1, t1, (a6)
++	bnez t1, 0b
++	add a6, t0, zero
++
+ 	bnez	a6, _wait_relocate_copy_done
+ 
+ 	/* Save load address */
+diff --git a/lib/sbi/riscv_atomic.c b/lib/sbi/riscv_atomic.c
+index 528686f..a003746 100644
+--- a/lib/sbi/riscv_atomic.c
++++ b/lib/sbi/riscv_atomic.c
+@@ -12,6 +12,10 @@
+ #include <sbi/riscv_atomic.h>
+ #include <sbi/riscv_barrier.h>
+ 
++#ifdef __riscv_atomic
++//#define USE_AMO __riscv_atomic
++#endif
++
+ long atomic_read(atomic_t *atom)
+ {
+ 	long ret = atom->counter;
+@@ -28,6 +32,7 @@ void atomic_write(atomic_t *atom, long value)
+ long atomic_add_return(atomic_t *atom, long value)
+ {
+ 	long ret;
++#ifdef USE_AMO
+ #if __SIZEOF_LONG__ == 4
+ 	__asm__ __volatile__("	amoadd.w.aqrl  %1, %2, %0"
+ 			     : "+A"(atom->counter), "=r"(ret)
+@@ -38,6 +43,27 @@ long atomic_add_return(atomic_t *atom, long value)
+ 			     : "+A"(atom->counter), "=r"(ret)
+ 			     : "r"(value)
+ 			     : "memory");
++#endif
++#else
++#if __SIZEOF_LONG__ == 4
++	__asm__ __volatile__("%=:"
++						 "  lr.w.aq %1, %0\n"
++						 "  add t0, %1, %2\n"
++						 "  sc.w.rl t0, t0, %0\n"
++						 "  bnez t0, %=b"
++				: "+A"(atom->counter), "=r"(ret)
++				: "r"(value)
++				: "memory", "t0");
++#elif __SIZEOF_LONG__ == 8
++	__asm__ __volatile__("%=:"
++						 "  lr.d.aq %1, %0\n"
++						 "  add t0, %1, %2\n"
++						 "  sc.d.rl t0, t0, %0\n"
++						 "  bnez t0, %=b"
++				: "+A"(atom->counter), "=r"(ret)
++				: "r"(value)
++				: "memory", "t0");
++#endif
+ #endif
+ 	return ret + value;
+ }
+@@ -167,7 +193,7 @@ long atomic_sub_return(atomic_t *atom, long value)
+ 
+ long atomic_cmpxchg(atomic_t *atom, long oldval, long newval)
+ {
+-#ifdef __riscv_atomic
++#ifdef USE_AMO
+ 	return __sync_val_compare_and_swap(&atom->counter, oldval, newval);
+ #else
+ 	return cmpxchg(&atom->counter, oldval, newval);
+@@ -177,7 +203,7 @@ long atomic_cmpxchg(atomic_t *atom, long oldval, long newval)
+ long atomic_xchg(atomic_t *atom, long newval)
+ {
+ 	/* Atomically set new value and return old value. */
+-#ifdef __riscv_atomic
++#ifdef USE_AMO
+ 	return axchg(&atom->counter, newval);
+ #else
+ 	return xchg(&atom->counter, newval);
+@@ -188,7 +214,7 @@ unsigned int atomic_raw_xchg_uint(volatile unsigned int *ptr,
+ 				  unsigned int newval)
+ {
+ 	/* Atomically set new value and return old value. */
+-#ifdef __riscv_atomic
++#ifdef USE_AMO
+ 	return axchg(ptr, newval);
+ #else
+ 	return xchg(ptr, newval);
+@@ -199,13 +225,14 @@ unsigned long atomic_raw_xchg_ulong(volatile unsigned long *ptr,
+ 				    unsigned long newval)
+ {
+ 	/* Atomically set new value and return old value. */
+-#ifdef __riscv_atomic
++#ifdef USE_AMO
+ 	return axchg(ptr, newval);
+ #else
+ 	return xchg(ptr, newval);
+ #endif
+ }
+ 
++#ifdef USE_AMO
+ #if (__SIZEOF_POINTER__ == 8)
+ #define __AMO(op) "amo" #op ".d"
+ #elif (__SIZEOF_POINTER__ == 4)
+@@ -213,7 +240,6 @@ unsigned long atomic_raw_xchg_ulong(volatile unsigned long *ptr,
+ #else
+ #error "Unexpected __SIZEOF_POINTER__"
+ #endif
+-
+ #define __atomic_op_bit_ord(op, mod, nr, addr, ord)                          \
+ 	({                                                                   \
+ 		unsigned long __res, __mask;                                 \
+@@ -241,6 +267,59 @@ inline int atomic_raw_clear_bit(int nr, volatile unsigned long *addr)
+ {
+ 	return __atomic_op_bit(and, __NOT, nr, addr);
+ }
++#else
++inline int atomic_raw_set_bit(int nr, volatile unsigned long *addr)
++{
++	unsigned long res, mask;
++	mask = BIT_MASK(nr);
++#if __SIZEOF_LONG__ == 4
++	__asm__ __volatile__("%=:"
++						 "  lr.w.aq %1, %0\n"
++						 "  or t0, %1, %2\n"
++						 "  sc.w.rl t0, t0, %0\n"
++						 "  bnez t0, %=b"
++				: "+A"(addr[BIT_WORD(nr)]), "=r"(res)
++				: "r"(mask)
++				: "memory", "t0");
++#elif __SIZEOF_LONG__ == 8
++	__asm__ __volatile__("%=:"
++						 "  lr.d.aq %1, %0\n"
++						 "  or t0, %1, %2\n"
++						 "  sc.d.rl t0, t0, %0\n"
++						 "  bnez t0, %=b"
++				: "+A"(addr[BIT_WORD(nr)]), "=r"(res)
++				: "r"(mask)
++				: "memory", "t0");
++#endif
++	return res;
++}
++
++inline int atomic_raw_clear_bit(int nr, volatile unsigned long *addr)
++{
++	unsigned long res, mask;
++	mask = BIT_MASK(nr);
++#if __SIZEOF_LONG__ == 4
++	__asm__ __volatile__("%=:"
++						 "  lr.w.aq %1, %0\n"
++						 "  and t0, %1, %2\n"
++						 "  sc.w.rl t0, t0, %0\n"
++						 "  bnez t0, %=b"
++				: "+A"(addr[BIT_WORD(nr)]), "=r"(res)
++				: "r"(~(mask))
++				: "memory", "t0");
++#elif __SIZEOF_LONG__ == 8
++	__asm__ __volatile__("%=:"
++						 "  lr.d.aq %1, %0\n"
++						 "  and t0, %1, %2\n"
++						 "  sc.d.rl t0, t0, %0\n"
++						 "  bnez t0, %=b"
++				: "+A"(addr[BIT_WORD(nr)]), "=r"(res)
++				: "r"(~(mask))
++				: "memory", "t0");
++#endif
++	return res;
++}
++#endif
+ 
+ inline int atomic_set_bit(int nr, atomic_t *atom)
+ {
+diff --git a/lib/sbi/riscv_locks.c b/lib/sbi/riscv_locks.c
+index acab776..02a450c 100644
+--- a/lib/sbi/riscv_locks.c
++++ b/lib/sbi/riscv_locks.c
+@@ -53,7 +53,10 @@ void spin_lock(spinlock_t *lock)
+ 
+ 	__asm__ __volatile__(
+ 		/* Atomically increment the next ticket. */
+-		"	amoadd.w.aqrl	%0, %4, %3\n"
++		"0:  lr.w.aq %0, %3\n"
++		"  add t0, %0, %4\n"
++		"  sc.w.rl t0, t0, %3\n"
++		"  bnez t0, 0b\n"
+ 
+ 		/* Did we get the lock? */
+ 		"	srli	%1, %0, %6\n"
+@@ -68,7 +71,7 @@ void spin_lock(spinlock_t *lock)
+ 		"2:"
+ 		: "=&r"(l0), "=&r"(tmp1), "=&r"(tmp2), "+A"(*lock)
+ 		: "r"(inc), "r"(mask), "I"(TICKET_SHIFT)
+-		: "memory");
++		: "memory", "t0");
+ }
+ 
+ void spin_unlock(spinlock_t *lock)
+diff --git a/lib/sbi/sbi_illegal_insn.c b/lib/sbi/sbi_illegal_insn.c
+index bfe7d61..4586015 100644
+--- a/lib/sbi/sbi_illegal_insn.c
++++ b/lib/sbi/sbi_illegal_insn.c
+@@ -17,6 +17,17 @@
+ #include <sbi/sbi_trap.h>
+ #include <sbi/sbi_unpriv.h>
+ 
++#define ENABLE_MPRV(mstatus) asm volatile( \
++               "csrrs %[mstatus], " STR(CSR_MSTATUS) ", %[mprv]\n" \
++               : [mstatus] "+&r"(mstatus) \
++               : [mprv] "r"(MSTATUS_MPRV) \
++               : \
++       );
++#define DISABLE_MPRV(mstatus) asm volatile( \
++               "csrw " STR(CSR_MSTATUS) ", %[mstatus]\n" \
++               : [mstatus] "+&r"(mstatus) \
++       );
++
+ typedef int (*illegal_insn_func)(ulong insn, struct sbi_trap_regs *regs);
+ 
+ static int truly_illegal_insn(ulong insn, struct sbi_trap_regs *regs)
+@@ -32,6 +43,95 @@ static int truly_illegal_insn(ulong insn, struct sbi_trap_regs *regs)
+ 	return sbi_trap_redirect(regs, &trap);
+ }
+ 
++static int amo_insn(ulong insn, struct sbi_trap_regs *regs) {
++       // TODO: Only works for rv32 right now
++       // TODO: Do we really need lr/sc here or is the exception enough?
++       int action = (insn >> 27);
++       if ((action & 0x2) == 2) { // Is lr/sc
++               return truly_illegal_insn(insn, regs);
++       }
++       register ulong rs1_val = GET_RS1(insn, regs);
++       ulong rs2_val = GET_RS2(insn, regs);
++       register int aq = (insn >> 26) & 0x1;
++       register int rl = (insn >> 25) & 0x1;
++
++       register int return_val;
++       register unsigned int old_value;
++       register unsigned int new_value;
++       register ulong mstatus = 0;
++
++       do {
++               ENABLE_MPRV(mstatus);
++               if (aq) {
++                       asm volatile("lr.w.aq %0, (%1)" : "=r"(old_value) : "r"(rs1_val));
++               } else {
++                       asm volatile("lr.w %0, (%1)" : "=r"(old_value) : "r"(rs1_val));
++               }
++               DISABLE_MPRV(mstatus);
++
++               switch (action) {
++                       case 0b00000: // amoadd
++                               new_value = old_value + rs2_val;
++                               break;
++                       case 0b00001: // amoswap
++                               new_value = rs2_val;
++                               break;
++                       case 0b00100: // amoxor
++                               new_value = old_value ^ rs2_val;
++                               break;
++                       case 0b01000: // amoor
++                               new_value = old_value | rs2_val;
++                               break;
++                       case 0b01100: // amoand
++                               new_value = old_value & rs2_val;
++                               break;
++                       case 0b10000: // amomin
++                               if (((int) old_value) > ((int) rs2_val)) {
++                                       new_value = rs2_val;
++                               } else {
++                                       new_value = old_value;
++                               }
++                               break;
++                       case 0b10100: // amomax
++                               if (((int) old_value) < ((int) rs2_val)) {
++                                       new_value = rs2_val;
++                               } else {
++                                       new_value = old_value;
++                               }
++                               break;
++                       case 0b11000: // amominu
++                            if (old_value > rs2_val) {
++                                       new_value = rs2_val;
++                               } else {
++                                       new_value = old_value;
++                               }
++                               break;
++                       case 0b11100: // amomaxu
++                               if (old_value < rs2_val) {
++                                       new_value = rs2_val;
++                               } else {
++                                       new_value = old_value;
++                               }
++                               break;
++                       default:
++                               return truly_illegal_insn(insn, regs);
++               }
++
++               ENABLE_MPRV(mstatus);
++               if (rl) {
++                       asm volatile("sc.w.rl %0, %1, (%2)" : "=r"(return_val) : "r"(new_value), "r"(rs1_val));
++               } else {
++                       asm volatile("sc.w %0, %1, (%2)" : "=r"(return_val) : "r"(new_value), "r"(rs1_val));
++               }
++               DISABLE_MPRV(mstatus);
++       } while(return_val);
++
++       SET_RD(insn, regs, old_value);
++
++       regs->mepc += 4;
++       return 0;
++}
++
+ static int system_opcode_insn(ulong insn, struct sbi_trap_regs *regs)
+ {
+ 	int do_write, rs1_num = (insn >> 15) & 0x1f;
+@@ -92,7 +192,7 @@ static illegal_insn_func illegal_insn_table[32] = {
+ 	truly_illegal_insn, /* 8 */
+ 	truly_illegal_insn, /* 9 */
+ 	truly_illegal_insn, /* 10 */
+-	truly_illegal_insn, /* 11 */
++	amo_insn, /* 11 */
+ 	truly_illegal_insn, /* 12 */
+ 	truly_illegal_insn, /* 13 */
+ 	truly_illegal_insn, /* 14 */
+diff --git a/lib/utils/serial/fdt_serial.c b/lib/utils/serial/fdt_serial.c
+index f73d26a..625668b 100644
+--- a/lib/utils/serial/fdt_serial.c
++++ b/lib/utils/serial/fdt_serial.c
+@@ -19,6 +19,7 @@ extern struct fdt_serial fdt_serial_litex;
+ extern struct fdt_serial fdt_serial_htif;
+ extern struct fdt_serial fdt_serial_shakti;
+ extern struct fdt_serial fdt_serial_gaisler;
++extern struct fdt_serial fdt_serial_paranut;
+ 
+ static struct fdt_serial *serial_drivers[] = {
+ 	&fdt_serial_uart8250,
+@@ -26,7 +27,8 @@ static struct fdt_serial *serial_drivers[] = {
+ 	&fdt_serial_litex,
+ 	&fdt_serial_htif,
+ 	&fdt_serial_shakti,
+-	&fdt_serial_gaisler
++	&fdt_serial_gaisler,
++	&fdt_serial_paranut,
+ };
+ 
+ static struct fdt_serial dummy = {
+diff --git a/lib/utils/serial/fdt_serial_paranut.c b/lib/utils/serial/fdt_serial_paranut.c
+new file mode 100644
+index 0000000..472fdd9
+--- /dev/null
++++ b/lib/utils/serial/fdt_serial_paranut.c
+@@ -0,0 +1,40 @@
++#include <sbi_utils/fdt/fdt_helper.h>
++#include <sbi_utils/serial/fdt_serial.h>
++#include <sbi/sbi_console.h>
++
++volatile uint8_t pn_tohost __attribute__((section(".pn_tohost")));
++volatile uint8_t pn_fromhost __attribute__((section(".pn_tohost")));
++
++static const struct fdt_match serial_paranut_match[] = {
++       { .compatible = "hsa-ees,pn-tohost" },
++       { },
++};
++
++static void paranut_putc(char ch)
++{
++       pn_tohost = ch;
++       while (pn_tohost > 0);
++}
++
++static int paranut_getc(void)
++{
++       return -1; // TODO: Implement fromhost
++}
++
++static struct sbi_console_device paranut_console = {
++       .name = "paranut",
++       .console_putc = paranut_putc,
++       .console_getc = paranut_getc
++};
++
++static int serial_paranut_init(void *fdt, int nodeoff,
++                           const struct fdt_match *match)
++{
++       sbi_console_set_device(&paranut_console);
++       return 0;
++}
++
++struct fdt_serial fdt_serial_paranut = {
++       .match_table = serial_paranut_match,
++       .init = serial_paranut_init
++};
+diff --git a/lib/utils/serial/objects.mk b/lib/utils/serial/objects.mk
+index 4f751ba..3c6ed91 100644
+--- a/lib/utils/serial/objects.mk
++++ b/lib/utils/serial/objects.mk
+@@ -14,6 +14,7 @@ libsbiutils-objs-y += serial/fdt_serial_shakti.o
+ libsbiutils-objs-y += serial/fdt_serial_sifive.o
+ libsbiutils-objs-y += serial/fdt_serial_litex.o
+ libsbiutils-objs-y += serial/fdt_serial_uart8250.o
++libsbiutils-objs-y += serial/fdt_serial_paranut.o
+ libsbiutils-objs-y += serial/gaisler-uart.o
+ libsbiutils-objs-y += serial/shakti-uart.o
+ libsbiutils-objs-y += serial/sifive-uart.o
+-- 
+2.20.1
+

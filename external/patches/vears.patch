@@ -1,0 +1,260 @@
+diff -burN src/ea_present.c vears_working/ea_present.c
+--- src/ea_present.c	2022-05-18 17:42:00.352827145 +0200
++++ vears_working/ea_present.c	2022-05-18 12:57:39.000000000 +0200
+@@ -31,8 +31,9 @@
+ 
+ #include "embedded_augmenter_lib.h"
+ 
++#ifdef XILINX
+ #include <xil_cache.h>
+-
++#endif
+ 
+ ea_bool ea_present()
+ {
+@@ -52,6 +53,8 @@
+ //     This simplifies the interface, and the flushing effort is not too high.
+ 
+   // we just use a single buffer right now:
++  #ifdef XILINX
+ 	Xil_DCacheFlush();
++  #endif
+ 	return ea_true;
+ }
+diff -burN src/vears_baseaddr.h vears_working/vears_baseaddr.h
+--- src/vears_baseaddr.h	2022-05-18 17:42:00.352827145 +0200
++++ vears_working/vears_baseaddr.h	2022-05-18 17:48:25.114520976 +0200
+@@ -34,6 +34,6 @@
+ #ifndef VEARS_BASEADDR_H
+ #define VEARS_BASEADDR_H
+ 
+-#define VEARS_BASEADDR ((uint32_t) 0x43c00000)
++#define VEARS_BASEADDR ((uint32_t) 0x44a00000)
+ 
+ #endif // VEARS_BASEADDR_H
+diff -burN src/vears.c vears_working/vears.c
+--- src/vears.c	2022-05-18 17:42:00.352827145 +0200
++++ vears_working/vears.c	2022-05-18 12:57:39.000000000 +0200
+@@ -34,8 +34,10 @@
+ 
+ #include "vears.h"
+ 
++#ifdef XILINX
+ #include <xil_io.h>
+ #include <xil_cache.h>
++#endif
+ 
+ #include <stdlib.h>
+ 
+@@ -47,33 +49,50 @@
+ 
+ static vears_overlay_t *curOverlay = NULL, *internalOverlay = NULL;
+ 
+-
++#ifdef XILINX
+ #define ASSERT(COND) { if (!(COND)) { xil_printf ("ERROR in %s:%i: Assertion failed", __FILE__, __LINE__); abort (); } }
++#else
++#define ASSERT(COND)
++#endif
+ 
+ uint8_t vears_initialized = 0;
+ 
+ uint32_t vears_frame_width = 0;
+ uint32_t vears_frame_height = 0;
+ 
+-
++uint8_t *vears_image_base = NULL;
+ 
+ 
+ 
+ 
+ /************************ Helpers ********************************************/
+ 
++#ifndef XILINX
++static inline void flush_addr(uint32_t* addr) {
++  register uint32_t *store_ptr asm ("x6") = (uint32_t*)addr;
++  asm volatile (			
++			".word (0x300B | ((6) << 15))\n"
++      );
++}
++#endif
+ 
+ static inline void flush_cache_for_image () {
++#ifdef XILINX
+   Xil_DCacheFlush ();
++#else
++for (int line = 0; line < (vears_frame_width*vears_frame_height*4); line+= 64) {
++  flush_addr((uint32_t*)((uint8_t *)vears_image_base + line));
++}
++#endif
+ }
+-
+ 
+ static inline void flush_cache_for_overlay () {
+-
++#ifdef XILINX
+   // TBD: Test if the first line is sufficient.
+ 
+   //~ Xil_DCacheFlushRange (ea_get_overlay_hardware_address (), sizeof (vears_overlay_t));
+   Xil_DCacheFlush ();
++#endif
+ }
+ 
+ 
+@@ -91,6 +110,29 @@
+ // Stored control register contents...
+ static uint32_t ctrlReg = 0;
+ 
++static void vears_Out32(uint32_t addr, uint32_t value) {
++#ifdef XILINX
++Xil_Out32(addr, value);
++#else
++  register uint32_t *store_ptr asm ("x6") = (uint32_t*)addr;
++  *store_ptr = value;
++  asm volatile (			
++			".word (0x300B | ((6) << 15))\n"
++      );
++#endif
++}
++
++static uint32_t vears_In32(uint32_t addr) {
++#ifdef XILINX
++  Xil_In32(addr);
++#else
++  register uint32_t *store_ptr asm ("x6") = (uint32_t*)addr;
++  asm volatile (			
++    ".word (0x300B | ((6) << 15))\n"
++    );
++  return *store_ptr;
++#endif
++}
+ 
+ int8_t vears_init(uint32_t vears_iobase, uint8_t *image_base) {
+   uint32_t frame_width, frame_height;
+@@ -121,9 +163,9 @@
+ 
+ 
+ void vears_reset (uint32_t vears_iobase){
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, 0);
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, VEARS_CONTROL_REG_RESET_MASK);
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, 0);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, 0);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, VEARS_CONTROL_REG_RESET_MASK);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, 0);
+   ctrlReg = 0;
+ }
+ 
+@@ -131,14 +173,14 @@
+ void vears_enable (uint32_t vears_iobase){
+   if (vears_initialized){
+     ctrlReg |= VEARS_CONTROL_REG_ENABLE_MASK;
+-    Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
++    vears_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
+   }
+ }
+ 
+ 
+ void vears_disable (uint32_t vears_iobase){
+   ctrlReg &= ~VEARS_CONTROL_REG_ENABLE_MASK;
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
+ }
+ 
+ 
+@@ -158,7 +200,7 @@
+ 
+   // Switch on the overlay...
+   ctrlReg |= VEARS_CONTROL_REG_OVERLAY_ENABLE_MASK;
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
+ 
+   // Reset color map...
+   vears_overlay_set_color(vears_iobase, 1, STD_COLOR_1);
+@@ -169,41 +211,42 @@
+ 
+ void vears_overlay_off (uint32_t vears_iobase){
+   ctrlReg &= ~VEARS_CONTROL_REG_OVERLAY_ENABLE_MASK;
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
+ }
+ 
+ 
+ void vears_overlay_set_color (uint32_t vears_iobase, int col_idx, uint32_t color){
+   if (col_idx == 1)
+     //VEARS_write_reg_color0(vears_iobase, 0, color);
+-    Xil_Out32(vears_iobase + VEARS_REG_COLOR_1, color);
++    vears_Out32(vears_iobase + VEARS_REG_COLOR_1, color);
+ 
+   else if (col_idx == 2)
+     //VEARS_write_reg_color1(vears_iobase, 0, color);
+-    Xil_Out32(vears_iobase + VEARS_REG_COLOR_2, color);
++    vears_Out32(vears_iobase + VEARS_REG_COLOR_2, color);
+ 
+   else if (col_idx == 3)
+     //VEARS_write_reg_color2(vears_iobase, 0, color);
+-    Xil_Out32(vears_iobase + VEARS_REG_COLOR_3, color);
++    vears_Out32(vears_iobase + VEARS_REG_COLOR_3, color);
+ }
+ 
+ 
+ void vears_image_show (uint32_t vears_iobase, uint8_t *image_base){
+   //VEARS_write_reg_pic_base_addr(vears_iobase, 0, image_base);
+-  Xil_Out32(vears_iobase + VEARS_REG_IMAGE_BASE, (uint32_t) image_base);
+-  flush_cache_for_image ();
++  vears_image_base = image_base;
++  vears_Out32(vears_iobase + VEARS_REG_IMAGE_BASE, (uint32_t) image_base);
++  //flush_cache_for_image ();
+ }
+ 
+ 
+ void vears_overlay_show (uint32_t vears_iobase, vears_overlay_t *overlay){
+   //VEARS_write_reg_ovl_base_addr(vears_iobase, 0, overlay);
+-  Xil_Out32(vears_iobase + VEARS_REG_OVERLAY_BASE, (uint32_t) overlay);
++  vears_Out32(vears_iobase + VEARS_REG_OVERLAY_BASE, (uint32_t) overlay);
+ }
+ 
+ 
+ int8_t vears_get_resolution (uint32_t vears_iobase, uint32_t *screen_width, uint32_t *screen_height){
+   // read status register
+-  uint32_t reg_status = Xil_In32(vears_iobase + VEARS_REG_STATUS);
++  uint32_t reg_status = vears_In32(vears_iobase + VEARS_REG_STATUS);
+   uint8_t video_group = (uint8_t)(reg_status);
+   uint8_t video_mode  = (uint8_t)(reg_status>>8);
+ 
+@@ -221,7 +264,7 @@
+ 
+ int8_t vears_is_color (uint32_t vears_iobase){
+   // read status register
+-  uint32_t reg_status = Xil_In32(vears_iobase + VEARS_REG_STATUS);
++  uint32_t reg_status = vears_In32(vears_iobase + VEARS_REG_STATUS);
+   uint8_t is_color = (uint8_t)((reg_status >> 16) & 0x1);
+   return is_color;
+ }
+@@ -229,23 +272,23 @@
+ 
+ void vears_interrupt_frame_enable (uint32_t vears_iobase){
+   ctrlReg |= VEARS_CONTROL_REG_INTR_FRAME_EN_MASK;
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
+ }
+ 
+ void vears_interrupt_frame_disable (uint32_t vears_iobase){
+   ctrlReg &= ~VEARS_CONTROL_REG_INTR_FRAME_EN_MASK;
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
+ }
+ 
+ 
+ void vears_interrupt_line_enable (uint32_t vears_iobase){
+   ctrlReg |= VEARS_CONTROL_REG_INTR_LINE_EN_MASK;
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
+ }
+ 
+ void vears_interrupt_line_disable (uint32_t vears_iobase){
+   ctrlReg &= ~VEARS_CONTROL_REG_INTR_LINE_EN_MASK;
+-  Xil_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
++  vears_Out32 (vears_iobase + VEARS_REG_CONTROL, ctrlReg);
+ }
+ 
+ 
